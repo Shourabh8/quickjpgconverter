@@ -179,6 +179,16 @@ export const tools: Tool[] = [
     keywords: ["image enhancer", "enhance image", "adjust brightness", "increase contrast", "sharpen image", "photo enhancer", "free image enhancer", "online image editor", "edit photo online", "improve photo quality", "adjust image", "image editor online"],
     category: "image-tools",
   },
+  {
+    slug: "remove-background",
+    title: "Remove Background",
+    description: "AI-powered background removal that runs entirely in your browser.",
+    from: "IMG",
+    to: "PNG",
+    icon: "✂️",
+    keywords: ["remove background", "background remover", "remove image background", "transparent background", "AI background removal", "free background remover", "online background eraser", "cut out image", "remove bg", "photo background remover", "erase background", "background delete", "image background remover free", "remove background from photo"],
+    category: "image-tools",
+  },
 
   // PDF Converters
   {
