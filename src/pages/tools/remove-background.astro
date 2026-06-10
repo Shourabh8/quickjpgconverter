@@ -32,6 +32,10 @@ const faqItems = [
     question: "What types of images work best?",
     answer: "Photos with a clear subject (person, product, animal) against a distinct background work best. Complex scenes with multiple subjects may have mixed results.",
   },
+  {
+    question: "Can I choose a different background color?",
+    answer: "Yes! After removing the background, you can choose from preset colors (white, black, blue, green, red) or pick any custom color. You'll see a live preview before downloading.",
+  },
 ];
 ---
 
@@ -61,7 +65,7 @@ const faqItems = [
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
           AI-powered background removal that runs entirely in your browser.
-          Your images never leave your device. Get transparent PNG output instantly.
+          Choose transparent, white, black, or any color background.
         </p>
       </div>
     </Container>
@@ -69,22 +73,22 @@ const faqItems = [
 
   <section class="pb-12 sm:pb-16">
     <Container>
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-5xl mx-auto">
         <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
           <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
             <span class="text-sm font-medium text-text-secondary">AI Background Removal</span>
             <div class="flex items-center gap-3">
-              <span id="model-status" class="text-xs font-medium text-amber-600 dark:text-amber-400">AI model not loaded</div>
+              <span id="model-status" class="text-xs font-medium text-amber-600 dark:text-amber-400">AI model not loaded</span>
               <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
                 <span class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">Remove</span>
               </div>
             </div>
           </div>
-          <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[400px]">
+          <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
             <!-- LEFT: Upload / Preview -->
             <div class="p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
               <div id="upload-zone" class="h-full">
-                <div id="drop-area" class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                <div id="drop-area" class="relative h-full min-h-[350px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
                   <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -125,8 +129,8 @@ const faqItems = [
               </div>
             </div>
 
-            <!-- RIGHT: Actions -->
-            <div class="p-5 sm:p-6 flex flex-col">
+            <!-- RIGHT: Actions + Preview -->
+            <div class="p-5 sm:p-6 flex flex-col overflow-y-auto max-h-[600px]">
               <div class="mb-5">
                 <h3 class="text-sm font-semibold text-text-primary mb-3">How It Works</h3>
                 <div class="space-y-3">
@@ -153,8 +157,8 @@ const faqItems = [
                       <span class="text-xs font-bold text-brand-600 dark:text-brand-400">3</span>
                     </div>
                     <div>
-                      <p class="text-sm font-medium text-text-primary">Download transparent PNG</p>
-                      <p class="text-xs text-text-tertiary">Ready to use anywhere</p>
+                      <p class="text-sm font-medium text-text-primary">Choose background & download</p>
+                      <p class="text-xs text-text-tertiary">Transparent, white, black, or custom color</p>
                     </div>
                   </div>
                 </div>
@@ -162,13 +166,27 @@ const faqItems = [
 
               <div class="h-px bg-border-default mb-5"></div>
 
-              <div class="mb-5">
-                <h3 class="text-sm font-semibold text-text-primary mb-2">Privacy First</h3>
-                <div class="flex items-center gap-2 p-3 rounded-lg bg-success/5 border border-success/20">
-                  <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                  </svg>
-                  <p class="text-xs text-text-secondary">100% private — your image never leaves your browser</p>
+              <!-- Background Color Options (hidden until after removal) -->
+              <div id="bg-options" class="hidden mb-5">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Background Color</h3>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button data-bg="transparent" class="w-10 h-10 rounded-lg border-2 border-border-default bg-[length:10px_10px] bg-[linear-gradient(45deg,#ccc_25%,transparent_25%),linear-gradient(-45deg,#ccc_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#ccc_75%),linear-gradient(-45deg,transparent_75%,#ccc_75%)] bg-[0_0,0_5px,5px_-5px,-5px_0px] ring-2 ring-brand-500 ring-offset-2" title="Transparent"></button>
+                  <button data-bg="white" class="w-10 h-10 rounded-lg border-2 border-border-default bg-white" title="White"></button>
+                  <button data-bg="black" class="w-10 h-10 rounded-lg border-2 border-border-default bg-black" title="Black"></button>
+                  <button data-bg="blue" class="w-10 h-10 rounded-lg border-2 border-border-default bg-blue-500" title="Blue"></button>
+                  <button data-bg="green" class="w-10 h-10 rounded-lg border-2 border-border-default bg-green-500" title="Green"></button>
+                  <button data-bg="red" class="w-10 h-10 rounded-lg border-2 border-border-default bg-red-500" title="Red"></button>
+                  <div class="relative">
+                    <input type="color" id="custom-color" value="#ffffff" class="w-10 h-10 rounded-lg border-2 border-border-default cursor-pointer" title="Custom color" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Preview Section (hidden until after removal) -->
+              <div id="preview-section" class="hidden mb-5">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Preview</h3>
+                <div class="rounded-xl border border-border-default overflow-hidden bg-surface-muted/30">
+                  <canvas id="preview-canvas" class="max-w-full max-h-[250px] mx-auto"></canvas>
                 </div>
               </div>
 
@@ -202,7 +220,7 @@ const faqItems = [
         <Badge class="mb-4">How It Works</Badge>
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">AI-Powered Background Removal</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
           <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload Image</h3>
@@ -211,12 +229,17 @@ const faqItems = [
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
           <h3 class="text-base font-semibold text-text-primary mb-1.5">AI Processing</h3>
-          <p class="text-sm text-text-secondary">Our AI detects the subject and removes the background automatically.</p>
+          <p class="text-sm text-text-secondary">Our AI detects the subject and removes the background.</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Choose Background</h3>
+          <p class="text-sm text-text-secondary">Pick transparent, white, black, or any custom color.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">04</div>
           <h3 class="text-base font-semibold text-text-primary mb-1.5">Download PNG</h3>
-          <p class="text-sm text-text-secondary">Get your image with transparent background instantly.</p>
+          <p class="text-sm text-text-secondary">Get your image with chosen background instantly.</p>
         </div>
       </div>
     </Container>
@@ -227,21 +250,19 @@ const faqItems = [
       <div class="prose">
         <h2>Professional Background Removal</h2>
         <p>Remove backgrounds from photos instantly using advanced AI that runs entirely in your browser. Unlike other tools that upload your images to servers, our tool keeps everything private — your photos never leave your device.</p>
+        <h3>Choose Your Background</h3>
+        <ul>
+          <li><strong>Transparent</strong> — Perfect for logos, overlays, and design projects</li>
+          <li><strong>White</strong> — Ideal for product photos and e-commerce listings</li>
+          <li><strong>Black</strong> — Great for professional headshots and social media</li>
+          <li><strong>Custom Color</strong> — Pick any color to match your brand or project</li>
+        </ul>
         <h3>Perfect For</h3>
         <ul>
-          <li><strong>Product photos</strong> — Create clean white or transparent backgrounds for e-commerce</li>
-          <li><strong>Portraits</strong> — Get professional headshots with transparent backgrounds</li>
+          <li><strong>Product photos</strong> — Create clean backgrounds for e-commerce</li>
+          <li><strong>Portraits</strong> — Get professional headshots with any background</li>
           <li><strong>Social media</strong> — Create eye-catching images for posts and stories</li>
           <li><strong>Design projects</strong> — Extract subjects for composites and collages</li>
-          <li><strong>Passport photos</strong> — Remove backgrounds for official documents</li>
-        </ul>
-        <h3>Why Choose Our Background Remover?</h3>
-        <ul>
-          <li><strong>100% Private</strong> — Your images never leave your browser</li>
-          <li><strong>AI-Powered</strong> — Advanced neural network for accurate subject detection</li>
-          <li><strong>Free Forever</strong> — No signup, no watermarks, no limits</li>
-          <li><strong>Works Offline</strong> — After first load, the AI model caches in your browser</li>
-          <li><strong>All Formats</strong> — JPG, PNG, WebP, BMP, GIF input → PNG output</li>
         </ul>
       </div>
     </Container>

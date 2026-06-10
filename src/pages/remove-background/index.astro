@@ -26,6 +26,10 @@ const faqItems = [
     question: "How long does it take?",
     answer: "On first use, the AI model downloads (~45MB) and caches in your browser. After that, background removal typically takes 3-15 seconds.",
   },
+  {
+    question: "Can I choose a different background color?",
+    answer: "Yes! After removing the background, you can choose from preset colors (white, black, blue, green, red) or pick any custom color. You'll see a live preview before downloading.",
+  },
 ];
 ---
 
@@ -55,7 +59,7 @@ const faqItems = [
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
           AI-powered background removal that runs entirely in your browser.
-          Your images never leave your device. Get transparent PNG output instantly.
+          Choose transparent, white, black, or any color background.
         </p>
       </div>
     </Container>
@@ -114,6 +118,30 @@ const faqItems = [
             </div>
 
             <div class="mt-4">
+              <!-- Background Color Options (hidden until after removal) -->
+              <div id="bg-options" class="hidden mb-4">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Background Color</h3>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button data-bg="transparent" class="w-10 h-10 rounded-lg border-2 border-border-default bg-[length:10px_10px] bg-[linear-gradient(45deg,#ccc_25%,transparent_25%),linear-gradient(-45deg,#ccc_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#ccc_75%),linear-gradient(-45deg,transparent_75%,#ccc_75%)] bg-[0_0,0_5px,5px_-5px,-5px_0px] ring-2 ring-brand-500 ring-offset-2" title="Transparent"></button>
+                  <button data-bg="white" class="w-10 h-10 rounded-lg border-2 border-border-default bg-white" title="White"></button>
+                  <button data-bg="black" class="w-10 h-10 rounded-lg border-2 border-border-default bg-black" title="Black"></button>
+                  <button data-bg="blue" class="w-10 h-10 rounded-lg border-2 border-border-default bg-blue-500" title="Blue"></button>
+                  <button data-bg="green" class="w-10 h-10 rounded-lg border-2 border-border-default bg-green-500" title="Green"></button>
+                  <button data-bg="red" class="w-10 h-10 rounded-lg border-2 border-border-default bg-red-500" title="Red"></button>
+                  <div class="relative">
+                    <input type="color" id="custom-color" value="#ffffff" class="w-10 h-10 rounded-lg border-2 border-border-default cursor-pointer" title="Custom color" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Preview Section (hidden until after removal) -->
+              <div id="preview-section" class="hidden mb-4">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Preview</h3>
+                <div class="rounded-xl border border-border-default overflow-hidden bg-surface-muted/30">
+                  <canvas id="preview-canvas" class="max-w-full max-h-[250px] mx-auto"></canvas>
+                </div>
+              </div>
+
               <div id="progress-area" class="hidden mb-4">
                 <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
                   <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
@@ -138,9 +166,9 @@ const faqItems = [
     <Container>
       <div class="text-center mb-10">
         <Badge class="mb-4">How It Works</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Simple Steps</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Four Simple Steps</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
           <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload Image</h3>
@@ -149,12 +177,17 @@ const faqItems = [
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
           <h3 class="text-base font-semibold text-text-primary mb-1.5">AI Processing</h3>
-          <p class="text-sm text-text-secondary">Our AI detects the subject and removes the background automatically.</p>
+          <p class="text-sm text-text-secondary">Our AI detects the subject and removes the background.</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Choose Background</h3>
+          <p class="text-sm text-text-secondary">Pick transparent, white, black, or any custom color.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">04</div>
           <h3 class="text-base font-semibold text-text-primary mb-1.5">Download PNG</h3>
-          <p class="text-sm text-text-secondary">Get your image with transparent background instantly.</p>
+          <p class="text-sm text-text-secondary">Get your image with chosen background instantly.</p>
         </div>
       </div>
     </Container>
@@ -165,13 +198,12 @@ const faqItems = [
       <div class="prose">
         <h2>Why Use Our Background Remover?</h2>
         <p>Unlike other background removal tools that upload your images to remote servers, our tool processes everything locally in your browser. This means your photos are completely private — they never leave your device.</p>
-        <h3>Perfect For</h3>
+        <h3>Choose Your Background</h3>
         <ul>
-          <li><strong>Product photos</strong> — Create clean white or transparent backgrounds for e-commerce</li>
-          <li><strong>Portraits</strong> — Get professional headshots with transparent backgrounds</li>
-          <li><strong>Social media</strong> — Create eye-catching images for posts and stories</li>
-          <li><strong>Design projects</strong> — Extract subjects for composites and collages</li>
-          <li><strong>Passport photos</strong> — Remove backgrounds for official documents</li>
+          <li><strong>Transparent</strong> — Perfect for logos, overlays, and design projects</li>
+          <li><strong>White</strong> — Ideal for product photos and e-commerce listings</li>
+          <li><strong>Black</strong> — Great for professional headshots and social media</li>
+          <li><strong>Custom Color</strong> — Pick any color to match your brand or project</li>
         </ul>
         <h3>Key Features</h3>
         <ul>
