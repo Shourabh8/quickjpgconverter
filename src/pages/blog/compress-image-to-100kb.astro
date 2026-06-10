@@ -1,0 +1,123 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Blog", url: "/blog" },
+  { name: "Compress Image to 100KB", url: "/blog/compress-image-to-100kb" },
+];
+
+const publishDate = "June 10, 2026";
+---
+
+<BaseLayout
+  title="How to Compress Image to 100KB Without Losing Quality"
+  description="Step-by-step guide to compress any image to under 100KB for passport photos, job portals, and government forms. Free online tool, no signup required."
+  canonical="https://quickjpgconverter.com/blog/compress-image-to-100kb"
+  breadcrumbs={breadcrumbs}
+  keywords={["compress image to 100kb", "reduce image size to 100kb", "100kb image compressor", "how to compress photo to 100kb", "image compressor online free"]}
+  faqItems={[
+    {
+      question: "How do I compress an image to exactly 100KB?",
+      answer: "Use our Compress to 100KB tool. Upload your image, and it will automatically compress to under 100KB while maintaining the best possible quality. The tool uses iterative quality reduction to hit your target size.",
+    },
+    {
+      question: "Will compressing to 100KB make my image blurry?",
+      answer: "Not necessarily. Our compressor uses smart algorithms that reduce quality gradually. For most photos, 100KB provides good visual quality. For passport photos and ID documents, 100KB is the standard requirement.",
+    },
+    {
+      question: "What image formats can I compress to 100KB?",
+      answer: "You can compress JPG, PNG, and WebP images to 100KB. The output is always JPG format for maximum compatibility.",
+    },
+  ]}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <article class="prose mt-8">
+        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
+          <time datetime="2026-06-10">{publishDate}</time>
+          <span>·</span>
+          <span>5 min read</span>
+        </div>
+
+        <h1>How to Compress Image to 100KB Without Losing Quality</h1>
+
+        <p class="lead">
+          Need to compress an image to under 100KB for a passport photo, job portal, or government form? Here's the fastest way to do it — free, online, and without losing quality.
+        </p>
+
+        <h2>Why Compress to 100KB?</h2>
+        <p>Many online portals and forms have strict file size limits. Common requirements include:</p>
+        <ul>
+          <li><strong>Passport photos</strong> — Most countries require 100KB or less</li>
+          <li><strong>Job portals</strong> — LinkedIn, Indeed, and government job sites often limit uploads to 100KB</li>
+          <li><strong>Government forms</strong> — Tax returns, visa applications, and official documents</li>
+          <li><strong>University applications</strong> — Many portals require small photo files</li>
+        </ul>
+
+        <h2>Step-by-Step Guide</h2>
+
+        <h3>Step 1: Go to the Compress to 100KB Tool</h3>
+        <p>Visit our <a href="/tools/compress-to-100kb">Compress to 100KB</a> tool. No signup, no email required.</p>
+
+        <h3>Step 2: Upload Your Image</h3>
+        <p>Drag and drop your image or click to browse. We support JPG, PNG, and WebP formats. You can upload multiple images at once.</p>
+
+        <h3>Step 3: Download Your Compressed Image</h3>
+        <p>Click "Compress to 100KB" and your image will be compressed instantly. Download it ready to upload to any portal.</p>
+
+        <h2>Tips for Best Results</h2>
+        <ul>
+          <li><strong>Start with a high-quality image</strong> — The better the source, the better the compressed result</li>
+          <li><strong>Crop unnecessary areas</strong> — Removing borders or background reduces file size naturally</li>
+          <li><strong>Use JPG format</strong> — JPG compresses better than PNG for photos</li>
+        </ul>
+
+        <h2>Why Our Tool is Different</h2>
+        <p>Unlike other compressors, our tool runs entirely in your browser. Your images are never uploaded to any server. This means:</p>
+        <ul>
+          <li><strong>Complete privacy</strong> — Your photos stay on your device</li>
+          <li><strong>Faster compression</strong> — No upload/download wait time</li>
+          <li><strong>No file size limits</strong> — Compress any image up to 50MB</li>
+        </ul>
+
+        <div class="not-prose bg-surface-muted rounded-2xl p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-2">Try It Now</h3>
+          <p class="text-text-secondary text-sm mb-4">Compress your images to 100KB in seconds — free, private, no signup.</p>
+          <a href="/tools/compress-to-100kb" class="btn-primary">
+            Compress to 100KB
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="text-center mb-8">
+        <h2 class="text-xl font-bold text-text-primary">Frequently Asked Questions</h2>
+      </div>
+      <div class="space-y-4">
+        <div class="rounded-xl border border-border-default bg-surface p-5">
+          <h3 class="font-semibold text-text-primary mb-2">How do I compress an image to exactly 100KB?</h3>
+          <p class="text-sm text-text-secondary">Use our Compress to 100KB tool. Upload your image, and it will automatically compress to under 100KB while maintaining the best possible quality.</p>
+        </div>
+        <div class="rounded-xl border border-border-default bg-surface p-5">
+          <h3 class="font-semibold text-text-primary mb-2">Will compressing to 100KB make my image blurry?</h3>
+          <p class="text-sm text-text-secondary">Not necessarily. Our compressor uses smart algorithms that reduce quality gradually. For most photos, 100KB provides good visual quality.</p>
+        </div>
+        <div class="rounded-xl border border-border-default bg-surface p-5">
+          <h3 class="font-semibold text-text-primary mb-2">What image formats can I compress to 100KB?</h3>
+          <p class="text-sm text-text-secondary">You can compress JPG, PNG, and WebP images to 100KB. The output is always JPG format for maximum compatibility.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
