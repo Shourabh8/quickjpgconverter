@@ -1,0 +1,200 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Blog", url: "/blog" },
+  { name: "Compress for Passport", url: "/blog/compress-image-to-100kb-for-passport" },
+];
+
+const publishDate = "June 11, 2026";
+---
+
+<BaseLayout
+  title="How to Compress Image to 100KB for Passport & Government Forms (2026)"
+  description="Step-by-step guide to compress images to 100KB for Indian passport, visa, and government portal uploads. Free tool, no signup required."
+  canonical="https://quickjpgconverter.com/blog/compress-image-to-100kb-for-passport"
+  breadcrumbs={breadcrumbs}
+  keywords={["compress image to 100kb for passport", "passport photo size 100kb", "compress photo for passport seva", "100kb image compressor online", "passport photo compressor free", "reduce image size to 100kb", "image compressor for government forms", "passport photo file size limit"]}
+  faqItems={[
+    {
+      question: "Why do government portals require 100KB photos?",
+      answer: "Most Indian government portals enforce strict file size limits to manage server load. The most common limits are 100KB for exam applications (SSC, IBPS, RRB), 200KB for some passport and visa portals, and 250KB for Passport Seva 2.0.",
+    },
+    {
+      question: "What if my photo can't fit in 100KB?",
+      answer: "Very large or detailed photos may not reach exactly 100KB. The tool will show you the smallest possible size. Try resizing to 630×810 pixels first for passport photos.",
+    },
+    {
+      question: "Can I compress HEIC photos from iPhone?",
+      answer: "Yes! First convert your HEIC photo to JPG using our HEIC to JPG Converter, then compress to 100KB.",
+    },
+  ]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+          </svg>
+          Image Compression Guide
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Compress Image to <span class="gradient-text">100KB</span> for Passport & Government Forms
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Step-by-step guide to compress images to 100KB for Indian passport, visa, and government portal uploads. Free tool, no signup required.
+        </p>
+        <p class="text-sm text-text-tertiary mt-3">Published {publishDate} · 6 min read</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Do Government Portals Require 100KB Photos?</h2>
+        <p>Most Indian government portals — including Passport Seva, SSC, IBPS, UPSC, and various state recruitment boards — enforce strict file size limits to manage server load. The most common limits are:</p>
+        <ul>
+          <li><strong>100KB</strong> — Most common for exam applications (SSC, IBPS, RRB)</li>
+          <li><strong>200KB</strong> — Some passport and visa portals</li>
+          <li><strong>250KB</strong> — Passport Seva 2.0 domestic portal</li>
+          <li><strong>50KB</strong> — Some older government forms</li>
+        </ul>
+        <p>If your photo exceeds these limits, the portal will reject your upload — often without a clear error message.</p>
+
+        <h2>Step-by-Step: Compress to 100KB</h2>
+        
+        <h3>Method 1: Using Our Free Online Tool (Recommended)</h3>
+        <ol>
+          <li><strong>Go to</strong> <a href="/tools/compress-to-100kb">Quick JPG Converter — Compress to 100KB</a></li>
+          <li><strong>Upload your photo</strong> — Drag and drop or click to select (JPG, PNG, or WebP)</li>
+          <li><strong>Click "Compress to 100KB"</strong> — The tool automatically finds the right quality</li>
+          <li><strong>Download</strong> — Your compressed photo is ready to upload</li>
+        </ol>
+        <p><strong>Privacy guarantee:</strong> Your photo never leaves your browser. All compression happens locally on your device.</p>
+
+        <h3>Method 2: Resize + Compress (For Large Photos)</h3>
+        <p>If your original photo is very large (5MB+), you may need to resize it first:</p>
+        <ol>
+          <li><strong>Resize</strong> to 630×810 pixels (for Passport Seva) using <a href="/tools/resize-jpg">Resize JPG Tool</a></li>
+          <li><strong>Compress</strong> to under 100KB using <a href="/tools/compress-to-100kb">Compress to 100KB Tool</a></li>
+        </ol>
+
+        <h2>Indian Passport Photo Requirements 2026</h2>
+        <p>Since September 2025, India uses the ICAO biometric standard. Here are the exact specifications:</p>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Photo size</td>
+              <td>35 × 45 mm</td>
+            </tr>
+            <tr>
+              <td>Pixel dimensions</td>
+              <td>630 × 810 pixels</td>
+            </tr>
+            <tr>
+              <td>File format</td>
+              <td>JPEG (.jpg) only</td>
+            </tr>
+            <tr>
+              <td>File size (domestic)</td>
+              <td>Under 250 KB</td>
+            </tr>
+            <tr>
+              <td>File size (abroad/consulate)</td>
+              <td>20 KB – 100 KB</td>
+            </tr>
+            <tr>
+              <td>Background</td>
+              <td>Plain white</td>
+            </tr>
+            <tr>
+              <td>Face coverage</td>
+              <td>80–85% of frame</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Common Government Portal Photo Requirements</h2>
+        
+        <h3>SSC (Staff Selection Commission)</h3>
+        <ul>
+          <li>File size: 20KB – 100KB</li>
+          <li>Dimensions: 3.5 cm × 4.5 cm (passport size)</li>
+          <li>Format: JPEG</li>
+        </ul>
+
+        <h3>IBPS (Institute of Banking Personnel Selection)</h3>
+        <ul>
+          <li>File size: 20KB – 50KB</li>
+          <li>Dimensions: 200×230 pixels</li>
+          <li>Format: JPEG</li>
+        </ul>
+
+        <h3>UPSC (Union Public Service Commission)</h3>
+        <ul>
+          <li>File size: 20KB – 300KB</li>
+          <li>Dimensions: 3.5 cm × 4.5 cm</li>
+          <li>Format: JPEG</li>
+        </ul>
+
+        <h3>Passport Seva 2.0</h3>
+        <ul>
+          <li>File size: Under 250 KB</li>
+          <li>Dimensions: 630 × 810 pixels</li>
+          <li>Format: JPEG only</li>
+          <li>Note: AI screening checks dimensions, background, and face coverage</li>
+        </ul>
+
+        <h2>Tips for Perfect Passport Photos</h2>
+        <ol>
+          <li><strong>Use natural lighting</strong> — Stand near a window, avoid flash</li>
+          <li><strong>White background</strong> — Use a plain white wall or sheet</li>
+          <li><strong>Remove glasses</strong> — Passport Seva 2.0 rejects photos with glasses</li>
+          <li><strong>Neutral expression</strong> — Mouth closed, eyes open</li>
+          <li><strong>No filters</strong> — Beauty mode and AI editing will get your photo rejected</li>
+        </ol>
+
+        <h2>Why Choose Our Tool?</h2>
+        <ul>
+          <li><strong>100% Free</strong> — No signup, no watermarks, no limits</li>
+          <li><strong>100% Private</strong> — Your photos never leave your browser</li>
+          <li><strong>Instant</strong> — Compress in seconds, not minutes</li>
+          <li><strong>Works everywhere</strong> — Desktop, tablet, and mobile</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        
+        <h3>Can I compress HEIC photos from iPhone?</h3>
+        <p>Yes! First convert your HEIC photo to JPG using our <a href="/tools/heic-to-jpg">HEIC to JPG Converter</a>, then compress to 100KB.</p>
+
+        <h3>Will compression reduce photo quality?</h3>
+        <p>Our tool finds the optimal balance between file size and quality. For most passport photos, the quality loss is imperceptible.</p>
+
+        <h3>What if my photo can't fit in 100KB?</h3>
+        <p>Very large or detailed photos may not reach exactly 100KB. The tool will show you the smallest possible size. Try resizing to 630×810 pixels first.</p>
+      </div>
+
+      <div class="mt-8 p-6 rounded-2xl bg-brand-50 dark:bg-brand-950/30 border border-brand-200 dark:border-brand-800 text-center">
+        <h3 class="text-lg font-semibold text-text-primary mb-2">Ready to Compress Your Photo?</h3>
+        <p class="text-sm text-text-secondary mb-4">Use our free tool to compress your passport photo to 100KB in seconds.</p>
+        <a href="/tools/compress-to-100kb" class="btn-primary">Compress to 100KB →</a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
