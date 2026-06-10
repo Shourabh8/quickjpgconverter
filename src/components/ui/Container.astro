@@ -1,0 +1,20 @@
+---
+import { cn } from "@lib/utils";
+
+interface Props {
+  variant?: "default" | "narrow" | "wide";
+  class?: string;
+}
+
+const { variant = "default", class: className } = Astro.props;
+
+const variants = {
+  default: "container-main",
+  narrow: "container-narrow",
+  wide: "container-wide",
+};
+---
+
+<div class={cn(variants[variant], className)}>
+  <slot />
+</div>

@@ -1,0 +1,68 @@
+---
+import { generateMeta, generateJsonLd } from "@lib/seo";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  jsonLd?: boolean;
+  breadcrumbs?: { name: string; url: string }[];
+  faqItems?: { question: string; answer: string }[];
+  keywords?: string[];
+  howToSteps?: { name: string; text: string; image?: string }[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  noindex = false,
+  jsonLd = true,
+  breadcrumbs,
+  faqItems,
+  keywords,
+  howToSteps,
+} = Astro.props;
+
+const meta = generateMeta({ title, description, canonical, ogImage, noindex });
+
+const jsonLdData = jsonLd
+  ? generateJsonLd({
+      name: title,
+      description,
+      url: canonical,
+      breadcrumbs,
+      faqItems,
+      howToSteps,
+    })
+  : null;
+---
+
+<meta name="generator" content={Astro.generator} />
+
+<!-- Font preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+
+{meta.meta.map((m) => (
+  <meta {...m} />
+))}
+
+{keywords && keywords.length > 0 && (
+  <meta name="keywords" content={keywords.join(", ")} />
+)}
+
+{meta.link.map((l) => (
+  <link {...l} />
+))}
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+
+{jsonLdData && (
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdData)} />
+)}

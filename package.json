@@ -1,0 +1,22 @@
+{
+  "name": "quickjpgconverter",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Quick JPG Converter — Free online image format conversion tools",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy dist"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^5.18.2",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.86.0"
+  }
+}

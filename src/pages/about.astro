@@ -1,0 +1,116 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [{ name: "About", url: "/about" }];
+---
+
+<BaseLayout
+  title="About Us — Quick JPG Converter"
+  description="Learn about Quick JPG Converter, a free privacy-first image conversion tool built for speed, simplicity, and complete data safety."
+  canonical="https://quickjpgconverter.com/about"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8">
+        <Badge class="mb-4">About Us</Badge>
+      </div>
+
+      <article class="prose mt-6">
+        <h1>About Quick JPG Converter</h1>
+
+        <p class="lead">
+          Quick JPG Converter is a free online tool designed to make image format
+          conversion simple, fast, and completely private. Built for photographers,
+          designers, developers, and anyone who needs quick image conversions
+          without the hassle of desktop software.
+        </p>
+
+        <h2>What We Do</h2>
+        <p>
+          We provide a suite of free browser-based image conversion tools. Our core
+          feature allows users to convert JPG images to PNG, WebP, and PDF formats
+          instantly — with additional tools for converting PNG to JPG, WebP to JPG,
+          and resizing images. Every conversion runs entirely in your browser using
+          modern web technologies, meaning your files never leave your device.
+        </p>
+        <p>
+          Whether you need a transparent logo in PNG, a lightweight image in WebP,
+          or a quick PDF from a photo, our tools handle the job in milliseconds
+          without requiring you to install anything or create an account.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+          We believe image conversion should be accessible to everyone without
+          compromising privacy. Too many online converters upload your files to
+          remote servers, exposing personal photos and sensitive documents to
+          unnecessary risk. We built Quick JPG Converter to solve this problem.
+        </p>
+        <p>
+          Our goal is to provide the fastest, most private image conversion
+          experience available on the web — completely free, with no hidden fees,
+          no sign-up walls, and no data collection.
+        </p>
+
+        <h2>How It Works</h2>
+        <p>
+          Unlike traditional converters that upload your images to a server, our
+          tool uses modern browser APIs — including the Canvas API and WebAssembly —
+          to process images directly on your device. This approach offers several
+          important advantages:
+        </p>
+        <ul>
+          <li><strong>Faster conversion</strong> — no upload or download wait times; processing happens locally</li>
+          <li><strong>Complete privacy</strong> — images never leave your browser and are never transmitted to any server</li>
+          <li><strong>No file size limits</strong> — constrained only by your device's available memory</li>
+          <li><strong>No account required</strong> — open the site and start converting immediately</li>
+          <li><strong>Works on any device</strong> — desktop, tablet, or phone with a modern browser</li>
+        </ul>
+
+        <h2>Why Choose Us</h2>
+        <p>
+          There are dozens of image converters online. Here's what sets Quick JPG
+          Converter apart:
+        </p>
+        <ul>
+          <li><strong>100% free</strong> — no premium tiers, no paywalls, no hidden charges</li>
+          <li><strong>Zero uploads</strong> — your files stay on your device at all times</li>
+          <li><strong>Instant results</strong> — conversions complete in milliseconds</li>
+          <li><strong>Batch support</strong> — convert multiple files simultaneously</li>
+          <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest file size</li>
+          <li><strong>Mobile-friendly</strong> — works perfectly on phones and tablets</li>
+        </ul>
+
+        <h2>Open and Transparent</h2>
+        <p>
+          Quick JPG Converter is built with transparency in mind. Our privacy
+          policy clearly explains what data we collect (virtually none), and our
+          terms of service are written in plain language. We welcome feedback,
+          feature requests, and contributions from the community.
+        </p>
+
+        <h2>Our Commitment</h2>
+        <p>
+          We are committed to keeping this tool free and ad-supported. We do not
+          sell user data, we do not require accounts, and we do not store your
+          images. Our revenue comes solely from non-intrusive advertisements that
+          help us cover hosting and development costs.
+        </p>
+
+        <h2>Contact Us</h2>
+        <p>
+          Have a question, suggestion, or just want to say hello? We'd love to hear
+          from you. Reach out to us at
+          <a href="mailto:hello@quickjpgconverter.com">hello@quickjpgconverter.com</a>
+          or visit our <a href="/contact">Contact page</a> for more options.
+        </p>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>

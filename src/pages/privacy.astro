@@ -1,0 +1,243 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [{ name: "Privacy Policy", url: "/privacy" }];
+---
+
+<BaseLayout
+  title="Privacy Policy — Quick JPG Converter"
+  description="Quick JPG Converter privacy policy. Learn how we handle your data — or rather, how we don't. Your images never leave your browser."
+  canonical="https://quickjpgconverter.com/privacy"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8">
+        <Badge class="mb-4">Legal</Badge>
+      </div>
+
+      <article class="prose mt-6">
+        <h1>Privacy Policy</h1>
+        <p><em>Last updated: June 9, 2026</em></p>
+
+        <p>
+          Quick JPG Converter ("we", "our", "us") is committed to protecting your
+          privacy. This privacy policy explains how we handle data when you use our
+          website and tools at <a href="https://quickjpgconverter.com">quickjpgconverter.com</a>.
+        </p>
+        <p>
+          By using our website, you agree to the practices described in this policy.
+          If you do not agree, please discontinue use of our services.
+        </p>
+
+        <h2>1. Information We Collect</h2>
+
+        <h3>1.1 Image Data</h3>
+        <p>
+          <strong>We do not collect, store, or transmit your images.</strong> All
+          image processing happens entirely within your web browser using the Canvas
+          API and client-side JavaScript. Your files never leave your device and are
+          never uploaded to our servers or any third-party service.
+        </p>
+        <p>
+          When you close the page or refresh, all image data is permanently erased
+          from memory. We have no ability to access, recover, or view your images.
+        </p>
+
+        <h3>1.2 Automatically Collected Information</h3>
+        <p>
+          Like most websites, we automatically collect certain non-personal
+          information when you visit our site. This may include:
+        </p>
+        <ul>
+          <li>Browser type and version</li>
+          <li>Operating system</li>
+          <li>Device type (desktop, tablet, mobile)</li>
+          <li>Referring URL</li>
+          <li>Pages visited and time spent on each page</li>
+          <li>General geographic region (country/city level only)</li>
+          <li>Date and time of visit</li>
+        </ul>
+        <p>
+          This information is aggregated and anonymized. It cannot be used to
+          identify individual users.
+        </p>
+
+        <h2>2. Cookies and Local Storage</h2>
+
+        <h3>2.1 Essential Cookies</h3>
+        <p>
+          We use only essential cookies required for the website to function
+          properly. These include:
+        </p>
+        <ul>
+          <li><strong>Theme preference</strong> — stores your dark/light mode choice in localStorage</li>
+          <li><strong>Session cookies</strong> — required for basic site functionality</li>
+        </ul>
+
+        <h3>2.2 Advertising Cookies</h3>
+        <p>
+          Our advertising partners (such as Google AdSense) may use cookies to
+          serve relevant advertisements. These cookies are set by third-party ad
+          networks and are subject to their respective privacy policies. You can
+          manage your ad personalization preferences through your
+          <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ad Settings</a>.
+        </p>
+
+        <h3>2.3 Analytics Cookies</h3>
+        <p>
+          We may use privacy-respecting analytics tools to understand how our
+          website is used. These tools collect aggregated data such as page views,
+          session duration, and general traffic patterns. No personally identifiable
+          information is collected through analytics.
+        </p>
+
+        <h3>2.4 Managing Cookies</h3>
+        <p>
+          You can control and delete cookies through your browser settings. Please
+          note that disabling essential cookies may affect the functionality of our
+          website. To learn more about cookies, visit
+          <a href="https://www.allaboutcookies.org/" target="_blank" rel="noopener noreferrer">allaboutcookies.org</a>.
+        </p>
+
+        <h2>3. How We Use Information</h2>
+        <p>
+          We use the automatically collected information for the following purposes:
+        </p>
+        <ul>
+          <li>To operate and maintain our website</li>
+          <li>To analyze usage patterns and improve our tools</li>
+          <li>To detect and prevent technical issues or abuse</li>
+          <li>To serve relevant advertisements (see Section 5)</li>
+          <li>To comply with legal obligations</li>
+        </ul>
+
+        <h2>4. Data Sharing and Third Parties</h2>
+        <p>
+          We do not sell, trade, or rent your personal information to third
+          parties. We may share aggregated, non-identifiable data in the following
+          limited circumstances:
+        </p>
+        <ul>
+          <li><strong>Advertising partners</strong> — ad networks may collect data per their own privacy policies</li>
+          <li><strong>Legal compliance</strong> — if required by law, court order, or governmental request</li>
+          <li><strong>Business transfers</strong> — in the event of a merger, acquisition, or sale of assets</li>
+        </ul>
+        <p>
+          Since image processing happens entirely client-side, no image data is ever
+          transmitted to any third party.
+        </p>
+
+        <h2>5. Google AdSense and Advertising</h2>
+        <p>
+          We use Google AdSense to display advertisements on our website. Google
+          AdSense uses cookies to serve ads based on your prior visits to our
+          website and other websites on the internet.
+        </p>
+        <p>
+          Google's use of advertising cookies enables it and its partners to serve
+          ads based on your visit to our site and/or other sites on the internet.
+          You can opt out of personalized advertising by visiting
+          <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>.
+        </p>
+        <p>
+          Third-party ad networks may also use technologies such as web beacons
+          (pixels) to collect information about your visits to our site and other
+          sites. This information is used to provide targeted advertisements.
+        </p>
+
+        <h2>6. Your Rights Under GDPR (EU Users)</h2>
+        <p>
+          If you are located in the European Economic Area (EEA), the United
+          Kingdom, or Switzerland, you have the following rights under data
+          protection law:
+        </p>
+        <ul>
+          <li><strong>Right to access</strong> — request a copy of the data we hold about you</li>
+          <li><strong>Right to rectification</strong> — request correction of inaccurate data</li>
+          <li><strong>Right to erasure</strong> — request deletion of your data</li>
+          <li><strong>Right to restrict processing</strong> — request limitation of data processing</li>
+          <li><strong>Right to data portability</strong> — receive your data in a structured, machine-readable format</li>
+          <li><strong>Right to object</strong> — object to processing based on legitimate interests</li>
+        </ul>
+        <p>
+          Since we collect virtually no personal data, most of these rights are
+          largely moot. However, if you wish to exercise any of these rights,
+          contact us at
+          <a href="mailto:privacy@quickjpgconverter.com">privacy@quickjpgconverter.com</a>.
+        </p>
+
+        <h2>7. Your Rights Under CCPA (California Users)</h2>
+        <p>
+          If you are a California resident, the California Consumer Privacy Act
+          (CCPA) grants you the following rights:
+        </p>
+        <ul>
+          <li><strong>Right to know</strong> — what personal information we collect and how it is used</li>
+          <li><strong>Right to delete</strong> — request deletion of personal information</li>
+          <li><strong>Right to opt out</strong> — opt out of the sale of personal information</li>
+        </ul>
+        <p>
+          We do not sell personal information. To exercise your rights under the
+          CCPA, contact us at
+          <a href="mailto:privacy@quickjpgconverter.com">privacy@quickjpgconverter.com</a>.
+        </p>
+
+        <h2>8. Children's Privacy</h2>
+        <p>
+          Our website is not directed at children under the age of 13 (or 16 in the
+          EEA). We do not knowingly collect personal information from children. If
+          you believe a child has provided us with personal information, please
+          contact us immediately so we can delete it.
+        </p>
+
+        <h2>9. Data Security</h2>
+        <p>
+          We implement reasonable administrative, technical, and physical safeguards
+          to protect the information we collect. However, no method of transmission
+          over the Internet or electronic storage is 100% secure. We cannot
+          guarantee absolute security.
+        </p>
+        <p>
+          Since all image processing happens client-side, your images are never at
+          risk of being intercepted during transmission to our servers — because
+          they are never transmitted in the first place.
+        </p>
+
+        <h2>10. International Data Transfers</h2>
+        <p>
+          Our servers are located in the United States. If you access our website
+          from outside the US, your information may be transferred to and processed
+          in the US. By using our website, you consent to such transfers.
+        </p>
+
+        <h2>11. Changes to This Policy</h2>
+        <p>
+          We may update this privacy policy from time to time. Changes will be
+          posted on this page with an updated revision date. We encourage you to
+          review this policy periodically. Your continued use of our website after
+          changes are posted constitutes acceptance of the updated policy.
+        </p>
+
+        <h2>12. Contact Us</h2>
+        <p>
+          If you have questions about this privacy policy or our data practices,
+          please contact us at:
+        </p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:privacy@quickjpgconverter.com">privacy@quickjpgconverter.com</a>
+        </p>
+        <p>
+          You may also visit our <a href="/contact">Contact page</a> for additional
+          contact options.
+        </p>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>

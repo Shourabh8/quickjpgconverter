@@ -1,0 +1,220 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Button from "@components/ui/Button.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "PNG to JPG", url: "/png-to-jpg" },
+];
+
+const faqItems = [
+  {
+    question: "How much smaller will my JPG file be compared to PNG?",
+    answer: "For photographs, JPG files are typically 5 to 10 times smaller than the equivalent PNG. A 5MB PNG photo might convert to a 500KB-1MB JPG at high quality. The exact ratio depends on image complexity — photos with lots of detail compress less than simple images with flat colors.",
+  },
+  {
+    question: "What quality setting should I choose for PNG to JPG conversion?",
+    answer: "For most uses, 85-92% quality provides an excellent balance between file size and visual fidelity. At these settings, the difference from the original is imperceptible to the human eye. Use 95%+ for print or archival purposes, and 70-80% when file size is the top priority.",
+  },
+  {
+    question: "Will converting PNG to JPG remove transparency?",
+    answer: "Yes. JPG does not support transparency. Any transparent areas in your PNG will be filled with a solid background color (typically white) when converted to JPG. If you need to preserve transparency, keep the file as PNG or convert to WebP, which supports both lossy compression and transparency.",
+  },
+  {
+    question: "Is PNG to JPG conversion safe for social media?",
+    answer: "Absolutely. JPG is the standard format for social media platforms. Converting PNG to JPG reduces file size for faster uploads while maintaining visual quality that's indistinguishable from the original at typical social media viewing sizes.",
+  },
+  {
+    question: "Can I batch convert PNG files to JPG?",
+    answer: "Yes. Our converter supports unlimited batch processing. Drop dozens or hundreds of PNG files, and they'll all be converted to JPG simultaneously. You can download them individually or as a batch zip file.",
+  },
+  {
+    question: "Does JPG support the same color depth as PNG?",
+    answer: "PNG supports up to 48-bit color depth, while JPG typically works with 24-bit color. However, 24-bit color (16.7 million colors) is more than sufficient for photographic content, and the visual difference is negligible for virtually all use cases.",
+  },
+];
+---
+
+<BaseLayout
+  title="Convert PNG to JPG — Reduce File Size Without Visible Quality Loss"
+  description="Convert PNG images to JPG for smaller files and universal compatibility. Quality-controlled compression, batch processing, and 100% private — no uploads required."
+  canonical="https://quickjpgconverter.com/png-to-jpg"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8 mb-10">
+        <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-4">
+          Convert PNG to JPG — Smaller Files, Same Visual Quality
+        </h1>
+        <p class="text-lg text-text-secondary max-w-xl">
+          Reduce PNG file sizes by 5-10x while keeping visually identical quality.
+          Choose your compression level. No uploads, no sign-up, completely private.
+        </p>
+        <div class="mt-6">
+          <Button href="/tools/png-to-jpg" size="lg">
+            Open PNG to JPG Converter
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Button>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Why Photographers Convert PNG to JPG</h2>
+        <p>
+          If you've ever exported a batch of photos from a camera or design tool, you've probably
+          noticed that PNG files are enormous. A single high-resolution photo can easily be 15-25MB
+          in PNG format. That's fine for editing, but for sharing, publishing, and archiving, those
+          file sizes create real problems — slow uploads, wasted storage, and frustrated recipients
+          waiting for email attachments to download.
+        </p>
+        <p>
+          JPG solves this problem. By using lossy compression that's tuned to the way human vision
+          works, JPG reduces file sizes by 5 to 10 times while producing results that are visually
+          indistinguishable from the original at normal viewing distances. Converting PNG to JPG
+          is one of the simplest and most effective optimizations you can make for any image-heavy
+          workflow.
+        </p>
+
+        <h2>The Science Behind JPG Compression</h2>
+        <p>
+          JPG compression works by analyzing your image and removing detail that the human eye
+          is least likely to notice. It exploits a quirk of human vision: we're more sensitive to
+          brightness differences than color differences. So JPG reduces color resolution more aggressively
+          than brightness resolution, achieving dramatic file size reductions with minimal perceptible
+          quality loss.
+        </p>
+        <p>
+          The quality slider in our converter controls this process. At 92% quality, JPG discards
+          very little data — the file is much smaller, but the visual difference from the PNG original
+          is virtually invisible. At 80% quality, more data is discarded for even smaller files,
+          and at 70%, you'll start to see subtle artifacts if you zoom in closely. For most web
+          publishing, 85-90% is the sweet spot.
+        </p>
+
+        <h2>When to Use JPG Instead of PNG</h2>
+        <p>
+          JPG is the right format when file size matters more than perfect pixel preservation.
+          Here are the most common scenarios where converting PNG to JPG makes sense.
+        </p>
+
+        <h3>Web Publishing and E-Commerce</h3>
+        <p>
+          Page load speed directly affects user experience and search rankings. A product page with
+          ten 2MB PNG images takes 20 seconds to load on a slow connection. The same images converted
+          to JPG at 90% quality total roughly 2MB — loading in under two seconds. For e-commerce
+          sites, blogs, and content-heavy pages, converting PNG to JPG is a basic performance
+          optimization that pays dividends.
+        </p>
+
+        <h3>Email and File Sharing</h3>
+        <p>
+          Most email services limit attachment sizes to 5-25MB. A few PNG screenshots or photos
+          can quickly exceed that limit. Converting to JPG brings files well within typical attachment
+          limits while maintaining quality that's more than adequate for viewing on screen.
+        </p>
+
+        <h3>Social Media</h3>
+        <p>
+          Social platforms compress images further anyway. Uploading a PNG to Instagram, Twitter,
+          or Facebook means the platform will re-encode it — often with less care than you'd
+          choose yourself. Converting to JPG first gives you control over the compression level
+          and ensures the best possible quality after the platform's own processing.
+        </p>
+
+        <h3>Storage and Backup</h3>
+        <p>
+          If you're archiving thousands of photos, the storage difference between PNG and JPG is
+          significant. A collection that takes 100GB in PNG might take only 10-15GB in JPG at
+          high quality. For personal photo archives and backup purposes, JPG provides the best
+          balance of quality and storage efficiency.
+        </p>
+
+        <h2>Quality Control: You're in Charge</h2>
+        <p>
+          One advantage of converting PNG to JPG yourself is quality control. Unlike uploading to
+          a platform that re-compresses your images with fixed settings, our converter lets you
+          choose exactly how much compression to apply. This means you can optimize each batch
+          of images for its specific purpose — high quality for portfolio images, balanced for
+          blog posts, and smaller for email thumbnails.
+        </p>
+        <p>
+          The converter shows you a preview of each converted file alongside the original, so you
+          can visually verify the quality before downloading. This transparency ensures you always
+          get results you're happy with.
+        </p>
+
+        <h2>What About Transparency?</h2>
+        <p>
+          JPG does not support transparent backgrounds. If your PNG has transparency, the transparent
+          areas will be filled with white when converted to JPG. If you need to preserve transparency,
+          consider keeping the PNG or converting to <a href="/webp-to-jpg">WebP</a>, which supports
+          both lossy compression and alpha channels. For images without transparency — which is most
+          photographs — this is a non-issue.
+        </p>
+
+        <h2>Batch Conversion Workflow</h2>
+        <p>
+          Professional workflows often involve converting hundreds of images at once. Our converter
+          handles this without breaking a sweat. Drop an entire folder of PNG files, set your preferred
+          quality level, and convert. Every file is processed locally in your browser — no uploads,
+          no waiting, no server processing time. The converted JPGs are ready to download in seconds,
+          regardless of how many files you're converting.
+        </p>
+        <p>
+          This batch capability makes Quick JPG Converter ideal for photographers processing shoot
+          output, e-commerce sellers preparing product images, and designers converting asset libraries
+          for web use.
+        </p>
+
+        <h2>PNG to JPG vs Other Conversion Options</h2>
+        <p>
+          If you're optimizing images for the web, you have several options beyond JPG. <a href="/jpg-to-webp">
+          WebP</a> offers even better compression than JPG — 25-35% smaller files with equivalent
+          quality. However, JPG remains the most universally supported format, and for many use
+          cases, the simplicity and compatibility of JPG outweigh the marginal size savings of
+          WebP.
+        </p>
+        <p>
+          For a complete image optimization workflow, consider converting your PNGs to JPG for
+          general use, and to WebP for performance-critical pages where every kilobyte matters.
+          Our <a href="/png-to-jpg">PNG to JPG</a> and <a href="/jpg-to-webp">JPG to WebP</a>
+          converters handle each step of that pipeline.
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-2xl font-bold text-text-primary mb-6">Frequently Asked Questions</h2>
+        <FAQ items={faqItems} />
+      </div>
+
+      <div class="mt-10 p-6 rounded-2xl border border-border-default bg-surface-muted text-center">
+        <h3 class="text-lg font-semibold text-text-primary mb-2">Ready to reduce your file sizes?</h3>
+        <p class="text-sm text-text-secondary mb-4">Open the converter and transform your PNG files to JPG in seconds.</p>
+        <Button href="/tools/png-to-jpg">
+          Open PNG to JPG Converter
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </Button>
+      </div>
+
+      <div class="mt-8 text-xs text-text-tertiary">
+        <p>Related tools:
+          <a href="/jpg-to-png" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PNG</a> ·
+          <a href="/jpg-to-webp" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to WebP</a> ·
+          <a href="/webp-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">WebP to JPG</a> ·
+          <a href="/tools/jpg-to-pdf" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PDF</a>
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

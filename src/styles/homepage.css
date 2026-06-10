@@ -1,0 +1,61 @@
+@reference "./global.css";
+
+/* ============================================
+   HOMEPAGE-SPECIFIC STYLES
+   ============================================ */
+
+/* Step connector line */
+.step-connector {
+  position: absolute;
+  left: 1.5rem;
+  top: 3.5rem;
+  bottom: -0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-brand-200), var(--color-brand-100));
+}
+
+.dark .step-connector {
+  background: linear-gradient(to bottom, var(--color-brand-800), var(--color-brand-900));
+}
+
+/* CTA glow */
+.cta-glow {
+  position: relative;
+}
+
+.cta-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600));
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(16px);
+  transition: opacity 0.3s ease;
+}
+
+.cta-glow:hover::before {
+  opacity: 0.8;
+}
+
+/* Comparison table */
+.comparison-row {
+  transition: background 0.2s ease;
+}
+
+.comparison-row:hover {
+  background: var(--color-surface-subtle);
+}
+
+.comparison-row td {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@media (min-width: 640px) {
+  .comparison-row td {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}

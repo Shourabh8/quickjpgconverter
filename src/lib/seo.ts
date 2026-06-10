@@ -1,0 +1,156 @@
+import { site } from "@data/site";
+
+interface MetaOptions {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+export function generateMeta(opts: MetaOptions) {
+  const title = opts.title === site.title ? opts.title : `${opts.title} | ${site.name}`;
+  const canonical = opts.canonical ?? site.url;
+  const ogImage = opts.ogImage ?? site.ogImage;
+
+  return {
+    title,
+    meta: [
+      { name: "description", content: opts.description },
+      { name: "theme-color", content: site.themeColor },
+
+      // Open Graph
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: site.name },
+      { property: "og:title", content: title },
+      { property: "og:description", content: opts.description },
+      { property: "og:url", content: canonical },
+      { property: "og:image", content: new URL(ogImage, site.url).href },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:locale", content: site.locale },
+
+      // Twitter
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: site.twitter },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: opts.description },
+      { name: "twitter:image", content: new URL(ogImage, site.url).href },
+
+      // Robots
+      ...(opts.noindex ? [{ name: "robots", content: "noindex, nofollow" }] : [{ name: "robots", content: "index, follow" }]),
+    ],
+    link: [
+      { rel: "canonical", href: canonical },
+    ],
+  };
+}
+
+interface JsonLdOptions {
+  type?: string;
+  name: string;
+  description: string;
+  url?: string;
+  breadcrumbs?: { name: string; url: string }[];
+  faqItems?: { question: string; answer: string }[];
+  applicationCategory?: string;
+  howToSteps?: { name: string; text: string; image?: string }[];
+}
+
+export function generateJsonLd(opts: JsonLdOptions) {
+  const baseUrl = site.url;
+
+  const graphs: Record<string, unknown>[] = [];
+
+  // WebApplication / SoftwareApplication schema
+  graphs.push({
+    "@type": "SoftwareApplication",
+    name: site.name,
+    description: opts.description,
+    url: opts.url ?? baseUrl,
+    applicationCategory: opts.applicationCategory ?? "MultimediaApplication",
+    operatingSystem: "Web Browser",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    featureList: [
+      "JPG to PNG conversion",
+      "PNG to JPG conversion",
+      "JPG to WebP conversion",
+      "WebP to JPG conversion",
+      "HEIC to JPG conversion",
+      "JPG to PDF conversion",
+      "Image compression",
+      "PDF compression",
+      "Batch processing",
+      "Browser-based processing",
+    ],
+  });
+
+  // Organization schema
+  graphs.push({
+    "@type": "Organization",
+    name: site.name,
+    url: baseUrl,
+    logo: new URL("/favicon.svg", baseUrl).href,
+    sameAs: [],
+  });
+
+  // WebSite schema
+  graphs.push({
+    "@type": "WebSite",
+    name: site.name,
+    url: baseUrl,
+  });
+
+  // BreadcrumbList schema
+  if (opts.breadcrumbs && opts.breadcrumbs.length > 0) {
+    graphs.push({
+      "@type": "BreadcrumbList",
+      itemListElement: opts.breadcrumbs.map((crumb, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: crumb.name,
+        item: new URL(crumb.url, baseUrl).href,
+      })),
+    });
+  }
+
+  // FAQPage schema
+  if (opts.faqItems && opts.faqItems.length > 0) {
+    graphs.push({
+      "@type": "FAQPage",
+      mainEntity: opts.faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    });
+  }
+
+  // HowTo schema
+  if (opts.howToSteps && opts.howToSteps.length > 0) {
+    graphs.push({
+      "@type": "HowTo",
+      name: opts.name,
+      description: opts.description,
+      step: opts.howToSteps.map((step, i) => ({
+        "@type": "HowToStep",
+        position: i + 1,
+        name: step.name,
+        text: step.text,
+        ...(step.image ? { image: new URL(step.image, baseUrl).href } : {}),
+      })),
+    });
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": graphs,
+  };
+}

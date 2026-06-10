@@ -1,0 +1,65 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import Container from "@components/ui/Container.astro";
+import FormatSelector from "@components/tool/FormatSelector.astro";
+import ConversionZone from "@components/tool/ConversionZone.astro";
+import FeatureGrid from "@components/tool/FeatureGrid.astro";
+
+interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  from: string;
+  to: string;
+  features: Feature[];
+}
+
+const { title, description, canonical, from, to, features } = Astro.props;
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: title, url: canonical ?? "" },
+];
+---
+
+<BaseLayout
+  {title}
+  {description}
+  {canonical}
+  {breadcrumbs}
+>
+  <Container variant="narrow" class="py-6 sm:py-8">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Hero -->
+  <section class="section-sm text-center bg-glow">
+    <Container variant="narrow">
+      <div class="animate-fade-in-up">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          {title}
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8">
+          {description}
+        </p>
+        <FormatSelector {from} {to} />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Conversion Zone -->
+  <ConversionZone />
+
+  <!-- SEO Content Slot -->
+  <slot />
+
+  <!-- Features -->
+  <FeatureGrid {features} />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  type: "hero" | "in-content" | "sidebar" | "mobile";
+}
+
+const { type } = Astro.props;
+
+const configs = {
+  hero: {
+    label: "Advertisement",
+    class: "w-full h-[90px] sm:h-[250px] rounded-xl border border-border-default bg-surface-muted flex items-center justify-center",
+  },
+  "in-content": {
+    label: "Advertisement",
+    class: "w-full h-[100px] sm:h-[120px] rounded-xl border border-border-default bg-surface-muted flex items-center justify-center",
+  },
+  sidebar: {
+    label: "Advertisement",
+    class: "w-full h-[250px] rounded-xl border border-border-default bg-surface-muted flex items-center justify-center",
+  },
+  mobile: {
+    label: "Advertisement",
+    class: "w-full h-[100px] rounded-xl border border-border-default bg-surface-muted flex items-center justify-center sm:hidden",
+  },
+};
+
+const config = configs[type];
+---
+
+<!-- Ad Placeholder — Replace ad-slot div with actual AdSense/unit code -->
+<div class={config.class} aria-label={config.label}>
+  <div class="text-center">
+    <p class="text-xs text-text-tertiary font-medium">{config.label}</p>
+    <div class="ad-slot" data-ad-type={type}></div>
+  </div>
+</div>

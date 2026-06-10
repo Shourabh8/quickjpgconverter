@@ -1,0 +1,222 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Button from "@components/ui/Button.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "JPG to WebP", url: "/jpg-to-webp" },
+];
+
+const faqItems = [
+  {
+    question: "How much smaller are WebP files compared to JPG?",
+    answer: "WebP files are typically 25-35% smaller than equivalent JPG files at the same visual quality. For a 1MB JPG, the WebP equivalent would be roughly 650-750KB. The exact savings depend on image content — photos with complex textures compress less than simple images.",
+  },
+  {
+    question: "Will converting JPG to WebP reduce quality?",
+    answer: "At equivalent quality settings, WebP produces results that are visually identical to JPG. The compression algorithm is more efficient, not lower quality. Our converter lets you choose the quality level, so you can verify the output before downloading.",
+  },
+  {
+    question: "Is WebP supported by all browsers?",
+    answer: "Yes. WebP is supported by Chrome (since 2014), Firefox (since 2019), Safari (since 2022), and Edge (since 2018). This covers over 95% of all web browsers in use today. For the remaining 2-3%, you can serve JPG as a fallback using the HTML picture element.",
+  },
+  {
+    question: "Should I use WebP for all my website images?",
+    answer: "For most websites, yes. WebP provides meaningful file size reductions that improve page load speed and Core Web Vitals scores. The only reason to stick with JPG is if you need to support very old browsers or if a specific tool in your workflow doesn't support WebP yet.",
+  },
+  {
+    question: "Can I convert JPG to WebP in batch?",
+    answer: "Yes. Our converter supports unlimited batch conversion. Drop as many JPG files as you need, and they'll all be converted to WebP simultaneously. Download individually or as a batch.",
+  },
+  {
+    question: "What's the difference between lossy and lossless WebP?",
+    answer: "Lossy WebP works similarly to JPG — it discards some data for smaller files. Lossless WebP preserves every pixel like PNG but still achieves 20-30% smaller files. Our converter uses lossy compression by default for the best balance of size and quality.",
+  },
+];
+---
+
+<BaseLayout
+  title="Convert JPG to WebP — 25-35% Smaller Files for Faster Websites"
+  description="Convert JPG images to WebP for 25-35% smaller files with equivalent quality. Boost Core Web Vitals, reduce bandwidth, and speed up your site. Free and private."
+  canonical="https://quickjpgconverter.com/jpg-to-webp"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8 mb-10">
+        <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-4">
+          Convert JPG to WebP — Modern Compression for the Modern Web
+        </h1>
+        <p class="text-lg text-text-secondary max-w-xl">
+          Get 25-35% smaller image files with no visible quality loss.
+          Better compression means faster pages, better scores, and happier users.
+        </p>
+        <div class="mt-6">
+          <Button href="/tools/jpg-to-webp" size="lg">
+            Open JPG to WebP Converter
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Button>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Why WebP Is the Future of Web Images</h2>
+        <p>
+          Image format choices directly affect website performance. Google developed WebP to solve
+          a specific problem: JPG and PNG were designed in the 1990s when bandwidth was expensive
+          and browsers were simple. Modern websites load dozens or hundreds of images, and even
+          small per-image savings compound into significant performance gains.
+        </p>
+        <p>
+          WebP uses advanced compression algorithms that are simply more efficient than JPG's
+          discrete cosine transform. The result is files that are 25-35% smaller at the same
+          visual quality. For a website loading 50 images, that's the equivalent of removing
+          12-17 images worth of data from every page load.
+        </p>
+
+        <h2>Core Web Vitals and Image Optimization</h2>
+        <p>
+          Google's Core Web Vitals — Largest Contentful Paint (LCP), First Input Delay (FID),
+          and Cumulative Layout Shift (CLS) — directly affect search rankings. Images are one
+          of the largest contributors to poor LCP scores. Converting JPG to WebP reduces the
+          data that needs to be downloaded before the largest visible image renders, directly
+          improving your LCP metric.
+        </p>
+        <p>
+          For e-commerce sites where product images dominate the viewport, the impact is
+          substantial. A product page with ten 200KB JPG images loads 500-700KB of image data.
+          Converting to WebP reduces that to 350-500KB — a savings that can shave hundreds
+          of milliseconds off load times on mobile connections.
+        </p>
+
+        <h2>When JPG to WebP Makes the Most Sense</h2>
+
+        <h3>E-Commerce Product Photography</h3>
+        <p>
+          Product pages typically feature multiple high-resolution images. Converting these from
+          JPG to WebP reduces total page weight without any visible quality loss. For stores
+          with hundreds or thousands of products, the bandwidth savings across the entire catalog
+          are substantial. Faster product pages also convert better — studies consistently show
+          that every 100ms of load time improvement increases conversion rates.
+        </p>
+
+        <h3>Content-Heavy Websites</h3>
+        <p>
+          Blogs, news sites, and media publications that publish dozens of images per article
+          benefit enormously from WebP. An article with 20 images might save 1-2MB per page
+          load by switching from JPG to WebP. For sites with millions of monthly page views,
+          that's terabytes of bandwidth saved per month.
+        </p>
+
+        <h3>Mobile-First Experiences</h3>
+        <p>
+          Mobile users often browse on slower connections with data caps. WebP's smaller file
+          sizes mean faster loads and less data consumed. This is particularly important in
+          markets where mobile data is expensive or connectivity is unreliable. Converting JPG
+          to WebP is one of the easiest wins for mobile performance.
+        </p>
+
+        <h3>Email Campaigns</h3>
+        <p>
+          While email client support for WebP is still catching up, major clients like Gmail
+          and Apple Mail now support it. For email campaigns where every kilobyte affects
+          deliverability and load speed, WebP images can improve the subscriber experience.
+        </p>
+
+        <h2>Browser Support: The Full Picture</h2>
+        <p>
+          WebP is supported by Chrome, Firefox, Safari, and Edge — covering over 95% of global
+          browser usage. The remaining 2-3% consists primarily of very old browsers that are
+          rarely encountered in practice.
+        </p>
+        <p>
+          For maximum compatibility, you can use the HTML <code>&lt;picture&gt;</code> element
+          to serve WebP to browsers that support it and JPG as a fallback:
+        </p>
+        <p>
+          This progressive enhancement approach gives you the best of both worlds: modern browsers
+          get the smaller WebP files, while older browsers fall back to JPG without any broken
+          images.
+        </p>
+
+        <h2>Quality Settings: Finding the Sweet Spot</h2>
+        <p>
+          WebP's quality slider works similarly to JPG's. At 85-90% quality, WebP produces files
+          that are visually identical to the JPG original but significantly smaller. The quality
+          reduction is concentrated in areas where the human eye is least sensitive, making the
+          difference virtually invisible at normal viewing distances.
+        </p>
+        <p>
+          For most web use cases, 85% quality is the sweet spot. You get 30-35% smaller files
+          compared to JPG with no perceptible quality loss. For portfolio or print work, use
+          92-95% for maximum fidelity. For thumbnails and previews, 75-80% produces very small
+          files that still look great at small sizes.
+        </p>
+
+        <h2>The Conversion Workflow</h2>
+        <p>
+          Converting JPG to WebP with our tool is straightforward. Open the converter, drag and
+          drop your JPG files, choose your quality level, and convert. Every file is processed
+          locally in your browser using the Canvas API — your images never leave your device.
+        </p>
+        <p>
+          The converter handles batches of any size. Whether you're converting a single hero
+          image or an entire product catalog, the process is the same. Download converted files
+          individually or all at once.
+        </p>
+
+        <h2>WebP vs JPG vs PNG vs AVIF</h2>
+        <p>
+          The image format landscape is evolving. <strong>JPG</strong> remains the most universally
+          compatible format. <strong>PNG</strong> offers lossless quality for editing and transparency.
+          <strong>WebP</strong> provides the best balance of compression, quality, and browser
+          support for modern web publishing. <strong>AVIF</strong> offers even better compression
+          than WebP but has limited browser support as of 2024.
+        </p>
+        <p>
+          For most websites today, converting JPG to WebP is the single most impactful image
+          optimization you can make. It's supported everywhere, produces smaller files, and
+          requires no changes to your workflow beyond running your images through a converter.
+        </p>
+        <p>
+          If you're starting from PNG files, convert them to JPG first using our
+          <a href="/png-to-jpg">PNG to JPG tool</a>, then convert the JPGs to WebP for the
+          optimal combination of quality and compression.
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-2xl font-bold text-text-primary mb-6">Frequently Asked Questions</h2>
+        <FAQ items={faqItems} />
+      </div>
+
+      <div class="mt-10 p-6 rounded-2xl border border-border-default bg-surface-muted text-center">
+        <h3 class="text-lg font-semibold text-text-primary mb-2">Ready to optimize your images?</h3>
+        <p class="text-sm text-text-secondary mb-4">Convert your JPG files to WebP and see the size difference instantly.</p>
+        <Button href="/tools/jpg-to-webp">
+          Open JPG to WebP Converter
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </Button>
+      </div>
+
+      <div class="mt-8 text-xs text-text-tertiary">
+        <p>Related tools:
+          <a href="/jpg-to-png" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PNG</a> ·
+          <a href="/png-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">PNG to JPG</a> ·
+          <a href="/webp-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">WebP to JPG</a> ·
+          <a href="/tools/jpg-to-pdf" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PDF</a>
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#2563EB"/>
+  <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" fill="white" opacity="0.9"/>
+  <path d="M12 14L16 12L20 14V18L16 20L12 18V14Z" fill="#2563EB"/>
+  <text x="16" y="18" text-anchor="middle" font-size="6" font-weight="bold" fill="white" font-family="sans-serif">JPG</text>
+</svg>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import ToolCard from "@components/tool/ToolCard.astro";
+import { tools } from "@data/tools";
+---
+
+<BaseLayout
+  title="Free Online Image Converter Tools — JPG, PNG, WebP, PDF"
+  description="Browse all free online image tools — JPG to PNG, PNG to JPG, JPG to WebP, WebP to JPG, Image Compressor, PDF Compressor, and more. Fast, private, and 100% browser-based."
+  canonical="https://quickjpgconverter.com/tools"
+  breadcrumbs={[{ name: "Tools", url: "/tools" }]}
+>
+  <section class="section bg-glow">
+    <Container>
+      <div class="text-center mb-12 animate-fade-in-up">
+        <Badge class="mb-4">All Tools</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Conversion Tools
+        </h1>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Free, fast, and private image conversion tools. Everything runs in your browser.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        {tools.map((tool) => (
+          <ToolCard
+            slug={tool.slug}
+            title={tool.title}
+            description={tool.description}
+            from={tool.from}
+            to={tool.to}
+            icon={tool.icon}
+          />
+        ))}
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

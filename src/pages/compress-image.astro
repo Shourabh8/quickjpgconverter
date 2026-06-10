@@ -1,0 +1,42 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Button from "@components/ui/Button.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Compress Image", url: "/compress-image" },
+];
+---
+
+<BaseLayout
+  title="Compress Image — Free Online Image Compressor"
+  description="Compress images online for free. Reduce JPG, PNG, WebP, AVIF file sizes without quality loss. 100% private — no uploads required."
+  canonical="https://quickjpgconverter.com/compress-image"
+  breadcrumbs={breadcrumbs}
+  noindex={true}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8 mb-10 text-center">
+        <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-4">
+          Compress Images Instantly
+        </h1>
+        <p class="text-lg text-text-secondary max-w-xl mx-auto mb-6">
+          You're in the right place. Our image compressor reduces file sizes by 20-70%
+          without visible quality loss.
+        </p>
+        <Button href="/tools/image-compressor" size="lg">
+          Open Image Compressor
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </Button>
+        <p class="text-sm text-text-tertiary mt-4">Supports JPG, PNG, WebP, AVIF · Lossy & lossless modes · Batch processing</p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

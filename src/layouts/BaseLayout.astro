@@ -1,0 +1,82 @@
+---
+import SEOHead from "@components/seo/SEOHead.astro";
+import Header from "@components/layout/Header.astro";
+import Footer from "@components/layout/Footer.astro";
+
+import "@styles/global.css";
+import "@styles/components.css";
+import "@styles/typography.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  jsonLd?: boolean;
+  breadcrumbs?: { name: string; url: string }[];
+  faqItems?: { question: string; answer: string }[];
+  keywords?: string[];
+  howToSteps?: { name: string; text: string; image?: string }[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  noindex,
+  jsonLd = true,
+  breadcrumbs,
+  faqItems,
+  keywords,
+  howToSteps,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BMS6LMLSN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4BMS6LMLSN');
+    </script>
+    <SEOHead
+      {title}
+      {description}
+      {canonical}
+      {ogImage}
+      {noindex}
+      {jsonLd}
+      {breadcrumbs}
+      {faqItems}
+      {keywords}
+      {howToSteps}
+    />
+    <script is:inline>
+      // Prevent flash of wrong theme
+      (function() {
+        var stored = localStorage.getItem("theme");
+        if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-surface text-text-primary antialiased overflow-x-hidden">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-brand-600 focus:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
+      Skip to content
+    </a>
+    <Header />
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
+
+Sitemap: https://quickjpgconverter.com/sitemap-index.xml

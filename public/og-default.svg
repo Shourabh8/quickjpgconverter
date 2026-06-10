@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3366ff"/>
+      <stop offset="100%" stop-color="#133ae1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <rect x="100" y="120" width="48" height="48" rx="12" fill="url(#brand)"/>
+  <text x="164" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="600" fill="#e6edf3">Quick JPG Converter</text>
+  <text x="100" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#e6edf3">Free Online</text>
+  <text x="100" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#3366ff">Image Converter</text>
+  <text x="100" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#8b949e">Convert JPG, PNG, WebP, and PDF instantly</text>
+  <text x="100" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#8b949e">100% private — no uploads required</text>
+  <rect x="100" y="460" width="200" height="48" rx="12" fill="url(#brand)"/>
+  <text x="200" y="490" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="white" text-anchor="middle">Start Converting</text>
+</svg>

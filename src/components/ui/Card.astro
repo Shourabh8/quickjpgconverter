@@ -1,0 +1,28 @@
+---
+interface Props {
+  variant?: "default" | "hover" | "gradient" | "glass";
+  padding?: "none" | "sm" | "md" | "lg";
+  class?: string;
+}
+
+const {
+  variant = "default",
+  padding = "md",
+  class: className,
+} = Astro.props;
+
+const variantClass = variant === "hover" ? "card-hover" : variant === "gradient" ? "card-gradient" : variant === "glass" ? "card-glass" : "card";
+
+const paddingMap = {
+  none: "",
+  sm: "p-4 sm:p-5",
+  md: "p-5 sm:p-6",
+  lg: "p-6 sm:p-8",
+};
+
+const classes = [variantClass, paddingMap[padding], className].filter(Boolean).join(" ");
+---
+
+<div class={classes}>
+  <slot />
+</div>

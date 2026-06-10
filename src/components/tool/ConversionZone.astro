@@ -1,0 +1,40 @@
+---
+import Container from "../ui/Container.astro";
+---
+
+<section class="section-sm">
+  <Container variant="narrow">
+    <div class="relative group">
+      <!-- Gradient border wrapper -->
+      <div class="absolute -inset-px rounded-2xl bg-gradient-to-br from-brand-400/50 via-brand-500/30 to-brand-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+      <div class="relative rounded-2xl border border-border-default bg-surface p-8 sm:p-12 text-center hover:border-transparent transition-colors duration-300">
+        <!-- Upload icon -->
+        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 transition-transform duration-300">
+          <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+          </svg>
+        </div>
+
+        <h3 class="text-lg font-semibold text-text-primary mb-2">
+          Drop your files here
+        </h3>
+        <p class="text-sm text-text-secondary mb-6 max-w-sm mx-auto">
+          or click to browse. Supports JPG, PNG, WebP, and PDF up to 50MB.
+        </p>
+
+        <label class="btn-primary btn-md cursor-pointer inline-flex">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Choose Files
+          <input type="file" class="sr-only" accept="image/*" multiple />
+        </label>
+
+        <p class="text-xs text-text-tertiary mt-4">
+          Max file size: 50MB · All processing happens locally in your browser
+        </p>
+      </div>
+    </div>
+  </Container>
+</section>

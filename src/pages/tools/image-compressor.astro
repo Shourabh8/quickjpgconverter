@@ -1,0 +1,267 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import AdBanner from "@components/ui/AdBanner.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Image Compressor", url: "/tools/image-compressor" },
+];
+
+const faqItems = [
+  {
+    question: "What image formats can I compress?",
+    answer: "You can compress JPG, JPEG, PNG, WebP, and AVIF images. The compressor detects the format automatically and optimizes accordingly.",
+  },
+  {
+    question: "Will compression reduce image quality?",
+    answer: "In lossy mode, the quality slider lets you control exactly how much compression to apply. At 80-90% quality, the difference is imperceptible to the human eye. In lossless mode, no quality is lost at all.",
+  },
+  {
+    question: "Is my data safe during compression?",
+    answer: "Absolutely. All compression happens entirely in your browser using the Canvas API. Your images are never uploaded to any server. They stay on your device from start to finish.",
+  },
+  {
+    question: "How much can I reduce image file size?",
+    answer: "Typical savings range from 20-70% depending on the image content, format, and quality settings. Photographs with lots of detail compress less than simple graphics with flat colors.",
+  },
+  {
+    question: "Can I compress multiple images at once?",
+    answer: "Yes. Drop as many images as you need, and they'll all be compressed simultaneously. You can download them individually or all at once as a ZIP file.",
+  },
+  {
+    question: "What is lossless compression?",
+    answer: "Lossless compression reduces file size without discarding any image data. The compressed file is smaller but retains 100% of the original quality. This is ideal for images that need to maintain perfect fidelity.",
+  },
+];
+
+const conversionOptions = [
+  { id: "quality-90", label: "High Quality", desc: "90% — minimal compression, best for print", checked: false },
+  { id: "quality-80", label: "Balanced", desc: "80% — great balance of size and quality", checked: true },
+  { id: "quality-60", label: "Smallest Size", desc: "60% — maximum compression, visible at 100% zoom", checked: false },
+];
+---
+
+<BaseLayout
+  title="Free Image Compressor — Reduce JPG, PNG, WebP File Sizes Online"
+  description="Compress JPG, PNG, WebP, and AVIF images instantly in your browser. Lossy and lossless modes, quality slider, batch processing. 100% private — no uploads."
+  canonical="https://quickjpgconverter.com/tools/image-compressor"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+>
+  <section class="section">
+    <Container>
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8 mb-8">
+        <Badge class="mb-4">Free · No Signup · Private</Badge>
+        <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-3">
+          Image <span class="gradient-text">Compressor</span>
+        </h1>
+        <p class="text-base text-text-secondary max-w-xl">
+          Reduce JPG, PNG, WebP, and AVIF file sizes without visible quality loss. Everything runs in your browser — your images never leave your device.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+        <!-- LEFT: Upload / Preview -->
+        <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+          <!-- Upload zone -->
+          <div id="upload-zone" class="h-full">
+            <div
+              id="drop-area"
+              class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+            >
+              <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+              </div>
+              <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your images here</h3>
+              <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+              <label class="btn-primary btn-md cursor-pointer">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                Choose Files
+                <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp,.avif" multiple />
+              </label>
+              <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP, AVIF · Max 50MB per file · Multiple files</p>
+              <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                </svg>
+                <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview zone -->
+          <div id="preview-zone" class="hidden h-full">
+            <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+              <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-success"></div>
+                  <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
+                </div>
+                <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+              </div>
+              <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Options + Actions -->
+        <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+          <div class="mb-6">
+            <h3 class="text-sm font-semibold text-text-primary mb-3">Compression Mode</h3>
+            <div class="space-y-2">
+              <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="mode" value="lossy" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium text-text-primary">Lossy Compression</div>
+                  <div class="text-xs text-text-tertiary mt-0.5">Smaller files with quality control</div>
+                </div>
+              </label>
+              <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="mode" value="lossless" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium text-text-primary">Lossless Compression</div>
+                  <div class="text-xs text-text-tertiary mt-0.5">No quality loss, moderate size reduction</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="h-px bg-border-default mb-6"></div>
+
+          <div class="mb-6">
+            <h3 class="text-sm font-semibold text-text-primary mb-3">Quality Level</h3>
+            <div class="px-1">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-text-tertiary">Smaller</span>
+                <span id="quality-value" class="text-sm font-semibold text-brand-600 dark:text-brand-400">80%</span>
+                <span class="text-xs text-text-tertiary">Better</span>
+              </div>
+              <input type="range" id="quality-slider" min="10" max="100" value="80" class="w-full h-2 rounded-full appearance-none cursor-pointer bg-surface-muted accent-brand-600" />
+            </div>
+          </div>
+
+          <div class="h-px bg-border-default mb-6"></div>
+
+          <!-- Compress button -->
+          <div id="compress-btn-area" class="mt-auto hidden">
+            <button id="compress-btn" class="w-full btn-primary btn-lg justify-center">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+              </svg>
+              Compress Images
+            </button>
+          </div>
+
+          <!-- Progress -->
+          <div id="progress-area" class="mt-auto hidden">
+            <div class="mb-2">
+              <div class="flex items-center justify-between text-xs text-text-secondary mb-1">
+                <span id="progress-text">Compressing...</span>
+                <span class="tabular-nums"></span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-surface-muted overflow-hidden">
+                <div id="progress-bar" class="h-full rounded-full bg-brand-500 transition-all duration-300" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Download area -->
+          <div id="download-area" class="mt-auto hidden"></div>
+        </div>
+      </div>
+
+      <!-- Ad placement -->
+      <div class="mt-8">
+        <AdBanner type="in-content" />
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">How It Works</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your images</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select your image files.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Adjust quality</h3>
+          <p class="text-sm text-text-secondary">Choose lossy or lossless mode and set your quality level.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download</h3>
+          <p class="text-sm text-text-secondary">Get your compressed files instantly. Save 20-70% on file size.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Compress Your Images?</h2>
+        <p>Large image files slow down websites, waste bandwidth, and frustrate visitors. Image compression reduces file sizes while maintaining visual quality — often saving 20-70% without any visible difference. For photographers, e-commerce sellers, and web developers, compression is a basic optimization that pays dividends.</p>
+        <p>Our image compressor runs entirely in your browser using the Canvas API. Unlike server-based tools that upload your files to remote servers, our compressor processes everything locally. Your images never leave your device — guaranteed privacy every time.</p>
+
+        <h2>Lossy vs Lossless Compression</h2>
+        <p><strong>Lossy compression</strong> discards some image data to achieve smaller files. The quality slider lets you control exactly how much data to discard. At 80-90% quality, the difference is imperceptible to the human eye, but the file size savings are significant — often 30-50% smaller.</p>
+        <p><strong>Lossless compression</strong> reduces file size without discarding any image data. Every pixel is preserved exactly as it was. The savings are more modest (typically 10-30%), but the quality is identical to the original. This is ideal for images that need to maintain perfect fidelity.</p>
+
+        <h2>Supported Formats</h2>
+        <ul>
+          <li><strong>JPG/JPEG</strong> — the most common format for photographs. Lossy compression works exceptionally well.</li>
+          <li><strong>PNG</strong> — lossless format with transparency support. Compression reduces metadata and optimizes encoding.</li>
+          <li><strong>WebP</strong> — modern format with superior compression. Our tool can further optimize WebP files.</li>
+          <li><strong>AVIF</strong> — next-generation format with the best compression efficiency. Supported by Chrome, Firefox, and Safari.</li>
+        </ul>
+
+        <h2>When to Use Each Mode</h2>
+        <p>Use <strong>lossy compression</strong> for web publishing, social media, email, and any situation where file size matters more than perfect pixel preservation. The quality slider gives you precise control over the size-quality trade-off.</p>
+        <p>Use <strong>lossless compression</strong> for print, archival, editing workflows, and any image where maintaining 100% quality is essential. You'll still save file size, just not as dramatically as lossy mode.</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Professional-Grade Compression</h2>
+        <p>Our image compressor uses industry-standard algorithms to optimize your images. For JPG and WebP, the Canvas API's built-in encoder provides excellent compression efficiency. For PNG, we optimize the encoding to reduce file size without any quality loss.</p>
+        <p>The batch processing capability means you can compress entire folders of images in one session. Whether you're optimizing product photos for an e-commerce store, compressing images for a blog, or reducing file sizes for email, our tool handles it all without breaking a sweat.</p>
+        <p>All compression happens locally, which means there's no upload wait time, no server processing delay, and no bandwidth usage beyond the initial page load. The result is a compression experience that's faster than any server-based alternative.</p>
+        <p>Also check out our <a href="/tools/pdf-compressor">PDF Compressor</a> for reducing document file sizes, and our <a href="/jpg-to-webp">JPG to WebP converter</a> for modern web image optimization.</p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initImageCompressor } from "@scripts/compressor";
+  document.addEventListener("DOMContentLoaded", () => initImageCompressor());
+</script>

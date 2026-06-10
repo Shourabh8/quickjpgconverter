@@ -1,0 +1,35 @@
+---
+import { site } from "@data/site";
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const allItems = [{ name: "Home", url: "/" }, ...items];
+---
+
+<nav aria-label="Breadcrumb" class="text-sm text-text-tertiary">
+  <ol class="flex flex-wrap items-center gap-1.5">
+    {allItems.map((item, i) => (
+      <li class="flex items-center gap-1.5">
+        {i > 0 && <span class="text-text-tertiary" aria-hidden="true">/</span>}
+        {i < allItems.length - 1 ? (
+          <a
+            href={new URL(item.url, site.url).href}
+            class="hover:text-brand-600 transition-colors"
+          >
+            {item.name}
+          </a>
+        ) : (
+          <span class="text-text-primary font-medium" aria-current="page">{item.name}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

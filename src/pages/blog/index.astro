@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+---
+
+<BaseLayout
+  title="Blog — Quick JPG Converter"
+  description="Tips, guides, and news about image conversion, JPG converter tools, and web optimization."
+  canonical="https://quickjpgconverter.com/blog"
+  noindex={true}
+  breadcrumbs={[{ name: "Blog", url: "/blog" }]}
+>
+  <section class="section">
+    <Container>
+      <div class="text-center mb-12">
+        <Badge class="mb-4">Blog</Badge>
+        <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-4">
+          Blog
+        </h1>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Tips, guides, and news about image conversion and optimization.
+        </p>
+      </div>
+
+      <div class="text-center py-16 rounded-2xl border border-border-default bg-surface-muted">
+        <div class="text-5xl mb-4">📝</div>
+        <h2 class="text-xl font-semibold text-text-primary mb-2">
+          Coming Soon
+        </h2>
+        <p class="text-text-secondary text-sm">
+          We're working on helpful guides and tutorials. Check back soon!
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

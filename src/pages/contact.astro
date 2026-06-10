@@ -1,0 +1,116 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [{ name: "Contact", url: "/contact" }];
+---
+
+<BaseLayout
+  title="Contact Us — Quick JPG Converter"
+  description="Get in touch with the Quick JPG Converter team. We're here to help with questions, feedback, and support."
+  canonical="https://quickjpgconverter.com/contact"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8">
+        <Badge class="mb-4">Contact</Badge>
+      </div>
+
+      <article class="prose mt-6">
+        <h1>Contact Us</h1>
+
+        <p class="lead">
+          We'd love to hear from you. Whether you have a question about our tools,
+          need technical support, want to report a bug, or have a feature request —
+          our team is ready to help.
+        </p>
+
+        <h2>General Inquiries</h2>
+        <p>
+          For general questions, feedback, or partnership opportunities, email us
+          at:
+        </p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:hello@quickjpgconverter.com">hello@quickjpgconverter.com</a>
+        </p>
+
+        <h2>Technical Support</h2>
+        <p>
+          Experiencing an issue with our converter? Before reaching out, please
+          try the following:
+        </p>
+        <ul>
+          <li>Refresh the page and try again</li>
+          <li>Clear your browser cache and cookies</li>
+          <li>Try a different browser (Chrome, Firefox, Safari, or Edge)</li>
+          <li>Ensure your browser is up to date</li>
+          <li>Check that your file is under 50MB and in a supported format</li>
+        </ul>
+        <p>
+          If the problem persists, email us at
+          <a href="mailto:support@quickjpgconverter.com">support@quickjpgconverter.com</a>
+          with a description of the issue, your browser name and version, and your
+          operating system.
+        </p>
+
+        <h2>Bug Reports</h2>
+        <p>
+          Found a bug or something that isn't working as expected? We appreciate
+          detailed bug reports. Please include:
+        </p>
+        <ul>
+          <li>A clear description of the problem</li>
+          <li>Steps to reproduce the issue</li>
+          <li>Your browser and device information</li>
+          <li>Any error messages you see in the browser console</li>
+        </ul>
+        <p>
+          Send bug reports to
+          <a href="mailto:bugs@quickjpgconverter.com">bugs@quickjpgconverter.com</a>.
+        </p>
+
+        <h2>Feature Requests</h2>
+        <p>
+          Have an idea for a new tool or improvement? We actively consider user
+          feedback when planning our roadmap. Share your ideas at
+          <a href="mailto:hello@quickjpgconverter.com">hello@quickjpgconverter.com</a>.
+        </p>
+
+        <h2>Privacy Concerns</h2>
+        <p>
+          If you have questions or concerns about our privacy practices, please
+          review our <a href="/privacy">Privacy Policy</a> or contact our privacy
+          team directly at
+          <a href="mailto:privacy@quickjpgconverter.com">privacy@quickjpgconverter.com</a>.
+        </p>
+
+        <h2>Legal</h2>
+        <p>
+          For legal inquiries, including DMCA requests, trademark issues, or
+          compliance matters, contact us at
+          <a href="mailto:legal@quickjpgconverter.com">legal@quickjpgconverter.com</a>.
+        </p>
+
+        <h2>Response Time</h2>
+        <p>
+          We aim to respond to all inquiries within 2–3 business days. During peak
+          times, response may take slightly longer. For urgent technical issues
+          affecting the usability of our tools, we prioritize support tickets.
+        </p>
+
+        <h2>Office Hours</h2>
+        <p>
+          Our team operates across multiple time zones. Email support is available
+          <strong>Monday through Friday, 9:00 AM – 6:00 PM EST</strong>. We do our
+          best to respond to weekend inquiries on the following business day.
+        </p>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>
