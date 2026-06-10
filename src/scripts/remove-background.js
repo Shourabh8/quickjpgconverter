@@ -5,6 +5,8 @@
  * Usage: initBackgroundRemover()
  */
 
+import { removeBackground } from "@imgly/background-removal";
+
 function formatBytes(bytes) {
   if (bytes === 0) return "0 B";
   const k = 1024;
@@ -23,22 +25,6 @@ function isSupported(f) {
   if (f.type.startsWith("image/")) return true;
   const ext = getExtension(f.name);
   return SUPPORTED_EXTENSIONS.includes(ext);
-}
-
-function loadImage(file) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      resolve(img);
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      reject(new Error("Failed to load: " + file.name));
-    };
-    img.src = url;
-  });
 }
 
 function downloadBlob(blob, filename) {
@@ -75,29 +61,6 @@ export function initBackgroundRemover() {
   dropArea.setAttribute("aria-label", "Upload image files. Press Enter or Space to browse.");
 
   let currentFile = null;
-  let originalImage = null;
-  let modelLoaded = false;
-
-  // Load background removal library dynamically
-  async function loadModel() {
-    if (modelLoaded) return true;
-    
-    try {
-      updateModelStatus("Loading AI model...", "loading");
-      
-      // Dynamic import from CDN
-      const module = await import("https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.0/dist/index.js");
-      window.removeBackground = module.removeBackground;
-      
-      modelLoaded = true;
-      updateModelStatus("AI model ready", "ready");
-      return true;
-    } catch (err) {
-      console.error("Failed to load background removal model:", err);
-      updateModelStatus("Failed to load AI model", "error");
-      return false;
-    }
-  }
 
   function updateModelStatus(text, status) {
     if (!modelStatus) return;
@@ -115,6 +78,9 @@ export function initBackgroundRemover() {
         break;
     }
   }
+
+  // Show model loading status on page load
+  updateModelStatus("Click 'Remove Background' to load AI model", "loading");
 
   ["dragenter", "dragover"].forEach((evt) => {
     dropArea.addEventListener(evt, (e) => {
@@ -153,20 +119,18 @@ export function initBackgroundRemover() {
   });
 
   clearBtn?.addEventListener("click", resetUI);
-  removeBtn?.addEventListener("click", removeBackground);
+  removeBtn?.addEventListener("click", removeBg);
 
   async function handleFile(file) {
     if (!file || !isSupported(file)) return;
     currentFile = file;
     try {
-      originalImage = await loadImage(file);
       uploadZone?.classList.add("hidden");
       previewZone?.classList.remove("hidden");
       removeBtn?.classList.remove("hidden");
       downloadArea?.classList.add("hidden");
       if (fileCount) fileCount.textContent = file.name;
       
-      // Show preview
       if (previewImage) {
         const url = URL.createObjectURL(file);
         previewImage.src = url;
@@ -177,8 +141,8 @@ export function initBackgroundRemover() {
     }
   }
 
-  async function removeBackground() {
-    if (!currentFile || !window.removeBackground) return;
+  async function removeBg() {
+    if (!currentFile) return;
     
     removeBtn.classList.add("opacity-50", "cursor-not-allowed");
     removeBtn.setAttribute("disabled", "");
@@ -186,34 +150,23 @@ export function initBackgroundRemover() {
     downloadArea?.classList.add("hidden");
 
     try {
-      // Load model if not loaded
-      if (!modelLoaded) {
-        progressBar.style.width = "10%";
-        progressText.textContent = "Loading AI model (first time takes ~45MB)...";
-        const loaded = await loadModel();
-        if (!loaded) {
-          throw new Error("Failed to load AI model");
-        }
-      }
-
-      progressBar.style.width = "30%";
-      progressText.textContent = "Analyzing image...";
-
-      // Convert file to blob for the library
-      const imageBlob = currentFile;
+      progressBar.style.width = "20%";
+      progressText.textContent = "Loading AI model (first time ~45MB)..."
+      updateModelStatus("Loading AI model...", "loading");
 
       progressBar.style.width = "50%";
-      progressText.textContent = "Removing background...";
+      progressText.textContent = "Analyzing image..."
 
-      // Remove background
-      const resultBlob = await window.removeBackground(imageBlob, {
+      const resultBlob = await removeBackground(currentFile, {
         progress: (key, current, total) => {
           const percent = Math.round((current / total) * 100);
           progressBar.style.width = `${50 + percent * 0.4}%`;
           if (key === "fetch:model") {
             progressText.textContent = `Downloading model... ${percent}%`;
+            updateModelStatus("Downloading AI model...", "loading");
           } else if (key === "compute:inference") {
             progressText.textContent = `Processing image... ${percent}%`;
+            updateModelStatus("Processing image...", "loading");
           }
         }
       });
@@ -224,6 +177,7 @@ export function initBackgroundRemover() {
       setTimeout(() => {
         progressBar.style.width = "100%";
         progressText.textContent = "Background removed!";
+        updateModelStatus("AI model ready", "ready");
 
         setTimeout(() => {
           progressArea?.classList.add("hidden");
@@ -239,6 +193,7 @@ export function initBackgroundRemover() {
       removeBtn?.classList.remove("opacity-50", "cursor-not-allowed");
       removeBtn?.removeAttribute("disabled");
       updateModelStatus("Error: " + err.message, "error");
+      progressText.textContent = "Error: " + err.message;
     }
   }
 
@@ -282,7 +237,6 @@ export function initBackgroundRemover() {
 
   function resetUI() {
     currentFile = null;
-    originalImage = null;
     if (previewImage) previewImage.src = "";
     uploadZone?.classList.remove("hidden");
     previewZone?.classList.add("hidden");
