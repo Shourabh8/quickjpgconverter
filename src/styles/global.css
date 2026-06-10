@@ -7,49 +7,49 @@
 
 @theme {
   /* ── Brand ── */
-  --color-brand-50: #eef4ff;
-  --color-brand-100: #d9e5ff;
-  --color-brand-200: #bcd2ff;
-  --color-brand-300: #8eb5ff;
-  --color-brand-400: #598dff;
-  --color-brand-500: #3366ff;
-  --color-brand-600: #1a4df5;
-  --color-brand-700: #133ae1;
-  --color-brand-800: #1630b6;
-  --color-brand-900: #182d8f;
-  --color-brand-950: #141d57;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-brand-950: #172554;
 
   /* ── Neutral (slate-based, like Vercel) ── */
-  --color-neutral-50: #fafbfc;
-  --color-neutral-100: #f4f6f8;
-  --color-neutral-200: #e8ecf0;
-  --color-neutral-300: #d1d6dd;
-  --color-neutral-400: #a0aab8;
-  --color-neutral-500: #6b7a90;
-  --color-neutral-600: #515f73;
-  --color-neutral-700: #414e60;
-  --color-neutral-800: #2d3748;
-  --color-neutral-900: #1a202c;
-  --color-neutral-950: #0d1117;
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+  --color-neutral-950: #020617;
 
   /* ── Semantic Surfaces ── */
   --color-surface: #ffffff;
   --color-surface-raised: #ffffff;
-  --color-surface-overlay: rgba(255, 255, 255, 0.8);
+  --color-surface-overlay: rgba(255, 255, 255, 0.9);
   --color-surface-muted: #f8fafc;
   --color-surface-subtle: #f1f5f9;
-  --color-surface-inset: #f4f6f8;
+  --color-surface-inset: #f8fafc;
 
   /* ── Semantic Text ── */
-  --color-text-primary: #0d1117;
-  --color-text-secondary: #515f73;
-  --color-text-tertiary: #a0aab8;
-  --color-text-inverse: #fafbfc;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #f8fafc;
 
   /* ── Borders ── */
-  --color-border-default: #e8ecf0;
-  --color-border-muted: #f0f3f6;
-  --color-border-strong: #d1d6dd;
+  --color-border-default: #e2e8f0;
+  --color-border-muted: #f1f5f9;
+  --color-border-strong: #cbd5e1;
 
   /* ── Status ── */
   --color-success: #10b981;
@@ -74,14 +74,14 @@
   --radius-3xl: 1.5rem;
 
   /* ── Shadows (Vercel-style layered) ── */
-  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.04);
-  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.06), 0 1px 2px rgb(0 0 0 / 0.04);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.2);
-  --shadow-glow: 0 0 20px rgb(51 102 255 / 0.15);
-  --shadow-glow-lg: 0 0 40px rgb(51 102 255 / 0.2);
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.08), 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.03);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.03);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+  --shadow-glow: 0 0 20px rgb(59 130 246 / 0.15);
+  --shadow-glow-lg: 0 0 40px rgb(59 130 246 / 0.2);
 
   /* ── Spacing ── */
   --spacing-18: 4.5rem;
@@ -151,7 +151,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-brand-200);
+  background-color: var(--color-brand-100);
   color: var(--color-brand-900);
 }
 
@@ -290,14 +290,14 @@ img {
 
 /* ── Gradient text ── */
 @utility gradient-text {
-  background: linear-gradient(135deg, var(--color-brand-500), var(--color-brand-700));
+  background: linear-gradient(135deg, var(--color-brand-500), var(--color-brand-600));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .dark .gradient-text {
-  background: linear-gradient(135deg, var(--color-brand-300), var(--color-brand-500));
+  background: linear-gradient(135deg, var(--color-brand-300), var(--color-brand-400));
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -320,10 +320,10 @@ img {
 /* ── Radial glow ── */
 @utility bg-glow {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-brand-500) / 0.12, transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-brand-500) / 0.08, transparent);
 }
 
 .dark .bg-glow {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-brand-500) / 0.2, transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-brand-400) / 0.2, transparent);
 }

@@ -1,8 +1,8 @@
 /**
- * Client-side image compressor using Canvas API.
- * Supports: JPG, PNG, WebP with lossy and lossless modes.
+ * Client-side targeted image compressor using Canvas API.
+ * Iteratively reduces quality to hit a target file size.
  *
- * Usage: initImageCompressor()
+ * Usage: initTargetedCompressor({ targetSize: 100 * 1024 }) // 100KB
  */
 
 function formatBytes(bytes) {
@@ -17,20 +17,17 @@ function getExtension(filename) {
   return filename.split(".").pop().toLowerCase();
 }
 
-const COMPRESS_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "avif"];
+function replaceExtension(filename, newExt) {
+  const base = filename.substring(0, filename.lastIndexOf("."));
+  return base + "." + newExt;
+}
+
+const COMPRESS_EXTENSIONS = ["jpg", "jpeg", "png", "webp"];
 
 function isCompressible(f) {
   if (f.type.startsWith("image/")) return true;
   const ext = getExtension(f.name);
   return COMPRESS_EXTENSIONS.includes(ext);
-}
-
-function getOutputMime(file) {
-  const ext = getExtension(file.name);
-  if (ext === "png") return "image/png";
-  if (ext === "webp") return "image/webp";
-  if (ext === "avif") return "image/avif";
-  return "image/jpeg";
 }
 
 function loadImage(file) {
@@ -49,28 +46,16 @@ function loadImage(file) {
   });
 }
 
-function compressImage(img, mime, quality, maxSize) {
+function compressToBlob(img, quality) {
   return new Promise((resolve) => {
     const canvas = document.createElement("canvas");
-    let { naturalWidth, naturalHeight } = img;
-
-    if (maxSize && maxSize > 0) {
-      if (naturalWidth > maxSize || naturalHeight > maxSize) {
-        const ratio = Math.min(maxSize / naturalWidth, maxSize / naturalHeight);
-        naturalWidth = Math.round(naturalWidth * ratio);
-        naturalHeight = Math.round(naturalHeight * ratio);
-      }
-    }
-
-    canvas.width = naturalWidth;
-    canvas.height = naturalHeight;
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
     const ctx = canvas.getContext("2d");
-    if (mime === "image/jpeg") {
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-    ctx.drawImage(img, 0, 0, naturalWidth, naturalHeight);
-    canvas.toBlob((blob) => resolve(blob), mime, quality);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob((blob) => resolve(blob), "image/jpeg", quality);
   });
 }
 
@@ -95,7 +80,9 @@ async function downloadAllAsZip(items) {
   downloadBlob(content, "compressed-images.zip");
 }
 
-export function initImageCompressor() {
+export function initTargetedCompressor(config) {
+  const { targetSize } = config;
+
   const dropArea = document.getElementById("drop-area");
   const fileInput = dropArea?.querySelector('input[type="file"]');
   const uploadZone = document.getElementById("upload-zone");
@@ -111,11 +98,13 @@ export function initImageCompressor() {
   const progressArea = document.getElementById("progress-area");
   const progressBar = document.getElementById("progress-bar");
   const progressText = document.getElementById("progress-text");
-  const qualitySlider = document.getElementById("quality-slider");
-  const qualityValue = document.getElementById("quality-value");
-  const modeRadios = document.querySelectorAll('input[name="mode"]');
+  const targetSizeDisplay = document.getElementById("target-size-display");
 
   if (!dropArea || !uploadZone) return;
+
+  if (targetSizeDisplay) {
+    targetSizeDisplay.textContent = formatBytes(targetSize);
+  }
 
   // Keyboard accessibility
   dropArea.setAttribute("tabindex", "0");
@@ -124,11 +113,6 @@ export function initImageCompressor() {
 
   let files = [];
   let compressedResults = [];
-
-  // --- Quality slider ---
-  qualitySlider?.addEventListener("input", () => {
-    if (qualityValue) qualityValue.textContent = qualitySlider.value + "%";
-  });
 
   // --- Drag & Drop ---
   ["dragenter", "dragover"].forEach((evt) => {
@@ -176,7 +160,17 @@ export function initImageCompressor() {
   compressBtn?.addEventListener("click", compressFiles);
 
   function addFiles(newFiles) {
-    const valid = newFiles.filter(isCompressible);
+    const valid = newFiles.filter((f) => {
+      if (f.size > 50 * 1024 * 1024) {
+        alert(f.name + " exceeds 50MB limit.");
+        return false;
+      }
+      if (!isCompressible(f)) {
+        alert(f.name + " is not a supported image file.");
+        return false;
+      }
+      return true;
+    });
     if (valid.length === 0) return;
     files = [...files, ...valid];
     showPreviewZone();
@@ -238,12 +232,6 @@ export function initImageCompressor() {
     downloadArea?.classList.add("hidden");
     compressedResults = [];
 
-    const quality = (qualitySlider?.value || 80) / 100;
-    const checkedMode = document.querySelector('input[name="mode"]:checked');
-    const isLossless = checkedMode?.value === "lossless";
-    const resizeRadio = document.querySelector('input[name="resize"]:checked');
-    const maxSize = resizeRadio?.value === "none" ? 0 : parseInt(resizeRadio?.value || "0");
-
     for (let i = 0; i < files.length; i++) {
       const pct = Math.round((i / files.length) * 100);
       progressBar.style.width = pct + "%";
@@ -251,21 +239,8 @@ export function initImageCompressor() {
 
       try {
         const img = await loadImage(files[i]);
-        const mime = getOutputMime(files[i]);
-        const blob = await compressImage(img, isLossless ? mime : mime, isLossless ? 1.0 : quality, maxSize);
-        const savings = files[i].size > 0 ? Math.round((1 - blob.size / files[i].size) * 100) : 0;
-        const ext = getExtension(files[i].name);
-        compressedResults.push({
-          blob,
-          name: files[i].name,
-          originalName: files[i].name,
-          originalSize: files[i].size,
-          compressedSize: blob.size,
-          savings,
-          width: img.naturalWidth,
-          height: img.naturalHeight,
-          ext,
-        });
+        const result = await compressToTargetSize(img, files[i].name, targetSize);
+        compressedResults.push(result);
       } catch (err) {
         console.error("Compression failed:", files[i].name, err);
         compressedResults.push({ failed: true, name: files[i].name, error: err.message || "Compression failed" });
@@ -283,54 +258,77 @@ export function initImageCompressor() {
     }, 500);
   }
 
-  async function recompressFiles() {
-    if (files.length === 0) return;
-    downloadArea?.classList.add("hidden");
-    progressArea?.classList.remove("hidden");
-    compressedResults = [];
+  async function compressToTargetSize(img, originalName, target) {
+    let quality = 0.85;
+    let bestBlob = null;
+    let bestQuality = quality;
+    let minQuality = 0.05;
+    let maxQuality = 0.95;
 
-    const quality = (qualitySlider?.value || 80) / 100;
-    const checkedMode = document.querySelector('input[name="mode"]:checked');
-    const isLossless = checkedMode?.value === "lossless";
-    const resizeRadio = document.querySelector('input[name="resize"]:checked');
-    const maxSize = resizeRadio?.value === "none" ? 0 : parseInt(resizeRadio?.value || "0");
-
-    for (let i = 0; i < files.length; i++) {
-      const pct = Math.round((i / files.length) * 100);
-      progressBar.style.width = pct + "%";
-      progressText.textContent = `Recompressing ${i + 1} of ${files.length}...`;
-
-      try {
-        const img = await loadImage(files[i]);
-        const mime = getOutputMime(files[i]);
-        const blob = await compressImage(img, isLossless ? mime : mime, isLossless ? 1.0 : quality, maxSize);
-        const savings = files[i].size > 0 ? Math.round((1 - blob.size / files[i].size) * 100) : 0;
-        const ext = getExtension(files[i].name);
-        compressedResults.push({
-          blob,
-          name: files[i].name,
-          originalName: files[i].name,
-          originalSize: files[i].size,
-          compressedSize: blob.size,
-          savings,
-          width: img.naturalWidth,
-          height: img.naturalHeight,
-          ext,
-        });
-      } catch (err) {
-        console.error("Compression failed:", files[i].name, err);
-        compressedResults.push({ failed: true, name: files[i].name, error: err.message || "Compression failed" });
-      }
+    // If already under target, just compress slightly
+    const initialBlob = await compressToBlob(img, quality);
+    if (initialBlob.size <= target) {
+      const savings = Math.round((1 - initialBlob.size / initialBlob.size) * 100);
+      return {
+        blob: initialBlob,
+        name: replaceExtension(originalName, "jpg"),
+        originalName,
+        originalSize: initialBlob.size,
+        compressedSize: initialBlob.size,
+        savings: 0,
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+        reachedTarget: true,
+      };
     }
 
-    progressBar.style.width = "100%";
-    progressText.textContent = "Recompression complete!";
+    // Binary search for quality that hits target size
+    let iterations = 0;
+    const maxIterations = 10;
 
-    setTimeout(() => {
-      progressArea?.classList.add("hidden");
-      downloadArea?.classList.remove("hidden");
-      renderDownloadArea();
-    }, 500);
+    while (iterations < maxIterations) {
+      const blob = await compressToBlob(img, quality);
+      const diff = blob.size - target;
+      const percentageOff = Math.abs(diff) / target;
+
+      if (percentageOff < 0.1) { // Within 10% of target
+        bestBlob = blob;
+        bestQuality = quality;
+        break;
+      }
+
+      if (blob.size > target) {
+        maxQuality = quality;
+        quality = (quality + minQuality) / 2;
+      } else {
+        minQuality = quality;
+        bestBlob = blob;
+        bestQuality = quality;
+        quality = (quality + maxQuality) / 2;
+      }
+
+      iterations++;
+    }
+
+    if (!bestBlob) {
+      bestBlob = await compressToBlob(img, minQuality);
+      bestQuality = minQuality;
+    }
+
+    const savings = Math.round((1 - bestBlob.size / (img.naturalWidth * img.naturalHeight * 3)) * 100);
+    const originalFileSize = files.find(f => f.name === originalName)?.size || bestBlob.size;
+
+    return {
+      blob: bestBlob,
+      name: replaceExtension(originalName, "jpg"),
+      originalName,
+      originalSize: originalFileSize,
+      compressedSize: bestBlob.size,
+      savings: originalFileSize > 0 ? Math.round((1 - bestBlob.size / originalFileSize) * 100) : 0,
+      width: img.naturalWidth,
+      height: img.naturalHeight,
+      reachedTarget: bestBlob.size <= target * 1.1,
+    };
   }
 
   function renderDownloadArea() {
@@ -345,29 +343,26 @@ export function initImageCompressor() {
           <svg class="w-5 h-5 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span class="text-sm font-semibold text-success">${successItems.length} file${successItems.length !== 1 ? "s" : ""} compressed!</span>
         </div>
-        <p class="text-xs text-text-secondary">Saved ${formatBytes(totalSaved)} total</p>
+        <p class="text-xs text-text-secondary">Saved ${formatBytes(totalSaved)} total · Target: ${formatBytes(targetSize)}</p>
         ${failItems.length > 0 ? `<p class="text-xs text-danger mt-1">${failItems.length} file${failItems.length !== 1 ? "s" : ""} failed</p>` : ""}
       </div>
     `;
 
     compressedResults.forEach((item, i) => {
       if (!item || item.failed) return;
-      const barWidth = Math.max(5, Math.min(100, item.savings));
-      const sizeChanged = item.compressedSize < item.originalSize;
+      const targetReached = item.reachedTarget;
       html += `
         <div class="p-3 rounded-lg border border-border-default bg-surface mb-2">
           <div class="flex items-center justify-between mb-2">
             <div class="min-w-0 flex-1">
               <div class="text-xs font-medium text-text-primary truncate">${item.name}</div>
-              <div class="text-xs text-text-tertiary">${formatBytes(item.originalSize)} → ${formatBytes(item.compressedSize)} · ${sizeChanged ? "-" + item.savings + "%" : "Already small"}</div>
+              <div class="text-xs text-text-tertiary">${formatBytes(item.originalSize)} → ${formatBytes(item.compressedSize)} · ${item.savings > 0 ? "-" + item.savings : item.savings}%</div>
+              ${targetReached ? '<div class="text-xs text-success font-medium">✓ Target reached</div>' : '<div class="text-xs text-warning">Could not reach target with this image</div>'}
             </div>
             <button data-download="${i}" class="btn-primary btn-sm flex-shrink-0 ml-3">
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
               Download
             </button>
-          </div>
-          <div class="w-full h-1.5 rounded-full bg-surface-muted overflow-hidden">
-            <div class="h-full rounded-full ${sizeChanged ? "bg-success" : "bg-brand-500"}" style="width: ${barWidth}%"></div>
           </div>
         </div>
       `;
@@ -395,13 +390,7 @@ export function initImageCompressor() {
 
     html += `
       <p class="text-xs text-text-tertiary text-center mt-3">Compressed locally in your browser · Your files never left your device</p>
-      <div class="flex gap-2 mt-3">
-        <button id="recompress-btn" class="flex-1 btn-secondary btn-md justify-center">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
-          Recompress
-        </button>
-        <button id="compress-more-btn" class="flex-1 btn-secondary btn-md justify-center">New Files</button>
-      </div>
+      <button id="compress-more-btn" class="w-full btn-secondary btn-md justify-center mt-3">Compress More Files</button>
     `;
 
     downloadArea.innerHTML = html;
@@ -416,10 +405,6 @@ export function initImageCompressor() {
 
     downloadArea.querySelector("#download-all-btn")?.addEventListener("click", () => {
       downloadAllAsZip(successItems);
-    });
-
-    downloadArea.querySelector("#recompress-btn")?.addEventListener("click", () => {
-      recompressFiles();
     });
 
     downloadArea.querySelector("#compress-more-btn")?.addEventListener("click", () => {

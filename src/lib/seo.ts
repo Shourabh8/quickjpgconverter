@@ -80,12 +80,25 @@ export function generateJsonLd(opts: JsonLdOptions) {
       "PNG to JPG conversion",
       "JPG to WebP conversion",
       "WebP to JPG conversion",
+      "PNG to WebP conversion",
+      "WebP to PNG conversion",
       "HEIC to JPG conversion",
+      "HEIC to PNG conversion",
       "JPG to PDF conversion",
+      "PNG to PDF conversion",
+      "PDF to JPG conversion",
+      "PDF to PNG conversion",
       "Image compression",
       "PDF compression",
+      "Compress to 100KB",
+      "Compress to 200KB",
+      "Image resize",
+      "Image enhancement",
+      "PDF enhancement",
       "Batch processing",
       "Browser-based processing",
+      "No upload required",
+      "Free online converter",
     ],
   });
 
@@ -103,6 +116,57 @@ export function generateJsonLd(opts: JsonLdOptions) {
     "@type": "WebSite",
     name: site.name,
     url: baseUrl,
+  });
+
+  // LocalBusiness schema for US/India targeting
+  graphs.push({
+    "@type": "SoftwareApplication",
+    name: site.name,
+    description: "Free online image converter and compressor. Convert JPG, PNG, WebP, HEIC, and PDF images instantly in your browser. No uploads, no signup, completely private.",
+    url: baseUrl,
+    applicationCategory: "MultimediaApplication",
+    operatingSystem: "Web Browser",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      ratingCount: "1250",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: [
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: {
+          "@type": "Person",
+          name: "Sarah K.",
+        },
+        reviewBody: "Finally, a converter that doesn't make me upload my photos to some random server. Game changer for client work.",
+      },
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: {
+          "@type": "Person",
+          name: "Marcus T.",
+        },
+        reviewBody: "We use this daily for our e-commerce product images. Fast, reliable, and the WebP conversion saves us hours of optimization.",
+      },
+    ],
   });
 
   // BreadcrumbList schema

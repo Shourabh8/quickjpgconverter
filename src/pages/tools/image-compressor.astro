@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 import AdBanner from "@components/ui/AdBanner.astro";
 
@@ -49,6 +50,7 @@ const conversionOptions = [
   title="Free Image Compressor — Reduce JPG, PNG, WebP File Sizes Online"
   description="Compress JPG, PNG, WebP, and AVIF images instantly in your browser. Lossy and lossless modes, quality slider, batch processing. 100% private — no uploads."
   canonical="https://quickjpgconverter.com/tools/image-compressor"
+  keywords={["image compressor", "compress image", "reduce image size", "compress jpg", "compress png", "compress webp"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
 >
@@ -147,6 +149,31 @@ const conversionOptions = [
                 <span class="text-xs text-text-tertiary">Better</span>
               </div>
               <input type="range" id="quality-slider" min="10" max="100" value="80" class="w-full h-2 rounded-full appearance-none cursor-pointer bg-surface-muted accent-brand-600" />
+            </div>
+          </div>
+
+          <div class="h-px bg-border-default mb-6"></div>
+
+          <div class="mb-6">
+            <h3 class="text-sm font-semibold text-text-primary mb-3">Resize (Optional)</h3>
+            <p class="text-xs text-text-tertiary mb-3">Reduce dimensions for even smaller files</p>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="resize" value="none" checked class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <span class="text-sm text-text-primary">Keep original size</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="resize" value="1920" class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <span class="text-sm text-text-primary">Max 1920px (HD)</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="resize" value="1280" class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <span class="text-sm text-text-primary">Max 1280px (Web)</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="resize" value="800" class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <span class="text-sm text-text-primary">Max 800px (Thumbnail)</span>
+              </label>
             </div>
           </div>
 
@@ -259,9 +286,9 @@ const conversionOptions = [
       </div>
     </Container>
   </section>
-</BaseLayout>
 
-<script>
-  import { initImageCompressor } from "@scripts/compressor";
-  document.addEventListener("DOMContentLoaded", () => initImageCompressor());
-</script>
+  <FeatureRequest toolName="Image Compressor" />
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">

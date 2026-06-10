@@ -5,6 +5,9 @@ import Badge from "@components/ui/Badge.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [{ name: "Contact", url: "/contact" }];
+
+const email = "supportquickjpgconverter@gmail.com";
+const gmailBase = "https://mail.google.com/mail/?view=cm&fs=1&to=" + email;
 ---
 
 <BaseLayout
@@ -37,7 +40,7 @@ const breadcrumbs = [{ name: "Contact", url: "/contact" }];
         </p>
         <p>
           <strong>Email:</strong>
-          <a href="mailto:hello@quickjpgconverter.com">hello@quickjpgconverter.com</a>
+          <a href={gmailBase} target="_blank" rel="noopener noreferrer">{email}</a>
         </p>
 
         <h2>Technical Support</h2>
@@ -54,7 +57,7 @@ const breadcrumbs = [{ name: "Contact", url: "/contact" }];
         </ul>
         <p>
           If the problem persists, email us at
-          <a href="mailto:support@quickjpgconverter.com">support@quickjpgconverter.com</a>
+          <a href={gmailBase} target="_blank" rel="noopener noreferrer">{email}</a>
           with a description of the issue, your browser name and version, and your
           operating system.
         </p>
@@ -72,14 +75,14 @@ const breadcrumbs = [{ name: "Contact", url: "/contact" }];
         </ul>
         <p>
           Send bug reports to
-          <a href="mailto:bugs@quickjpgconverter.com">bugs@quickjpgconverter.com</a>.
+          <a href={gmailBase} target="_blank" rel="noopener noreferrer">{email}</a>.
         </p>
 
         <h2>Feature Requests</h2>
         <p>
           Have an idea for a new tool or improvement? We actively consider user
           feedback when planning our roadmap. Share your ideas at
-          <a href="mailto:hello@quickjpgconverter.com">hello@quickjpgconverter.com</a>.
+          <a href={gmailBase} target="_blank" rel="noopener noreferrer">{email}</a>.
         </p>
 
         <h2>Privacy Concerns</h2>
@@ -87,14 +90,14 @@ const breadcrumbs = [{ name: "Contact", url: "/contact" }];
           If you have questions or concerns about our privacy practices, please
           review our <a href="/privacy">Privacy Policy</a> or contact our privacy
           team directly at
-          <a href="mailto:privacy@quickjpgconverter.com">privacy@quickjpgconverter.com</a>.
+          <a href={gmailBase} target="_blank" rel="noopener noreferrer">{email}</a>.
         </p>
 
         <h2>Legal</h2>
         <p>
           For legal inquiries, including DMCA requests, trademark issues, or
           compliance matters, contact us at
-          <a href="mailto:legal@quickjpgconverter.com">legal@quickjpgconverter.com</a>.
+          <a href={gmailBase} target="_blank" rel="noopener noreferrer">{email}</a>.
         </p>
 
         <h2>Response Time</h2>

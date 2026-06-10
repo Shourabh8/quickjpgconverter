@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
@@ -44,6 +45,7 @@ const faqItems = [
   title="Free JPG to PNG Converter — Online JPG Converter Tool"
   description="Convert JPG to PNG instantly with our free online JPG converter. Lossless quality, transparency support, and 100% private. No uploads required — try it now."
   canonical="https://quickjpgconverter.com/tools/jpg-to-png"
+  keywords={["jpg to png", "convert jpg to png", "jpeg to png"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
   howToSteps={[
@@ -223,6 +225,8 @@ const faqItems = [
     </Container>
   </section>
 
+  <FeatureRequest toolName="JPG to PNG" />
+
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
@@ -314,6 +318,6 @@ const faqItems = [
 
   <script>
     import { initConverter } from "@scripts/converter.js";
-    initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" });
+    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }));
   </script>
 </BaseLayout>

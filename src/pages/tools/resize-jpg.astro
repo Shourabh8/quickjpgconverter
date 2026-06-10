@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
@@ -41,6 +42,7 @@ const faqItems = [
   title="Free Resize JPG Tool — Online JPG Converter Tool"
   description="Resize JPG images to any dimension with our free online JPG converter. Quality preservation, precise dimensions, and 100% private. No uploads required."
   canonical="https://quickjpgconverter.com/tools/resize-jpg"
+  keywords={["resize jpg", "resize jpeg", "resize image"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
 >
@@ -226,6 +228,8 @@ const faqItems = [
     </Container>
   </section>
 
+  <FeatureRequest toolName="Resize JPG" />
+
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
@@ -283,6 +287,6 @@ const faqItems = [
 
   <script>
     import { initResizer } from "@scripts/resize.js";
-    initResizer();
+    document.addEventListener("DOMContentLoaded", () => initResizer());
   </script>
 </BaseLayout>

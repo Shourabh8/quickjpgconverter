@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
@@ -42,6 +43,7 @@ const faqItems = [
   title="Free PDF Compressor — Reduce PDF File Size Online"
   description="Compress PDF files instantly in your browser. Reduce file size while preserving quality. 100% private — no uploads required. Fast, free, and secure."
   canonical="https://quickjpgconverter.com/tools/pdf-compressor"
+  keywords={["pdf compressor", "compress pdf", "reduce pdf size", "compress pdf online"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
 >
@@ -94,6 +96,54 @@ const faqItems = [
         <div id="result-zone" class="hidden">
           <div id="file-info" class="mb-6"></div>
 
+          <!-- Compression Level -->
+          <div class="mb-6">
+            <h3 class="text-sm font-semibold text-text-primary mb-3">Compression Level</h3>
+            <div class="space-y-2">
+              <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="compression" value="low" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium text-text-primary">Low Compression</div>
+                  <div class="text-xs text-text-tertiary mt-0.5">Fast processing, larger file size</div>
+                </div>
+              </label>
+              <label class="flex items-start gap-3 p-3 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30 cursor-pointer transition-all duration-200">
+                <input type="radio" name="compression" value="medium" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium text-text-primary">Medium Compression</div>
+                  <div class="text-xs text-text-tertiary mt-0.5">Balanced speed and file size</div>
+                </div>
+              </label>
+              <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="compression" value="high" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium text-text-primary">High Compression</div>
+                  <div class="text-xs text-text-tertiary mt-0.5">Smaller file size, optimized structure</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Page Resolution -->
+          <div class="mb-6">
+            <h3 class="text-sm font-semibold text-text-primary mb-3">Page Resolution</h3>
+            <p class="text-xs text-text-tertiary mb-3">Lower resolution = smaller file</p>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="resolution" value="1.5" class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <span class="text-sm text-text-primary">Standard (1.5x)</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30 cursor-pointer transition-all duration-200">
+                <input type="radio" name="resolution" value="1" checked class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <span class="text-sm text-text-primary">Optimized (1x)</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                <input type="radio" name="resolution" value="0.7" class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                <span class="text-sm text-text-primary">Compact (0.7x)</span>
+              </label>
+            </div>
+          </div>
+
           <!-- Progress -->
           <div id="progress-area" class="hidden mb-6">
             <div class="mb-2">
@@ -128,6 +178,8 @@ const faqItems = [
       </div>
     </Container>
   </section>
+
+  <FeatureRequest toolName="PDF Compressor" />
 
   <section class="section bg-surface-muted">
     <Container>

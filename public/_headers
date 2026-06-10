@@ -1,2 +1,5 @@
 https://quickjpgconverter.pages.dev/*
   X-Robots-Tag: noindex
+
+https://*.quickjpgconverter.pages.dev/*
+  X-Robots-Tag: noindex

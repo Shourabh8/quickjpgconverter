@@ -5,7 +5,7 @@ import Button from "@components/ui/Button.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
 import { site } from "@data/site";
-import { tools } from "@data/tools";
+import { tools, categories, getToolsByCategory } from "@data/tools";
 
 import "@styles/homepage.css";
 
@@ -57,6 +57,30 @@ const faqItems = [
   {
     question: "How do I convert HEIC to JPG?",
     answer: "Go to our HEIC to JPG tool, drag and drop your HEIC files (common on iPhones), and click Convert. Your JPG files will be ready to download instantly. Works on desktop and mobile.",
+  },
+  {
+    question: "How do I compress an image to 100KB?",
+    answer: "Use our Compress to 100KB tool. Upload your image, and it will automatically compress to under 100KB while maintaining the best possible quality. Perfect for passport photos, job portals, and government forms.",
+  },
+  {
+    question: "What is the best free image compressor online?",
+    answer: "Quick JPG Converter is one of the best free online image compressors. It supports JPG, PNG, WebP, and AVIF formats, offers quality control, and processes images directly in your browser for complete privacy.",
+  },
+  {
+    question: "How do I convert WebP to JPG?",
+    answer: "Use our WebP to JPG tool to convert WebP images to JPG format. Simply upload your WebP files, select quality, and download your JPG images. Works on any device with a modern browser.",
+  },
+  {
+    question: "Is this image converter safe to use?",
+    answer: "Yes, completely safe. All processing happens locally in your browser. No files are uploaded to any server, so your images remain private and secure. No data is collected or stored.",
+  },
+  {
+    question: "Can I convert multiple images at once?",
+    answer: "Yes! All our tools support batch conversion. You can upload multiple images at once and convert them all in a single operation. Download them individually or as a ZIP file.",
+  },
+  {
+    question: "Do I need to install any software?",
+    answer: "No installation required. Quick JPG Converter runs entirely in your web browser. Just visit the website, select your tool, and start converting. Works on Windows, Mac, Linux, iPhone, and Android.",
   },
 ];
 
@@ -113,7 +137,7 @@ const testimonials = [
   description="Convert JPG, PNG, WebP, HEIC, and PDF images instantly with our free online JPG converter. Fast, private, and browser-based — no uploads required. Try it now."
   canonical={site.url}
   faqItems={faqItems}
-  keywords={["jpg converter", "free jpg converter", "online jpg converter", "png to jpg converter", "webp to jpg converter", "heic to jpg converter", "pdf to jpg converter", "jpg to png converter", "jpg to webp converter"]}
+  keywords={["jpg converter", "free jpg converter", "online jpg converter", "png to jpg converter", "webp to jpg converter", "heic to jpg converter", "pdf to jpg converter", "jpg to png converter", "jpg to webp converter", "image compressor", "compress image online", "pdf compressor", "image converter online", "free image converter", "no signup image converter", "browser image converter", "private image converter", "fast image converter", "quick jpg converter", "best free image converter", "us image converter", "india image converter"]}
 >
   <!-- ============================================
        SECTION 1: HERO
@@ -132,7 +156,7 @@ const testimonials = [
         <!-- Headline: single flowing sentence -->
         <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary tracking-tight leading-[1.08] mb-6 animate-fade-in-up">
           Convert Images<br />
-          <span class="gradient-text">Without Uploading</span>
+          <span class="gradient-text">in Your Browser</span>
         </h1>
 
         <!-- Subheadline: one clear sentence -->
@@ -209,39 +233,62 @@ const testimonials = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {tools.map((tool) => (
-          <a
-            href={`/tools/${tool.slug}`}
-            class="card-gradient group block p-5 sm:p-6"
-          >
-            <div class="flex items-start justify-between mb-3">
-              <div class="w-11 h-11 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-xl border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
-                {tool.icon}
+      <div class="space-y-12">
+        {(["image-converters", "image-compressors", "image-tools", "pdf-converters", "pdf-tools"] as const).map((cat) => {
+          const catTools = getToolsByCategory(cat);
+          const catInfo = categories[cat];
+          return (
+            <div>
+              <div class="flex items-center gap-2 mb-4">
+                <span class="text-lg">{catInfo.icon}</span>
+                <h3 class="text-lg font-semibold text-text-primary">{catInfo.title}</h3>
               </div>
-              <svg class="w-4 h-4 text-text-tertiary group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {catTools.map((tool) => (
+                  <a
+                    href={`/tools/${tool.slug}`}
+                    class="card-gradient group block p-5 sm:p-6"
+                  >
+                    <div class="flex items-start justify-between mb-3">
+                      <div class="w-11 h-11 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-xl border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
+                        {tool.icon}
+                      </div>
+                      <svg class="w-4 h-4 text-text-tertiary group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      {tool.title}
+                    </h3>
+                    <p class="text-sm text-text-secondary leading-relaxed mb-3">
+                      {tool.description}
+                    </p>
+                    <div class="flex items-center gap-1.5">
+                      <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-surface-subtle text-text-secondary border border-border-muted">
+                        {tool.from}
+                      </span>
+                      <svg class="w-3 h-3 text-text-tertiary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                      <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-400 border border-brand-200 dark:border-brand-800">
+                        {tool.to}
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
-            <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-              {tool.title}
-            </h3>
-            <p class="text-sm text-text-secondary leading-relaxed mb-3">
-              {tool.description}
-            </p>
-            <div class="flex items-center gap-1.5">
-              <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-surface-subtle text-text-secondary border border-border-muted">
-                {tool.from}
-              </span>
-              <svg class="w-3 h-3 text-text-tertiary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-              <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-400 border border-brand-200 dark:border-brand-800">
-                {tool.to}
-              </span>
-            </div>
-          </a>
-        ))}
+          );
+        })}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/tools" class="btn-primary btn-lg">
+          View All Tools
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
       </div>
     </Container>
   </section>

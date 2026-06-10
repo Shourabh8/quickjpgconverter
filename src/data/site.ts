@@ -9,7 +9,7 @@ export const site = {
   twitter: "@quickjpgconverter",
   lang: "en",
   locale: "en_US",
-  themeColor: "#3366ff",
+  themeColor: "#3b82f6",
 } as const;
 
 export type SiteConfig = typeof site;

@@ -8,7 +8,7 @@ import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
   { name: "Tools", url: "/tools" },
-  { name: "HEIC to JPG", url: "/tools/heic-to-jpg" },
+  { name: "WebP to PNG", url: "/tools/webp-to-png" },
 ];
 
 const conversionOptions = [
@@ -19,45 +19,37 @@ const conversionOptions = [
 
 const faqItems = [
   {
-    question: "What is a HEIC file?",
-    answer: "HEIC (High Efficiency Image Container) is the default image format used by iPhones and iPads since iOS 11. It offers better compression than JPG, resulting in smaller files with similar quality. However, HEIC files aren't universally compatible.",
+    question: "Why should I convert WebP to PNG?",
+    answer: "While WebP is a modern format, some editing tools, older applications, and design software work best with PNG files. Converting WebP to PNG ensures maximum compatibility and allows you to edit the image with full transparency support.",
   },
   {
-    question: "Why should I convert HEIC to JPG?",
-    answer: "While HEIC is efficient, many websites, social media platforms, and applications still don't support it. Converting to JPG ensures your photos work everywhere — on any device, platform, or application.",
+    question: "Will converting WebP to PNG increase file size?",
+    answer: "Yes. PNG uses lossless compression, so converted files will typically be larger than the original WebP. However, you gain full compatibility and editing capability with PNG's universal support.",
   },
   {
-    question: "Will converting HEIC to JPG reduce quality?",
-    answer: "JPG uses lossy compression, so some quality is lost compared to the original HEIC. However, at high quality settings, the difference is imperceptible. You can choose your preferred quality level in our converter.",
+    question: "Does PNG support transparency?",
+    answer: "Yes. PNG fully supports alpha channel transparency, making it ideal for graphics, logos, and images that need transparent backgrounds.",
   },
   {
-    question: "How do I convert HEIC to JPG on Mac?",
-    answer: "You can use Quick JPG Converter directly in your Safari browser. Simply open our HEIC to JPG tool, drag and drop your HEIC photos, and click Convert. No software installation needed.",
+    question: "Can I convert multiple WebP files to PNG at once?",
+    answer: "Yes. You can drag and drop or select multiple WebP files. They'll all be converted to PNG simultaneously, and you can download them individually or as a batch.",
   },
   {
-    question: "How do I convert HEIC to JPG on Windows?",
-    answer: "Open our HEIC to JPG tool in any browser, drag and drop your HEIC files (transferred from your iPhone), and click Convert. The conversion happens entirely in your browser — no uploads required.",
+    question: "What is the best free WebP to PNG converter?",
+    answer: "Quick JPG Converter is an excellent free WebP to PNG converter. It preserves transparency, supports batch conversion, and runs entirely in your browser — no uploads, completely private.",
   },
   {
-    question: "What is the best free HEIC to JPG converter?",
-    answer: "Quick JPG Converter is one of the best free HEIC to JPG converters. It runs entirely in your browser, requires no sign-up, supports batch conversion, and works on Mac, Windows, and mobile devices.",
-  },
-  {
-    question: "Can I convert multiple HEIC files at once?",
-    answer: "Yes. You can drag and drop or select multiple HEIC files from your iPhone. They'll all be converted to JPG simultaneously, and you can download them individually or as a batch.",
-  },
-  {
-    question: "How can I convert HEIC to JPG without a converter?",
-    answer: "On Mac, you can open HEIC files in Preview and export as JPG. On Windows, you can use Paint. However, our online converter is faster for batch conversions and requires no software installation.",
+    question: "How do I convert WebP to PNG?",
+    answer: "Simply visit our WebP to PNG tool, drag and drop your WebP files, select your preferred quality level, and click Convert. Your PNG files will be ready to download in seconds.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Free HEIC to JPG Converter — Online JPG Converter Tool"
-  description="Convert iPhone HEIC photos to JPG with our free online JPG converter. Universal compatibility, quality control, and 100% private. No uploads required — try it now."
-  canonical="https://quickjpgconverter.com/tools/heic-to-jpg"
-  keywords={["heic to jpg", "convert heic to jpg", "heic to jpeg", "iphone to jpg"]}
+  title="Free WebP to PNG Converter — Online Image Converter Tool"
+  description="Convert WebP to PNG with our free online converter. Lossless quality, transparency support, and 100% private. No uploads required — try it now."
+  canonical="https://quickjpgconverter.com/tools/webp-to-png"
+  keywords={["webp to png", "convert webp to png", "webp to png converter"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
 >
@@ -75,10 +67,10 @@ const faqItems = [
           Free · No Signup · Private
         </Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          HEIC to <span class="gradient-text">JPG</span> Converter
+          WebP to <span class="gradient-text">PNG</span> Converter
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          Convert iPhone HEIC photos to JPG for universal compatibility.
+          Convert your WebP images back to PNG with lossless quality and transparency support.
           Everything runs in your browser.
         </p>
       </div>
@@ -92,7 +84,7 @@ const faqItems = [
           <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
             <span class="text-sm font-medium text-text-secondary">Convert to:</span>
             <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
-              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">JPG</button>
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">PNG</button>
             </div>
           </div>
 
@@ -105,16 +97,16 @@ const faqItems = [
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
                   </div>
-                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your HEIC files here</h3>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your WebP files here</h3>
                   <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
                   <label class="btn-primary btn-md cursor-pointer">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                     Choose Files
-                    <input type="file" class="sr-only" accept=".heic,.heif" multiple />
+                    <input type="file" class="sr-only" accept=".webp" multiple />
                   </label>
-                  <p class="text-xs text-text-tertiary mt-4">HEIC, HEIF · Max 50MB per file · Multiple files supported</p>
+                  <p class="text-xs text-text-tertiary mt-4">WebP · Max 50MB per file · Multiple files supported</p>
                   <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
                     <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
@@ -134,9 +126,9 @@ const faqItems = [
                   </div>
                   <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
                   <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
-                    <span class="text-text-tertiary">Input: HEIC</span>
+                    <span class="text-text-tertiary">Input: WebP</span>
                     <span class="text-text-tertiary">→</span>
-                    <span class="text-brand-600 dark:text-brand-400 font-medium">Output: JPG</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">Output: PNG</span>
                   </div>
                 </div>
               </div>
@@ -171,8 +163,8 @@ const faqItems = [
                       </svg>
                     </div>
                     <div>
-                      <div class="text-sm font-semibold text-text-primary">JPG</div>
-                      <div class="text-xs text-text-tertiary">Lossy · Universal · Smaller files</div>
+                      <div class="text-sm font-semibold text-text-primary">PNG</div>
+                      <div class="text-xs text-text-tertiary">Lossless · Transparency · Universal</div>
                     </div>
                   </div>
                 </div>
@@ -189,7 +181,7 @@ const faqItems = [
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Convert to JPG
+                  Convert to PNG
                 </button>
                 <p class="text-xs text-text-tertiary text-center mt-2">Upload a file to start conversion</p>
               </div>
@@ -200,9 +192,7 @@ const faqItems = [
 
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
           <span class="font-medium text-text-secondary">Supported:</span>
-          {["HEIC", "HEIF"].map((fmt) => (
-            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
-          ))}
+          <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">WebP</span>
           <span class="text-text-tertiary">·</span>
           <span>Max 50MB</span>
           <span class="text-text-tertiary">·</span>
@@ -212,7 +202,7 @@ const faqItems = [
     </Container>
   </section>
 
-  <FeatureRequest toolName="HEIC to JPG" />
+  <FeatureRequest toolName="WebP to PNG" />
 
   <section class="section bg-surface-muted">
     <Container>
@@ -223,8 +213,8 @@ const faqItems = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
-          <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your HEIC</h3>
-          <p class="text-sm text-text-secondary">Drag and drop or click to select your iPhone photos.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your WebP</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select your image files.</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
@@ -233,8 +223,8 @@ const faqItems = [
         </div>
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
-          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download JPG</h3>
-          <p class="text-sm text-text-secondary">Get your compatible JPG file instantly.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download PNG</h3>
+          <p class="text-sm text-text-secondary">Get your lossless PNG file instantly.</p>
         </div>
       </div>
     </Container>
@@ -243,16 +233,16 @@ const faqItems = [
   <section class="section">
     <Container variant="narrow">
       <div class="prose">
-        <h2>Why Convert HEIC to JPG?</h2>
-        <p>HEIC (High Efficiency Image Container) is the default format for iPhone photos since iOS 11. While it offers excellent compression, many platforms and applications still don't support it natively.</p>
-        <h3>When You Need JPG</h3>
+        <h2>Why Convert WebP to PNG?</h2>
+        <p>While WebP offers superior compression, sometimes you need PNG for maximum compatibility. Some editing tools, older applications, and design software work best with PNG files.</p>
+        <h3>When You Need PNG</h3>
         <ul>
-          <li>Uploading to social media platforms that don't support HEIC</li>
-          <li>Sharing photos with Windows or Android users</li>
-          <li>Using with older software or design tools</li>
-          <li>Printing photos at a photo lab</li>
-          <li>Attaching to emails that may not render HEIC</li>
+          <li>Editing images in software that doesn't support WebP</li>
+          <li>Using with legacy applications or older devices</li>
+          <li>When you need lossless quality for further processing</li>
+          <li>When transparency support is required</li>
         </ul>
+        <p><a href="/webp-to-png">Learn more about WebP to PNG conversion →</a></p>
       </div>
     </Container>
   </section>
@@ -274,6 +264,14 @@ const faqItems = [
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Try Our Other Converters</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <a href="/tools/webp-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">WebP to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert WebP images to JPG format.</p>
+        </a>
+        <a href="/tools/png-to-webp" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PNG to WebP</h3>
+          <p class="text-sm text-text-secondary">Convert PNG to modern WebP format.</p>
+        </a>
         <a href="/tools/jpg-to-png" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PNG</h3>
           <p class="text-sm text-text-secondary">Convert JPG to PNG with lossless quality.</p>
@@ -281,14 +279,6 @@ const faqItems = [
         <a href="/tools/png-to-jpg" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PNG to JPG</h3>
           <p class="text-sm text-text-secondary">Convert PNG images to JPG format.</p>
-        </a>
-        <a href="/tools/jpg-to-webp" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to WebP</h3>
-          <p class="text-sm text-text-secondary">Convert JPG to modern WebP format.</p>
-        </a>
-        <a href="/tools/webp-to-jpg" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">WebP to JPG</h3>
-          <p class="text-sm text-text-secondary">Convert WebP images to JPG.</p>
         </a>
         <a href="/tools/image-compressor" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
@@ -304,6 +294,6 @@ const faqItems = [
 
   <script>
     import { initConverter } from "@scripts/converter.js";
-    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "jpeg", targetExt: "jpg", targetMime: "image/jpeg" }));
+    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }));
   </script>
 </BaseLayout>

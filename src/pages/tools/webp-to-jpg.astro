@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
@@ -48,6 +49,7 @@ const faqItems = [
   title="Free WebP to JPG Converter — Online JPG Converter Tool"
   description="Convert WebP to JPG with our free online JPG converter. Universal compatibility, quality control, and 100% private. No uploads required — try it now."
   canonical="https://quickjpgconverter.com/tools/webp-to-jpg"
+  keywords={["webp to jpg", "convert webp to jpeg", "webp to jpeg"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
 >
@@ -200,6 +202,8 @@ const faqItems = [
     </Container>
   </section>
 
+  <FeatureRequest toolName="WebP to JPG" />
+
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
@@ -290,6 +294,6 @@ const faqItems = [
 
   <script>
     import { initConverter } from "@scripts/converter.js";
-    initConverter({ targetFormat: "jpg", targetExt: "jpg", targetMime: "image/jpeg" });
+    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "jpeg", targetExt: "jpg", targetMime: "image/jpeg" }));
   </script>
 </BaseLayout>

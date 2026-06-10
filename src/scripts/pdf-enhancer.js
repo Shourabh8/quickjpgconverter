@@ -1,8 +1,8 @@
 /**
- * Client-side PDF compressor using pdf-lib and Canvas API.
- * Extracts images, recompresses them, and rebuilds the PDF.
+ * Client-side PDF enhancer using PDF.js and Canvas API.
+ * Renders PDF pages, applies enhancements, and creates new PDF.
  *
- * Usage: initPdfCompressor()
+ * Usage: initPdfEnhancer()
  */
 
 function formatBytes(bytes) {
@@ -24,19 +24,50 @@ function downloadBlob(blob, filename) {
   setTimeout(() => URL.revokeObjectURL(url), 100);
 }
 
-const COMPRESSION_QUALITY = {
-  low: 0.6,
-  medium: 0.4,
-  high: 0.2,
-};
+function sharpenKernel(amount) {
+  const a = amount;
+  return [0, -a, 0, -a, 1 + 4 * a, -a, 0, -a, 0];
+}
 
-const SCALE_FACTOR = {
-  low: 0.9,
-  medium: 0.7,
-  high: 0.5,
-};
+function applyConvolution(imageData, kernel, width, height) {
+  const src = imageData.data;
+  const dst = new Uint8ClampedArray(src.length);
+  const kSize = 3;
+  const half = 1;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      let r = 0, g = 0, b = 0;
+      for (let ky = 0; ky < kSize; ky++) {
+        for (let kx = 0; kx < kSize; kx++) {
+          const px = Math.min(width - 1, Math.max(0, x + kx - half));
+          const py = Math.min(height - 1, Math.max(0, y + ky - half));
+          const idx = (py * width + px) * 4;
+          const kVal = kernel[ky * kSize + kx];
+          r += src[idx] * kVal;
+          g += src[idx + 1] * kVal;
+          b += src[idx + 2] * kVal;
+        }
+      }
+      const idx = (y * width + x) * 4;
+      dst[idx] = Math.min(255, Math.max(0, r));
+      dst[idx + 1] = Math.min(255, Math.max(0, g));
+      dst[idx + 2] = Math.min(255, Math.max(0, b));
+      dst[idx + 3] = src[idx + 3];
+    }
+  }
+  return new ImageData(dst, width, height);
+}
 
-export function initPdfCompressor() {
+function applyEnhancements(ctx, width, height, settings) {
+  if (settings.sharpness > 0) {
+    let imageData = ctx.getImageData(0, 0, width, height);
+    const kernel = sharpenKernel(settings.sharpness / 100);
+    imageData = applyConvolution(imageData, kernel, width, height);
+    ctx.putImageData(imageData, 0, 0);
+  }
+}
+
+export function initPdfEnhancer() {
   const dropArea = document.getElementById("drop-area");
   const fileInput = dropArea?.querySelector('input[type="file"]');
   const uploadZone = document.getElementById("upload-zone");
@@ -46,9 +77,9 @@ export function initPdfCompressor() {
   const progressBar = document.getElementById("progress-bar");
   const progressText = document.getElementById("progress-text");
   const fileInfo = document.getElementById("file-info");
-  const compressBtn = document.getElementById("compress-btn");
+  const enhanceBtn = document.getElementById("enhance-btn");
   const downloadBtn = document.getElementById("download-btn");
-  const compressMoreBtn = document.getElementById("compress-more-btn");
+  const enhanceMoreBtn = document.getElementById("enhance-more-btn");
 
   if (!dropArea || !uploadZone) return;
 
@@ -57,10 +88,48 @@ export function initPdfCompressor() {
   dropArea.setAttribute("aria-label", "Upload PDF files. Press Enter or Space to browse.");
 
   let currentFile = null;
-  let compressedBlob = null;
+  let enhancedBlob = null;
   let originalSize = 0;
 
-  // --- Drag & Drop ---
+  const sliders = {
+    brightness: document.getElementById("brightness"),
+    contrast: document.getElementById("contrast"),
+    saturation: document.getElementById("saturation"),
+    sharpness: document.getElementById("sharpness"),
+  };
+
+  const sliderValues = {
+    brightness: document.getElementById("brightness-value"),
+    contrast: document.getElementById("contrast-value"),
+    saturation: document.getElementById("saturation-value"),
+    sharpness: document.getElementById("sharpness-value"),
+  };
+
+  const grayscaleCheck = document.getElementById("grayscale");
+  const sepiaCheck = document.getElementById("sepia");
+
+  function getSettings() {
+    return {
+      brightness: sliders.brightness ? parseInt(sliders.brightness.value) : 100,
+      contrast: sliders.contrast ? parseInt(sliders.contrast.value) : 100,
+      saturation: sliders.saturation ? parseInt(sliders.saturation.value) : 100,
+      sharpness: sliders.sharpness ? parseInt(sliders.sharpness.value) : 0,
+      grayscale: grayscaleCheck?.checked || false,
+      sepia: sepiaCheck?.checked || false,
+    };
+  }
+
+  function updateSliderLabels() {
+    if (sliderValues.brightness) sliderValues.brightness.textContent = sliders.brightness?.value + "%";
+    if (sliderValues.contrast) sliderValues.contrast.textContent = sliders.contrast?.value + "%";
+    if (sliderValues.saturation) sliderValues.saturation.textContent = sliders.saturation?.value + "%";
+    if (sliderValues.sharpness) sliderValues.sharpness.textContent = sliders.sharpness?.value + "%";
+  }
+
+  Object.values(sliders).forEach((s) => {
+    s?.addEventListener("input", updateSliderLabels);
+  });
+
   ["dragenter", "dragover"].forEach((evt) => {
     dropArea.addEventListener(evt, (e) => {
       e.preventDefault();
@@ -78,8 +147,7 @@ export function initPdfCompressor() {
   });
 
   dropArea.addEventListener("drop", (e) => {
-    const droppedFiles = Array.from(e.dataTransfer.files);
-    handleFile(droppedFiles[0]);
+    handleFile(Array.from(e.dataTransfer.files)[0]);
   });
 
   dropArea.addEventListener("click", (e) => {
@@ -98,11 +166,11 @@ export function initPdfCompressor() {
     fileInput.value = "";
   });
 
-  compressBtn?.addEventListener("click", compressPdf);
+  enhanceBtn?.addEventListener("click", enhancePdf);
   downloadBtn?.addEventListener("click", () => {
-    if (compressedBlob) downloadBlob(compressedBlob, currentFile.name.replace(".pdf", "-compressed.pdf"));
+    if (enhancedBlob) downloadBlob(enhancedBlob, currentFile.name.replace(".pdf", "-enhanced.pdf"));
   });
-  compressMoreBtn?.addEventListener("click", resetUI);
+  enhanceMoreBtn?.addEventListener("click", resetUI);
 
   function handleFile(file) {
     if (!file || file.type !== "application/pdf") return;
@@ -110,9 +178,9 @@ export function initPdfCompressor() {
     originalSize = file.size;
     uploadZone?.classList.add("hidden");
     resultZone?.classList.remove("hidden");
-    compressBtn?.classList.remove("hidden");
+    enhanceBtn?.classList.remove("hidden");
     downloadBtn?.classList.add("hidden");
-    compressMoreBtn?.classList.add("hidden");
+    enhanceMoreBtn?.classList.add("hidden");
     if (fileInfo) {
       fileInfo.innerHTML = `
         <div class="flex items-center gap-3 p-4 rounded-xl border border-border-default bg-surface">
@@ -128,15 +196,12 @@ export function initPdfCompressor() {
     }
   }
 
-  async function compressPdf() {
+  async function enhancePdf() {
     if (!currentFile) return;
-    compressBtn.classList.add("hidden");
+    enhanceBtn.classList.add("hidden");
     progressArea?.classList.remove("hidden");
 
-    const compressionLevel = document.querySelector('input[name="compression"]:checked')?.value || "medium";
-    const quality = COMPRESSION_QUALITY[compressionLevel];
-    const resolutionRadio = document.querySelector('input[name="resolution"]:checked');
-    const scaleFactor = parseFloat(resolutionRadio?.value || "1");
+    const settings = getSettings();
 
     try {
       progressBar.style.width = "10%";
@@ -163,10 +228,10 @@ export function initPdfCompressor() {
       for (let i = 1; i <= numPages; i++) {
         const pagePct = Math.round(30 + (i / numPages) * 60);
         progressBar.style.width = pagePct + "%";
-        progressText.textContent = `Compressing page ${i} of ${numPages}...`;
+        progressText.textContent = `Enhancing page ${i} of ${numPages}...`;
 
         const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: scaleFactor });
+        const viewport = page.getViewport({ scale: 1.5 });
 
         const canvas = document.createElement("canvas");
         canvas.width = viewport.width;
@@ -175,62 +240,59 @@ export function initPdfCompressor() {
 
         await page.render({ canvasContext: ctx, viewport }).promise;
 
-        const jpegDataUrl = canvas.toDataURL("image/jpeg", quality);
-        const jpegBytes = Uint8Array.from(atob(jpegDataUrl.split(",")[1]), c => c.charCodeAt(0));
+        ctx.filter = `brightness(${settings.brightness}%) contrast(${settings.contrast}%) saturate(${settings.saturation}%)`;
+        if (settings.grayscale) ctx.filter += " grayscale(100%)";
+        if (settings.sepia) ctx.filter += " sepia(100%)";
+
+        const tempCanvas = document.createElement("canvas");
+        tempCanvas.width = viewport.width;
+        tempCanvas.height = viewport.height;
+        const tempCtx = tempCanvas.getContext("2d");
+        tempCtx.drawImage(canvas, 0, 0);
+
+        ctx.clearRect(0, 0, viewport.width, viewport.height);
+        ctx.drawImage(tempCanvas, 0, 0);
+
+        applyEnhancements(ctx, viewport.width, viewport.height, settings);
+
+        const jpegDataUrl = canvas.toDataURL("image/jpeg", 0.92);
+        const jpegBytes = Uint8Array.from(atob(jpegDataUrl.split(",")[1]), (c) => c.charCodeAt(0));
 
         const image = await newPdfDoc.embedJpg(jpegBytes);
-
         const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
-        newPage.drawImage(image, {
-          x: 0,
-          y: 0,
-          width: viewport.width,
-          height: viewport.height,
-        });
+        newPage.drawImage(image, { x: 0, y: 0, width: viewport.width, height: viewport.height });
       }
 
       progressBar.style.width = "95%";
       progressText.textContent = "Finalizing...";
 
-      const compressedBytes = await newPdfDoc.save();
-      compressedBlob = new Blob([compressedBytes], { type: "application/pdf" });
+      const enhancedBytes = await newPdfDoc.save();
+      enhancedBlob = new Blob([enhancedBytes], { type: "application/pdf" });
 
       progressBar.style.width = "100%";
-
-      if (compressedBlob.size >= originalSize) {
-        compressedBlob = new Blob([uint8Array], { type: "application/pdf" });
-        progressText.textContent = "File is already optimized!";
-      } else {
-        progressText.textContent = "Compression complete!";
-      }
-
-      const savings = originalSize > 0 ? Math.round((1 - compressedBlob.size / originalSize) * 100) : 0;
+      progressText.textContent = "Enhancement complete!";
 
       setTimeout(() => {
         progressArea?.classList.add("hidden");
-        compressBtn?.classList.add("hidden");
+        enhanceBtn?.classList.add("hidden");
         downloadBtn?.classList.remove("hidden");
-        compressMoreBtn?.classList.remove("hidden");
+        enhanceMoreBtn?.classList.remove("hidden");
 
         if (fileInfo) {
           fileInfo.innerHTML = `
             <div class="p-4 rounded-xl border border-success/30 bg-success/5">
               <div class="flex items-center gap-2 mb-2">
                 <svg class="w-5 h-5 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="text-sm font-semibold text-success">PDF compressed!</span>
+                <span class="text-sm font-semibold text-success">PDF enhanced!</span>
               </div>
-              <div class="grid grid-cols-3 gap-4 text-center">
+              <div class="grid grid-cols-2 gap-4 text-center">
                 <div>
                   <div class="text-lg font-bold text-text-primary">${formatBytes(originalSize)}</div>
                   <div class="text-xs text-text-tertiary">Original</div>
                 </div>
                 <div>
-                  <div class="text-lg font-bold text-success">${formatBytes(compressedBlob.size)}</div>
-                  <div class="text-xs text-text-tertiary">Compressed</div>
-                </div>
-                <div>
-                  <div class="text-lg font-bold text-brand-600">${savings > 0 ? "-" + savings : 0}%</div>
-                  <div class="text-xs text-text-tertiary">Saved</div>
+                  <div class="text-lg font-bold text-success">${formatBytes(enhancedBlob.size)}</div>
+                  <div class="text-xs text-text-tertiary">Enhanced</div>
                 </div>
               </div>
             </div>
@@ -238,17 +300,17 @@ export function initPdfCompressor() {
         }
       }, 500);
     } catch (err) {
-      console.error("PDF compression failed:", err);
+      console.error("PDF enhancement failed:", err);
       progressArea?.classList.add("hidden");
-      compressBtn?.classList.remove("hidden");
+      enhanceBtn?.classList.remove("hidden");
       if (fileInfo) {
         fileInfo.innerHTML = `
           <div class="p-4 rounded-xl border border-danger/30 bg-danger/5">
             <div class="flex items-center gap-2">
               <svg class="w-5 h-5 text-danger" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
-              <span class="text-sm font-semibold text-danger">Compression failed</span>
+              <span class="text-sm font-semibold text-danger">Enhancement failed</span>
             </div>
-            <p class="text-xs text-text-secondary mt-1">${err.message || "Could not compress this PDF. It may be encrypted or corrupted."}</p>
+            <p class="text-xs text-text-secondary mt-1">${err.message || "Could not enhance this PDF. It may be encrypted or corrupted."}</p>
           </div>
         `;
       }
@@ -257,7 +319,7 @@ export function initPdfCompressor() {
 
   function resetUI() {
     currentFile = null;
-    compressedBlob = null;
+    enhancedBlob = null;
     originalSize = 0;
     uploadZone?.classList.remove("hidden");
     resultZone?.classList.add("hidden");

@@ -1,3 +1,5 @@
+export type ToolCategory = "image-converters" | "image-compressors" | "image-tools" | "pdf-converters" | "pdf-tools";
+
 export interface Tool {
   slug: string;
   title: string;
@@ -6,10 +8,40 @@ export interface Tool {
   to: string;
   icon: string;
   keywords: string[];
+  category: ToolCategory;
   isCompressor?: boolean;
 }
 
+export const categories: Record<ToolCategory, { title: string; description: string; icon: string }> = {
+  "image-converters": {
+    title: "Image Converters",
+    description: "Convert between image formats instantly.",
+    icon: "🔄",
+  },
+  "image-compressors": {
+    title: "Image Compressors",
+    description: "Reduce image file sizes without losing quality.",
+    icon: "🗜️",
+  },
+  "image-tools": {
+    title: "Image Tools",
+    description: "Resize, enhance, and edit your images.",
+    icon: "🛠️",
+  },
+  "pdf-converters": {
+    title: "PDF Converters",
+    description: "Convert PDFs to images and images to PDFs.",
+    icon: "📄",
+  },
+  "pdf-tools": {
+    title: "PDF Tools",
+    description: "Compress, enhance, and manage your PDF files.",
+    icon: "📑",
+  },
+};
+
 export const tools: Tool[] = [
+  // Image Converters
   {
     slug: "jpg-to-png",
     title: "JPG to PNG",
@@ -17,7 +49,8 @@ export const tools: Tool[] = [
     from: "JPG",
     to: "PNG",
     icon: "🖼️",
-    keywords: ["jpg to png", "convert jpg to png", "jpeg to png"],
+    keywords: ["jpg to png", "convert jpg to png", "jpeg to png", "jpg to png converter", "free jpg to png", "online jpg to png", "jpg to png no signup", "change jpg to png", "make png from jpg"],
+    category: "image-converters",
   },
   {
     slug: "png-to-jpg",
@@ -26,7 +59,8 @@ export const tools: Tool[] = [
     from: "PNG",
     to: "JPG",
     icon: "📸",
-    keywords: ["png to jpg", "convert png to jpeg", "png to jpeg"],
+    keywords: ["png to jpg", "convert png to jpeg", "png to jpeg", "png to jpg converter", "free png to jpg", "online png to jpg", "png to jpg no signup", "change png to jpg", "make jpg from png"],
+    category: "image-converters",
   },
   {
     slug: "jpg-to-webp",
@@ -35,7 +69,8 @@ export const tools: Tool[] = [
     from: "JPG",
     to: "WebP",
     icon: "⚡",
-    keywords: ["jpg to webp", "convert jpg to webp", "jpeg to webp"],
+    keywords: ["jpg to webp", "convert jpg to webp", "jpeg to webp", "jpg to webp converter", "free jpg to webp", "online jpg to webp", "jpg to webp no signup", "change jpg to webp", "make webp from jpg"],
+    category: "image-converters",
   },
   {
     slug: "webp-to-jpg",
@@ -44,25 +79,28 @@ export const tools: Tool[] = [
     from: "WebP",
     to: "JPG",
     icon: "🔄",
-    keywords: ["webp to jpg", "convert webp to jpeg", "webp to jpeg"],
+    keywords: ["webp to jpg", "convert webp to jpeg", "webp to jpeg", "webp to jpg converter", "free webp to jpg", "online webp to jpg", "webp to jpg no signup", "change webp to jpg", "make jpg from webp"],
+    category: "image-converters",
   },
   {
-    slug: "jpg-to-pdf",
-    title: "JPG to PDF",
-    description: "Convert JPG images into PDF documents for easy sharing.",
-    from: "JPG",
-    to: "PDF",
-    icon: "📄",
-    keywords: ["jpg to pdf", "convert jpg to pdf", "image to pdf"],
+    slug: "png-to-webp",
+    title: "PNG to WebP",
+    description: "Convert PNG images to WebP for smaller file sizes and faster loading.",
+    from: "PNG",
+    to: "WebP",
+    icon: "⚡",
+    keywords: ["png to webp", "convert png to webp", "png to webp converter", "free png to webp", "online png to webp", "png to webp no signup", "change png to webp", "make webp from png"],
+    category: "image-converters",
   },
   {
-    slug: "resize-jpg",
-    title: "Resize JPG",
-    description: "Resize JPG images to any dimension while maintaining quality.",
-    from: "JPG",
-    to: "JPG",
-    icon: "📐",
-    keywords: ["resize jpg", "resize jpeg", "resize image"],
+    slug: "webp-to-png",
+    title: "WebP to PNG",
+    description: "Convert WebP images back to PNG with lossless quality.",
+    from: "WebP",
+    to: "PNG",
+    icon: "🔄",
+    keywords: ["webp to png", "convert webp to png", "webp to png converter", "free webp to png", "online webp to png", "webp to png no signup", "change webp to png", "make png from webp"],
+    category: "image-converters",
   },
   {
     slug: "heic-to-jpg",
@@ -71,8 +109,21 @@ export const tools: Tool[] = [
     from: "HEIC",
     to: "JPG",
     icon: "📱",
-    keywords: ["heic to jpg", "convert heic to jpg", "heic to jpeg", "iphone to jpg"],
+    keywords: ["heic to jpg", "convert heic to jpg", "heic to jpeg", "iphone to jpg", "heic to jpg converter", "free heic to jpg", "online heic to jpg", "heic to jpg no signup", "change heic to jpg", "make jpg from heic"],
+    category: "image-converters",
   },
+  {
+    slug: "heic-to-png",
+    title: "HEIC to PNG",
+    description: "Convert iPhone HEIC photos to PNG with transparency support.",
+    from: "HEIC",
+    to: "PNG",
+    icon: "📱",
+    keywords: ["heic to png", "convert heic to png", "iphone to png", "heic to png converter", "free heic to png", "online heic to png", "heic to png no signup"],
+    category: "image-converters",
+  },
+
+  // Image Compressors
   {
     slug: "image-compressor",
     title: "Image Compressor",
@@ -80,9 +131,98 @@ export const tools: Tool[] = [
     from: "IMG",
     to: "IMG",
     icon: "🗜️",
-    keywords: ["image compressor", "compress image", "reduce image size", "compress jpg", "compress png", "compress webp"],
+    keywords: ["image compressor", "compress image", "reduce image size", "compress jpg", "compress png", "compress webp", "free image compressor", "online image compressor", "image compression tool", "reduce photo size", "compress photo online", "image compressor no signup", "best image compressor", "quick image compressor"],
+    category: "image-compressors",
     isCompressor: true,
   },
+  {
+    slug: "compress-to-100kb",
+    title: "Compress to 100KB",
+    description: "Compress images to under 100KB for portal uploads and form submissions.",
+    from: "IMG",
+    to: "IMG",
+    icon: "🎯",
+    keywords: ["compress image to 100kb", "reduce image to 100kb", "100kb image compressor", "image to 100kb", "compress photo to 100kb", "make image 100kb", "resize image to 100kb", "100kb photo compressor", "compress jpg to 100kb", "compress png to 100kb"],
+    category: "image-compressors",
+    isCompressor: true,
+  },
+  {
+    slug: "compress-to-200kb",
+    title: "Compress to 200KB",
+    description: "Compress images to under 200KB for portal uploads and form submissions.",
+    from: "IMG",
+    to: "IMG",
+    icon: "🎯",
+    keywords: ["compress image to 200kb", "reduce image to 200kb", "200kb image compressor", "image to 200kb", "compress photo to 200kb", "make image 200kb", "resize image to 200kb", "200kb photo compressor"],
+    category: "image-compressors",
+    isCompressor: true,
+  },
+
+  // Image Tools
+  {
+    slug: "resize-jpg",
+    title: "Resize JPG",
+    description: "Resize JPG images to any dimension while maintaining quality.",
+    from: "JPG",
+    to: "JPG",
+    icon: "📐",
+    keywords: ["resize jpg", "resize jpeg", "resize image", "resize photo", "jpg resizer", "image resizer", "resize jpg online", "free image resizer", "change image size", "make image smaller"],
+    category: "image-tools",
+  },
+  {
+    slug: "image-enhancer",
+    title: "Image Enhancer",
+    description: "Enhance images with brightness, contrast, saturation, and sharpness controls.",
+    from: "IMG",
+    to: "IMG",
+    icon: "✨",
+    keywords: ["image enhancer", "enhance image", "adjust brightness", "increase contrast", "sharpen image", "photo enhancer", "free image enhancer", "online image editor", "edit photo online", "improve photo quality", "adjust image", "image editor online"],
+    category: "image-tools",
+  },
+
+  // PDF Converters
+  {
+    slug: "jpg-to-pdf",
+    title: "JPG to PDF",
+    description: "Convert JPG images into PDF documents for easy sharing.",
+    from: "JPG",
+    to: "PDF",
+    icon: "📄",
+    keywords: ["jpg to pdf", "convert jpg to pdf", "image to pdf", "jpg to pdf converter", "free jpg to pdf", "online jpg to pdf", "jpg to pdf no signup", "make pdf from jpg", "photo to pdf", "jpeg to pdf"],
+    category: "pdf-converters",
+  },
+  {
+    slug: "png-to-pdf",
+    title: "PNG to PDF",
+    description: "Convert PNG images into PDF documents for easy sharing.",
+    from: "PNG",
+    to: "PDF",
+    icon: "📑",
+    keywords: ["png to pdf", "convert png to pdf", "image to pdf", "png to pdf converter", "free png to pdf", "online png to pdf", "png to pdf no signup", "make pdf from png", "photo to pdf"],
+    category: "pdf-converters",
+  },
+  {
+    slug: "pdf-to-jpg",
+    title: "PDF to JPG",
+    description: "Extract images from PDF and convert to JPG format.",
+    from: "PDF",
+    to: "JPG",
+    icon: "🖼️",
+    keywords: ["pdf to jpg", "convert pdf to jpg", "pdf to image", "pdf to jpeg", "pdf to jpg converter", "free pdf to jpg", "online pdf to jpg", "pdf to jpg no signup", "extract images from pdf", "pdf to photo"],
+    category: "pdf-converters",
+  },
+  {
+    slug: "pdf-to-png",
+    title: "PDF to PNG",
+    description: "Extract pages from PDF and convert to PNG format.",
+    from: "PDF",
+    to: "PNG",
+    icon: "📄",
+    keywords: ["pdf to png", "convert pdf to png", "pdf to png converter", "free pdf to png", "online pdf to png", "pdf to png no signup", "extract pdf pages", "pdf to image"],
+    category: "pdf-converters",
+  },
+
+  // PDF Tools
   {
     slug: "pdf-compressor",
     title: "PDF Compressor",
@@ -90,8 +230,19 @@ export const tools: Tool[] = [
     from: "PDF",
     to: "PDF",
     icon: "📑",
-    keywords: ["pdf compressor", "compress pdf", "reduce pdf size", "compress pdf online"],
+    keywords: ["pdf compressor", "compress pdf", "reduce pdf size", "compress pdf online", "free pdf compressor", "pdf compression tool", "shrink pdf", "make pdf smaller", "pdf compressor no signup", "best pdf compressor"],
+    category: "pdf-tools",
     isCompressor: true,
+  },
+  {
+    slug: "pdf-enhancer",
+    title: "PDF Enhancer",
+    description: "Enhance PDF pages with brightness, contrast, saturation, and sharpness controls.",
+    from: "PDF",
+    to: "PDF",
+    icon: "✨",
+    keywords: ["pdf enhancer", "enhance pdf", "improve pdf quality", "sharpen pdf", "adjust pdf brightness", "edit pdf online", "free pdf editor", "pdf editor online"],
+    category: "pdf-tools",
   },
 ] as const;
 
@@ -99,4 +250,8 @@ export type ToolSlug = (typeof tools)[number]["slug"];
 
 export function getToolBySlug(slug: string): Tool | undefined {
   return tools.find((t) => t.slug === slug);
+}
+
+export function getToolsByCategory(category: ToolCategory): Tool[] {
+  return tools.filter((t) => t.category === category);
 }
