@@ -244,6 +244,39 @@ export const tools: Tool[] = [
     keywords: ["pdf enhancer", "enhance pdf", "improve pdf quality", "sharpen pdf", "adjust pdf brightness", "edit pdf online", "free pdf editor", "pdf editor online"],
     category: "pdf-tools",
   },
+
+  // Specialized Tools
+  {
+    slug: "passport-photo-size",
+    title: "Passport Photo Size",
+    description: "Resize and compress photos to passport dimensions for any country.",
+    from: "IMG",
+    to: "IMG",
+    icon: "📸",
+    keywords: ["passport photo size", "passport photo size india", "passport photo size usa", "passport size photo online", "passport photo maker", "passport photo compressor", "resize photo for passport", "passport photo requirements"],
+    category: "image-tools",
+  },
+  {
+    slug: "compress-for-govt-form",
+    title: "Compress for Govt Form",
+    description: "Compress photos for SSC, UPSC, Bank, and government form submissions.",
+    from: "IMG",
+    to: "IMG",
+    icon: "📋",
+    keywords: ["compress image for govt form", "compress photo for ssc form", "compress photo for upsc form", "photo size 20kb", "photo size 50kb", "government form photo compressor"],
+    category: "image-compressors",
+    isCompressor: true,
+  },
+  {
+    slug: "photo-to-base64",
+    title: "Photo to Base64",
+    description: "Convert images to Base64 strings for HTML embedding and data URIs.",
+    from: "IMG",
+    to: "Text",
+    icon: "🔧",
+    keywords: ["photo to base64", "image to base64", "base64 encoder", "convert image to base64", "base64 image", "jpg to base64", "png to base64"],
+    category: "image-tools",
+  },
 ] as const;
 
 export type ToolSlug = (typeof tools)[number]["slug"];

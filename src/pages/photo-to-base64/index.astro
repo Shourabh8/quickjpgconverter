@@ -1,0 +1,445 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Photo to Base64", url: "/photo-to-base64" },
+];
+
+const faqItems = [
+  {
+    question: "What is Base64 encoding?",
+    answer: "Base64 is a method of converting binary data (like images) into ASCII text. This allows you to embed images directly in HTML, CSS, or JavaScript without needing separate image files.",
+  },
+  {
+    question: "Why would I need to convert an image to Base64?",
+    answer: "Base64 encoding is useful for embedding images in HTML/CSS, sending images via email/JSON, storing images in databases, or creating data URIs for web development.",
+  },
+  {
+    question: "Does Base64 encoding increase file size?",
+    answer: "Yes, Base64 encoding increases file size by approximately 33%. This is because Base64 uses 4 characters to represent every 3 bytes of binary data.",
+  },
+  {
+    question: "What browsers support Base64 images?",
+    answer: "All modern browsers support Base64 encoded images. You can use them in img tags, CSS backgrounds, and even inline SVGs.",
+  },
+];
+
+const useCases = [
+  { title: "HTML Embedding", description: "Embed images directly in HTML without external files." },
+  { title: "CSS Backgrounds", description: "Use Base64 images in CSS background-image property." },
+  { title: "Email Templates", description: "Embed images in HTML emails without external hosting." },
+  { title: "JSON/API Data", description: "Send images as Base64 strings in JSON payloads." },
+  { title: "Data Storage", description: "Store small images directly in databases." },
+  { title: "Data URIs", description: "Create data URIs for use in web browsers." },
+];
+---
+
+<BaseLayout
+  title="Image to Base64 — Free Online Converter & Encoder"
+  description="Convert any image to Base64 string online. Free tool for HTML embedding, CSS backgrounds, data URIs. No signup, runs in your browser."
+  canonical="https://quickjpgconverter.com/photo-to-base64"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["photo to base64", "image to base64", "base64 encoder", "convert image to base64", "base64 image", "jpg to base64", "png to base64", "base64 converter online", "image to base64 converter", "base64 encode image", "base64 string generator", "data uri generator", "html image embed", "base64 image tool", "encode image to base64"]}
+  howToSteps={[
+    { name: "Upload your image", text: "Click the upload button and select your image file (JPG, PNG, WebP)." },
+    { name: "Click Convert", text: "The tool automatically converts your image to a Base64 string." },
+    { name: "Copy the string", text: "Click the copy button to copy the Base64 string to your clipboard." },
+    { name: "Use in your code", text: "Paste the Base64 string in your HTML, CSS, or JavaScript code." },
+  ]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+          </svg>
+          Free · No Signup · Private
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Image to <span class="gradient-text">Base64</span> Converter
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Convert any image to a Base64 string instantly. Free tool for HTML embedding, CSS backgrounds, data URIs, and API payloads. No signup, 100% private.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Output:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">Data URI</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your image here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Image
+                    <input type="file" class="sr-only" accept="image/jpeg,image/png,image/webp,image/gif" />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP, GIF · Max 5MB</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">1 file ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 flex items-center justify-center bg-surface-muted/30">
+                    <img id="preview-image" class="max-w-full max-h-[300px] object-contain rounded-lg" alt="Preview" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div id="stats-area" class="hidden mb-4">
+                <div class="p-3 rounded-xl bg-surface-muted border border-border-default">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs text-text-secondary">Original Size</span>
+                    <span id="original-size" class="text-xs font-medium text-text-primary">0 KB</span>
+                  </div>
+                  <div class="flex items-center justify-between mt-2">
+                    <span class="text-xs text-text-secondary">Base64 Size</span>
+                    <span id="base64-size" class="text-xs font-medium text-text-primary">0 KB</span>
+                  </div>
+                  <div class="flex items-center justify-between mt-2">
+                    <span class="text-xs text-text-secondary">Increase</span>
+                    <span id="size-increase" class="text-xs font-medium text-brand-600">+33%</span>
+                  </div>
+                </div>
+              </div>
+              <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+                Convert to Base64
+              </button>
+              <div id="download-area" class="hidden mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Use Cases</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">When to Use Base64 Images</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        {useCases.map((useCase) => (
+          <div class="card-hover p-5">
+            <h3 class="text-base font-semibold text-text-primary mb-2">{useCase.title}</h3>
+            <p class="text-sm text-text-secondary">{useCase.description}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>What is Base64 Encoding?</h2>
+        <p>Base64 is a binary-to-text encoding scheme that converts binary data (like images) into ASCII text. This allows you to represent binary data as a string of readable characters.</p>
+        <h3>Advantages</h3>
+        <ul>
+          <li><strong>No external hosting needed:</strong> The image is embedded directly in the code.</li>
+          <li><strong>Reduced HTTP requests:</strong> Fewer server requests means faster page loading.</li>
+          <li><strong>Universal compatibility:</strong> Works everywhere — HTML, CSS, JavaScript.</li>
+        </ul>
+        <h3>Disadvantages</h3>
+        <ul>
+          <li><strong>33% larger file size:</strong> Base64 encoding increases file size.</li>
+          <li><strong>Not cacheable:</strong> Base64 images can't be cached separately.</li>
+          <li><strong>Best for small images:</strong> Use for icons, thumbnails, not large photos.</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>What is Base64 Encoding and Why Use It?</h2>
+        <p><strong>Base64 encoding</strong> converts binary image data into ASCII text, allowing you to embed images directly in HTML, CSS, or JavaScript without separate image files. This technique is widely used in web development for <strong>data URIs</strong>, <strong>email templates</strong>, and <strong>API payloads</strong>.</p>
+        <h3>How to Convert Image to Base64 Online</h3>
+        <ol>
+          <li><strong>Upload your image</strong> — Supports JPG, PNG, and WebP formats.</li>
+          <li><strong>Auto-convert</strong> — The tool instantly encodes your image to a Base64 string.</li>
+          <li><strong>Copy</strong> — Click the copy button to paste the string into your code.</li>
+          <li><strong>Embed</strong> — Use the Base64 string in an <code>&lt;img&gt;</code> tag, CSS <code>background-image</code>, or JavaScript.</li>
+        </ol>
+        <h3>When to Use Base64 Images</h3>
+        <ul>
+          <li><strong>HTML email templates</strong> — Embed images without external hosting.</li>
+          <li><strong>Small icons and thumbnails</strong> — Reduce HTTP requests for tiny images.</li>
+          <li><strong>JSON/API responses</strong> — Send image data as text in API payloads.</li>
+          <li><strong>Database storage</strong> — Store small images directly as text in databases.</li>
+        </ul>
+        <p><strong>Note:</strong> Base64 increases file size by ~33%. Use it for small images (icons, thumbnails), not large photos. For large images, consider our <a href="/compress-to-100kb" class="text-brand-600 hover:text-brand-700 underline">Compress to 100KB tool</a> instead.</p>
+        <p>Need to compress a photo for a government form? Try our <a href="/compress-for-govt-form" class="text-brand-600 hover:text-brand-700 underline">Compress for Govt Form tool</a>. Or check passport photo sizes with our <a href="/passport-photo-size" class="text-brand-600 hover:text-brand-700 underline">Passport Photo Size tool</a>.</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Related Tools</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Try Our Other Tools</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <a href="/passport-photo-size" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Passport Photo Size</h3>
+          <p class="text-sm text-text-secondary">Resize photos for passport applications.</p>
+        </a>
+        <a href="/compress-for-govt-form" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress for Govt Form</h3>
+          <p class="text-sm text-text-secondary">Reduce images for SSC, UPSC forms.</p>
+        </a>
+        <a href="/compress-to-100kb" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 100KB</h3>
+          <p class="text-sm text-text-secondary">Reduce images to under 100KB.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    function formatBytes(bytes) {
+      if (bytes === 0) return "0 B";
+      const k = 1024;
+      const sizes = ["B", "KB", "MB", "GB"];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+    }
+
+    const dropArea = document.getElementById("drop-area");
+    const fileInput = dropArea?.querySelector('input[type="file"]');
+    const uploadZone = document.getElementById("upload-zone");
+    const previewZone = document.getElementById("preview-zone");
+    const previewImage = document.getElementById("preview-image");
+    const fileCount = document.getElementById("file-count");
+    const clearBtn = document.getElementById("clear-btn");
+    const convertBtn = document.getElementById("convert-btn");
+    const downloadArea = document.getElementById("download-area");
+    const dropOverlay = document.getElementById("drop-overlay");
+    const statsArea = document.getElementById("stats-area");
+    const originalSizeEl = document.getElementById("original-size");
+    const base64SizeEl = document.getElementById("base64-size");
+    const sizeIncreaseEl = document.getElementById("size-increase");
+
+    if (!dropArea || !uploadZone) throw new Error("Required elements not found");
+
+    dropArea.setAttribute("tabindex", "0");
+    dropArea.setAttribute("role", "button");
+
+    let currentFile = null;
+    let base64String = "";
+
+    ["dragenter", "dragover"].forEach((evt) => {
+      dropArea.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropOverlay?.classList.remove("hidden");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((evt) => {
+      dropArea.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropOverlay?.classList.add("hidden");
+      });
+    });
+
+    dropArea.addEventListener("drop", (e) => {
+      const files = Array.from(e.dataTransfer.files);
+      if (files.length > 0) addFile(files[0]);
+    });
+
+    dropArea.addEventListener("click", (e) => {
+      if (e.target.tagName !== "INPUT") fileInput?.click();
+    });
+
+    dropArea.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        fileInput?.click();
+      }
+    });
+
+    fileInput?.addEventListener("change", () => {
+      if (fileInput.files.length > 0) addFile(fileInput.files[0]);
+      fileInput.value = "";
+    });
+
+    clearBtn?.addEventListener("click", () => {
+      currentFile = null;
+      base64String = "";
+      uploadZone.classList.remove("hidden");
+      previewZone.classList.add("hidden");
+      downloadArea.classList.add("hidden");
+      statsArea.classList.add("hidden");
+      convertBtn.classList.add("opacity-50", "cursor-not-allowed");
+      convertBtn.setAttribute("disabled", "");
+    });
+
+    convertBtn?.addEventListener("click", encodeImage);
+
+    function addFile(file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert(file.name + " exceeds 5MB limit.");
+        return;
+      }
+      if (!file.type.startsWith("image/")) {
+        alert(file.name + " is not an image file.");
+        return;
+      }
+      currentFile = file;
+      uploadZone.classList.add("hidden");
+      previewZone.classList.remove("hidden");
+      downloadArea.classList.add("hidden");
+      statsArea.classList.add("hidden");
+      if (fileCount) fileCount.textContent = "1 file ready";
+      if (previewImage) {
+        const url = URL.createObjectURL(file);
+        previewImage.src = url;
+        previewImage.onload = () => URL.revokeObjectURL(url);
+      }
+      convertBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      convertBtn.removeAttribute("disabled");
+    }
+
+    async function encodeImage() {
+      if (!currentFile) return;
+      
+      convertBtn.classList.add("opacity-50", "cursor-not-allowed");
+      convertBtn.setAttribute("disabled", "");
+
+      try {
+        base64String = await readFileAsBase64(currentFile);
+        
+        const originalSize = currentFile.size;
+        const base64Size = new Blob([base64String]).size;
+        const increase = Math.round(((base64Size - originalSize) / originalSize) * 100);
+
+        if (originalSizeEl) originalSizeEl.textContent = formatBytes(originalSize);
+        if (base64SizeEl) base64SizeEl.textContent = formatBytes(base64Size);
+        if (sizeIncreaseEl) sizeIncreaseEl.textContent = "+" + increase + "%";
+        statsArea.classList.remove("hidden");
+
+        downloadArea.classList.remove("hidden");
+        downloadArea.innerHTML = `
+          <div class="p-4 rounded-xl border border-success/30 bg-success/5 mb-4">
+            <div class="flex items-center gap-2 mb-1">
+              <svg class="w-5 h-5 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-sm font-semibold text-success">Base64 string generated!</span>
+            </div>
+            <p class="text-xs text-text-secondary">Ready to copy and use in your code.</p>
+          </div>
+          <button id="copy-btn" class="w-full btn-primary btn-lg justify-center mb-2">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/></svg>
+            Copy to Clipboard
+          </button>
+          <div class="p-3 rounded-xl bg-surface-muted border border-border-default mb-2">
+            <pre id="base64-output" class="text-xs text-text-secondary overflow-x-auto whitespace-pre-wrap break-all max-h-[120px] overflow-y-auto font-mono"></pre>
+          </div>
+          <p class="text-xs text-text-tertiary text-center">Copied locally in your browser · Your files never left your device</p>
+          <button id="compress-more-btn" class="w-full btn-secondary btn-md justify-center mt-3">Convert Another Image</button>
+        `;
+
+        if (document.getElementById("base64-output")) {
+          document.getElementById("base64-output").textContent = base64String;
+        }
+
+        document.getElementById("copy-btn")?.addEventListener("click", () => {
+          navigator.clipboard.writeText(base64String).then(() => {
+            const btn = document.getElementById("copy-btn");
+            if (btn) {
+              btn.innerHTML = `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> Copied!`;
+              setTimeout(() => {
+                btn.innerHTML = `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/></svg> Copy to Clipboard`;
+              }, 2000);
+            }
+          });
+        });
+
+        document.getElementById("compress-more-btn")?.addEventListener("click", () => {
+          currentFile = null;
+          base64String = "";
+          uploadZone.classList.remove("hidden");
+          previewZone.classList.add("hidden");
+          downloadArea.classList.add("hidden");
+          statsArea.classList.add("hidden");
+          convertBtn.classList.add("opacity-50", "cursor-not-allowed");
+          convertBtn.setAttribute("disabled", "");
+        });
+
+      } catch (err) {
+        console.error("Encoding failed:", err);
+        alert("Failed to encode image. Please try another file.");
+      }
+
+      convertBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      convertBtn.removeAttribute("disabled");
+    }
+
+    function readFileAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error("Failed to read file"));
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
+</BaseLayout>
