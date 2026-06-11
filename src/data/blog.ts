@@ -10,7 +10,7 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "how-to-compress-image-to-100kb",
+    slug: "compress-image-to-100kb",
     title: "How to Compress Image to 100KB Without Losing Quality",
     description: "Step-by-step guide to compress any image to under 100KB for passport photos, job portals, and government forms. Free online tool, no signup required.",
     publishDate: "2026-06-10",

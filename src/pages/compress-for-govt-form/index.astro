@@ -1,0 +1,325 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Compress for Govt Form", url: "/compress-for-govt-form" },
+];
+
+const faqItems = [
+  {
+    question: "What file size do government forms require?",
+    answer: "Most Indian government forms (SSC, UPSC, Bank, Aadhar) require photos between 20KB to 100KB. Some forms allow up to 200KB. Always check the specific requirements for your application.",
+  },
+  {
+    question: "What format should I use for government forms?",
+    answer: "JPG/JPEG is the most widely accepted format for government forms. Some forms also accept PNG. Avoid using WebP or HEIC as they may not be supported.",
+  },
+  {
+    question: "How do I compress my photo for SSC/UPSC forms?",
+    answer: "Use our free tool above. Upload your photo, select the target size (usually 20KB-50KB for SSC/UPSC), and download the compressed image.",
+  },
+  {
+    question: "Can I compress multiple photos at once?",
+    answer: "Yes! Our tool supports batch compression. You can upload multiple photos and compress them all to the required size in one go.",
+  },
+];
+
+const govForms = [
+  { form: "SSC CGL/CHSL", size: "20-50 KB", format: "JPG", dimensions: "3.5cm × 4.5cm" },
+  { form: "UPSC Civil Services", size: "20-50 KB", format: "JPG", dimensions: "3.5cm × 4.5cm" },
+  { form: "Indian Passport", size: "10-50 KB", format: "JPG", dimensions: "3.5cm × 4.5cm" },
+  { form: "Aadhar Card Update", size: "Up to 300 KB", format: "JPG", dimensions: "3.5cm × 2.5cm" },
+  { form: "PAN Card Application", size: "Up to 200 KB", format: "JPG", dimensions: "3.5cm × 2.5cm" },
+  { form: "Bank Account (SBI/PO)", size: "20-50 KB", format: "JPG", dimensions: "3.5cm × 2.5cm" },
+  { form: "Railway Recruitment (RRB)", size: "20-50 KB", format: "JPG", dimensions: "3.5cm × 4.5cm" },
+  { form: "NEET/JEE Application", size: "10-100 KB", format: "JPG", dimensions: "Passport size" },
+];
+
+const tips = [
+  { title: "Use JPG Format", description: "JPG is accepted by all government forms. Avoid PNG or WebP." },
+  { title: "Target 20-50 KB", description: "This is the sweet spot for most government forms." },
+  { title: "White Background", description: "Use a plain white background for all official photos." },
+  { title: "Recent Photo", description: "Use a photo taken within the last 6 months." },
+];
+---
+
+<BaseLayout
+  title="Compress Photo for Govt Form — SSC, UPSC, Bank (Free)"
+  description="Compress photo for SSC, UPSC, Passport, Bank, Aadhar forms to 20KB–100KB. Free online tool — no signup, instant download, 100% private."
+  canonical="https://quickjpgconverter.com/compress-for-govt-form"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["compress image for govt form", "compress photo for ssc form", "compress photo for upsc form", "photo size 20kb", "photo size 50kb", "government form photo compressor", "image compressor for ssc cgl", "compress photo for bank form", "passport photo compress", "aadhar card photo size", "pan card photo compress", "railway form photo size", "rrb photo compress", "neet application photo size", "govt form photo compressor online free"]}
+  howToSteps={[
+    { name: "Upload your photo", text: "Click the upload button and select your photo." },
+    { name: "Select target size", text: "Choose 20KB, 50KB, or 100KB based on your form requirements." },
+    { name: "Click Compress", text: "The tool will compress your photo to the target size." },
+    { name: "Download", text: "Download your compressed photo ready for form submission." },
+  ]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+          </svg>
+          Free · No Signup · Private
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Compress Photo for <span class="gradient-text">Govt Form</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Compress photos for SSC, UPSC, Passport, Bank, Aadhar forms to 20KB–100KB. Free online tool — instant download, no signup, 100% private.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Target:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm" id="target-size-btn">≤ 20KB</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your photo here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Photo
+                    <input type="file" class="sr-only" accept="image/jpeg,image/png,image/webp" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Max 50MB per file</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div class="mb-4">
+                <h3 class="text-sm font-medium text-text-secondary mb-3">Select Your Form</h3>
+                <select id="form-select" class="w-full px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500">
+                  <option value="20">SSC / UPSC / Railway (20-50 KB)</option>
+                  <option value="50">Passport / Bank (50 KB)</option>
+                  <option value="100">Aadhar / PAN (100-200 KB)</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <h3 class="text-sm font-medium text-text-secondary mb-3">Or Choose Target Size</h3>
+                <div class="flex flex-wrap gap-2">
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm" data-size="20">20 KB</button>
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary border border-border-default hover:border-brand-300 transition-colors" data-size="50">50 KB</button>
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary border border-border-default hover:border-brand-300 transition-colors" data-size="100">100 KB</button>
+                </div>
+              </div>
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Compressing...</p>
+              </div>
+              <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                Compress for Govt Form
+              </button>
+              <div id="download-area" class="hidden mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Reference</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Photo Requirements for Indian Govt Forms</h2>
+      </div>
+      <div class="max-w-5xl mx-auto overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-surface border-b border-border-default">
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Form / Portal</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">File Size</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Format</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Dimensions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {govForms.map((form, i) => (
+              <tr class:list={["border-b border-border-muted", i === 0 && "bg-brand-50/50 dark:bg-brand-950/20"]}>
+                <td class="px-4 sm:px-5 py-3 font-medium text-text-primary">{form.form}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{form.size}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{form.format}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{form.dimensions}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Tips</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Tips for Government Form Photos</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+        {tips.map((tip) => (
+          <div class="card-hover p-5">
+            <h3 class="text-base font-semibold text-text-primary mb-2">{tip.title}</h3>
+            <p class="text-sm text-text-secondary">{tip.description}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>How to Compress Photos for Government Forms</h2>
+        <p>Applying for government exams, jobs, or services in India? You'll need to upload a photo that meets strict file size requirements. Our free online compressor helps you reduce your photo to the exact size needed.</p>
+        <h3>Common File Size Requirements</h3>
+        <ul>
+          <li><strong>SSC CGL/CHSL:</strong> 20KB to 50KB (JPG format)</li>
+          <li><strong>UPSC Civil Services:</strong> 20KB to 50KB (JPG format)</li>
+          <li><strong>Indian Passport:</strong> 10KB to 50KB (JPG format)</li>
+          <li><strong>Aadhar Card:</strong> Up to 300KB (JPG format)</li>
+          <li><strong>PAN Card:</strong> Up to 200KB (JPG format)</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>How to Compress Photo for Government Forms Online</h2>
+        <p>Government exam portals like SSC, UPSC, and Railway (RRB) have strict photo size limits — usually <strong>20KB to 50KB</strong>. Our free online compressor helps you reduce your photo to the exact required size without losing visible quality.</p>
+        <h3>Photo Size Requirements for Indian Government Forms</h3>
+        <p>Different government forms have different photo requirements:</p>
+        <ul>
+          <li><strong>SSC CGL/CHSL:</strong> 20–50 KB, JPG format, 3.5cm × 4.5cm</li>
+          <li><strong>UPSC Civil Services:</strong> 20–50 KB, JPG format, 3.5cm × 4.5cm</li>
+          <li><strong>Railway (RRB):</strong> 20–50 KB, JPG format, 3.5cm × 4.5cm</li>
+          <li><strong>Indian Passport:</strong> 10–50 KB, JPG format, 35mm × 45mm</li>
+          <li><strong>Aadhar Card:</strong> Up to 300 KB, JPG format, 3.5cm × 2.5cm</li>
+          <li><strong>PAN Card:</strong> Up to 200 KB, JPG format, 3.5cm × 2.5cm</li>
+          <li><strong>NEET/JEE:</strong> 10–100 KB, JPG format, passport size</li>
+        </ul>
+        <h3>Tips for Government Form Photos</h3>
+        <p>Always use <strong>JPG format</strong> — it's accepted by all government portals. Use a plain <strong>white background</strong>. Make sure the photo is recent (taken within the last 6 months). Avoid filters or digital alterations. Our tool ensures your photo meets the file size requirement while maintaining clarity.</p>
+        <p>Need a passport-size photo? Try our <a href="/passport-photo-size" class="text-brand-600 hover:text-brand-700 underline">Passport Photo Size compressor</a>. Or compress to a specific size with our <a href="/compress-to-100kb" class="text-brand-600 hover:text-brand-700 underline">Compress to 100KB tool</a>.</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Related Tools</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Try Our Other Tools</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <a href="/passport-photo-size" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Passport Photo Size</h3>
+          <p class="text-sm text-text-secondary">Resize photos for passport applications.</p>
+        </a>
+        <a href="/compress-to-100kb" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 100KB</h3>
+          <p class="text-sm text-text-secondary">Reduce images to under 100KB.</p>
+        </a>
+        <a href="/photo-to-base64" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Photo to Base64</h3>
+          <p class="text-sm text-text-secondary">Convert images to Base64 strings.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initTargetedCompressor } from "@scripts/targeted-compress.js";
+    
+    const config = { targetSize: 20 * 1024 };
+    initTargetedCompressor(config);
+    
+    const formSelect = document.getElementById('form-select');
+    const targetSizeBtn = document.getElementById('target-size-btn');
+    const sizeButtons = document.querySelectorAll('.size-btn');
+    
+    function setActiveSize(val) {
+      sizeButtons.forEach(btn => {
+        const btnSize = btn.dataset.size;
+        if (btnSize === val) {
+          btn.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+          btn.classList.remove('text-text-tertiary', 'border', 'border-border-default');
+        } else {
+          btn.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+          btn.classList.add('text-text-tertiary', 'border', 'border-border-default');
+        }
+      });
+      config.targetSize = parseInt(val) * 1024;
+      if (targetSizeBtn) targetSizeBtn.textContent = '≤ ' + val + 'KB';
+    }
+    
+    formSelect?.addEventListener('change', () => setActiveSize(formSelect.value));
+    
+    sizeButtons.forEach(btn => {
+      btn.addEventListener('click', () => setActiveSize(btn.dataset.size));
+    });
+  </script>
+</BaseLayout>

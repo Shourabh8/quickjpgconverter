@@ -81,8 +81,6 @@ async function downloadAllAsZip(items) {
 }
 
 export function initTargetedCompressor(config) {
-  const { targetSize } = config;
-
   const dropArea = document.getElementById("drop-area");
   const fileInput = dropArea?.querySelector('input[type="file"]');
   const uploadZone = document.getElementById("upload-zone");
@@ -90,8 +88,8 @@ export function initTargetedCompressor(config) {
   const previewGrid = document.getElementById("preview-grid");
   const fileCount = document.getElementById("file-count");
   const clearBtn = document.getElementById("clear-btn");
-  const compressBtn = document.getElementById("compress-btn");
-  const compressBtnArea = document.getElementById("compress-btn-area");
+  const compressBtn = document.getElementById("convert-btn");
+  const compressBtnArea = document.getElementById("compress-btn-area") || compressBtn?.parentElement;
   const downloadArea = document.getElementById("download-area");
   const downloadAllBtn = document.getElementById("download-all-btn");
   const dropOverlay = document.getElementById("drop-overlay");
@@ -102,8 +100,10 @@ export function initTargetedCompressor(config) {
 
   if (!dropArea || !uploadZone) return;
 
+  config.targetSize = config.targetSize || 100 * 1024;
+
   if (targetSizeDisplay) {
-    targetSizeDisplay.textContent = formatBytes(targetSize);
+    targetSizeDisplay.textContent = formatBytes(config.targetSize);
   }
 
   // Keyboard accessibility
@@ -181,6 +181,10 @@ export function initTargetedCompressor(config) {
     previewZone?.classList.add("hidden");
     downloadArea?.classList.add("hidden");
     compressBtnArea?.classList.add("hidden");
+    if (compressBtn) {
+      compressBtn.classList.add("opacity-50", "cursor-not-allowed");
+      compressBtn.setAttribute("disabled", "");
+    }
     if (previewGrid) previewGrid.innerHTML = "";
   }
 
@@ -189,6 +193,10 @@ export function initTargetedCompressor(config) {
     previewZone?.classList.remove("hidden");
     compressBtnArea?.classList.remove("hidden");
     downloadArea?.classList.add("hidden");
+    if (compressBtn) {
+      compressBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      compressBtn.removeAttribute("disabled");
+    }
     if (fileCount) fileCount.textContent = files.length === 1 ? "1 file ready" : files.length + " files ready";
     renderPreviewGrid();
   }
@@ -239,7 +247,7 @@ export function initTargetedCompressor(config) {
 
       try {
         const img = await loadImage(files[i]);
-        const result = await compressToTargetSize(img, files[i].name, targetSize);
+        const result = await compressToTargetSize(img, files[i].name, config.targetSize);
         compressedResults.push(result);
       } catch (err) {
         console.error("Compression failed:", files[i].name, err);
@@ -252,7 +260,6 @@ export function initTargetedCompressor(config) {
 
     setTimeout(() => {
       progressArea?.classList.add("hidden");
-      compressBtnArea?.classList.add("hidden");
       downloadArea?.classList.remove("hidden");
       renderDownloadArea();
     }, 500);
@@ -343,7 +350,7 @@ export function initTargetedCompressor(config) {
           <svg class="w-5 h-5 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span class="text-sm font-semibold text-success">${successItems.length} file${successItems.length !== 1 ? "s" : ""} compressed!</span>
         </div>
-        <p class="text-xs text-text-secondary">Saved ${formatBytes(totalSaved)} total · Target: ${formatBytes(targetSize)}</p>
+        <p class="text-xs text-text-secondary">Saved ${formatBytes(totalSaved)} total · Target: ${formatBytes(config.targetSize)}</p>
         ${failItems.length > 0 ? `<p class="text-xs text-danger mt-1">${failItems.length} file${failItems.length !== 1 ? "s" : ""} failed</p>` : ""}
       </div>
     `;

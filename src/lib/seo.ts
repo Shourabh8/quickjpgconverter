@@ -92,13 +92,18 @@ export function generateJsonLd(opts: JsonLdOptions) {
       "PDF compression",
       "Compress to 100KB",
       "Compress to 200KB",
+      "Compress for government forms (SSC, UPSC, Bank)",
+      "Passport photo size compressor",
       "Image resize",
       "Image enhancement",
       "PDF enhancement",
+      "Image to Base64 conversion",
+      "Base64 encoder for web development",
       "Batch processing",
       "Browser-based processing",
       "No upload required",
       "Free online converter",
+      "100% private — files never leave your device",
     ],
   });
 

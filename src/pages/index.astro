@@ -220,9 +220,55 @@ const testimonials = [
   </section>
 
   <!-- ============================================
+       SECTION 1b: POPULAR TOOLS (SEO)
+       ============================================ -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          Popular Tools
+        </h2>
+        <p class="text-text-secondary max-w-xl mx-auto">
+          Most-used tools for photographers, developers, and everyday users.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <a href="/passport-photo-size" class="card-hover p-5 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-lg">📸</span>
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Passport Photo Size</h3>
+          <p class="text-sm text-text-secondary">Resize photos for passport applications.</p>
+        </a>
+        <a href="/compress-for-govt-form" class="card-hover p-5 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-lg">📋</span>
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress for Govt Form</h3>
+          <p class="text-sm text-text-secondary">Reduce images for SSC, UPSC forms.</p>
+        </a>
+        <a href="/compress-to-100kb" class="card-hover p-5 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-lg">🗜️</span>
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 100KB</h3>
+          <p class="text-sm text-text-secondary">Reduce any image to under 100KB.</p>
+        </a>
+        <a href="/photo-to-base64" class="card-hover p-5 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-lg">🔧</span>
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Photo to Base64</h3>
+          <p class="text-sm text-text-secondary">Convert images to Base64 strings.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
        SECTION 2: CONVERTER TOOL
        ============================================ -->
-  <section class="section bg-surface-muted" id="converter">
+  <section class="section" id="converter">
     <Container>
       <div class="text-center mb-10">
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
@@ -614,6 +660,23 @@ const testimonials = [
           available in desktop software — but our online JPG converter brings it to your browser
           for free.
         </p>
+
+        <h3>Specialized Tools for Specific Needs</h3>
+        <p>
+          Beyond format conversion, we offer specialized tools for specific use cases. Need a
+          passport photo? Our <a href="/passport-photo-size">passport photo tool</a> resizes
+          your photos to the exact dimensions required by any country. Applying for government
+          jobs? Our <a href="/compress-for-govt-form">government form compressor</a> reduces
+          photos to the strict file size limits required by SSC, UPSC, and bank forms. Developers
+          can use our <a href="/photo-to-base64">photo to Base64 converter</a> to embed images
+          directly in HTML, CSS, or JavaScript.
+        </p>
+        <ul>
+          <li><strong><a href="/passport-photo-size">Passport Photo Size</a></strong> — resize photos to passport dimensions for India, USA, UK, and other countries.</li>
+          <li><strong><a href="/compress-for-govt-form">Compress for Govt Form</a></strong> — reduce images to 20KB, 50KB, or 100KB for government forms.</li>
+          <li><strong><a href="/photo-to-base64">Photo to Base64</a></strong> — convert images to Base64 strings for HTML embedding and data URIs.</li>
+          <li><strong><a href="/compress-to-100kb">Compress to 100KB</a></strong> — reduce any image to under 100KB for portal uploads.</li>
+        </ul>
       </div>
     </Container>
   </section>
