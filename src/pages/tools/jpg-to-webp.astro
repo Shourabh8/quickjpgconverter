@@ -296,6 +296,7 @@ const faqItems = [
 
   <script>
     import { initConverter } from "@scripts/converter.js";
-    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "webp", targetExt: "webp", targetMime: "image/webp" }));
+    import { initQualitySelector } from "@scripts/quality-selector.js";
+    document.addEventListener("DOMContentLoaded", () => { initQualitySelector(); initConverter({ targetFormat: "webp", targetExt: "webp", targetMime: "image/webp" }); });
   </script>
 </BaseLayout>

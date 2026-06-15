@@ -294,6 +294,7 @@ const faqItems = [
 
   <script>
     import { initConverter } from "@scripts/converter.js";
-    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }));
+    import { initQualitySelector } from "@scripts/quality-selector.js";
+    document.addEventListener("DOMContentLoaded", () => { initQualitySelector(); initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }); });
   </script>
 </BaseLayout>

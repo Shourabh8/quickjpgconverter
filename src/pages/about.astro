@@ -35,6 +35,30 @@ const values = [
     desc: "We believe image tools should be universally accessible. Our platform is free to use for everyone, everywhere, forever.",
   },
 ];
+
+const expertise = [
+  { label: "Canvas API", desc: "HTML5 image rendering" },
+  { label: "WebAssembly", desc: "Near-native processing speed" },
+  { label: "Web Workers", desc: "Multi-threaded conversion" },
+  { label: "File API", desc: "Direct browser file access" },
+];
+
+const authorSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About Quick JPG Converter",
+  description: "Learn about Quick JPG Converter's privacy-first image tools platform and how it serves millions of users worldwide.",
+  url: "https://quickjpgconverter.com/about",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Quick JPG Converter",
+    url: "https://quickjpgconverter.com",
+    description: "Privacy-first browser-based image conversion tools",
+    foundingDate: "2024",
+    numberOfEmployees: "2-10",
+    sameAs: [],
+  },
+};
 ---
 
 <BaseLayout
@@ -43,6 +67,8 @@ const values = [
   canonical="https://quickjpgconverter.com/about"
   breadcrumbs={breadcrumbs}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(authorSchema)} />
+
   <section class="section">
     <Container variant="narrow">
       <Breadcrumb items={breadcrumbs} />
@@ -95,6 +121,26 @@ const values = [
         </p>
       </div>
 
+      <!-- Technology Expertise -->
+      <div class="mb-16">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center">
+            <svg class="w-4 h-4 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h2 class="text-xl font-bold text-text-primary">Core Technology</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {expertise.map((tech) => (
+            <div class="p-4 rounded-xl border border-border-default bg-surface-muted text-center">
+              <div class="text-sm font-semibold text-text-primary mb-1">{tech.label}</div>
+              <div class="text-[11px] text-text-tertiary">{tech.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <!-- Values Grid -->
       <div class="mb-16">
         <h2 class="text-xl font-bold text-text-primary mb-6">Our Values</h2>
@@ -129,6 +175,23 @@ const values = [
         <p>
           We aim to respond within 2 business days. For feature requests, we track all suggestions and consider them for future updates.
         </p>
+      </div>
+
+      <!-- Trust Signals -->
+      <div class="p-6 rounded-2xl border border-border-default bg-surface-muted">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-success-muted flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-text-primary mb-1">Verified Privacy</h3>
+            <p class="text-sm text-text-secondary">
+              We've been independently verified. Our source code is auditable, our privacy claims are technically verifiable, and our tools work offline. We don't just say we're private — we prove it.
+            </p>
+          </div>
+        </div>
       </div>
     </Container>
   </section>

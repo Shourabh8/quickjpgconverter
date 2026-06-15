@@ -295,6 +295,7 @@ const faqItems = [
 
   <script>
     import { initPdfConverter } from "@scripts/pdf-to-jpg.js";
-    document.addEventListener("DOMContentLoaded", () => initPdfConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }));
+    import { initQualitySelector } from "@scripts/quality-selector.js";
+    document.addEventListener("DOMContentLoaded", () => { initQualitySelector(); initPdfConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }); });
   </script>
 </BaseLayout>

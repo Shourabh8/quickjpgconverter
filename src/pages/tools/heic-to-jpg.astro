@@ -304,6 +304,7 @@ const faqItems = [
 
   <script>
     import { initConverter } from "@scripts/converter.js";
-    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "jpeg", targetExt: "jpg", targetMime: "image/jpeg" }));
+    import { initQualitySelector } from "@scripts/quality-selector.js";
+    document.addEventListener("DOMContentLoaded", () => { initQualitySelector(); initConverter({ targetFormat: "jpeg", targetExt: "jpg", targetMime: "image/jpeg" }); });
   </script>
 </BaseLayout>

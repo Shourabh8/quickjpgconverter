@@ -40,9 +40,14 @@ const breadcrumbs = [
   </Container>
 
   <!-- Hero -->
-  <section class="section-sm text-center bg-glow">
-    <Container variant="narrow">
+  <section class="section-sm text-center bg-mesh relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-30"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-500/5 rounded-full blur-3xl"></div>
+    <Container variant="narrow" class="relative">
       <div class="animate-fade-in-up">
+        <div class="mb-5">
+          <Badge variant="brand">Free · No Signup · Private</Badge>
+        </div>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
           {title}
         </h1>
@@ -50,6 +55,7 @@ const breadcrumbs = [
           {description}
         </p>
         <FormatSelector {from} {to} />
+        <p class="text-xs text-text-tertiary mt-4">100% browser-based · No server uploads · Instant results</p>
       </div>
     </Container>
   </section>
