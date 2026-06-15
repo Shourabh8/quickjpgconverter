@@ -1,5 +1,5 @@
 // Cloudflare Pages Function: /api/visitor
-// Real-time visitor counter using KV storage
+// Real unique user counter using cookies + KV storage
 
 export async function onRequest(context) {
   const { env, request } = context;
@@ -19,23 +19,44 @@ export async function onRequest(context) {
     const kv = env.VISITOR_KV;
     
     if (!kv) {
-      return new Response(JSON.stringify({ count: 12847 }), { 
+      return new Response(JSON.stringify({ count: 12847, unique: false }), { 
         status: 200, headers 
       });
     }
 
+    // Get current count from KV
+    const value = await kv.get('total_visitors');
+    let count = value ? parseInt(value, 10) : 12847;
+
+    // Check for tracking cookie
+    const cookieHeader = request.headers.get('Cookie') || '';
+    const hasCookie = cookieHeader.includes('qjc_uid=');
+
     if (request.method === 'GET') {
-      const value = await kv.get('total_visitors');
-      const count = value ? parseInt(value, 10) : 12847;
-      return new Response(JSON.stringify({ count }), { status: 200, headers });
+      return new Response(JSON.stringify({ 
+        count, 
+        unique: !hasCookie 
+      }), { status: 200, headers });
     }
 
     if (request.method === 'POST') {
-      const value = await kv.get('total_visitors');
-      const currentCount = value ? parseInt(value, 10) : 12847;
-      const newCount = currentCount + 1;
-      await kv.put('total_visitors', newCount.toString());
-      return new Response(JSON.stringify({ count: newCount }), { 
+      // Only increment if NO cookie (new unique user)
+      if (!hasCookie) {
+        count += 1;
+        await kv.put('total_visitors', count.toString());
+        
+        // Set cookie that expires in 365 days
+        const cookie = 'qjc_uid=1; Path=/; Max-Age=31536000; SameSite=Lax; HttpOnly';
+        const responseHeaders = { ...headers, 'Set-Cookie': cookie };
+        
+        return new Response(JSON.stringify({ count, unique: true }), { 
+          status: 200, 
+          headers: responseHeaders 
+        });
+      }
+      
+      // Returning user - don't increment
+      return new Response(JSON.stringify({ count, unique: false }), { 
         status: 200, headers 
       });
     }
@@ -45,7 +66,7 @@ export async function onRequest(context) {
     });
 
   } catch (error) {
-    return new Response(JSON.stringify({ count: 12847 }), { 
+    return new Response(JSON.stringify({ count: 12847, unique: false }), { 
       status: 200, headers 
     });
   }

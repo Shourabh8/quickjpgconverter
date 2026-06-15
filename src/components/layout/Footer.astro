@@ -131,8 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
   
-  // Fetch real-time count from API
-  fetch('/api/visitor')
+  // POST to increment if new user, then display the count
+  // Server checks cookie - only increments for truly new unique users
+  fetch('/api/visitor', { method: 'POST' })
     .then(function(response) { return response.json(); })
     .then(function(data) {
       if (countEl && data.count) {
@@ -141,22 +142,14 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(function() {
       // Fallback if API fails
-      if (countEl) {
-        countEl.textContent = '12,847';
-      }
+      fetch('/api/visitor')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (countEl && d.count) countEl.textContent = formatNumber(d.count);
+        })
+        .catch(function() {
+          if (countEl) countEl.textContent = '12,847';
+        });
     });
-    
-  // Increment count on page load (only once per session)
-  if (!sessionStorage.getItem('qjc_counted')) {
-    sessionStorage.setItem('qjc_counted', '1');
-    fetch('/api/visitor', { method: 'POST' })
-      .then(function(response) { return response.json(); })
-      .then(function(data) {
-        if (countEl && data.count) {
-          countEl.textContent = formatNumber(data.count);
-        }
-      })
-      .catch(function() {});
-  }
 });
 </script>
