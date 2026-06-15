@@ -19,14 +19,14 @@ export async function onRequest(context) {
     const kv = env.VISITOR_KV;
     
     if (!kv) {
-      return new Response(JSON.stringify({ count: 12847, unique: false }), { 
+      return new Response(JSON.stringify({ count: 95, unique: false }), { 
         status: 200, headers 
       });
     }
 
     // Get current count from KV
     const value = await kv.get('total_visitors');
-    let count = value ? parseInt(value, 10) : 12847;
+    let count = value ? parseInt(value, 10) : 95;
 
     // Check for tracking cookie
     const cookieHeader = request.headers.get('Cookie') || '';
@@ -66,7 +66,7 @@ export async function onRequest(context) {
     });
 
   } catch (error) {
-    return new Response(JSON.stringify({ count: 12847, unique: false }), { 
+    return new Response(JSON.stringify({ count: 95, unique: false }), { 
       status: 200, headers 
     });
   }
