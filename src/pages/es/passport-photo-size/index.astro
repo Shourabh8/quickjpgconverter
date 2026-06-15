@@ -1,0 +1,329 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { getLocalePrefix } from "@i18n/index";
+
+const locale = "es" as const;
+const prefix = getLocalePrefix(locale);
+
+const breadcrumbs = [
+  { name: "Herramientas", url: `${prefix}/tools` },
+  { name: "Foto Pasaporte", url: `${prefix}/passport-photo-size` },
+];
+
+const faqItems = [
+  {
+    question: "¿Cuál es el tamaño estándar de foto de pasaporte?",
+    answer: "El tamaño estándar de foto de pasaporte es 35mm x 45mm (3.5cm x 4.5cm) para la mayoría de países incluyendo India, EE.UU., UK y países de la UE. En píxeles, esto es aproximadamente 413 x 531 píxeles a 300 DPI.",
+  },
+  {
+    question: "¿Cuánto pesa la foto de pasaporte en KB?",
+    answer: "La mayoría de portales gubernamentales requieren fotos de pasaporte entre 20KB y 100KB. Las solicitudes de pasaporte indio típicamente requieren 10-50KB, mientras que las solicitudes de pasaporte de EE.UU. permiten hasta 600KB.",
+  },
+  {
+    question: "¿Cuál es el color de fondo de la foto de pasaporte?",
+    answer: "La mayoría de países requieren un fondo blanco o blanco roto. Algunos países como India aceptan fondos azul claro para ciertas solicitudes.",
+  },
+  {
+    question: "¿Cómo redimensiono mi foto al tamaño de pasaporte?",
+    answer: "Usa nuestra herramienta gratuita en línea arriba. Simplemente sube tu foto y se redimensionará automáticamente a las dimensiones correctas de pasaporte. También puedes comprimirla para cumplir con los requisitos de tamaño de archivo.",
+  },
+];
+
+const passportSizes = [
+  { country: "India", size: "35mm × 45mm", pixels: "413 × 531", kb: "10-50 KB", bg: "Blanco" },
+  { country: "EE.UU.", size: "2in × 2in", pixels: "600 × 600", kb: "Hasta 600 KB", bg: "Blanco" },
+  { country: "UK", size: "35mm × 45mm", pixels: "413 × 531", kb: "Hasta 10 MB", bg: "Blanco/Gris" },
+  { country: "Canadá", size: "50mm × 70mm", pixels: "591 × 827", kb: "Hasta 4 MB", bg: "Blanco" },
+  { country: "Australia", size: "35mm × 45mm", pixels: "413 × 531", kb: "Hasta 2 MB", bg: "Blanco" },
+  { country: "Alemania", size: "35mm × 45mm", pixels: "413 × 531", kb: "Hasta 10 MB", bg: "Blanco" },
+];
+
+const indianUseCases = [
+  { form: "Pasaporte Indio", size: "35mm × 45mm", kb: "10-50 KB", bg: "Blanco" },
+  { form: "Tarjeta PAN", size: "3.5cm × 2.5cm", kb: "Hasta 200 KB", bg: "Blanco" },
+  { form: "Tarjeta Aadhar", size: "3.5cm × 2.5cm", kb: "Hasta 300 KB", bg: "Blanco" },
+  { form: "Examen SSC", size: "3.5cm × 4.5cm", kb: "20-50 KB", bg: "Blanco" },
+  { form: "Solicitud UPSC", size: "3.5cm × 4.5cm", kb: "20-50 KB", bg: "Blanco" },
+  { form: "Cuenta Bancaria", size: "3.5cm × 2.5cm", kb: "20-50 KB", bg: "Blanco" },
+  { form: "Ferrocarril (RRB)", size: "3.5cm × 4.5cm", kb: "20-50 KB", bg: "Blanco" },
+  { form: "Formularios Gob.", size: "3.5cm × 4.5cm", kb: "20-50 KB", bg: "Blanco" },
+];
+
+const steps = [
+  { title: "Sube tu foto", desc: "Haz clic en el área de subida y selecciona tu foto desde tu dispositivo." },
+  { title: "Selecciona tamaño objetivo", desc: "Elige 20KB, 50KB o 100KB según los requisitos de tu solicitud de pasaporte." },
+  { title: "Descarga foto de pasaporte", desc: "Descarga tu foto lista para usar en formato JPG." },
+];
+---
+
+<BaseLayout
+  title="Foto de Pasaporte Tamaño — Compresor Gratis en Línea"
+  description="Obtén el tamaño correcto de foto de pasaporte para cualquier país. Compresor gratis en línea — redimensiona, recorta, comprime a 20KB–100KB. India, EE.UU., UK, Canadá soportados."
+  canonical={`https://quickjpgconverter.com${prefix}/passport-photo-size`}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["tamaño foto pasaporte", "tamaño foto pasaporte en cm", "tamaño foto pasaporte en kb", "foto pasaporte india", "foto pasaporte usa", "foto pasaporte uk", "fondo foto pasaporte", "foto tamaño pasaporte online gratis", "compresor foto pasaporte", "redimensionar foto para pasaporte", "hacedor de foto pasaporte online", "tamaño foto 35mm 45mm", "foto pasaporte 20kb", "foto pasaporte comprimir", "descargar foto pasaporte"]}
+  howToSteps={[
+    { name: "Sube tu foto", text: "Haz clic en el botón de subida y selecciona tu foto desde tu dispositivo." },
+    { name: "Selecciona tamaño objetivo", text: "Elige 20KB, 50KB o 100KB según los requisitos de tu solicitud de pasaporte." },
+    { name: "Descarga foto de pasaporte", text: "Descarga tu foto de pasaporte lista para usar en formato JPG." },
+  ]}
+  locale={locale}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+          </svg>
+          Gratis · Sin Registro · Privado
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Foto de Pasaporte <span class="gradient-text">Tamaño</span> y Compresor
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Comprime tu foto de pasaporte a 20KB, 50KB o 100KB — al instante, en tu navegador. India, EE.UU., UK, Canadá — todos los países y tamaños soportados. Sin registro, 100% privado.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Objetivo:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm" id="target-size-btn">≤ 20KB</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Arrastra tu foto aquí</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">o haz clic para seleccionar desde tu computadora</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Seleccionar Foto
+                    <input type="file" class="sr-only" accept="image/jpeg,image/png,image/webp" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Máx 50MB por archivo</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Suelta para subir</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 archivos listos</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Limpiar todo</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div class="mb-4">
+                <h3 class="text-sm font-medium text-text-secondary mb-3">Tamaño Objetivo</h3>
+                <div class="flex flex-wrap gap-2">
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm" data-size="20">20 KB</button>
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary border border-border-default hover:border-brand-300 transition-colors" data-size="50">50 KB</button>
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary border border-border-default hover:border-brand-300 transition-colors" data-size="100">100 KB</button>
+                </div>
+              </div>
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Comprimiendo...</p>
+              </div>
+              <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                Comprimir para Pasaporte
+              </button>
+              <div id="download-area" class="hidden mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Referencia</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Tamaños de Foto de Pasaporte por País</h2>
+      </div>
+      <div class="max-w-5xl mx-auto overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-surface border-b border-border-default">
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">País</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Tamaño (mm)</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Píxeles</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Tamaño Archivo</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Fondo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {passportSizes.map((size, i) => (
+              <tr class:list={["border-b border-border-muted", i === 0 && "bg-brand-50/50 dark:bg-brand-950/20"]}>
+                <td class="px-4 sm:px-5 py-3 font-medium text-text-primary">{size.country}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.size}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.pixels}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.kb}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.bg}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Específico para India</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Tamaños de Foto para Formularios Indianos</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        {indianUseCases.map((useCase) => (
+          <div class="card-hover p-5">
+            <h3 class="text-sm font-semibold text-text-primary mb-2">{useCase.form}</h3>
+            <div class="space-y-1">
+              <p class="text-xs text-text-secondary"><span class="font-medium">Tamaño:</span> {useCase.size}</p>
+              <p class="text-xs text-text-secondary"><span class="font-medium">Archivo:</span> {useCase.kb}</p>
+              <p class="text-xs text-text-secondary"><span class="font-medium">Fondo:</span> {useCase.bg}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Cómo Crear Fotos de Pasaporte</h2>
+        <p>Crear una foto de pasaporte con nuestra herramienta es simple:</p>
+        <ol>
+          <li><strong>Sube tu foto:</strong> Haz clic en el área de subida y selecciona tu foto.</li>
+          <li><strong>Selecciona tamaño objetivo:</strong> Elige 20KB, 50KB o 100KB según los requisitos de tu formulario.</li>
+          <li><strong>Haz clic en Comprimir:</strong> La herramienta comprimirá tu foto al tamaño objetivo.</li>
+          <li><strong>Descarga:</strong> Obtén tu foto lista para pasaporte al instante.</li>
+        </ol>
+        <h3>Consejos de Calidad de Foto</h3>
+        <ul>
+          <li>Usa iluminación natural y uniforme. Evita sombras duras.</li>
+          <li>Usa un fondo blanco plano.</li>
+          <li>Mira directamente a la cámara con una expresión neutral.</li>
+          <li>Quita los gafas si es posible, o asegúrate de que no haya reflejos.</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Preguntas Frecuentes</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>¿Cuál es el Tamaño Estándar de Foto de Pasaporte?</h2>
+        <p>El tamaño estándar de foto de pasaporte para la mayoría de países es <strong>35mm × 45mm</strong> (3.5cm × 4.5cm), que equivale a aproximadamente <strong>413 × 531 píxeles</strong> a 300 DPI. La foto de pasaporte de EE.UU. usa un tamaño diferente: <strong>2in × 2in</strong> (51mm × 51mm o 600 × 600 píxeles).</p>
+        <p>La mayoría de portales gubernamentales y sistemas de solicitud de pasaporte requieren que tu foto esté entre <strong>20KB y 100KB</strong> en tamaño de archivo. Nuestro compresor gratis en línea te ayuda a alcanzar el tamaño objetivo exacto sin perder calidad visible.</p>
+        <h3>Requisitos de Foto de Pasaporte por País</h3>
+        <p>Cada país tiene requisitos ligeramente diferentes para fotos de pasaporte. India, UK, Australia y la mayoría de países de la UE usan el estándar 35mm × 45mm. EE.UU. y Filipinas usan 2×2 pulgadas. Canadá usa un formato más grande de 50mm × 70mm. Nuestra herramienta soporta compresión a todos estos tamaños — solo selecciona el tamaño de archivo objetivo y sube.</p>
+        <h3>Cómo Comprimir Foto de Pasaporte en Línea</h3>
+        <ol>
+          <li><strong>Sube tu foto</strong> — Haz clic en el área de subida o arrastra y suelta tu imagen (JPG, PNG o WebP).</li>
+          <li><strong>Elige tamaño objetivo</strong> — Selecciona 20KB, 50KB o 100KB según los requisitos de tu portal de solicitud.</li>
+          <li><strong>Descarga</strong> — Obtén tu foto de pasaporte comprimida al instante, lista para subir.</li>
+        </ol>
+        <p>El proceso completo se ejecuta en tu navegador — <strong>tus fotos nunca se suben a ningún servidor</strong>. Esto convierte a nuestra herramienta en la forma más segura de comprimir fotos de pasaporte sensibles en línea.</p>
+        <p>¿Necesitas comprimir fotos para un <a href={`${prefix}/compress-for-govt-form`} class="text-brand-600 hover:text-brand-700 underline">formulario gubernamental (SSC, UPSC, Banco)</a>? ¿O convertir tu imagen a <a href={`${prefix}/photo-to-base64`} class="text-brand-600 hover:text-brand-700 underline">Base64 para desarrollo web</a>?</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Herramientas Relacionadas</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Prueba Nuestras Otras Herramientas</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <a href={`${prefix}/tools/compress-to-100kb`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Comprimir a 100KB</h3>
+          <p class="text-sm text-text-secondary">Reduce imágenes a menos de 100KB.</p>
+        </a>
+        <a href={`${prefix}/compress-for-govt-form`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Comprimir para Formulario Gob.</h3>
+          <p class="text-sm text-text-secondary">Reduce imágenes para formularios SSC, UPSC.</p>
+        </a>
+        <a href={`${prefix}/photo-to-base64`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Foto a Base64</h3>
+          <p class="text-sm text-text-secondary">Convierte imágenes a cadenas Base64.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initTargetedCompressor } from "@scripts/targeted-compress.js";
+    
+    const config = { targetSize: 20 * 1024 };
+    initTargetedCompressor(config);
+    
+    const targetSizeBtn = document.getElementById('target-size-btn');
+    const sizeButtons = document.querySelectorAll('.size-btn');
+    
+    sizeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizeButtons.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+          b.classList.add('text-text-tertiary', 'border', 'border-border-default');
+        });
+        btn.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+        btn.classList.remove('text-text-tertiary', 'border', 'border-border-default');
+        config.targetSize = parseInt(btn.dataset.size) * 1024;
+        if (targetSizeBtn) targetSizeBtn.textContent = '≤ ' + btn.dataset.size + 'KB';
+      });
+    });
+  </script>
+</BaseLayout>

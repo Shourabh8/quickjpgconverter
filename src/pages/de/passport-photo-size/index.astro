@@ -1,0 +1,329 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { getLocalePrefix } from "@i18n/index";
+
+const locale = "de" as const;
+const prefix = getLocalePrefix(locale);
+
+const breadcrumbs = [
+  { name: "Werkzeuge", url: `${prefix}/tools` },
+  { name: "Reisepassfoto", url: `${prefix}/passport-photo-size` },
+];
+
+const faqItems = [
+  {
+    question: "Was ist die Standardgröße für ein Reisepassfoto?",
+    answer: "Die Standardgröße für ein Reisepassfoto beträgt 35mm x 45mm (3,5cm x 4,5cm) für die meisten Länder, einschließlich Indien, USA, UK und EU-Länder. In Pixeln sind dies etwa 413 x 531 Pixel bei 300 DPI.",
+  },
+  {
+    question: "Wie groß ist ein Reisepassfoto in KB?",
+    answer: "Die meisten Regierungsportale erfordern Reisepassfotos zwischen 20KB und 100KB. Indische Reisepassanträge erfordern typischerweise 10-50KB, während US-Reisepassanträge bis zu 600KB erlauben.",
+  },
+  {
+    question: "Welche Hintergrundfarbe hat ein Reisepassfoto?",
+    answer: "Die meisten Länder erfordern einen weißen oder elfenbeinfarbenen Hintergrund. Einige Länder wie Indien akzeptieren hellblau für bestimmte Anträge.",
+  },
+  {
+    question: "Wie ändere ich mein Foto auf die Reisepassgröße?",
+    answer: "Verwenden Sie unser kostenloses Online-Werkzeug oben. Laden Sie einfach Ihr Foto hoch und es wird automatisch auf die richtigen Reisepassabmessungen geändert. Sie können es auch komprimieren, um die Dateigrößenanforderungen einzuhalten.",
+  },
+];
+
+const passportSizes = [
+  { country: "Indien", size: "35mm × 45mm", pixels: "413 × 531", kb: "10-50 KB", bg: "Weiß" },
+  { country: "USA", size: "2in × 2in", pixels: "600 × 600", kb: "Bis 600 KB", bg: "Weiß" },
+  { country: "UK", size: "35mm × 45mm", pixels: "413 × 531", kb: "Bis 10 MB", bg: "Weiß/Grau" },
+  { country: "Kanada", size: "50mm × 70mm", pixels: "591 × 827", kb: "Bis 4 MB", bg: "Weiß" },
+  { country: "Australien", size: "35mm × 45mm", pixels: "413 × 531", kb: "Bis 2 MB", bg: "Weiß" },
+  { country: "Deutschland", size: "35mm × 45mm", pixels: "413 × 531", kb: "Bis 10 MB", bg: "Weiß" },
+];
+
+const indianUseCases = [
+  { form: "Indischer Reisepass", size: "35mm × 45mm", kb: "10-50 KB", bg: "Weiß" },
+  { form: "PAN-Karte", size: "3,5cm × 2,5cm", kb: "Bis 200 KB", bg: "Weiß" },
+  { form: "Aadhar-Karte", size: "3,5cm × 2,5cm", kb: "Bis 300 KB", bg: "Weiß" },
+  { form: "SSC-Prüfung", size: "3,5cm × 4,5cm", kb: "20-50 KB", bg: "Weiß" },
+  { form: "UPSC-Antrag", size: "3,5cm × 4,5cm", kb: "20-50 KB", bg: "Weiß" },
+  { form: "Bankkonto", size: "3,5cm × 2,5cm", kb: "20-50 KB", bg: "Weiß" },
+  { form: "Eisenbahn (RRB)", size: "3,5cm × 4,5cm", kb: "20-50 KB", bg: "Weiß" },
+  { form: "Regierungsformulare", size: "3,5cm × 4,5cm", kb: "20-50 KB", bg: "Weiß" },
+];
+
+const steps = [
+  { title: "Laden Sie Ihr Foto hoch", desc: "Klicken Sie auf den Upload-Bereich und wählen Sie Ihr Foto von Ihrem Gerät aus." },
+  { title: "Zielgröße wählen", desc: "Wählen Sie 20KB, 50KB oder 100KB je nach den Anforderungen Ihres Reisepassantrags." },
+  { title: "Reisepassfoto herunterladen", desc: "Laden Sie Ihr einsatzfertiges Foto im JPG-Format herunter." },
+];
+---
+
+<BaseLayout
+  title="Reisepassfoto Größe — Kostenloser Online-Kompressor"
+  description="Erhalten Sie die richtige Reisepassfoto-Größe für jedes Land. Kostenloser Online-Kompressor — ändern, zuschneiden, auf 20KB-100KB komprimieren. Indien, USA, UK, Kanada unterstützt."
+  canonical={`https://quickjpgconverter.com${prefix}/passport-photo-size`}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["reisepassfoto größe", "reisepassfoto größe in cm", "reisepassfoto größe in kb", "indisches reisepassfoto", "us reisepassfoto", "uk reisepassfoto", "reisepassfoto hintergrund", "reisepassfoto größe online kostenlos", "reisepassfoto kompressor", "foto für reisepass ändern", "online reisepassfoto maker", "reisepassfoto größe 35mm 45mm", "reisepassfoto 20kb", "reisepassfoto komprimieren", "reisepassfoto herunterladen"]}
+  howToSteps={[
+    { name: "Foto hochladen", text: "Klicken Sie auf den Upload-Button und wählen Sie Ihr Foto von Ihrem Gerät aus." },
+    { name: "Zielgröße wählen", text: "Wählen Sie 20KB, 50KB oder 100KB je nach den Anforderungen Ihres Reisepassantrags." },
+    { name: "Reisepassfoto herunterladen", text: "Laden Sie Ihr einsatzfertiges Reisepassfoto im JPG-Format herunter." },
+  ]}
+  locale={locale}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+          </svg>
+          Kostenlos · Keine Anmeldung · Privat
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Reisepassfoto <span class="gradient-text">Größe</span> und Kompressor
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Komprimieren Sie Ihr Reisepassfoto auf 20KB, 50KB oder 100KB — sofort, in Ihrem Browser. Indien, USA, UK, Kanada — alle Länder und Größen unterstützt. Keine Anmeldung, 100% privat.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Ziel:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm" id="target-size-btn">≤ 20KB</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Ziehen Sie Ihr Foto hierher</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">oder klicken Sie zum Auswählen von Ihrem Computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Foto auswählen
+                    <input type="file" class="sr-only" accept="image/jpeg,image/png,image/webp" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Max 50MB pro Datei</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Zum Hochladen ablegen</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 Dateien bereit</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Alles löschen</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div class="mb-4">
+                <h3 class="text-sm font-medium text-text-secondary mb-3">Zielgröße</h3>
+                <div class="flex flex-wrap gap-2">
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm" data-size="20">20 KB</button>
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary border border-border-default hover:border-brand-300 transition-colors" data-size="50">50 KB</button>
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary border border-border-default hover:border-brand-300 transition-colors" data-size="100">100 KB</button>
+                </div>
+              </div>
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Komprimierung...</p>
+              </div>
+              <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                Für Reisepass komprimieren
+              </button>
+              <div id="download-area" class="hidden mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Referenz</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Reisepassfoto-Größen nach Land</h2>
+      </div>
+      <div class="max-w-5xl mx-auto overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-surface border-b border-border-default">
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Land</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Größe (mm)</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Pixel</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Dateigröße</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">Hintergrund</th>
+            </tr>
+          </thead>
+          <tbody>
+            {passportSizes.map((size, i) => (
+              <tr class:list={["border-b border-border-muted", i === 0 && "bg-brand-50/50 dark:bg-brand-950/20"]}>
+                <td class="px-4 sm:px-5 py-3 font-medium text-text-primary">{size.country}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.size}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.pixels}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.kb}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.bg}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Indien-spezifisch</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Foto-Größen für indische Formulare</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        {indianUseCases.map((useCase) => (
+          <div class="card-hover p-5">
+            <h3 class="text-sm font-semibold text-text-primary mb-2">{useCase.form}</h3>
+            <div class="space-y-1">
+              <p class="text-xs text-text-secondary"><span class="font-medium">Größe:</span> {useCase.size}</p>
+              <p class="text-xs text-text-secondary"><span class="font-medium">Datei:</span> {useCase.kb}</p>
+              <p class="text-xs text-text-secondary"><span class="font-medium">Hintergrund:</span> {useCase.bg}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>So erstellen Sie Reisepassfotos</h2>
+        <p>Reisepassfotos mit unserem Werkzeug zu erstellen ist einfach:</p>
+        <ol>
+          <li><strong>Foto hochladen:</strong> Klicken Sie auf den Upload-Bereich und wählen Sie Ihr Foto aus.</li>
+          <li><strong>Zielgröße wählen:</strong> Wählen Sie 20KB, 50KB oder 100KB je nach den Anforderungen Ihres Formulars.</li>
+          <li><strong>Klicken Sie auf Komprimieren:</strong> Das Werkzeug komprimiert Ihr Foto auf die Zielgröße.</li>
+          <li><strong>Herunterladen:</strong> Erhalten Sie Ihr reisepassfertiges Foto sofort.</li>
+        </ol>
+        <h3>Foto-Qualitätstipps</h3>
+        <ul>
+          <li>Verwenden Sie natürliche, gleichmäßige Beleuchtung. Vermeiden Sie harte Schatten.</li>
+          <li>Verwenden Sie einen flachen weißen Hintergrund.</li>
+          <li>Betrachten Sie die Kamera direkt mit einem neutralen Gesichtsausdruck.</li>
+          <li>Entfernen Sie Ihre Brille, wenn möglich, oder stellen Sie sicher, dass keine Reflexionen sichtbar sind.</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Häufig gestellte Fragen</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Was ist die Standardgröße für Reisepassfotos?</h2>
+        <p>Die Standardgröße für Reisepassfotos beträgt für die meisten Länder <strong>35mm × 45mm</strong> (3,5cm × 4,5cm), was etwa <strong>413 × 531 Pixeln</strong> bei 300 DPI entspricht. Das US-Reisepassfoto verwendet eine andere Größe: <strong>2in × 2in</strong> (51mm × 51mm oder 600 × 600 Pixel).</p>
+        <p>Die meisten Regierungsportale und Reisepassantragssysteme erfordern, dass Ihr Foto zwischen <strong>20KB und 100KB</strong> liegt. Unser kostenloser Online-Kompressor hilft Ihnen, die genaue Zielgröße zu erreichen, ohne sichtbare Qualität zu verlieren.</p>
+        <h3>Reisepassfoto-Anforderungen nach Land</h3>
+        <p>Jedes Land hat leicht unterschiedliche Anforderungen für Reisepassfotos. Indien, UK, Australien und die meisten EU-Länder verwenden den Standard 35mm × 45mm. Die USA und die Philippinen verwenden 2×2 Zoll. Kanada verwendet ein größeres Format von 50mm × 70mm. Unser Werkzeug unterstützt die Komprimierung auf all diese Größen — wählen Sie einfach die Zieldateigröße und laden Sie hoch.</p>
+        <h3>So komprimieren Sie Reisepassfotos online</h3>
+        <ol>
+          <li><strong>Foto hochladen</strong> — Klicken Sie auf den Upload-Bereich oder ziehen Sie Ihr Bild per Drag-and-Drop ab (JPG, PNG oder WebP).</li>
+          <li><strong>Zielgröße wählen</strong> — Wählen Sie 20KB, 50KB oder 100KB je nach den Anforderungen Ihres Antragsportals.</li>
+          <li><strong>Herunterladen</strong> — Erhalten Sie Ihr komprimiertes Reisepassfoto sofort, bereit zum Hochladen.</li>
+        </ol>
+        <p>Der gesamte Vorgang läuft in Ihrem Browser — <strong>Ihre Fotos werden nie auf einen Server hochgeladen</strong>. Das macht unser Werkzeug zur sichersten Methode, sensible Reisepassfotos online zu komprimieren.</p>
+        <p>Müssen Sie Fotos für ein <a href={`${prefix}/compress-for-govt-form`} class="text-brand-600 hover:text-brand-700 underline">Regierungsformular (SSC, UPSC, Bank)</a> komprimieren? Oder Ihr Bild in <a href={`${prefix}/photo-to-base64`} class="text-brand-600 hover:text-brand-700 underline">Base64 für Webentwicklung</a> konvertieren?</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Verwandte Werkzeuge</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Testen Sie unsere anderen Werkzeuge</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <a href={`${prefix}/tools/compress-to-100kb`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Auf 100KB komprimieren</h3>
+          <p class="text-sm text-text-secondary">Reduzieren Sie Bilder auf unter 100KB.</p>
+        </a>
+        <a href={`${prefix}/compress-for-govt-form`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Für Regierungsformulare komprimieren</h3>
+          <p class="text-sm text-text-secondary">Reduzieren Sie Bilder für SSC-, UPSC-Formulare.</p>
+        </a>
+        <a href={`${prefix}/photo-to-base64`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Foto nach Base64</h3>
+          <p class="text-sm text-text-secondary">Konvertieren Sie Bilder in Base64-Zeichenfolgen.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initTargetedCompressor } from "@scripts/targeted-compress.js";
+    
+    const config = { targetSize: 20 * 1024 };
+    initTargetedCompressor(config);
+    
+    const targetSizeBtn = document.getElementById('target-size-btn');
+    const sizeButtons = document.querySelectorAll('.size-btn');
+    
+    sizeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizeButtons.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+          b.classList.add('text-text-tertiary', 'border', 'border-border-default');
+        });
+        btn.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+        btn.classList.remove('text-text-tertiary', 'border', 'border-border-default');
+        config.targetSize = parseInt(btn.dataset.size) * 1024;
+        if (targetSizeBtn) targetSizeBtn.textContent = '≤ ' + btn.dataset.size + 'KB';
+      });
+    });
+  </script>
+</BaseLayout>

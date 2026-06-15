@@ -1,0 +1,329 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { getLocalePrefix } from "@i18n/index";
+
+const locale = "hi" as const;
+const prefix = getLocalePrefix(locale);
+
+const breadcrumbs = [
+  { name: "उपकरण", url: `${prefix}/tools` },
+  { name: "पासपोर्ट फ़ोटो", url: `${prefix}/passport-photo-size` },
+];
+
+const faqItems = [
+  {
+    question: "पासपोर्ट फ़ोटो का मानक आकार क्या है?",
+    answer: "पासपोर्ट फ़ोटो का मानक आकार अधिकांश देशों के लिए 35mm x 45mm (3.5cm x 4.5cm) है, जिसमें भारत, अमेरिका, UK और EU देश शामिल हैं। पिक्सेल में, यह 300 DPI पर लगभग 413 x 531 पिक्सेल है।",
+  },
+  {
+    question: "पासपोर्ट फ़ोटो KB में कितनी वज़नी होती है?",
+    answer: "अधिकांश सरकारी पोर्टल पासपोर्ट फ़ोटो 20KB से 100KB के बीच मांगते हैं। भारतीय पासपोर्ट आवेदन आमतौर पर 10-50KB मांगते हैं, जबकि अमेरिकी पासपोर्ट आवेदन 600KB तक की अनुमति देते हैं।",
+  },
+  {
+    question: "पासपोर्ट फ़ोटो का बैकग्राउंड रंग क्या होना चाहिए?",
+    answer: "अधिकांश देशों में सफ़ेद या ऑफ-व्हाइट बैकग्राउंड चाहिए होता है। कुछ देश जैसे भारत कुछ आवेदनों के लिए हल्का नीला बैकग्राउंड स्वीकार करते हैं।",
+  },
+  {
+    question: "मैं अपनी फ़ोटो को पासपोर्ट आकार में कैसे रीसाइज़ करूं?",
+    answer: "ऊपर हमारा मुफ्त ऑनलाइन टूल इस्तेमाल करें। बस अपनी फ़ोटो अपलोड करें और यह स्वचालित रूप से सही पासपोर्ट आयाम में रीसाइज़ हो जाएगी। आप फ़ाइल आकार आवश्यकताओं को पूरा करने के लिए इसे कंप्रेस भी कर सकते हैं।",
+  },
+];
+
+const passportSizes = [
+  { country: "भारत", size: "35mm × 45mm", pixels: "413 × 531", kb: "10-50 KB", bg: "सफ़ेद" },
+  { country: "अमेरिका", size: "2in × 2in", pixels: "600 × 600", kb: "600 KB तक", bg: "सफ़ेद" },
+  { country: "UK", size: "35mm × 45mm", pixels: "413 × 531", kb: "10 MB तक", bg: "सफ़ेद/ग्रे" },
+  { country: "कनाडा", size: "50mm × 70mm", pixels: "591 × 827", kb: "4 MB तक", bg: "सफ़ेद" },
+  { country: "ऑस्ट्रेलिया", size: "35mm × 45mm", pixels: "413 × 531", kb: "2 MB तक", bg: "सफ़ेद" },
+  { country: "जर्मनी", size: "35mm × 45mm", pixels: "413 × 531", kb: "10 MB तक", bg: "सफ़ेद" },
+];
+
+const indianUseCases = [
+  { form: "भारतीय पासपोर्ट", size: "35mm × 45mm", kb: "10-50 KB", bg: "सफ़ेद" },
+  { form: "PAN कार्ड", size: "3.5cm × 2.5cm", kb: "200 KB तक", bg: "सफ़ेद" },
+  { form: "Aadhar कार्ड", size: "3.5cm × 2.5cm", kb: "300 KB तक", bg: "सफ़ेद" },
+  { form: "SSC परीक्षा", size: "3.5cm × 4.5cm", kb: "20-50 KB", bg: "सफ़ेद" },
+  { form: "UPSC आवेदन", size: "3.5cm × 4.5cm", kb: "20-50 KB", bg: "सफ़ेद" },
+  { form: "बैंक खाता", size: "3.5cm × 2.5cm", kb: "20-50 KB", bg: "सफ़ेद" },
+  { form: "रेलवे (RRB)", size: "3.5cm × 4.5cm", kb: "20-50 KB", bg: "सफ़ेद" },
+  { form: "सरकारी फ़ॉर्म", size: "3.5cm × 4.5cm", kb: "20-50 KB", bg: "सफ़ेद" },
+];
+
+const steps = [
+  { title: "अपनी फ़ोटो अपलोड करें", desc: "अपलोड क्षेत्र पर क्लिक करें और अपने डिवाइस से फ़ोटो चुनें।" },
+  { title: "लक्ष्य आकार चुनें", desc: "अपने पासपोर्ट आवेदन की आवश्यकताओं के अनुसार 20KB, 50KB या 100KB चुनें।" },
+  { title: "पासपोर्ट फ़ोटो डाउनलोड करें", desc: "JPG प्रारूप में तुरंत अपनी तैयार फ़ोटो डाउनलोड करें।" },
+];
+---
+
+<BaseLayout
+  title="पासपोर्ट फ़ोटो आकार — मुफ्त ऑनलाइन कंप्रेसर"
+  description="किसी भी देश के लिए सही पासपोर्ट फ़ोटो आकार प्राप्त करें। मुफ्त ऑनलाइन कंप्रेसर — रीसाइज़, क्रॉप, 20KB–100KB तक कंप्रेस करें। भारत, अमेरिका, UK, कनाडा सपोर्टेड।"
+  canonical={`https://quickjpgconverter.com${prefix}/passport-photo-size`}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["पासपोर्ट फ़ोटो आकार", "पासपोर्ट फ़ोटो आकार cm में", "पासपोर्ट फ़ोटो आकार kb में", "भारतीय पासपोर्ट फ़ोटो", "अमेरिकी पासपोर्ट फ़ोटो", "UK पासपोर्ट फ़ोटो", "पासपोर्ट फ़ोटो बैकग्राउंड", "मुफ्त ऑनलाइन पासपोर्ट फ़ोटो आकार", "पासपोर्ट फ़ोटो कंप्रेसर", "पासपोर्ट के लिए फ़ोटो रीसाइज़ करें", "ऑनलाइन पासपोर्ट फ़ोटो मेकर", "35mm 45mm आकार फ़ोटो", "पासपोर्ट फ़ोटो 20kb", "पासपोर्ट फ़ोटो कंप्रेस", "पासपोर्ट फ़ोटो डाउनलोड"]}
+  howToSteps={[
+    { name: "अपनी फ़ोटो अपलोड करें", text: "अपलोड बटन पर क्लिक करें और अपने डिवाइस से फ़ोटो चुनें।" },
+    { name: "लक्ष्य आकार चुनें", text: "अपने पासपोर्ट आवेदन की आवश्यकताओं के अनुसार 20KB, 50KB या 100KB चुनें।" },
+    { name: "पासपोर्ट फ़ोटो डाउनलोड करें", text: "JPG प्रारूप में अपनी तैयार पासपोर्ट फ़ोटो डाउनलोड करें।" },
+  ]}
+  locale={locale}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+          </svg>
+          मुफ्त · बिना पंजीकरण · निजी
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          पासपोर्ट फ़ोटो <span class="gradient-text">आकार</span> और कंप्रेसर
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          अपनी पासपोर्ट फ़ोटो को 20KB, 50KB या 100KB तक कंप्रेस करें — तुरंत, आपके ब्राउज़र में। भारत, अमेरिका, UK, कनाडा — सभी देश और आकार सपोर्टेड। बिना पंजीकरण, 100% निजी।
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">लक्ष्य:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm" id="target-size-btn">≤ 20KB</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">अपनी फ़ोटो यहां ड्रैग करें</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">या अपने कंप्यूटर से चुनने के लिए क्लिक करें</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    फ़ोटो चुनें
+                    <input type="file" class="sr-only" accept="image/jpeg,image/png,image/webp" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · अधिकतम 50MB प्रति फ़ाइल</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">अपलोड करने के लिए छोड़ें</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 फ़ाइलें तैयार</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">सब साफ़ करें</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div class="mb-4">
+                <h3 class="text-sm font-medium text-text-secondary mb-3">लक्ष्य आकार</h3>
+                <div class="flex flex-wrap gap-2">
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm" data-size="20">20 KB</button>
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary border border-border-default hover:border-brand-300 transition-colors" data-size="50">50 KB</button>
+                  <button class="size-btn px-3 py-1.5 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary border border-border-default hover:border-brand-300 transition-colors" data-size="100">100 KB</button>
+                </div>
+              </div>
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">कंप्रेस हो रहा है...</p>
+              </div>
+              <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                पासपोर्ट के लिए कंप्रेस करें
+              </button>
+              <div id="download-area" class="hidden mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">संदर्भ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">देश अनुसार पासपोर्ट फ़ोटो आकार</h2>
+      </div>
+      <div class="max-w-5xl mx-auto overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-surface border-b border-border-default">
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">देश</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">आकार (mm)</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">पिक्सेल</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">फ़ाइल आकार</th>
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary">बैकग्राउंड</th>
+            </tr>
+          </thead>
+          <tbody>
+            {passportSizes.map((size, i) => (
+              <tr class:list={["border-b border-border-muted", i === 0 && "bg-brand-50/50 dark:bg-brand-950/20"]}>
+                <td class="px-4 sm:px-5 py-3 font-medium text-text-primary">{size.country}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.size}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.pixels}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.kb}</td>
+                <td class="px-4 sm:px-5 py-3 text-text-secondary">{size.bg}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">भारत के लिए विशेष</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">भारतीय फ़ॉर्म के लिए फ़ोटो आकार</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        {indianUseCases.map((useCase) => (
+          <div class="card-hover p-5">
+            <h3 class="text-sm font-semibold text-text-primary mb-2">{useCase.form}</h3>
+            <div class="space-y-1">
+              <p class="text-xs text-text-secondary"><span class="font-medium">आकार:</span> {useCase.size}</p>
+              <p class="text-xs text-text-secondary"><span class="font-medium">फ़ाइल:</span> {useCase.kb}</p>
+              <p class="text-xs text-text-secondary"><span class="font-medium">बैकग्राउंड:</span> {useCase.bg}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>पासपोर्ट फ़ोटो कैसे बनाएं</h2>
+        <p>हमारे टूल से पासपोर्ट फ़ोटो बनाना आसान है:</p>
+        <ol>
+          <li><strong>अपनी फ़ोटो अपलोड करें:</strong> अपलोड क्षेत्र पर क्लिक करें और अपनी फ़ोटो चुनें।</li>
+          <li><strong>लक्ष्य आकार चुनें:</strong> अपने फ़ॉर्म की आवश्यकताओं के अनुसार 20KB, 50KB या 100KB चुनें।</li>
+          <li><strong>कंप्रेस पर क्लिक करें:</strong> टूल आपकी फ़ोटो को लक्ष्य आकार तक कंप्रेस करेगा।</li>
+          <li><strong>डाउनलोड करें:</strong> तुरंत अपनी पासपोर्ट-तैयार फ़ोटो प्राप्त करें।</li>
+        </ol>
+        <h3>फ़ोटो गुणवत्ता टिप्स</h3>
+        <ul>
+          <li>प्राकृतिक और समान रोशनी का उपयोग करें। कठोर छायाओं से बचें।</li>
+          <li>एक सपाट सफ़ेद बैकग्राउंड का उपयोग करें।</li>
+          <li>सीधे कैमरे में देखें और तटस्त अभिव्यक्ति रखें।</li>
+          <li>अगर संभव हो तो चश्मा उतारें, या सुनिश्चित करें कि कोई रिफ्लेक्शन न हो।</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">अक्सर पूछे जाने वाले सवाल</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>पासपोर्ट फ़ोटो का मानक आकार क्या है?</h2>
+        <p>अधिकांश देशों के लिए पासपोर्ट फ़ोटो का मानक आकार <strong>35mm × 45mm</strong> (3.5cm × 4.5cm) है, जो 300 DPI पर लगभग <strong>413 × 531 पिक्सेल</strong> के बराबर है। अमेरिकी पासपोर्ट फ़ोटो अलग आकार का उपयोग करती है: <strong>2in × 2in</strong> (51mm × 51mm या 600 × 600 पिक्सेल)।</p>
+        <p>अधिकांश सरकारी पोर्टल और पासपोर्ट आवेदन सिस्टम में आपकी फ़ोटो <strong>20KB से 100KB</strong> के बीच होनी चाहिए। हमारा मुफ्त ऑनलाइन कंप्रेसर बिना दृश्य गुणवत्ता खोए बिल्कुल सही लक्ष्य आकार प्राप्त करने में मदद करता है।</p>
+        <h3>देश अनुसार पासपोर्ट फ़ोटो आवश्यकताएं</h3>
+        <p>हर देश की पासपोर्ट फ़ोटो के लिए थोड़ी अलग आवश्यकताएं होती हैं। भारत, UK, ऑस्ट्रेलिया और अधिकांश EU देश 35mm × 45mm मानक का उपयोग करते हैं। अमेरिका और फ़िलीपींस 2×2 इंच का उपयोग करते हैं। कनाडा 50mm × 70mm के बड़े प्रारूप का उपयोग करता है। हमारा टूल इन सभी आकारों तक कंप्रेशन सपोर्ट करता है — बस लक्ष्य फ़ाइल आकार चुनें और अपलोड करें।</p>
+        <h3>ऑनलाइन पासपोर्ट फ़ोटो कैसे कंप्रेस करें</h3>
+        <ol>
+          <li><strong>अपनी फ़ोटो अपलोड करें</strong> — अपलोड क्षेत्र पर क्लिक करें या अपनी इमेज (JPG, PNG या WebP) ड्रैग और ड्रॉप करें।</li>
+          <li><strong>लक्ष्य आकार चुनें</strong> — अपने आवेदन पोर्टल की आवश्यकताओं के अनुसार 20KB, 50KB या 100KB चुनें।</li>
+          <li><strong>डाउनलोड करें</strong> — तुरंत अपनी कंप्रेस की गई पासपोर्ट फ़ोटो प्राप्त करें, अपलोड के लिए तैयार।</li>
+        </ol>
+        <p>पूरी प्रक्रिया आपके ब्राउज़र में चलती है — <strong>आपकी फ़ोटो कभी किसी सर्वर पर अपलोड नहीं होतीं</strong>। यह हमारे टूल को ऑनलाइन संवेदनशील पासपोर्ट फ़ोटो कंप्रेस करने का सबसे सुरक्षित तरीका बनाता है।</p>
+        <p>क्या आपको <a href={`${prefix}/compress-for-govt-form`} class="text-brand-600 hover:text-brand-700 underline">सरकारी फ़ॉर्म (SSC, UPSC, बैंक)</a> के लिए फ़ोटो कंप्रेस करनी है? या अपनी इमेज को <a href={`${prefix}/photo-to-base64`} class="text-brand-600 hover:text-brand-700 underline">वेब डेवलपमेंट के लिए Base64</a> में बदलनी है?</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">संबंधित उपकरण</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">हमारे अन्य उपकरण आज़माएं</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <a href={`${prefix}/tools/compress-to-100kb`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">100KB तक कंप्रेस करें</h3>
+          <p class="text-sm text-text-secondary">इमेज को 100KB से कम कम करें।</p>
+        </a>
+        <a href={`${prefix}/compress-for-govt-form`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">सरकारी फ़ॉर्म के लिए कंप्रेस करें</h3>
+          <p class="text-sm text-text-secondary">SSC, UPSC फ़ॉर्म के लिए फ़ोटो कम करें।</p>
+        </a>
+        <a href={`${prefix}/photo-to-base64`} class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">फ़ोटो से Base64</h3>
+          <p class="text-sm text-text-secondary">इमेज को Base64 स्ट्रिंग में बदलें।</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initTargetedCompressor } from "@scripts/targeted-compress.js";
+    
+    const config = { targetSize: 20 * 1024 };
+    initTargetedCompressor(config);
+    
+    const targetSizeBtn = document.getElementById('target-size-btn');
+    const sizeButtons = document.querySelectorAll('.size-btn');
+    
+    sizeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizeButtons.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+          b.classList.add('text-text-tertiary', 'border', 'border-border-default');
+        });
+        btn.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+        btn.classList.remove('text-text-tertiary', 'border', 'border-border-default');
+        config.targetSize = parseInt(btn.dataset.size) * 1024;
+        if (targetSizeBtn) targetSizeBtn.textContent = '≤ ' + btn.dataset.size + 'KB';
+      });
+    });
+  </script>
+</BaseLayout>

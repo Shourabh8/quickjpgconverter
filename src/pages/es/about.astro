@@ -1,0 +1,126 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { getLocalePrefix } from "@i18n/index";
+
+const locale = "es" as const;
+const prefix = getLocalePrefix(locale);
+const breadcrumbs = [{ name: "Acerca de", url: `${prefix}/about` }];
+---
+
+<BaseLayout
+  title="Acerca de Nosotros — Quick JPG Converter"
+  description="Conoce Quick JPG Converter, una herramienta gratuita de conversión de imágenes centrada en la privacidad, construida para velocidad, simplicidad y seguridad de datos completa."
+  canonical={`https://quickjpgconverter.com${prefix}/about`}
+  breadcrumbs={breadcrumbs}
+  locale={locale}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8">
+        <Badge class="mb-4">Acerca de Nosotros</Badge>
+      </div>
+
+      <article class="prose mt-6">
+        <h1>Acerca de Quick JPG Converter</h1>
+
+        <p class="lead">
+          Quick JPG Converter es una herramienta gratuita en línea diseñada para
+          hacer la conversión de formatos de imagen simple, rápida y completamente
+          privada. Construida para fotógrafos, diseñadores, desarrolladores y
+          cualquiera que necesite conversiones rápidas de imágenes sin las
+          complicaciones del software de escritorio.
+        </p>
+
+        <h2>Qué Hacemos</h2>
+        <p>
+          Proporcionamos un conjunto de herramientas de conversión de imágenes
+          basadas en navegador, completamente gratuitas. Nuestra función principal
+          permite a los usuarios convertir imágenes JPG a formatos PNG, WebP y PDF
+          al instante, con herramientas adicionales para convertir PNG a JPG, WebP
+          a JPG, y redimensionar imágenes. Cada conversión se ejecuta
+          completamente en tu navegador utilizando tecnologías web modernas,
+          lo que significa que tus archivos nunca salen de tu dispositivo.
+        </p>
+        <p>
+          Ya sea que necesites un logotipo transparente en PNG, una imagen ligera
+          en WebP, o un PDF rápido de una foto, nuestras herramientas realizan el
+          trabajo en milisegundos sin requerir que instales nada o crees una cuenta.
+        </p>
+
+        <h2>Nuestra Misión</h2>
+        <p>
+          Creemos que la conversión de imágenes debe ser accesible para todos sin
+          comprometer la privacidad. Demasiados convertidores en línea suben tus
+          archivos a servidores remotos, exponiendo fotos personales y documentos
+          sensibles a riesgos innecesarios. Construimos Quick JPG Converter para
+          resolver este problema.
+        </p>
+        <p>
+          Nuestro objetivo es proporcionar la experiencia de conversión de
+          imágenes más rápida y privada disponible en la web, completamente gratis,
+          sin costos ocultos, sin muros de registro y sin recopilación de datos.
+        </p>
+
+        <h2>Cómo Funciona</h2>
+        <p>
+          A diferencia de los convertidores tradicionales que suben tus imágenes a
+          un servidor, nuestra herramienta utiliza API modernas del navegador,
+          incluyendo la API Canvas y WebAssembly, para procesar imágenes
+          directamente en tu dispositivo. Este enfoque ofrece varias ventajas
+          importantes:
+        </p>
+        <ul>
+          <li><strong>Conversión más rápida</strong> — sin tiempos de espera de subida o descarga; el procesamiento es local</li>
+          <li><strong>Privacidad completa</strong> — las imágenes nunca salen de tu navegador y nunca se transmiten a ningún servidor</li>
+          <li><strong>Sin límites de tamaño</strong> — limitado únicamente por la memoria disponible de tu dispositivo</li>
+          <li><strong>Sin cuenta requerida</strong> — abre el sitio y comienza a convertir inmediatamente</li>
+          <li><strong>Funciona en cualquier dispositivo</strong> — escritorio, tableta o teléfono con un navegador moderno</li>
+        </ul>
+
+        <h2>Por Qué Elegirnos</h2>
+        <p>
+          Hay docenas de convertidores de imágenes en línea. Esto es lo que
+          diferencia a Quick JPG Converter:
+        </p>
+        <ul>
+          <li><strong>100% gratis</strong> — sin niveles premium, sin muros de pago, sin cargos ocultos</li>
+          <li><strong>Cero subidas</strong> — tus archivos permanecen en tu dispositivo en todo momento</li>
+          <li><strong>Resultados instantáneos</strong> — las conversiones se completan en milisegundos</li>
+          <li><strong>Soporte por lotes</strong> — convierte múltiples archivos simultáneamente</li>
+          <li><strong>Control de calidad</strong> — elige entre alta calidad, equilibrado o tamaño de archivo más pequeño</li>
+          <li><strong>Amigable con móviles</strong> — funciona perfectamente en teléfonos y tabletas</li>
+        </ul>
+
+        <h2>Abierto y Transparente</h2>
+        <p>
+          Quick JPG Converter está construido con la transparencia en mente. Nuestra
+          política de privacidad explica claramente qué datos recopilamos
+          (prácticamente ninguno), y nuestros términos de servicio están escritos
+          en lenguaje sencillo. Agradecemos los comentarios, solicitudes de
+          funciones y contribuciones de la comunidad.
+        </p>
+
+        <h2>Nuestro Compromiso</h2>
+        <p>
+          Estamos comprometidos a mantener esta herramienta gratuita y con anuncios.
+          No vendemos datos de usuarios, no requerimos cuentas, y no almacenamos
+          tus imágenes. Nuestros ingresos provienen únicamente de anuncios no
+          intrusivos que nos ayudan a cubrir los costos de alojamiento y desarrollo.
+        </p>
+
+        <h2>Contáctanos</h2>
+        <p>
+          ¿Tienes una pregunta, sugerencia o simplemente quieres saludar? Nos
+          encantaría saber de ti. Contáctanos en
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=supportquickjpgconverter@gmail.com">supportquickjpgconverter@gmail.com</a>
+          o visita nuestra <a href={`${prefix}/contact`}>página de Contacto</a> para más opciones.
+        </p>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,308 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { getLocalePrefix } from "@i18n/index";
+
+const locale = "fr" as const;
+const prefix = getLocalePrefix(locale);
+
+const breadcrumbs = [
+  { name: "Outils", url: `${prefix}/tools` },
+  { name: "JPG en PNG", url: `${prefix}/tools/jpg-to-png` },
+];
+
+const conversionOptions = [
+  { id: "quality-high", label: "Haute Qualité", desc: "Meilleure fidélité visuelle, fichier plus grand", checked: true },
+  { id: "quality-balanced", label: "Équilibré", desc: "Bon équilibre entre taille et qualité", checked: false },
+  { id: "quality-small", label: "Taille Minimale", desc: "Fichier plus petit, légère perte de qualité", checked: false },
+];
+
+const faqItems = [
+  {
+    question: "Quelle est la différence entre JPG et PNG ?",
+    answer: "JPG utilise une compression avec perte, ce qui signifie que des données de l'image sont supprimées pour obtenir des fichiers plus petits. PNG utilise une compression sans perte, préservant chaque pixel. PNG supporte également les arrière-plans transparents, ce que JPG ne fait pas.",
+  },
+  {
+    question: "Convertir JPG en PNG améliorera-t-il la qualité ?",
+    answer: "Convertir JPG en PNG ne récupérera pas les données perdues lors de la compression originale du JPG. Cependant, cela empêche une perte de qualité supplémentaire lors de l'édition et du partage. Le PNG est idéal quand vous devez préserver la qualité actuelle.",
+  },
+  {
+    question: "Pourquoi le fichier PNG est-il plus grand que le JPG ?",
+    answer: "PNG utilise une compression sans perte qui conserve toutes les données de l'image. Cela résulte en des fichiers plus grands mais avec une qualité parfaite. JPG obtient des tailles plus petites en supprimant certaines données visuelles que l'œil humain peut ne pas remarquer.",
+  },
+  {
+    question: "Puis-je convertir plusieurs fichiers JPG à la fois ?",
+    answer: "Oui. Vous pouvez glisser-déposer ou sélectionner plusieurs fichiers JPG. Tous seront convertis en PNG simultanément, et vous pouvez les télécharger individuellement ou en lot.",
+  },
+  {
+    question: "Quel est le meilleur convertisseur JPG en PNG gratuit ?",
+    answer: "Quick JPG Converter est l'un des meilleurs convertisseurs JPG en PNG gratuits. Il s'exécute entièrement dans votre navigateur, préserve la qualité sans perte, supporte la conversion par lots et ne nécessite ni inscription ni envoi de fichiers.",
+  },
+];
+
+const steps = [
+  { title: "Téléversez vos JPG", desc: "Glissez-déposez ou cliquez pour sélectionner vos fichiers image." },
+  { title: "Conversion instantanée", desc: "Votre image est convertie dans le navigateur. Pas d'envoi sur serveur." },
+  { title: "Téléchargez le PNG", desc: "Obtenez votre fichier PNG haute qualité instantanément." },
+];
+
+const relatedTools = [
+  { slug: "png-to-jpg", title: "PNG en JPG", desc: "Convertissez les images PNG en format JPG." },
+  { slug: "jpg-to-webp", title: "JPG en WebP", desc: "Convertissez JPG au format moderne WebP." },
+  { slug: "webp-to-jpg", title: "WebP en JPG", desc: "Convertissez les images WebP en JPG." },
+  { slug: "heic-to-jpg", title: "HEIC en JPG", desc: "Convertissez les photos HEIC d'iPhone en JPG." },
+  { slug: "image-compressor", title: "Compresseur d'image", desc: "Compressez les images sans perte de qualité." },
+  { slug: "resize-jpg", title: "Redimensionner JPG", desc: "Redimensionnez les images à n'importe quelle dimension." },
+];
+---
+
+<BaseLayout
+  title="Convertisseur JPG en PNG Gratuit — Outil de Conversion en Ligne"
+  description="Convertissez JPG en PNG instantanément avec notre convertisseur JPG gratuit en ligne. Qualité sans perte, support de la transparence et 100% privé. Pas d'envoi nécessaire — essayez maintenant."
+  canonical={`https://quickjpgconverter.com${prefix}/tools/jpg-to-png`}
+  keywords={["jpg en png", "convertir jpg en png", "jpeg en png"]}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  howToSteps={[
+    { name: "Téléversez les fichiers JPG", text: "Glissez-déposez vos images JPG ou cliquez pour sélectionner." },
+    { name: "Choisissez la qualité", text: "Sélectionnez Haute Qualité, Équilibré ou Taille Minimale." },
+    { name: "Convertissez et téléchargez", text: "Cliquez sur Convertir en PNG et téléchargez vos fichiers." },
+  ]}
+  locale={locale}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Gratuit · Sans inscription · Privé
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Convertisseur JPG en <span class="gradient-text">PNG</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Convertissez vos images JPG en PNG avec une qualité sans perte et un support de la transparence.
+          Tout s'exécute dans votre navigateur.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Convertir en :</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">PNG</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Glissez vos fichiers JPG ici</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">ou cliquez pour sélectionner depuis votre ordinateur</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Sélectionner des fichiers
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, JPEG · Max 50 Mo par fichier · Plusieurs fichiers supportés</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Déposez pour téléverser</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 fichiers prêts</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Tout effacer</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                  <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
+                    <span class="text-text-tertiary">Entrée : JPG</span>
+                    <span class="text-text-tertiary">→</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">Sortie : PNG</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div class="mb-6">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Options de Conversion</h3>
+                <div class="space-y-2">
+                  {conversionOptions.map((opt) => (
+                    <label class:list={[
+                      "flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all duration-200",
+                      opt.checked
+                        ? "border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30"
+                        : "border-border-default hover:border-border-strong hover:bg-surface-subtle/50"
+                    ]}>
+                      <input type="radio" name="quality" value={opt.id} checked={opt.checked} class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                      <div class="flex-1 min-w-0">
+                        <div class="text-sm font-medium text-text-primary">{opt.label}</div>
+                        <div class="text-xs text-text-tertiary mt-0.5">{opt.desc}</div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div class="h-px bg-border-default mb-6"></div>
+
+              <div class="mb-6">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Format de Sortie</h3>
+                <div class="p-3 rounded-xl border border-border-default bg-surface-muted">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center">
+                      <svg class="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="text-sm font-semibold text-text-primary">PNG</div>
+                      <div class="text-xs text-text-tertiary">Sans perte · Transparence · ~3-5× plus grand</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-1"></div>
+
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Conversion en cours...</p>
+              </div>
+
+              <div id="convert-btn-area">
+                <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  Convertir en PNG
+                </button>
+                <p class="text-xs text-text-tertiary text-center mt-2">Téléversez un fichier pour lancer la conversion</p>
+              </div>
+
+              <div id="download-area" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
+          <span class="font-medium text-text-secondary">Supportés :</span>
+          {["JPG", "JPEG"].map((fmt) => (
+            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
+          ))}
+          <span class="text-text-tertiary">·</span>
+          <span>Max 50 Mo</span>
+          <span class="text-text-tertiary">·</span>
+          <span>Plusieurs fichiers</span>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <FeatureRequest toolName="JPG en PNG" />
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Comment ça marche</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Trois Étapes</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {steps.map((step, i) => (
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">0{i + 1}</div>
+            <h3 class="text-base font-semibold text-text-primary mb-1.5">{step.title}</h3>
+            <p class="text-sm text-text-secondary">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Pourquoi convertir JPG en PNG ?</h2>
+        <p>PNG (Portable Network Graphics) est le format idéal quand vous avez besoin d'une compression sans perte ou d'arrière-plans transparents. Contrairement au JPG, PNG préserve chaque pixel de votre image sans artefacts de compression.</p>
+        <h3>Quand utiliser PNG plutôt que JPG</h3>
+        <ul>
+          <li><strong>Logos et icônes</strong> — ont besoin de bords nets et d'arrière-plans transparents</li>
+          <li><strong>Captures d'écran</strong> — le texte et les éléments d'interface restent nets quelle que soit la taille</li>
+          <li><strong>Graphiques avec couleurs unies</strong> — pas d'artefacts de compression dans les zones plates</li>
+          <li><strong>Images que vous éditerez plusieurs fois</strong> — pas de perte de qualité générations après générations</li>
+          <li><strong>Ressources prêtes pour l'impression</strong> — qualité sans perte pour une sortie professionnelle</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Questions Fréquentes</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Outils Connexes</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Essayez nos autres convertisseurs</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        {relatedTools.map((tool) => (
+          <a href={`${prefix}/tools/${tool.slug}`} class="card-hover p-5 group">
+            <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
+            <p class="text-sm text-text-secondary">{tool.desc}</p>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initConverter } from "@scripts/converter.js";
+    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }));
+  </script>
+</BaseLayout>

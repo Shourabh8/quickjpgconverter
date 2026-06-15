@@ -1,0 +1,6 @@
+name = "quickjpgconverter"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "VISITOR_KV"
+id = "4aa7836423ef4a1a98891b0014ee5e6a"

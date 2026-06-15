@@ -1,0 +1,279 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { getLocalePrefix } from "@i18n/index";
+
+const locale = "de" as const;
+const prefix = getLocalePrefix(locale);
+
+const breadcrumbs = [
+  { name: "Werkzeuge", url: `${prefix}/tools` },
+  { name: "Auf 100KB komprimieren", url: `${prefix}/tools/compress-to-100kb` },
+];
+
+const faqItems = [
+  {
+    question: "Warum müsste ich ein Bild auf genau 100KB komprimieren?",
+    answer: "Viele Online-Portale, Regierungsformulare und Bewerbungsunterlagen erfordern, dass Reisepassfotos oder Dokumentenscans unter 100KB liegen. Dieses Werkzeug hilft Ihnen, diese strengen Dateigrößenanforderungen einzuhalten und dabei bestmögliche Qualität zu behalten.",
+  },
+  {
+    question: "Wird mein Bild nach der Komprimierung unscharf?",
+    answer: "Unser Kompressor verwendet intelligente Qualitätsreduzierung, um die Zielgröße zu erreichen und dabei möglichst viel visuelle Qualität zu bewahren. Das Ergebnis ist in der Regel ausgezeichnet für Fotos und Dokumente bei 100KB.",
+  },
+  {
+    question: "Welche Bildformate werden unterstützt?",
+    answer: "Wir unterstützen Eingabeformate JPG, PNG und WebP. Die Ausgabe ist immer JPG, um die kleinste mögliche Dateigröße beim Ziel zu gewährleisten.",
+  },
+  {
+    question: "Kann ich mehrere Bilder auf einmal komprimieren?",
+    answer: "Ja. Sie können mehrere Bilder hochladen und alle auf 100KB oder weniger komprimieren. Jedes Bild wird individuell verarbeitet, um die Zielgröße einzuhalten.",
+  },
+  {
+    question: "Gibt es eine Dateigrößenbeschränkung für Uploads?",
+    answer: "Sie können Bilder bis zu 50MB hochladen. Der Kompressor läuft vollständig in Ihrem Browser, daher hängt die Verarbeitungszeit von Ihrem Gerät und der Anzahl der Bilder ab.",
+  },
+  {
+    question: "Funktioniert es auf dem Smartphone?",
+    answer: "Ja. Unser Kompressor funktioniert auf jedem Gerät — iPhone, Android, Tablet oder Desktop. Keine App-Installation nötig. Öffnen Sie einfach das Werkzeug in Ihrem Browser und komprimieren Sie.",
+  },
+];
+
+const steps = [
+  { title: "Laden Sie Ihre Bilder hoch", desc: "Ziehen Sie Ihre Fotos per Drag-and-Drop ab oder klicken Sie zum Auswählen." },
+  { title: "Automatisch komprimieren", desc: "Unser Algorithmus reduziert die Qualität, um genau 100KB zu erreichen." },
+  { title: "JPG herunterladen", desc: "Erhalten Sie Ihr 100KB-Bild sofort, bereit zum Hochladen." },
+];
+
+const relatedTools = [
+  { slug: "compress-to-200kb", title: "Auf 200KB komprimieren", desc: "Komprimieren Sie Bilder auf unter 200KB." },
+  { slug: "image-enhancer", title: "Bildverbesserer", desc: "Verbessern Sie Helligkeit, Kontrast und Schärfe." },
+  { slug: "image-compressor", title: "Bildkompressor", desc: "Benutzerdefinierte Komprimierung mit Qualitätsregler." },
+  { slug: "resize-jpg", title: "JPG Größe ändern", desc: "Ändern Sie Bilder auf jede Größe." },
+  { slug: "jpg-to-png", title: "JPG nach PNG", desc: "Konvertieren Sie JPG nach PNG mit verlustfreier Qualität." },
+  { slug: "jpg-to-webp", title: "JPG nach WebP", desc: "Konvertieren Sie JPG in das moderne WebP-Format." },
+];
+---
+
+<BaseLayout
+  title="Bild auf 100KB komprimieren — Kostenloser Online-Foto-Reduzierer"
+  description="Komprimieren Sie jedes Bild auf unter 100KB für Reisepassfotos, Formulareinsendungen und Portal-Uploads. Kostenloses Online-Werkzeug, das in Ihrem Browser läuft — keine Uploads, keine Anmeldung."
+  canonical={`https://quickjpgconverter.com${prefix}/tools/compress-to-100kb`}
+  keywords={["bild auf 100kb komprimieren", "foto auf 100kb reduzieren", "bildkompressor 100kb", "bild auf 100kb"]}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  locale={locale}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Kostenlos · Keine Anmeldung · Privat
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Bild auf <span class="gradient-text">100KB</span> komprimieren
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Perfekt für Reisepassfotos, Formulareinsendungen und Portal-Uploads. Komprimieren Sie jedes Bild auf unter 100KB und behalten Sie die Qualität.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Zielgröße:</span>
+            <div class="flex items-center gap-2">
+              <span id="target-size-display" class="px-3 py-1.5 rounded-lg text-sm font-bold bg-brand-600 text-white shadow-sm">100 KB</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Ziehen Sie Ihre Bilder hierher</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">oder klicken Sie zum Auswählen von Ihrem Computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Dateien auswählen
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Max 50MB pro Datei · Mehrere Dateien unterstützt</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Zum Hochladen ablegen</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 Dateien bereit</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Alles löschen</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                  <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
+                    <span class="text-text-tertiary">Ziel: ≤ 100KB</span>
+                    <span class="text-text-tertiary">→</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">Ausgabe: JPG</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div class="mb-6">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Ziel-Dateigröße</h3>
+                <div class="p-4 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30">
+                  <div class="text-center">
+                    <div class="text-3xl font-bold text-brand-600 dark:text-brand-400 mb-1">100KB</div>
+                    <p class="text-xs text-text-secondary">Ideal für Reisepassfotos und Formulareinsendungen</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-6">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Ausgabeformat</h3>
+                <div class="p-3 rounded-xl border border-border-default bg-surface-muted">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center">
+                      <svg class="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="text-sm font-semibold text-text-primary">JPG</div>
+                      <div class="text-xs text-text-tertiary">Verlustbehaftet · Universell · Kleinere Dateien</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-1"></div>
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Komprimierung...</p>
+              </div>
+              <div id="compress-btn-area">
+                <button id="compress-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  Auf 100KB komprimieren
+                </button>
+                <p class="text-xs text-text-tertiary text-center mt-2">Laden Sie Bilder hoch, um die Komprimierung zu starten</p>
+              </div>
+              <div id="download-area" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
+          <span class="font-medium text-text-secondary">Unterstützt:</span>
+          {["JPG", "PNG", "WebP"].map((fmt) => (
+            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
+          ))}
+          <span class="text-text-tertiary">·</span>
+          <span>Max 50MB</span>
+          <span class="text-text-tertiary">·</span>
+          <span>Mehrere Dateien</span>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <FeatureRequest toolName="Auf 100KB komprimieren" />
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">So funktioniert es</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Drei Schritte</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {steps.map((step, i) => (
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">0{i + 1}</div>
+            <h3 class="text-base font-semibold text-text-primary mb-1.5">{step.title}</h3>
+            <p class="text-sm text-text-secondary">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Warum auf 100KB komprimieren?</h2>
+        <p>Viele Online-Portale, Regierungswebsites und Bewerbungsunterlagen haben strenge Dateigrößenbeschränkungen. Reisepassfotos, Personalausweise und Dokumentenscans müssen oft unter 100KB liegen. Unser Kompressor reduziert die Qualität intelligent, um diese genaue Anforderung einzuhalten und dabei mögliche visuelle Klarheit zu bewahren.</p>
+        <h3>Häufige Anwendungsfälle</h3>
+        <ul>
+          <li>Reisepass- und Visafoto-Uploads</li>
+          <li>Einsendungen von Regierungsformularen</li>
+          <li>Fotoanforderungen für Bewerbungen</li>
+          <li>Universitätszulassungsformulare</li>
+          <li>Profilbilder in sozialen Medien mit Größenbeschränkungen</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Häufig gestellte Fragen</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Verwandte Werkzeuge</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Testen Sie unsere anderen Konverter</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        {relatedTools.map((tool) => (
+          <a href={`${prefix}/tools/${tool.slug}`} class="card-hover p-5 group">
+            <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
+            <p class="text-sm text-text-secondary">{tool.desc}</p>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initTargetedCompressor } from "@scripts/targeted-compress.js";
+    document.addEventListener("DOMContentLoaded", () => initTargetedCompressor({ targetSize: 100 * 1024 }));
+  </script>
+</BaseLayout>

@@ -1,0 +1,308 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { getLocalePrefix } from "@i18n/index";
+
+const locale = "hi" as const;
+const prefix = getLocalePrefix(locale);
+
+const breadcrumbs = [
+  { name: "उपकरण", url: `${prefix}/tools` },
+  { name: "JPG से PNG", url: `${prefix}/tools/jpg-to-png` },
+];
+
+const conversionOptions = [
+  { id: "quality-high", label: "उच्च गुणवत्ता", desc: "सर्वोत्तम दृश्य निष्ठा, बड़ी फ़ाइल", checked: true },
+  { id: "quality-balanced", label: "संतुलित", desc: "आकार और गुणवत्ता के बीच अच्षा संतुलन", checked: false },
+  { id: "quality-small", label: "न्यूनतम आकार", desc: "छोटी फ़ाइल, थोड़ी गुणवत्ता हानि", checked: false },
+];
+
+const faqItems = [
+  {
+    question: "JPG और PNG में क्या अंतर है?",
+    answer: "JPG हानि-संपीड़न का उपयोग करता है, जिसका अर्थ है कि छोटी फ़ाइलों के लिए इमेज डेटा त्यागा जाता है। PNG हानि-रहित संपीड़न का उपयोग करता है, हर पिक्सेल को संरक्षित करता है। PNG पारदर्शी बैकग्राउंड भी सपोर्ट करता है, जो JPG नहीं करता।",
+  },
+  {
+    question: "क्या JPG को PNG में बदलने से गुणवत्ता बेहतर होगी?",
+    answer: "JPG को PNG में बदलने से मूल JPG संपीड़न के दौरान खोए गए डेटा को वापस नहीं लाएगा। हालांकि, यह एडिटिंग और शेयरिंग के दौरान गुणवत्ता की और हानि को रोकता है। PNG तब आदर्श है जब आपको वर्तमान गुणवत्ता संरक्षित करनी हो।",
+  },
+  {
+    question: "PNG फ़ाइल JPG से बड़ी क्यों होती है?",
+    answer: "PNG हानि-रहित संपीड़न का उपयोग करता है, जो सभी इमेज डेटा बरकरार रखता है। इसके परिणामस्वरूप बड़ी फ़ाइलें लेकिन सही गुणवत्ता होती है। JPG मानव आंख नोटिस न कर सके वो दृश्य डेटा त्यागकर छोटे आकार प्राप्त करता है।",
+  },
+  {
+    question: "क्या मैं एक साथ कई JPG फ़ाइलें PNG में बदल सकता हूं?",
+    answer: "हां। आप कई JPG फ़ाइलों को ड्रैग और ड्रॉप या चुन सकते हैं। सभी एक साथ PNG में बदल जाएंगी, और आप उन्हें अलग-अलग या बैच में डाउनलोड कर सकते हैं।",
+  },
+  {
+    question: "सबसे अच्छा मुफ्त JPG से PNG कनवर्टर कौन सा है?",
+    answer: "Quick JPG Converter सबसे अच्छे मुफ्त JPG से PNG कनवर्टर में से एक है। यह पूरी तरह आपके ब्राउज़र में चलता है, हानि-रहित गुणवत्ता बरकरार रखता है, बैच कनवर्ज़न सपोर्ट करता है और बिना पंजीकरण या अपलोड के काम करता है।",
+  },
+];
+
+const steps = [
+  { title: "अपने JPG अपलोड करें", desc: "अपनी इमेज फ़ाइलों को ड्रैग और ड्रॉप करें या चुनने के लिए क्लिक करें।" },
+  { title: "तुरंत बदलें", desc: "आपकी इमेज ब्राउज़र में बदल जाती है। कोई सर्वर अपलोड नहीं।" },
+  { title: "PNG डाउनलोड करें", desc: "तुरंत उच्च गुणवत्ता वाली PNG फ़ाइल प्राप्त करें।" },
+];
+
+const relatedTools = [
+  { slug: "png-to-jpg", title: "PNG से JPG", desc: "PNG इमेज को JPG प्रारूप में बदलें।" },
+  { slug: "jpg-to-webp", title: "JPG से WebP", desc: "JPG को आधुनिक WebP प्रारूप में बदलें।" },
+  { slug: "webp-to-jpg", title: "WebP से JPG", desc: "WebP इमेज को JPG में बदलें।" },
+  { slug: "heic-to-jpg", title: "HEIC से JPG", desc: "iPhone HEIC फ़ोटो को JPG में बदलें।" },
+  { slug: "image-compressor", title: "इमेज कंप्रेसर", desc: "गुणवत्ता खोए बिना इमेज कंप्रेस करें।" },
+  { slug: "resize-jpg", title: "JPG रीसाइज़ करें", desc: "इमेज को किसी भी आयाम में रीसाइज़ करें।" },
+];
+---
+
+<BaseLayout
+  title="मुफ्त JPG से PNG कनवर्टर — ऑनलाइन कनवर्ज़न टूल"
+  description="हमारे मुफ्त ऑनलाइन JPG कनवर्टर से JPG को तुरंत PNG में बदलें। हानि-रहित गुणवत्ता, पारदर्शिता सपोर्ट और 100% निजी। कोई अपलोड नहीं — अभी आज़माएं।"
+  canonical={`https://quickjpgconverter.com${prefix}/tools/jpg-to-png`}
+  keywords={["जेपीजी से पीएनजी", "जेपीजी को पीएनजी में बदलें", "जेपेग से पीएनजी"]}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  howToSteps={[
+    { name: "JPG फ़ाइलें अपलोड करें", text: "अपनी JPG इमेज ड्रैग और ड्रॉप करें या चुनने के लिए क्लिक करें।" },
+    { name: "गुणवत्ता चुनें", text: "उच्च गुणवत्ता, संतुलित या न्यूनतम आकार में से चुनें।" },
+    { name: "बदलें और डाउनलोड करें", text: "PNG में बदलें पर क्लिक करें और अपनी फ़ाइलें डाउनलोड करें।" },
+  ]}
+  locale={locale}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          मुफ्त · बिना पंजीकरण · निजी
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          JPG से <span class="gradient-text">PNG</span> कनवर्टर
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          अपनी JPG इमेज को हानि-रहित गुणवत्ता और पारदर्शिता सपोर्ट के साथ PNG में बदलें।
+          सब आपके ब्राउज़र में चलता है।
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">में बदलें:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">PNG</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">अपनी JPG फ़ाइलें यहां ड्रैग करें</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">या अपने कंप्यूटर से चुनने के लिए क्लिक करें</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    फ़ाइलें चुनें
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, JPEG · अधिकतम 50MB प्रति फ़ाइल · कई फ़ाइलें सपोर्टेड</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">अपलोड करने के लिए छोड़ें</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 फ़ाइलें तैयार</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">सब साफ़ करें</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                  <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
+                    <span class="text-text-tertiary">इनपुट: JPG</span>
+                    <span class="text-text-tertiary">→</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">आउटपुट: PNG</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div class="mb-6">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">कनवर्ज़न विकल्प</h3>
+                <div class="space-y-2">
+                  {conversionOptions.map((opt) => (
+                    <label class:list={[
+                      "flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all duration-200",
+                      opt.checked
+                        ? "border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30"
+                        : "border-border-default hover:border-border-strong hover:bg-surface-subtle/50"
+                    ]}>
+                      <input type="radio" name="quality" value={opt.id} checked={opt.checked} class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                      <div class="flex-1 min-w-0">
+                        <div class="text-sm font-medium text-text-primary">{opt.label}</div>
+                        <div class="text-xs text-text-tertiary mt-0.5">{opt.desc}</div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div class="h-px bg-border-default mb-6"></div>
+
+              <div class="mb-6">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">आउटपुट प्रारूप</h3>
+                <div class="p-3 rounded-xl border border-border-default bg-surface-muted">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center">
+                      <svg class="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="text-sm font-semibold text-text-primary">PNG</div>
+                      <div class="text-xs text-text-tertiary">हानि-रहित · पारदर्शिता · ~3-5× बड़ा</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-1"></div>
+
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">बदल रहे हैं...</p>
+              </div>
+
+              <div id="convert-btn-area">
+                <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  PNG में बदलें
+                </button>
+                <p class="text-xs text-text-tertiary text-center mt-2">कनवर्ज़न शुरू करने के लिए फ़ाइल अपलोड करें</p>
+              </div>
+
+              <div id="download-area" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
+          <span class="font-medium text-text-secondary">सपोर्टेड:</span>
+          {["JPG", "JPEG"].map((fmt) => (
+            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
+          ))}
+          <span class="text-text-tertiary">·</span>
+          <span>अधिकतम 50MB</span>
+          <span class="text-text-tertiary">·</span>
+          <span>कई फ़ाइलें</span>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <FeatureRequest toolName="JPG से PNG" />
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">यह कैसे काम करता है</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">तीन चरण</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {steps.map((step, i) => (
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">0{i + 1}</div>
+            <h3 class="text-base font-semibold text-text-primary mb-1.5">{step.title}</h3>
+            <p class="text-sm text-text-secondary">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>JPG को PNG में क्यों बदलें?</h2>
+        <p>PNG (Portable Network Graphics) वह आदर्श प्रारूप है जब आपको हानि-रहित संपीड़न या पारदर्शी बैकग्राउंड की आवश्यकता हो। JPG के विपरीत, PNG आपकी इमेज का हर पिक्सेल संपीड़न आर्टिफैक्ट्स के बिना संरक्षित करता है।</p>
+        <h3>कब PNG का उपयोग JPG पर करें</h3>
+        <ul>
+          <li><strong>लोगो और आइकन</strong> — इन्हें स्पष्ट किनारों और पारदर्शी बैकग्राउंड की आवश्यकता होती है</li>
+          <li><strong>स्क्रीनशॉट</strong> — टेक्स्ट और इंटरफ़ेस तत्व किसी भी आकार में स्पष्ट रहते हैं</li>
+          <li><strong>ठोस रंग वाले ग्राफ़िक्स</strong> — फ्लैट क्षेत्रों में कोई संपीड़न आर्टिफैक्ट नहीं</li>
+          <li><strong>जिन इमेज को आप कई बार एडिट करेंगे</strong> — जेनरेशनल गुणवत्ता हानि नहीं</li>
+          <li><strong>प्रिंट-रेडी रिसोर्स</strong> — प्रोफेशनल आउटपुट के लिए हानि-रहित गुणवत्ता</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">अक्सर पूछे जाने वाले सवाल</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">संबंधित उपकरण</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">हमारे अन्य कनवर्टर आज़माएं</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        {relatedTools.map((tool) => (
+          <a href={`${prefix}/tools/${tool.slug}`} class="card-hover p-5 group">
+            <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
+            <p class="text-sm text-text-secondary">{tool.desc}</p>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initConverter } from "@scripts/converter.js";
+    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }));
+  </script>
+</BaseLayout>
