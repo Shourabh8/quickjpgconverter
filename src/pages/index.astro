@@ -300,14 +300,15 @@ const trustBadges = [
       const qualityOptions = document.querySelectorAll('.quality-option');
 
       function updateQualityStyles() {
+        const isDark = document.documentElement.classList.contains('dark');
         qualityOptions.forEach((option) => {
           const radio = option.querySelector('input[type="radio"]');
           if (radio?.checked) {
-            option.classList.add('border-brand-400', 'bg-brand-50', 'dark:border-brand-700', 'dark:bg-brand-950/30');
-            option.classList.remove('border-border-default');
+            option.style.borderColor = isDark ? '#1d4ed8' : '#60a5fa';
+            option.style.backgroundColor = isDark ? 'rgba(59,130,246,0.08)' : '#eff6ff';
           } else {
-            option.classList.remove('border-brand-400', 'bg-brand-50', 'dark:border-brand-700', 'dark:bg-brand-950/30');
-            option.classList.add('border-border-default');
+            option.style.borderColor = '';
+            option.style.backgroundColor = '';
           }
         });
       }
@@ -315,6 +316,10 @@ const trustBadges = [
       qualityRadios.forEach((radio) => {
         radio.addEventListener('change', updateQualityStyles);
       });
+
+      // Also update when dark mode toggles
+      const observer = new MutationObserver(updateQualityStyles);
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
       // Set initial state
       updateQualityStyles();
