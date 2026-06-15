@@ -3,125 +3,10 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Button from "@components/ui/Button.astro";
 import Badge from "@components/ui/Badge.astro";
-import FAQ from "@components/ui/FAQ.astro";
 import { site } from "@data/site";
 import { tools, categories, getToolsByCategory } from "@data/tools";
 
 import "@styles/homepage.css";
-
-const faqItems = [
-  {
-    question: "Is this JPG converter really free?",
-    answer: "Yes, completely free. No sign-up required, no watermarks, no hidden fees, no usage limits. Convert as many images as you need, every day, forever.",
-  },
-  {
-    question: "Are my images uploaded to a server?",
-    answer: "No. All conversion happens directly in your browser using WebAssembly and Canvas API. Your images never leave your device — not even temporarily.",
-  },
-  {
-    question: "What image formats are supported?",
-    answer: "We support JPG, JPEG, PNG, WebP, HEIC, and PDF formats. You can convert between any of these combinations, and also resize JPG images to any dimension.",
-  },
-  {
-    question: "Is there a file size limit?",
-    answer: "The practical limit is your device's available memory. For most modern devices, you can convert images up to 50MB without any issues.",
-  },
-  {
-    question: "Does it work on mobile devices?",
-    answer: "Yes. Our tools are fully responsive and work on any device with a modern web browser — iPhones, Android phones, tablets, and desktops.",
-  },
-  {
-    question: "How is this different from other JPG converters?",
-    answer: "Unlike server-based converters, we never upload your files. This means faster conversion, complete privacy, and no file size restrictions from server limitations.",
-  },
-  {
-    question: "What is the best free JPG to PDF converter?",
-    answer: "Quick JPG Converter is one of the best free JPG to PDF converters available. It runs entirely in your browser, requires no sign-up, and produces high-quality PDFs from your JPG images instantly.",
-  },
-  {
-    question: "How do I convert JPG to PDF?",
-    answer: "Simply go to our JPG to PDF tool, drag and drop your JPG images, and click Convert. Your PDF will be ready to download in seconds. You can add multiple images to create a multi-page PDF.",
-  },
-  {
-    question: "What is the best PNG to JPG converter?",
-    answer: "Quick JPG Converter is an excellent PNG to JPG converter. It offers quality control (high, balanced, smallest), batch conversion, and runs entirely in your browser for complete privacy.",
-  },
-  {
-    question: "How do I convert PDF to JPG?",
-    answer: "Use our PDF to JPG tool to extract images from PDF files. Upload your PDF, and each page will be converted to a JPG image that you can download individually or as a batch.",
-  },
-  {
-    question: "What is the best HEIC to JPG converter?",
-    answer: "Quick JPG Converter supports HEIC to JPG conversion directly in your browser. It's free, requires no uploads, and works on any device with a modern browser. No software installation needed.",
-  },
-  {
-    question: "How do I convert HEIC to JPG?",
-    answer: "Go to our HEIC to JPG tool, drag and drop your HEIC files (common on iPhones), and click Convert. Your JPG files will be ready to download instantly. Works on desktop and mobile.",
-  },
-  {
-    question: "How do I compress an image to 100KB?",
-    answer: "Use our Compress to 100KB tool. Upload your image, and it will automatically compress to under 100KB while maintaining the best possible quality. Perfect for passport photos, job portals, and government forms.",
-  },
-  {
-    question: "What is the best free image compressor online?",
-    answer: "Quick JPG Converter is one of the best free online image compressors. It supports JPG, PNG, WebP, and AVIF formats, offers quality control, and processes images directly in your browser for complete privacy.",
-  },
-  {
-    question: "How do I convert WebP to JPG?",
-    answer: "Use our WebP to JPG tool to convert WebP images to JPG format. Simply upload your WebP files, select quality, and download your JPG images. Works on any device with a modern browser.",
-  },
-  {
-    question: "Is this image converter safe to use?",
-    answer: "Yes, completely safe. All processing happens locally in your browser. No files are uploaded to any server, so your images remain private and secure. No data is collected or stored.",
-  },
-  {
-    question: "Can I convert multiple images at once?",
-    answer: "Yes! All our tools support batch conversion. You can upload multiple images at once and convert them all in a single operation. Download them individually or as a ZIP file.",
-  },
-  {
-    question: "Do I need to install any software?",
-    answer: "No installation required. Quick JPG Converter runs entirely in your web browser. Just visit the website, select your tool, and start converting. Works on Windows, Mac, Linux, iPhone, and Android.",
-  },
-];
-
-const steps = [
-  {
-    number: "01",
-    title: "Upload Images",
-    description: "Drag and drop your images or click to browse. Multiple file selections are supported.",
-  },
-  {
-    number: "02",
-    title: "Select Settings",
-    description: "Choose your desired output format (PNG, JPG, WebP) and adjust the quality level.",
-  },
-  {
-    number: "03",
-    title: "Convert & Download",
-    description: "Wait milliseconds for local processing, and download your files individually or in one ZIP.",
-  },
-];
-
-const testimonials = [
-  {
-    quote: "Finally, an image tool platform that doesn't make me upload my photos to some random server. Game changer for client work and data security.",
-    author: "Sarah K.",
-    role: "Freelance Photographer",
-    rating: 5,
-  },
-  {
-    quote: "We use this daily for our e-commerce product listings. Batch converting PNGs to WebP directly on the computer is insanely fast and saves us hours.",
-    author: "Marcus T.",
-    role: "E-commerce Manager",
-    rating: 5,
-  },
-  {
-    quote: "Highly recommended for students. No registration wall, no annoying trackers, and the PDF conversion creates clean documentation instantly.",
-    author: "Dr. Chen",
-    role: "Computer Science Professor",
-    rating: 5,
-  },
-];
 
 const trustBadges = [
   { icon: "🛡️", title: "100% Private", desc: "No Server Uploads" },
@@ -132,10 +17,9 @@ const trustBadges = [
 ---
 
 <BaseLayout
-  title="QuickJPG - Free Browser-Based Online Image Tools Platform"
+  title="QuickJPG — Free Browser-Based Online Image Tools Platform"
   description="Convert, compress, and resize JPG, PNG, WebP, HEIC, and PDF files instantly in your browser. Complete privacy, zero server uploads, fast and free."
   canonical={site.url}
-  faqItems={faqItems}
   keywords={["jpg converter", "free image platform", "convert jpg to png", "compress image online", "webp converter", "pdf converter", "image resizer", "no upload converter"]}
 >
   <!-- ============================================
@@ -335,9 +219,7 @@ const trustBadges = [
         ))}
       </div>
 
-      <!-- ============================================
-           GRIDS: CONVERSION TOOLS
-           ============================================ -->
+      <!-- GRIDS: CONVERSION TOOLS -->
       <div id="image-converters-section" class="scroll-mt-24 mb-16">
         <div class="flex items-center gap-3 mb-6 border-b border-border-default/60 pb-3">
           <span class="text-2xl">{categories["image-converters"].icon}</span>
@@ -371,9 +253,7 @@ const trustBadges = [
         </div>
       </div>
 
-      <!-- ============================================
-           GRIDS: COMPRESSION TOOLS
-           ============================================ -->
+      <!-- GRIDS: COMPRESSION TOOLS -->
       <div id="image-compressors-section" class="scroll-mt-24 mb-16">
         <div class="flex items-center gap-3 mb-6 border-b border-border-default/60 pb-3">
           <span class="text-2xl">{categories["image-compressors"].icon}</span>
@@ -407,9 +287,7 @@ const trustBadges = [
         </div>
       </div>
 
-      <!-- ============================================
-           GRIDS: IMAGE UTILITY TOOLS
-           ============================================ -->
+      <!-- GRIDS: IMAGE UTILITY TOOLS -->
       <div id="image-tools-section" class="scroll-mt-24">
         <div class="flex items-center gap-3 mb-6 border-b border-border-default/60 pb-3">
           <span class="text-2xl">{categories["image-tools"].icon}</span>
@@ -446,178 +324,7 @@ const trustBadges = [
   </section>
 
   <!-- ============================================
-       SECTION 4: TRANSPARENCY & ACCESSIBILITY (CRO)
-       ============================================ -->
-  <section class="section bg-surface-muted border-t border-border-default/60">
-    <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <Badge class="mb-4">Why Browser-Based?</Badge>
-          <h2 class="text-3xl font-bold text-text-primary tracking-tight mb-4">
-            Security Meets Speed.<br />No Server Uploads.
-          </h2>
-          <p class="text-sm text-text-secondary leading-relaxed mb-6">
-            Traditional online image converters force you to upload your files onto remote servers. This introduces waiting times, network latency, file size restrictions, and worst of all, security risks for your personal data.
-          </p>
-          <p class="text-sm text-text-secondary leading-relaxed mb-6">
-            <strong>QuickJPG Converter</strong> processes your images entirely on your CPU using HTML5 Canvas and WebAssembly. Everything stays inside your browser, meaning your photos never leave your device.
-          </p>
-          <div class="flex items-center gap-4">
-            <a href="/about" class="btn-primary btn-md">Read Transparency Report</a>
-            <a href="/faq" class="btn-secondary btn-md">Privacy FAQs</a>
-          </div>
-        </div>
-
-        <div class="bg-surface rounded-2xl border border-border-default p-6 shadow-xl relative overflow-hidden">
-          <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-500/5 rounded-full blur-2xl"></div>
-          <h3 class="text-base font-bold text-text-primary mb-4 flex items-center gap-2">
-            🛡️ Local Sandboxing Details
-          </h3>
-          <div class="space-y-4">
-            <div class="flex gap-3">
-              <span class="text-brand-500 mt-0.5">✔</span>
-              <div>
-                <h4 class="text-xs font-bold text-text-primary">Canvas & WebAssembly Decoding</h4>
-                <p class="text-xs text-text-secondary mt-0.5">Client-side pixel array rendering ensures high speed lossless conversions without external calls.</p>
-              </div>
-            </div>
-            <div class="flex gap-3">
-              <span class="text-brand-500 mt-0.5">✔</span>
-              <div>
-                <h4 class="text-xs font-bold text-text-primary">Zero Cache Retention</h4>
-                <p class="text-xs text-text-secondary mt-0.5">No database, temporary files, or server storage. Session variables disappear upon tab closure.</p>
-              </div>
-            </div>
-            <div class="flex gap-3">
-              <span class="text-brand-500 mt-0.5">✔</span>
-              <div>
-                <h4 class="text-xs font-bold text-text-primary">Offline Mode Ready</h4>
-                <p class="text-xs text-text-secondary mt-0.5">You can literally turn off your internet connection, load our app, and perform conversions offline.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Container>
-  </section>
-
-  <!-- ============================================
-       SECTION 5: TESTIMONIALS
-       ============================================ -->
-  <section class="section border-t border-border-default/60">
-    <Container>
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <Badge class="mb-3">High Satisfaction</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
-          What Our Users Say
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {testimonials.map((t) => (
-          <div class="card p-6 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
-            <div>
-              <div class="flex gap-0.5 text-warning mb-4">
-                {Array.from({ length: t.rating }).map(() => (
-                  <span>★</span>
-                ))}
-              </div>
-              <p class="text-xs text-text-secondary italic leading-relaxed mb-6">
-                "{t.quote}"
-              </p>
-            </div>
-            <div class="flex items-center gap-3 pt-4 border-t border-border-muted">
-              <div class="w-9 h-9 rounded-full bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-xs font-bold text-brand-700 dark:text-brand-300 border border-brand-100 dark:border-brand-900/50">
-                {t.author.charAt(0)}
-              </div>
-              <div>
-                <div class="text-xs font-bold text-text-primary">{t.author}</div>
-                <div class="text-[10px] text-text-tertiary">{t.role}</div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Container>
-  </section>
-
-  <!-- ============================================
-       SECTION 6: FAQ
-       ============================================ -->
-  <section class="section bg-surface-muted border-y border-border-default/60" id="faq">
-    <Container variant="narrow">
-      <div class="text-center mb-10">
-        <Badge class="mb-3">FAQ</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
-          Frequently Asked Questions
-        </h2>
-      </div>
-      <FAQ items={faqItems} />
-    </Container>
-  </section>
-
-  <!-- ============================================
-       SECTION 7: SEO CONTENT (600+ words)
-       ============================================ -->
-  <section class="section">
-    <Container variant="narrow">
-      <div class="prose">
-        <h2>The Best Free Online JPG Converter</h2>
-        <p>
-          Looking for a free JPG converter that works entirely in your browser? Quick JPG Converter
-          is the fastest and most private way to convert JPG images to PNG, WebP, and PDF formats —
-          without uploading your files to any server. Whether you need to convert JPG to PNG for
-          lossless quality, JPG to WebP for faster websites, or JPG to PDF for easy sharing, our
-          online JPG converter handles every format conversion in milliseconds. We also support HEIC
-          to JPG conversion for iPhone photos, making it the most versatile free image converter available.
-        </p>
-        <p>
-          Unlike traditional image converters that require you to upload photos to a remote server,
-          our free JPG converter uses WebAssembly and Canvas API technology to process images directly
-          on your device. This means your photos never leave your browser — guaranteed privacy every
-          time you convert. No sign-up, no watermarks, no file size limits, and no hidden fees. It's
-          the JPG converter that respects your privacy while delivering professional-quality results.
-        </p>
-
-        <h3>Why Choose Our Online JPG Converter?</h3>
-        <p>
-          There are dozens of JPG converters online, but most of them come with significant drawbacks.
-          Server-based converters require you to upload your images, which introduces privacy risks,
-          slow upload times, and file size restrictions. Our free JPG converter solves all of these
-          problems by processing everything locally in your browser. When you use our JPG converter,
-          your images stay on your device — they're never sent to any server.
-        </p>
-        <ul>
-          <li><strong>100% private</strong> — your JPG images never leave your device. No server uploads, no data collection, no tracking.</li>
-          <li><strong>Instant conversion</strong> — convert JPG to PNG, WebP, or PDF in under a second. No upload wait times.</li>
-          <li><strong>Completely free</strong> — no sign-up required, no watermarks on output, no usage limits. Convert as many images as you need.</li>
-          <li><strong>Batch processing</strong> — convert multiple JPG files at once. Perfect for photographers and e-commerce sellers.</li>
-          <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest file size for every conversion.</li>
-          <li><strong>Works everywhere</strong> — use our JPG converter on desktop, tablet, or phone. Any modern browser works.</li>
-        </ul>
-
-        <h3>Supported JPG Conversions</h3>
-        <p>
-          Our online JPG converter supports all the format conversions you need. Each conversion
-          runs entirely in your browser, producing high-quality output that you can download instantly.
-          Whether you're looking for a PNG to JPG converter, WebP to JPG converter, or HEIC to JPG
-          converter, we've got you covered.
-        </p>
-        <ul>
-          <li><strong><a href="/jpg-to-png">JPG to PNG</a></strong> — convert JPG to PNG for lossless quality and transparent backgrounds. Perfect for logos, screenshots, and graphics.</li>
-          <li><strong><a href="/png-to-jpg">PNG to JPG</a></strong> — convert PNG to JPG for smaller file sizes and universal compatibility. Ideal for web publishing and email.</li>
-          <li><strong><a href="/jpg-to-webp">JPG to WebP</a></strong> — convert JPG to WebP for 25-35% smaller files with equivalent quality. Great for faster websites.</li>
-          <li><strong><a href="/webp-to-jpg">WebP to JPG</a></strong> — convert WebP to JPG for wider compatibility with older software and social media platforms.</li>
-          <li><strong><a href="/jpg-to-pdf">JPG to PDF</a></strong> — convert JPG to PDF for creating shareable documents, presentations, and print-ready files.</li>
-          <li><strong><a href="/heic-to-jpg">HEIC to JPG</a></strong> — convert iPhone HEIC photos to JPG for universal compatibility. Works with photos from any iPhone or iPad.</li>
-          <li><strong><a href="/tools/resize-jpg">Resize JPG</a></strong> — resize JPG images to any dimension while maintaining quality. Optimize for web, social media, or email.</li>
-        </ul>
-      </div>
-    </Container>
-  </section>
-
-  <!-- ============================================
-       SECTION 8: FINAL CTA
+       SECTION 4: FINAL CTA
        ============================================ -->
   <section class="section relative overflow-hidden bg-glow border-t border-border-default/60">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-brand-500/5 rounded-full blur-3xl"></div>
@@ -633,6 +340,9 @@ const trustBadges = [
         <div class="flex items-center justify-center gap-3">
           <Button href="#categories" size="xl" variant="secondary">
             Browse All Tools
+          </Button>
+          <Button href="/why" size="xl" variant="secondary">
+            Why Browser-Based?
           </Button>
         </div>
       </div>

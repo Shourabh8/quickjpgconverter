@@ -1,0 +1,134 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Button from "@components/ui/Button.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { site } from "@data/site";
+
+const breadcrumbs = [{ name: "Testimonials", url: "/testimonials" }];
+
+const testimonials = [
+  {
+    quote: "Finally, an image tool platform that doesn't make me upload my photos to some random server. Game changer for client work and data security.",
+    author: "Sarah K.",
+    role: "Freelance Photographer",
+    rating: 5,
+  },
+  {
+    quote: "We use this daily for our e-commerce product listings. Batch converting PNGs to WebP directly on the computer is insanely fast and saves us hours.",
+    author: "Marcus T.",
+    role: "E-commerce Manager",
+    rating: 5,
+  },
+  {
+    quote: "Highly recommended for students. No registration wall, no annoying trackers, and the PDF conversion creates clean documentation instantly.",
+    author: "Dr. Chen",
+    role: "Computer Science Professor",
+    rating: 5,
+  },
+];
+
+const benefits = [
+  {
+    icon: "🛡️",
+    title: "Complete Privacy",
+    desc: "Your images never leave your device. Every conversion runs locally in your browser with zero server uploads.",
+  },
+  {
+    icon: "⚡",
+    title: "Blazing Fast",
+    desc: "No upload or download wait times. Conversions complete in milliseconds using your device's CPU and GPU.",
+  },
+  {
+    icon: "💰",
+    title: "Completely Free",
+    desc: "No sign-up required, no watermarks, no hidden fees, no usage limits. Convert as many images as you need.",
+  },
+  {
+    icon: "🚫",
+    title: "No Signup Required",
+    desc: "Open the site and start converting immediately. No email, no account, no friction. Just drop your files and go.",
+  },
+];
+---
+
+<BaseLayout
+  title="What Our Users Say — QuickJPG Converter Reviews"
+  description="See what photographers, developers, and e-commerce managers say about QuickJPG Converter. Real reviews from real users."
+  canonical="https://quickjpgconverter.com/testimonials"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-10">
+        <!-- SECTION 5 FROM HOMEPAGE: TESTIMONIALS -->
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <Badge class="mb-3">High Satisfaction</Badge>
+          <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight">
+            What Our Users Say
+          </h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
+          {testimonials.map((t) => (
+            <div class="card p-6 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
+              <div>
+                <div class="flex gap-0.5 text-warning mb-4">
+                  {Array.from({ length: t.rating }).map(() => (
+                    <span>★</span>
+                  ))}
+                </div>
+                <p class="text-xs text-text-secondary italic leading-relaxed mb-6">
+                  "{t.quote}"
+                </p>
+              </div>
+              <div class="flex items-center gap-3 pt-4 border-t border-border-muted">
+                <div class="w-9 h-9 rounded-full bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-xs font-bold text-brand-700 dark:text-brand-300 border border-brand-100 dark:border-brand-900/50">
+                  {t.author.charAt(0)}
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-text-primary">{t.author}</div>
+                  <div class="text-[10px] text-text-tertiary">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- WHY USERS LOVE US -->
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <Badge class="mb-3">Why Users Love Us</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
+            The QuickJPG Advantage
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto mb-20">
+          {benefits.map((b) => (
+            <div class="p-6 rounded-2xl border border-border-default bg-surface hover:shadow-lg transition-shadow duration-300">
+              <div class="text-2xl mb-3">{b.icon}</div>
+              <h3 class="text-base font-bold text-text-primary mb-2">{b.title}</h3>
+              <p class="text-xs text-text-secondary leading-relaxed">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-2xl font-bold text-text-primary tracking-tight mb-4">
+            Join Thousands of Happy Users
+          </h2>
+          <p class="text-sm text-text-secondary mb-8">
+            Try QuickJPG Converter today — free, private, and instant. No account needed.
+          </p>
+          <Button href="/" size="xl" variant="primary">
+            Start Converting Now
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

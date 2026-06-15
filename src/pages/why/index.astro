@@ -1,0 +1,157 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Button from "@components/ui/Button.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { site } from "@data/site";
+
+const breadcrumbs = [{ name: "Why Browser-Based?", url: "/why" }];
+
+const faqItems = [
+  {
+    question: "Why is browser-based image conversion better than server-based?",
+    answer: "Browser-based conversion processes files locally on your device, meaning your images never leave your browser. This eliminates privacy risks from uploading to remote servers, removes network latency for faster processing, and avoids file size restrictions imposed by server infrastructure.",
+  },
+  {
+    question: "Does browser-based conversion work offline?",
+    answer: "Yes. Once the page is loaded, all conversion logic runs using HTML5 Canvas and WebAssembly in your browser. You can disconnect from the internet and still convert images. No server connection is needed at any point during the conversion process.",
+  },
+  {
+    question: "Is browser-based conversion slower than server-based?",
+    answer: "In most cases it's faster. Server-based converters require you to upload the file first, wait for processing, then download the result. Browser-based conversion skips the upload and download steps entirely, making it faster for small to medium files. For very large files, server-based tools may have an edge due to more powerful hardware.",
+  },
+  {
+    question: "What technologies power browser-based image conversion?",
+    answer: "We use a combination of HTML5 Canvas API for pixel manipulation, WebAssembly for high-performance codec decoding, and JavaScript Web Workers for non-blocking background processing. All of these run entirely within your browser's sandboxed environment.",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Upload",
+    description: "Drag and drop your images or click to browse. Your files are read directly from your local disk using the browser's FileReader API.",
+  },
+  {
+    number: "02",
+    title: "Process Locally",
+    description: "Your browser decodes the image onto a Canvas element and converts it using WebAssembly. No data ever leaves your device.",
+  },
+  {
+    number: "03",
+    title: "Download",
+    description: "The converted file is offered as a direct download via an Object URL. You get your result instantly with no server wait times.",
+  },
+];
+---
+
+<BaseLayout
+  title="Why Browser-Based Image Conversion — Privacy & Speed"
+  description="Learn why browser-based image converters are faster, more private, and more secure than server-based alternatives. No uploads, no tracking."
+  canonical="https://quickjpgconverter.com/why"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-10">
+        <!-- SECTION 4 FROM HOMEPAGE: TRANSPARENCY & ACCESSIBILITY -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          <div>
+            <Badge class="mb-4">Why Browser-Based?</Badge>
+            <h1 class="text-3xl font-bold text-text-primary tracking-tight mb-4">
+              Security Meets Speed.<br />No Server Uploads.
+            </h1>
+            <p class="text-sm text-text-secondary leading-relaxed mb-6">
+              Traditional online image converters force you to upload your files onto remote servers. This introduces waiting times, network latency, file size restrictions, and worst of all, security risks for your personal data.
+            </p>
+            <p class="text-sm text-text-secondary leading-relaxed mb-6">
+              <strong>QuickJPG Converter</strong> processes your images entirely on your CPU using HTML5 Canvas and WebAssembly. Everything stays inside your browser, meaning your photos never leave your device.
+            </p>
+            <div class="flex items-center gap-4">
+              <a href="/about" class="btn-primary btn-md">Read Transparency Report</a>
+              <a href="/faq" class="btn-secondary btn-md">Privacy FAQs</a>
+            </div>
+          </div>
+
+          <div class="bg-surface rounded-2xl border border-border-default p-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-500/5 rounded-full blur-2xl"></div>
+            <h3 class="text-base font-bold text-text-primary mb-4 flex items-center gap-2">
+              🛡️ Local Sandboxing Details
+            </h3>
+            <div class="space-y-4">
+              <div class="flex gap-3">
+                <span class="text-brand-500 mt-0.5">✔</span>
+                <div>
+                  <h4 class="text-xs font-bold text-text-primary">Canvas & WebAssembly Decoding</h4>
+                  <p class="text-xs text-text-secondary mt-0.5">Client-side pixel array rendering ensures high speed lossless conversions without external calls.</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="text-brand-500 mt-0.5">✔</span>
+                <div>
+                  <h4 class="text-xs font-bold text-text-primary">Zero Cache Retention</h4>
+                  <p class="text-xs text-text-secondary mt-0.5">No database, temporary files, or server storage. Session variables disappear upon tab closure.</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="text-brand-500 mt-0.5">✔</span>
+                <div>
+                  <h4 class="text-xs font-bold text-text-primary">Offline Mode Ready</h4>
+                  <p class="text-xs text-text-secondary mt-0.5">You can literally turn off your internet connection, load our app, and perform conversions offline.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOW IT WORKS SECTION -->
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <Badge class="mb-3">How It Works</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
+            Three Simple Steps
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-20">
+          {steps.map((step) => (
+            <div class="text-center p-6 rounded-2xl border border-border-default bg-surface">
+              <div class="w-12 h-12 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-lg font-bold text-brand-600 dark:text-brand-400 border border-brand-100 dark:border-brand-900/50 mx-auto mb-4">
+                {step.number}
+              </div>
+              <h3 class="text-base font-bold text-text-primary mb-2">{step.title}</h3>
+              <p class="text-xs text-text-secondary leading-relaxed">{step.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div class="text-center mb-10">
+          <Badge class="mb-3">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        <div class="max-w-3xl mx-auto mb-16">
+          <FAQ items={faqItems} />
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-2xl font-bold text-text-primary tracking-tight mb-4">
+            Ready to Try Browser-Based Conversion?
+          </h2>
+          <p class="text-sm text-text-secondary mb-8">
+            Experience private, instant image conversion with no uploads and no tracking.
+          </p>
+          <Button href="/" size="xl" variant="primary">
+            Go to Converter
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
