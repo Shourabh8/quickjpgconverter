@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Button from "@components/ui/Button.astro";
+import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import ActiveConverter from "@components/tool/ActiveConverter.astro";
 
 const breadcrumbs = [
   { name: "Home", url: "/" },
@@ -41,32 +42,49 @@ const faqItems = [
 <BaseLayout
   title="Convert PNG to JPG — Reduce File Size Without Visible Quality Loss"
   description="Convert PNG images to JPG for smaller files and universal compatibility. Quality-controlled compression, batch processing, and 100% private — no uploads required."
-  canonical="https://quickjpgconverter.com/tools/png-to-jpg"
+  canonical="https://quickjpgconverter.com/png-to-jpg"
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
 >
-  <section class="section">
-    <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
 
-      <div class="mt-8 mb-10">
-        <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-4">
-          Convert PNG to JPG — Smaller Files, Same Visual Quality
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">🛡️ 100% In-Browser Privacy</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Convert PNG to <span class="gradient-text">JPG</span>
         </h1>
-        <p class="text-lg text-text-secondary max-w-xl">
-          Reduce PNG file sizes by 5-10x while keeping visually identical quality.
-          Choose your compression level. No uploads, no sign-up, completely private.
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Reduce PNG file sizes by 5-10× while keeping visually identical quality.
+          Runs entirely on your computer — no server uploads.
         </p>
-        <div class="mt-6">
-          <Button href="/tools/png-to-jpg" size="lg">
-            Open PNG to JPG Converter
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </Button>
-        </div>
       </div>
+    </Container>
+  </section>
 
+  <!-- Converter Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <ActiveConverter
+          targetFormat="jpg"
+          targetExt="jpg"
+          targetMime="image/jpeg"
+          accept=".png"
+          inputFormat="PNG"
+          outputFormat="JPG"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQs -->
+  <section class="section border-t border-border-default/60">
+    <Container variant="narrow">
       <div class="prose">
         <h2>Why Photographers Convert PNG to JPG</h2>
         <p>
@@ -194,17 +212,6 @@ const faqItems = [
       <div class="mt-12">
         <h2 class="text-2xl font-bold text-text-primary mb-6">Frequently Asked Questions</h2>
         <FAQ items={faqItems} />
-      </div>
-
-      <div class="mt-10 p-6 rounded-2xl border border-border-default bg-surface-muted text-center">
-        <h3 class="text-lg font-semibold text-text-primary mb-2">Ready to reduce your file sizes?</h3>
-        <p class="text-sm text-text-secondary mb-4">Open the converter and transform your PNG files to JPG in seconds.</p>
-        <Button href="/tools/png-to-jpg">
-          Open PNG to JPG Converter
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </Button>
       </div>
 
       <div class="mt-8 text-xs text-text-tertiary">

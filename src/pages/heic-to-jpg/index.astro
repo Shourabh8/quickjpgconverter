@@ -4,6 +4,7 @@ import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import ActiveConverter from "@components/tool/ActiveConverter.astro";
 
 const breadcrumbs = [
   { name: "HEIC to JPG", url: "/heic-to-jpg" },
@@ -30,13 +31,17 @@ const faqItems = [
     question: "Can I batch convert HEIC to JPG?",
     answer: "Yes. You can select multiple HEIC files and convert them all to JPG simultaneously. This is perfect for converting entire photo albums from your iPhone.",
   },
+  {
+    question: "Is it safe to convert my iPhone photos online?",
+    answer: "With our converter, absolutely. All processing happens locally in your browser — your photos never leave your device. There are no uploads, no storage, and no risk of your private photos being accessed by anyone.",
+  },
 ];
 ---
 
 <BaseLayout
-  title="Free HEIC to JPG Converter — Online JPG Converter Tool"
+  title="Free HEIC to JPG Converter — Convert iPhone Photos Instantly"
   description="Convert iPhone HEIC photos to JPG instantly with our free online converter. No uploads, 100% private. Works in your browser on any device."
-  canonical="https://quickjpgconverter.com/tools/heic-to-jpg"
+  canonical="https://quickjpgconverter.com/heic-to-jpg"
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
   keywords={["heic to jpg", "convert heic to jpg", "heic converter", "iphone photo converter", "heic to jpg online free", "heic to jpeg"]}
@@ -45,180 +50,39 @@ const faqItems = [
     <Breadcrumb items={breadcrumbs} />
   </Container>
 
-  <section class="pb-6 sm:pb-8">
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
     <Container>
       <div class="text-center max-w-2xl mx-auto">
-        <Badge class="mb-4">
-          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-          </svg>
-          Free · No Signup · Private
-        </Badge>
+        <Badge class="mb-4">📱 iPhone Photo Converter</Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
           HEIC to <span class="gradient-text">JPG</span> Converter
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
           Convert iPhone HEIC photos to universally compatible JPG format.
-          No uploads, 100% private — runs in your browser.
+          No uploads, 100% private — runs entirely in your browser.
         </p>
       </div>
     </Container>
   </section>
 
+  <!-- Converter Widget -->
   <section class="pb-12 sm:pb-16">
     <Container>
       <div class="max-w-5xl mx-auto">
-        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
-          <!-- Top bar -->
-          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
-            <span class="text-sm font-medium text-text-secondary">Convert to:</span>
-            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
-              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">JPG</button>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
-            <!-- LEFT: Upload / Preview -->
-            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
-              <!-- Upload zone -->
-              <div id="upload-zone" class="h-full">
-                <div
-                  id="drop-area"
-                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
-                >
-                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
-                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                    </svg>
-                  </div>
-                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your HEIC files here</h3>
-                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
-                  <label class="btn-primary btn-md cursor-pointer">
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    Choose Files
-                    <input type="file" class="sr-only" accept=".heic,.heif" multiple />
-                  </label>
-                  <p class="text-xs text-text-tertiary mt-4">HEIC, HEIF · Max 50MB per file · Multiple files supported</p>
-                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
-                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                    </svg>
-                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Preview zone -->
-              <div id="preview-zone" class="hidden h-full">
-                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
-                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
-                    <div class="flex items-center gap-2">
-                      <div class="w-2 h-2 rounded-full bg-success"></div>
-                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
-                    </div>
-                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
-                  </div>
-                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
-                  <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
-                    <span class="text-text-tertiary">Input: HEIC</span>
-                    <span class="text-text-tertiary">→</span>
-                    <span class="text-brand-600 dark:text-brand-400 font-medium">Output: JPG</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- RIGHT: Options + Actions -->
-            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
-              <div class="mb-6">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Conversion Options</h3>
-                <div class="space-y-2">
-                  <label class="flex items-start gap-3 p-3 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30 cursor-pointer transition-all duration-200">
-                    <input type="radio" name="quality" value="quality-high" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                    <div class="flex-1 min-w-0">
-                      <div class="text-sm font-medium text-text-primary">High Quality</div>
-                      <div class="text-xs text-text-tertiary mt-0.5">Best visual fidelity, larger file</div>
-                    </div>
-                  </label>
-                  <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
-                    <input type="radio" name="quality" value="quality-balanced" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                    <div class="flex-1 min-w-0">
-                      <div class="text-sm font-medium text-text-primary">Balanced</div>
-                      <div class="text-xs text-text-tertiary mt-0.5">Good balance of size and quality</div>
-                    </div>
-                  </label>
-                  <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
-                    <input type="radio" name="quality" value="quality-small" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                    <div class="flex-1 min-w-0">
-                      <div class="text-sm font-medium text-text-primary">Smallest Size</div>
-                      <div class="text-xs text-text-tertiary mt-0.5">Smallest file, slight quality loss</div>
-                    </div>
-                  </label>
-                </div>
-              </div>
-
-              <div class="h-px bg-border-default mb-6"></div>
-
-              <div class="mb-6">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Output Format</h3>
-                <div class="p-3 rounded-xl border border-border-default bg-surface-muted">
-                  <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center">
-                      <svg class="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div class="text-sm font-semibold text-text-primary">JPG</div>
-                      <div class="text-xs text-text-tertiary">Lossy · Universal · Smaller files</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex-1"></div>
-
-              <!-- Progress -->
-              <div id="progress-area" class="hidden mb-4">
-                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
-                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
-                </div>
-                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Converting...</p>
-              </div>
-
-              <!-- Convert button -->
-              <div id="convert-btn-area">
-                <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                  Convert to JPG
-                </button>
-                <p class="text-xs text-text-tertiary text-center mt-2">Upload a file to start conversion</p>
-              </div>
-
-              <!-- Download area -->
-              <div id="download-area" class="hidden"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
-          <span class="font-medium text-text-secondary">Supported:</span>
-          {["HEIC", "HEIF"].map((fmt) => (
-            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
-          ))}
-          <span class="text-text-tertiary">·</span>
-          <span>Max 50MB</span>
-          <span class="text-text-tertiary">·</span>
-          <span>Multiple files</span>
-        </div>
+        <ActiveConverter
+          targetFormat="jpg"
+          targetExt="jpg"
+          targetMime="image/jpeg"
+          accept=".heic,.heif"
+          inputFormat="HEIC / HEIF"
+          outputFormat="JPG"
+        />
       </div>
     </Container>
   </section>
 
+  <!-- How It Works -->
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
@@ -245,13 +109,18 @@ const faqItems = [
     </Container>
   </section>
 
+  <!-- SEO Prose & FAQs -->
   <section class="section">
     <Container variant="narrow">
       <div class="prose">
         <h2>Why Convert HEIC to JPG?</h2>
         <p>
-          HEIC (High Efficiency Image Container) is the default photo format for iPhones and iPads since iOS 11. While it offers excellent compression and quality, many platforms and applications still don't support it natively.
+          HEIC (High Efficiency Image Container) is the default photo format for iPhones and iPads since iOS 11. While it offers excellent compression and quality, many platforms and applications still don't support it natively. This creates frustrating situations: you take photos on your iPhone and can't open them on Windows, can't upload them to social media, or can't share them with colleagues using non-Apple devices.
         </p>
+        <p>
+          Converting HEIC to JPG solves this problem instantly. JPG is the most universally supported image format — it works on every device, every operating system, every design tool, and every website. Once converted, your iPhone photos work everywhere without any compatibility issues.
+        </p>
+
         <h3>When You Need JPG</h3>
         <ul>
           <li>Uploading to social media platforms that don't support HEIC</li>
@@ -259,50 +128,40 @@ const faqItems = [
           <li>Using with older software or design tools</li>
           <li>Printing photos at a photo lab</li>
           <li>Attaching to emails that may not render HEIC</li>
+          <li>Uploading to government forms or portals</li>
+          <li>Using in web projects or presentations</li>
         </ul>
+
+        <h3>HEIC vs JPG: Key Differences</h3>
+        <p>
+          HEIC uses more sophisticated compression technology than JPG, allowing it to store higher quality images at smaller file sizes. An iPhone photo saved as HEIC might be 3MB, while the same image in JPG would be 5-8MB. However, this efficiency comes at the cost of compatibility.
+        </p>
+        <p>
+          JPG trades some file size efficiency for near-universal compatibility. It has been the standard photographic image format for over 30 years, and virtually every piece of software, every platform, and every device in existence can open JPG files. For sharing and distribution, JPG remains unmatched.
+        </p>
+
         <h3>Benefits of Our Converter</h3>
         <ul>
           <li><strong>100% private</strong> — your photos never leave your device</li>
           <li><strong>No software needed</strong> — works in your browser</li>
           <li><strong>Batch conversion</strong> — convert multiple photos at once</li>
           <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest size</li>
+          <li><strong>Free forever</strong> — no sign-up, no payment, no watermarks</li>
         </ul>
       </div>
-    </Container>
-  </section>
 
-  <section class="section">
-    <Container variant="narrow">
-      <div class="text-center mb-10">
-        <Badge class="mb-4">FAQ</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
       </div>
-      <FAQ items={faqItems} />
-    </Container>
-  </section>
 
-  <section class="section bg-surface-muted">
-    <Container>
-      <div class="text-center mb-10">
-        <Badge class="mb-4">Related Tools</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Try Our Other Converters</h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="/tools/jpg-to-png" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PNG</h3>
           <p class="text-sm text-text-secondary">Convert JPG to PNG with lossless quality.</p>
-        </a>
-        <a href="/tools/png-to-jpg" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PNG to JPG</h3>
-          <p class="text-sm text-text-secondary">Convert PNG images to JPG format.</p>
-        </a>
-        <a href="/tools/jpg-to-webp" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to WebP</h3>
-          <p class="text-sm text-text-secondary">Convert JPG to modern WebP format.</p>
-        </a>
-        <a href="/tools/webp-to-jpg" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">WebP to JPG</h3>
-          <p class="text-sm text-text-secondary">Convert WebP images to JPG.</p>
         </a>
         <a href="/tools/image-compressor" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
@@ -315,9 +174,4 @@ const faqItems = [
       </div>
     </Container>
   </section>
-
-  <script>
-    import { initConverter } from "@scripts/converter.js";
-    initConverter({ targetFormat: "jpg", targetExt: "jpg", targetMime: "image/jpeg" });
-  </script>
 </BaseLayout>

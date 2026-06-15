@@ -1,0 +1,297 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [{ name: "JPG Compressor", url: "/jpg-compressor" }];
+
+const faqItems = [
+  {
+    question: "How much can I compress a JPG without losing quality?",
+    answer: "Typically 20–60% reduction is achievable with imperceptible quality loss. Our tool lets you choose from three modes — High Quality, Balanced, and Smallest Size — so you can find the right balance for your use case.",
+  },
+  {
+    question: "Is the compressed JPG still a JPG file?",
+    answer: "Yes. The output remains a JPG file with the same extension. Only the file size changes, not the format.",
+  },
+  {
+    question: "Does compressing a JPG reduce image dimensions?",
+    answer: "No. By default, compression only changes the encoding quality, not the pixel dimensions. The image stays the same width and height.",
+  },
+  {
+    question: "Can I compress multiple JPGs at once?",
+    answer: "Yes. You can upload and compress multiple JPG files in one session and download them all as a ZIP archive.",
+  },
+  {
+    question: "Are my JPG files uploaded to a server?",
+    answer: "No. All compression happens locally in your browser using the Canvas API. Your files never leave your device.",
+  },
+  {
+    question: "What is the maximum file size I can compress?",
+    answer: "There's no hard limit — it depends on your device's available memory. Most modern devices handle images up to 50MB with no issues.",
+  },
+];
+---
+
+<BaseLayout
+  title="Free JPG Compressor — Reduce JPG File Size Online"
+  description="Compress JPG files instantly in your browser. Reduce JPG size by up to 80% without visible quality loss. 100% private, no uploads, completely free."
+  canonical="https://quickjpgconverter.com/jpg-compressor"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["jpg compressor", "compress jpg", "reduce jpg size", "jpg optimizer", "compress jpeg online free", "shrink jpg"]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">🗜️ Lossless & Lossy Compression</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          <span class="gradient-text">JPG</span> Compressor
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Reduce JPG file sizes by up to 80% while preserving visual quality.
+          100% private — processed entirely in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Compressor Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <!-- Top bar -->
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Compress JPG files</span>
+            <div class="flex items-center gap-1.5 text-xs text-text-tertiary">
+              <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+              Local Processing
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[440px]">
+            <!-- LEFT: Upload / Preview -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your JPG files here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose JPG Files
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,image/jpeg" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG / JPEG · Multiple files supported · Max 50MB each</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to compress</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Options + Actions -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Compression Mode</h3>
+                <div class="space-y-2 mb-6">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="mode" value="lossy" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-medium text-text-primary">Lossy (Recommended)</div>
+                      <div class="text-xs text-text-tertiary mt-0.5">Smallest files, minimal quality change</div>
+                    </div>
+                  </label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="mode" value="lossless" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-medium text-text-primary">Lossless</div>
+                      <div class="text-xs text-text-tertiary mt-0.5">100% quality preserved, less reduction</div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="h-px bg-border-default mb-6"></div>
+
+                <div class="mb-6">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-sm font-semibold text-text-primary" for="quality-slider">Quality</label>
+                    <span id="quality-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">80%</span>
+                  </div>
+                  <input
+                    id="quality-slider"
+                    type="range"
+                    min="10"
+                    max="95"
+                    value="80"
+                    class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
+                  />
+                  <div class="flex justify-between text-xs text-text-tertiary mt-1">
+                    <span>Smaller</span>
+                    <span>Better Quality</span>
+                  </div>
+                </div>
+
+                <div class="h-px bg-border-default mb-6"></div>
+
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Max Dimension (optional)</h3>
+                <div class="space-y-2 mb-6">
+                  {[{ value: "none", label: "Keep original size", checked: true }, { value: "1920", label: "Max 1920px (HD)" }, { value: "1280", label: "Max 1280px (Web)" }, { value: "800", label: "Max 800px (Thumbnail)" }].map((opt) => (
+                    <label class={`flex items-center gap-2.5 p-2.5 rounded-lg border cursor-pointer transition-all duration-200 ${opt.checked ? "border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30" : "border-border-default hover:border-border-strong"}`}>
+                      <input type="radio" name="resize" value={opt.value} checked={opt.checked} class="w-3.5 h-3.5 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                      <span class="text-xs font-medium text-text-primary">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div id="progress-area" class="hidden mb-4">
+                  <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                  </div>
+                  <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Compressing...</p>
+                </div>
+
+                <div id="compress-btn-area">
+                  <button id="compress-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                    Compress JPG
+                  </button>
+                  <p class="text-xs text-text-tertiary text-center mt-2">Processed locally in your browser</p>
+                </div>
+
+                <div id="download-area" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Simple Process</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps to Smaller JPGs</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload JPGs</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select. Supports batch upload.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Choose Quality</h3>
+          <p class="text-sm text-text-secondary">Adjust the quality slider to match your needs.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download Results</h3>
+          <p class="text-sm text-text-secondary">Get compressed files individually or as a ZIP.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQ -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Compress JPG Files?</h2>
+        <p>
+          JPG is the most widely used image format on the web, but unoptimized JPGs can significantly slow down websites, consume unnecessary storage, and eat into your bandwidth. A typical camera JPG can be 5–8MB — the same image compressed for web might be 300–500KB with no visible difference to the human eye.
+        </p>
+        <p>
+          Compressing your JPG files delivers faster page loads, better SEO rankings (Google rewards fast pages), lower storage costs, and faster email attachments. For e-commerce sites, compressed product images directly improve conversion rates.
+        </p>
+
+        <h3>Lossy vs Lossless JPG Compression</h3>
+        <p>
+          <strong>Lossy compression</strong> works by selectively discarding image data that is less perceptible to the human eye. At quality settings of 70–85%, most users cannot distinguish a lossy-compressed JPG from the original. This mode achieves the largest file size reductions — often 40–80%.
+        </p>
+        <p>
+          <strong>Lossless compression</strong> removes only redundant metadata and optimizes the encoding without changing any pixel data. The quality is mathematically identical to the original, though the file size reduction is typically smaller — around 10–30%.
+        </p>
+
+        <h3>Best Practices for JPG Compression</h3>
+        <ul>
+          <li>For web use, 75–85% quality is generally indistinguishable from the original</li>
+          <li>For social media, 80% quality produces great results at manageable file sizes</li>
+          <li>For email attachments, target files under 1MB (use 60–70% quality)</li>
+          <li>For print, keep quality at 90%+ to preserve fine detail</li>
+          <li>Resize images to their display dimensions before compressing</li>
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <!-- Related tools -->
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/png-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PNG Compressor</h3>
+          <p class="text-sm text-text-secondary">Reduce PNG file size without quality loss.</p>
+        </a>
+        <a href="/image-resizer" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Resizer</h3>
+          <p class="text-sm text-text-secondary">Resize images to exact dimensions.</p>
+        </a>
+        <a href="/jpg-to-webp" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to WebP</h3>
+          <p class="text-sm text-text-secondary">Convert JPG to modern WebP for even smaller files.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initImageCompressor } from "@scripts/compressor.js";
+    document.addEventListener("DOMContentLoaded", () => {
+      initImageCompressor();
+    });
+  </script>
+</BaseLayout>

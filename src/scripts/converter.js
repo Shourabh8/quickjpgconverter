@@ -97,6 +97,38 @@ export function initConverter(config) {
 
   if (!dropArea || !uploadZone) return;
 
+  function getActiveTarget() {
+    const select = document.getElementById("homepage-target-format");
+    if (select) {
+      const val = select.value;
+      let mimeType = "image/png";
+      let ext = "png";
+      if (val === "jpg" || val === "jpeg") {
+        mimeType = "image/jpeg";
+        ext = "jpg";
+      } else if (val === "webp") {
+        mimeType = "image/webp";
+        ext = "webp";
+      } else if (val === "pdf") {
+        mimeType = "application/pdf";
+        ext = "pdf";
+      }
+      return { format: val, ext, mime: mimeType };
+    }
+    return { format: targetFormat, ext: targetExt, mime: targetMime };
+  }
+
+  // Bind change listener on format selector
+  const formatSelector = document.getElementById("homepage-target-format");
+  formatSelector?.addEventListener("change", () => {
+    renderPreviewGrid();
+    const active = getActiveTarget();
+    const badge = document.getElementById("output-format-badge");
+    if (badge) {
+      badge.textContent = `Output: ${active.format.toUpperCase()}`;
+    }
+  });
+
   // --- Keyboard accessibility for drop zone ---
   dropArea.setAttribute("tabindex", "0");
   dropArea.setAttribute("role", "button");
@@ -210,6 +242,8 @@ export function initConverter(config) {
     if (!previewGrid) return;
     previewGrid.innerHTML = "";
 
+    const active = getActiveTarget();
+
     files.forEach((file, i) => {
       const card = document.createElement("div");
       card.className = "relative rounded-lg border border-border-default bg-surface overflow-hidden";
@@ -233,7 +267,7 @@ export function initConverter(config) {
           <span class="text-xs text-text-tertiary">${formatBytes(file.size)}</span>
         </div>
         <div class="flex items-center justify-between mt-1">
-          <span class="text-xs text-text-tertiary">→ ${targetFormat.toUpperCase()}</span>
+          <span class="text-xs text-text-tertiary">→ ${active.format.toUpperCase()}</span>
           <button data-remove="${i}" class="text-xs text-danger hover:text-danger/80 font-medium transition-colors">Remove</button>
         </div>
       `;
@@ -271,6 +305,8 @@ export function initConverter(config) {
     downloadArea?.classList.add("hidden");
     convertedBlobs = [];
 
+    const active = getActiveTarget();
+
     const quality = QUALITY_MAP[
       document.querySelector('input[name="quality"]:checked')?.value || "quality-high"
     ];
@@ -282,10 +318,10 @@ export function initConverter(config) {
 
       try {
         const img = await loadImage(files[i]);
-        const blob = await imageToBlob(img, targetMime, quality);
+        const blob = await imageToBlob(img, active.mime, quality);
         convertedBlobs.push({
           blob,
-          name: replaceExtension(files[i].name, targetExt),
+          name: replaceExtension(files[i].name, active.ext),
           width: img.naturalWidth,
           height: img.naturalHeight,
           originalName: files[i].name,

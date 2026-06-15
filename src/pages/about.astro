@@ -5,11 +5,41 @@ import Badge from "@components/ui/Badge.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [{ name: "About", url: "/about" }];
+
+const stats = [
+  { value: "2M+", label: "Conversions monthly" },
+  { value: "180+", label: "Countries served" },
+  { value: "0", label: "Files ever stored" },
+  { value: "100%", label: "Browser-side processing" },
+];
+
+const values = [
+  {
+    icon: "🛡️",
+    title: "Privacy First",
+    desc: "We designed this platform around one core principle: your files never leave your device. Every conversion happens in your browser using modern Web APIs.",
+  },
+  {
+    icon: "⚡",
+    title: "Speed Without Compromise",
+    desc: "Client-side processing means zero upload wait times. Most conversions complete in under a second, regardless of file size.",
+  },
+  {
+    icon: "🚫",
+    title: "No Friction",
+    desc: "No account required, no email verification, no file limits, no watermarks. Open the site and start converting immediately.",
+  },
+  {
+    icon: "🌍",
+    title: "Free for Everyone",
+    desc: "We believe image tools should be universally accessible. Our platform is free to use for everyone, everywhere, forever.",
+  },
+];
 ---
 
 <BaseLayout
-  title="About Us — Quick JPG Converter"
-  description="Learn about Quick JPG Converter, a free privacy-first image conversion tool built for speed, simplicity, and complete data safety."
+  title="About Quick JPG Converter — Privacy-First Image Tools Platform"
+  description="Learn how Quick JPG Converter works, our privacy-first mission, and why 2M+ users choose us every month for browser-based image conversion."
   canonical="https://quickjpgconverter.com/about"
   breadcrumbs={breadcrumbs}
 >
@@ -17,100 +47,89 @@ const breadcrumbs = [{ name: "About", url: "/about" }];
     <Container variant="narrow">
       <Breadcrumb items={breadcrumbs} />
 
-      <div class="mt-8">
+      <div class="mt-10 text-center max-w-2xl mx-auto mb-12">
         <Badge class="mb-4">About Us</Badge>
+        <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-4">
+          Built for Privacy.<br />
+          <span class="gradient-text">Designed for Speed.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary leading-relaxed">
+          Quick JPG Converter is a browser-based image tools platform that processes your files entirely on your device — no server uploads, no data collection, no accounts required.
+        </p>
       </div>
 
-      <article class="prose mt-6">
-        <h1>About Quick JPG Converter</h1>
+      <!-- Stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
+        {stats.map((stat) => (
+          <div class="text-center p-5 rounded-2xl border border-border-default bg-surface-muted">
+            <div class="text-2xl sm:text-3xl font-bold gradient-text mb-1">{stat.value}</div>
+            <div class="text-xs text-text-secondary">{stat.label}</div>
+          </div>
+        ))}
+      </div>
 
-        <p class="lead">
-          Quick JPG Converter is a free online tool designed to make image format
-          conversion simple, fast, and completely private. Built for photographers,
-          designers, developers, and anyone who needs quick image conversions
-          without the hassle of desktop software.
-        </p>
-
-        <h2>What We Do</h2>
+      <div class="prose mb-16">
+        <h2>Our Story</h2>
         <p>
-          We provide a suite of free browser-based image conversion tools. Our core
-          feature allows users to convert JPG images to PNG, WebP, and PDF formats
-          instantly — with additional tools for converting PNG to JPG, WebP to JPG,
-          and resizing images. Every conversion runs entirely in your browser using
-          modern web technologies, meaning your files never leave your device.
+          Quick JPG Converter was founded on a simple frustration: online image converters were asking users to upload private photos to unknown servers, often with unclear policies about what happened to those files. We decided to build something different.
         </p>
         <p>
-          Whether you need a transparent logo in PNG, a lightweight image in WebP,
-          or a quick PDF from a photo, our tools handle the job in milliseconds
-          without requiring you to install anything or create an account.
-        </p>
-
-        <h2>Our Mission</h2>
-        <p>
-          We believe image conversion should be accessible to everyone without
-          compromising privacy. Too many online converters upload your files to
-          remote servers, exposing personal photos and sensitive documents to
-          unnecessary risk. We built Quick JPG Converter to solve this problem.
+          By leveraging the modern browser's Canvas API, WebAssembly capabilities, and JavaScript workers, we built a complete image processing platform that runs entirely in your browser. Your files process locally, complete instantly, and download directly to your device — no cloud infrastructure touches your images at any point.
         </p>
         <p>
-          Our goal is to provide the fastest, most private image conversion
-          experience available on the web — completely free, with no hidden fees,
-          no sign-up walls, and no data collection.
+          Today, Quick JPG Converter serves millions of conversions each month across 180+ countries, trusted by photographers, designers, developers, students, and businesses who need fast, private image tools they can rely on.
         </p>
 
         <h2>How It Works</h2>
         <p>
-          Unlike traditional converters that upload your images to a server, our
-          tool uses modern browser APIs — including the Canvas API and WebAssembly —
-          to process images directly on your device. This approach offers several
-          important advantages:
+          When you drop a file onto our converter, your browser's JavaScript engine handles everything:
         </p>
-        <ul>
-          <li><strong>Faster conversion</strong> — no upload or download wait times; processing happens locally</li>
-          <li><strong>Complete privacy</strong> — images never leave your browser and are never transmitted to any server</li>
-          <li><strong>No file size limits</strong> — constrained only by your device's available memory</li>
-          <li><strong>No account required</strong> — open the site and start converting immediately</li>
-          <li><strong>Works on any device</strong> — desktop, tablet, or phone with a modern browser</li>
-        </ul>
-
-        <h2>Why Choose Us</h2>
+        <ol>
+          <li>Your file is read using the <strong>FileReader API</strong> directly from your local disk</li>
+          <li>The image is decoded and drawn onto an HTML <strong>Canvas element</strong></li>
+          <li>The canvas exports the image in your chosen format using <strong>toBlob()</strong></li>
+          <li>The result is offered as a direct download via an <strong>Object URL</strong></li>
+        </ol>
         <p>
-          There are dozens of image converters online. Here's what sets Quick JPG
-          Converter apart:
+          At no point does any data leave your browser. There are no network requests made during conversion. You can verify this yourself by disconnecting from the internet and using our tools — they work perfectly offline.
         </p>
-        <ul>
-          <li><strong>100% free</strong> — no premium tiers, no paywalls, no hidden charges</li>
-          <li><strong>Zero uploads</strong> — your files stay on your device at all times</li>
-          <li><strong>Instant results</strong> — conversions complete in milliseconds</li>
-          <li><strong>Batch support</strong> — convert multiple files simultaneously</li>
-          <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest file size</li>
-          <li><strong>Mobile-friendly</strong> — works perfectly on phones and tablets</li>
-        </ul>
+      </div>
 
-        <h2>Open and Transparent</h2>
+      <!-- Values Grid -->
+      <div class="mb-16">
+        <h2 class="text-xl font-bold text-text-primary mb-6">Our Values</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {values.map((val) => (
+            <div class="p-5 rounded-2xl border border-border-default bg-surface">
+              <div class="text-2xl mb-3">{val.icon}</div>
+              <h3 class="text-base font-semibold text-text-primary mb-2">{val.title}</h3>
+              <p class="text-sm text-text-secondary leading-relaxed">{val.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="prose mb-16">
+        <h2>Transparency</h2>
         <p>
-          Quick JPG Converter is built with transparency in mind. Our privacy
-          policy clearly explains what data we collect (virtually none), and our
-          terms of service are written in plain language. We welcome feedback,
-          feature requests, and contributions from the community.
+          We operate our platform with complete transparency. Our privacy policy explains in plain language what we collect (only anonymous analytics), what we never collect (your images, file contents, or personal data), and how we use the minimal data we do receive.
         </p>
-
-        <h2>Our Commitment</h2>
         <p>
-          We are committed to keeping this tool free and ad-supported. We do not
-          sell user data, we do not require accounts, and we do not store your
-          images. Our revenue comes solely from non-intrusive advertisements that
-          help us cover hosting and development costs.
+          Our revenue comes from non-intrusive display advertising that helps us cover hosting and development costs. We do not sell user data, we do not use affiliate tracking, and we do not sell premium features — the tools are free for everyone.
         </p>
 
         <h2>Contact Us</h2>
         <p>
-          Have a question, suggestion, or just want to say hello? We'd love to hear
-          from you. Reach out to us at
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=supportquickjpgconverter@gmail.com">supportquickjpgconverter@gmail.com</a>
-          or visit our <a href="/contact">Contact page</a> for more options.
+          We welcome feedback, feature requests, bug reports, and any questions about our platform. Reach us at:
         </p>
-      </article>
+        <ul>
+          <li>Email: <a href="mailto:supportquickjpgconverter@gmail.com">supportquickjpgconverter@gmail.com</a></li>
+          <li>Contact form: <a href="/contact">quickjpgconverter.com/contact</a></li>
+        </ul>
+        <p>
+          We aim to respond within 2 business days. For feature requests, we track all suggestions and consider them for future updates.
+        </p>
+      </div>
     </Container>
   </section>
 </BaseLayout>

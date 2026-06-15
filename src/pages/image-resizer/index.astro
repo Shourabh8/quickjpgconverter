@@ -1,0 +1,307 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [{ name: "Image Resizer", url: "/image-resizer" }];
+
+const presets = [
+  { label: "Instagram Post", value: "1080x1080" },
+  { label: "Facebook Cover", value: "1200x630" },
+  { label: "Twitter Header", value: "1500x500" },
+  { label: "YouTube Thumb", value: "1280x720" },
+  { label: "Full HD", value: "1920x1080" },
+  { label: "4K UHD", value: "3840x2160" },
+];
+
+const faqItems = [
+  {
+    question: "Why should I resize images?",
+    answer: "Oversized images slow down websites, consume extra storage, and look stretched when used in designs. Resizing to the correct dimensions ensures optimal performance and visual quality.",
+  },
+  {
+    question: "What happens when I resize an image smaller?",
+    answer: "The image is resampled using high-quality interpolation. The result looks sharp and detailed at the target size. Scaling down always preserves quality well.",
+  },
+  {
+    question: "What happens when I resize an image larger?",
+    answer: "Upscaling adds new pixels that didn't exist in the original, which can introduce softness or blur. For significant upscaling, consider an AI-based upscaler for best results.",
+  },
+  {
+    question: "Does resizing change the file format?",
+    answer: "No. JPG files remain JPG, PNG files remain PNG. Only the pixel dimensions change.",
+  },
+  {
+    question: "Can I maintain the aspect ratio?",
+    answer: "Yes. Enable the 'Lock Ratio' option and changing one dimension will automatically update the other to maintain the original proportions.",
+  },
+  {
+    question: "Is there a size limit?",
+    answer: "No enforced limit — it depends on your browser's memory. We recommend keeping output dimensions under 10,000 × 10,000 pixels to avoid slowdowns.",
+  },
+];
+---
+
+<BaseLayout
+  title="Free Image Resizer — Resize Images Online to Any Dimension"
+  description="Resize JPG, PNG, and WebP images online for free. Set exact pixel dimensions, lock aspect ratio, use social media presets. 100% private, no uploads."
+  canonical="https://quickjpgconverter.com/image-resizer"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["image resizer", "resize image", "resize jpg", "resize png", "resize photo online free", "change image dimensions", "image size reducer"]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">📐 Exact Pixel Control</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Image <span class="gradient-text">Resizer</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Resize JPG, PNG, and WebP images to any pixel dimension. Lock aspect ratio,
+          use social media presets — 100% private, no uploads.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Resizer Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <!-- Top bar -->
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Resize images to:</span>
+            <div class="flex items-center gap-1.5 text-xs text-text-tertiary">
+              <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+              Local Processing
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <!-- LEFT: Upload / Preview -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your images here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">JPG, PNG, WebP — or click to browse</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Images
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG · PNG · WebP · Max 50MB each</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to resize</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Options + Actions -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Target Dimensions</h3>
+
+                <div class="p-3 rounded-xl border border-border-default bg-surface-muted mb-4 text-xs text-text-secondary">
+                  Original: <span id="original-size" class="text-text-primary font-medium">—</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                  <div>
+                    <label class="text-xs font-medium text-text-secondary mb-1 block" for="resize-width">Width (px)</label>
+                    <input
+                      id="resize-width"
+                      type="number"
+                      min="1"
+                      max="10000"
+                      placeholder="e.g. 1920"
+                      class="w-full px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500"
+                    />
+                  </div>
+                  <div>
+                    <label class="text-xs font-medium text-text-secondary mb-1 block" for="resize-height">Height (px)</label>
+                    <input
+                      id="resize-height"
+                      type="number"
+                      min="1"
+                      max="10000"
+                      placeholder="e.g. 1080"
+                      class="w-full px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500"
+                    />
+                  </div>
+                </div>
+
+                <label class="flex items-center gap-2.5 mb-6 cursor-pointer group">
+                  <input
+                    id="lock-ratio"
+                    type="checkbox"
+                    checked
+                    class="w-4 h-4 text-brand-600 rounded border-border-strong focus:ring-brand-500"
+                  />
+                  <span class="text-sm text-text-secondary group-hover:text-text-primary transition-colors">Lock aspect ratio</span>
+                </label>
+
+                <div class="h-px bg-border-default mb-5"></div>
+
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Social Media Presets</h3>
+                <div class="grid grid-cols-2 gap-2">
+                  {presets.map((preset) => (
+                    <button
+                      data-preset={preset.value}
+                      class="px-3 py-2 rounded-lg border border-border-default bg-surface hover:border-brand-400 hover:bg-brand-50/50 dark:hover:border-brand-700 dark:hover:bg-brand-950/30 text-left transition-all duration-200 group"
+                    >
+                      <div class="text-xs font-medium text-text-primary group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{preset.label}</div>
+                      <div class="text-[10px] text-text-tertiary font-mono">{preset.value}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div class="mt-6">
+                <div id="progress-area" class="hidden mb-4">
+                  <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                  </div>
+                  <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Resizing...</p>
+                </div>
+
+                <div id="convert-btn-area">
+                  <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                    </svg>
+                    Resize Images
+                  </button>
+                  <p class="text-xs text-text-tertiary text-center mt-2">Processed locally in your browser</p>
+                </div>
+
+                <div id="download-area" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Simple & Fast</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Resize in Three Steps</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload Images</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select JPG, PNG, or WebP files.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Set Dimensions</h3>
+          <p class="text-sm text-text-secondary">Enter custom dimensions or pick a social media preset.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download</h3>
+          <p class="text-sm text-text-secondary">Resized images ready instantly — download individually or as ZIP.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO & FAQ -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Resize Images Online?</h2>
+        <p>
+          Images straight from cameras or phones are often massive — a modern smartphone shoots at 12MP or higher, producing files 4000+ pixels wide and 5–10MB in size. These are far too large for most web, social, and email uses. Resizing images reduces bandwidth, improves load times, and ensures images display at the right size.
+        </p>
+
+        <h3>Common Use Cases</h3>
+        <ul>
+          <li><strong>Web publishing</strong> — resize images to match your content width (typically 1200px) for faster load times</li>
+          <li><strong>Social media</strong> — use presets for Instagram (1080×1080), Twitter (1500×500), and Facebook (1200×630)</li>
+          <li><strong>Email attachments</strong> — resize to under 1280px wide before attaching to avoid inbox rejections</li>
+          <li><strong>E-commerce</strong> — standardize product image dimensions for consistent catalog display</li>
+          <li><strong>Profile photos</strong> — resize avatars to exact required dimensions for forms and applications</li>
+        </ul>
+
+        <h3>Tips for Best Results</h3>
+        <ul>
+          <li>Always start with the highest quality original image — never resize a resized copy</li>
+          <li>Maintain aspect ratio when possible to avoid distortion</li>
+          <li>After resizing, compress the image to further reduce file size</li>
+          <li>For web use, target 72–96 DPI; for print, target 300 DPI at the physical print dimensions</li>
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/jpg-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG Compressor</h3>
+          <p class="text-sm text-text-secondary">Reduce file size after resizing.</p>
+        </a>
+        <a href="/jpg-to-png" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PNG</h3>
+          <p class="text-sm text-text-secondary">Convert to PNG with transparency.</p>
+        </a>
+        <a href="/jpg-to-webp" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to WebP</h3>
+          <p class="text-sm text-text-secondary">Convert to modern WebP format.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initResizer } from "@scripts/resize.js";
+    document.addEventListener("DOMContentLoaded", () => {
+      initResizer();
+    });
+  </script>
+</BaseLayout>

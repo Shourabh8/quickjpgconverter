@@ -1,0 +1,111 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "About", url: "/about" },
+  { name: "Our Team", url: "/author/team" },
+];
+
+const team = [
+  {
+    name: "Shourabh Sharma",
+    role: "Founder & Lead Developer",
+    bio: "Full-stack developer with a passion for privacy-first tools and web performance. Built Quick JPG Converter to solve the problem of server-side image processing risks. Focused on creating browser-native tools that require zero trust in third-party servers.",
+    expertise: ["Browser APIs", "Image Processing", "Web Performance", "Privacy Engineering"],
+    emoji: "👨‍💻",
+  },
+  {
+    name: "Design & UX Team",
+    role: "UI/UX Design",
+    bio: "Our design team focuses on reducing friction and making complex image operations accessible to everyone. Every interface decision is guided by clarity, speed, and mobile-first principles.",
+    expertise: ["UX Research", "Responsive Design", "Accessibility", "Mobile-First UI"],
+    emoji: "🎨",
+  },
+  {
+    name: "SEO & Content Team",
+    role: "Content & Discovery",
+    bio: "We create comprehensive guides and educational content to help users understand image formats, compression, and conversion best practices. Committed to accurate, helpful information.",
+    expertise: ["Technical SEO", "Content Strategy", "Image Format Education", "Web Standards"],
+    emoji: "✍️",
+  },
+];
+---
+
+<BaseLayout
+  title="Our Team — Quick JPG Converter"
+  description="Meet the team behind Quick JPG Converter — the privacy-first image tools platform built to keep your files on your device."
+  canonical="https://quickjpgconverter.com/author/team"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-10 text-center max-w-2xl mx-auto mb-12">
+        <Badge class="mb-4">Our Team</Badge>
+        <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-4">
+          The People Behind <span class="gradient-text">Quick JPG Converter</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary leading-relaxed">
+          A small, focused team committed to building the best privacy-first image tools on the web.
+        </p>
+      </div>
+
+      <!-- Team Members -->
+      <div class="space-y-6 mb-16">
+        {team.map((member) => (
+          <div class="p-6 rounded-2xl border border-border-default bg-surface">
+            <div class="flex flex-col sm:flex-row gap-5">
+              <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 border border-brand-100 dark:border-brand-900/50 flex items-center justify-center text-3xl flex-shrink-0">
+                {member.emoji}
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-2">
+                  <h2 class="text-lg font-bold text-text-primary">{member.name}</h2>
+                  <Badge class="text-xs self-start">{member.role}</Badge>
+                </div>
+                <p class="text-sm text-text-secondary leading-relaxed mb-4">{member.bio}</p>
+                <div class="flex flex-wrap gap-2">
+                  {member.expertise.map((skill) => (
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-muted border border-border-default text-xs font-medium text-text-secondary">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Our Mission Statement -->
+      <div class="p-8 rounded-2xl border border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-950/30 mb-12 text-center">
+        <h2 class="text-xl font-bold text-text-primary mb-3">Our Commitment to You</h2>
+        <p class="text-sm text-text-secondary leading-relaxed max-w-xl mx-auto">
+          Every member of our team operates under one shared principle: your files are yours. We build tools that work for you without requiring you to trust us with your data. That's not a feature — it's the foundation of everything we build.
+        </p>
+      </div>
+
+      <div class="prose">
+        <h2>How We Work</h2>
+        <p>
+          We operate as a distributed remote team, collaborating across time zones to continuously improve our tools. Our development process prioritizes:
+        </p>
+        <ul>
+          <li><strong>Privacy by design</strong> — security and privacy considerations are built into every feature from day one, not added as an afterthought</li>
+          <li><strong>Performance first</strong> — we measure page load times, conversion speeds, and Core Web Vitals scores regularly</li>
+          <li><strong>User feedback</strong> — we read every support email and use feedback to guide our roadmap</li>
+          <li><strong>Accessibility</strong> — our tools are designed to work for all users, including those using screen readers or keyboard navigation</li>
+        </ul>
+
+        <h2>Get In Touch</h2>
+        <p>
+          We love hearing from users. Whether you have a feature request, found a bug, or just want to say hi — reach out via our <a href="/contact">contact page</a> or email us at <a href="mailto:supportquickjpgconverter@gmail.com">supportquickjpgconverter@gmail.com</a>.
+        </p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

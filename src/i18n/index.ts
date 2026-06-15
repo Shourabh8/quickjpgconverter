@@ -11,10 +11,10 @@ export const defaultLocale: Locale = "en";
 
 const dictionaries = { en, es, pt, hi, fr, de } as const;
 
-export type Dictionary = typeof en;
+export type Dictionary = Record<string, any>;
 
 export function useTranslations(locale: Locale): Dictionary {
-  return dictionaries[locale] || dictionaries[defaultLocale];
+  return (dictionaries[locale] || dictionaries[defaultLocale]) as Dictionary;
 }
 
 export function isValidLocale(locale: string): locale is Locale {
