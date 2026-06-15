@@ -1,0 +1,198 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Blog", url: "/blog" },
+  { name: "What is HEIC", url: "/blog/what-is-heic-why-iphone-photos-need-conversion" },
+];
+
+const publishDate = "June 8, 2026";
+---
+
+<BaseLayout
+  title="What is HEIC? Why iPhone Photos Need Conversion"
+  description="Why are iPhone photos in HEIC format? Learn what HEIC is, why Apple uses it, and how to convert HEIC to JPG for universal compatibility."
+  canonical="https://quickjpgconverter.com/blog/what-is-heic-why-iphone-photos-need-conversion"
+  keywords={["what is heic", "heic format", "iphone photo format", "heic to jpg", "convert heic photos"]}
+  faqItems={[
+    {
+      question: "What does HEIC stand for?",
+      answer: "HEIC stands for High Efficiency Image Container. It is based on the HEIF (High Efficiency Image Format) standard, which uses the HEVC (H.265) video codec to compress images more efficiently than JPG.",
+    },
+    {
+      question: "Why did Apple switch to HEIC from JPG?",
+      answer: "Apple adopted HEIC because it produces files roughly 50% smaller than JPG at the same quality. This saves significant storage space on iPhones and iPads, where users take thousands of photos. The format also supports features like Live Photos and depth data.",
+    },
+    {
+      question: "Can I open HEIC files on Windows?",
+      answer: "Windows 10 version 1803 and later can open HEIC files after installing the HEIC Image Extensions from the Microsoft Store (free). Older Windows versions cannot open HEIC files without third-party software. Converting to JPG ensures universal compatibility.",
+    },
+    {
+      question: "Is HEIC better than JPG?",
+      answer: "Technically yes — HEIC offers better compression efficiency and supports more features. But JPG's universal compatibility makes it more practical. The best approach is to keep HEIC as your iPhone's default and convert to JPG when sharing or using photos elsewhere.",
+    },
+  ]}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <article class="prose mt-8">
+        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
+          <time datetime="2026-06-08">{publishDate}</time>
+          <span>·</span>
+          <span>6 min read</span>
+        </div>
+
+        <h1>What is HEIC? Why iPhone Photos Need Conversion</h1>
+
+        <p class="lead">
+          You try to open an iPhone photo on your Windows PC and get an error. The file has a .HEIC extension. What is HEIC, why does Apple use it, and how do you deal with it?
+        </p>
+
+        <h2>What is HEIC?</h2>
+        <p>HEIC stands for <strong>High Efficiency Image Container</strong>. It's Apple's implementation of the HEIF (High Efficiency Image Format) standard. The format uses the same compression technology as HEVC video (also known as H.265), which is significantly more efficient than the older JPG standard.</p>
+        <p>In practical terms, a HEIC photo is roughly the same visual quality as a JPG but about <strong>50% smaller in file size</strong>. For a phone that takes 48-megapixel photos, that storage savings adds up fast.</p>
+
+        <h2>Why Apple Uses HEIC</h2>
+        <p>Apple switched from JPG to HEIC as the default photo format starting with iOS 11 in 2017. The reasons are straightforward:</p>
+        <ul>
+          <li><strong>Storage efficiency</strong> — HEIC files are half the size of JPG, meaning more photos fit on a device</li>
+          <li><strong>Higher quality at smaller sizes</strong> — The compression algorithm is more sophisticated than JPG's 1990s-era technology</li>
+          <li><strong>Feature support</strong> — HEIC can store multiple images (like Live Photos), depth maps for Portrait mode, and HDR data</li>
+          <li><strong>Battery efficiency</strong> — Smaller files mean less processing power and battery used for saving and reading photos</li>
+          <li><strong>10-bit color</strong> — HEIC supports wider color gamuts that modern iPhone cameras capture</li>
+        </ul>
+
+        <h2>The Compatibility Problem</h2>
+        <p>HEIC is technically superior to JPG, but it has one major weakness: <strong>not everyone can open it</strong>. Here's where HEIC doesn't work:</p>
+        <ul>
+          <li><strong>Windows PCs (older versions)</strong> — Windows 10 before version 1803 cannot open HEIC natively</li>
+          <li><strong>Android devices</strong> — Most Android phones can't open HEIC without third-party apps</li>
+          <li><strong>Web browsers</strong> — Most browsers don't support HEIC display</li>
+          <li><strong>Social media uploads</strong> — Some platforms reject HEIC files</li>
+          <li><strong>Email attachments</strong> — Recipients may not be able to view HEIC photos</li>
+          <li><strong>Printing services</strong> — Most print shops and online services don't accept HEIC</li>
+          <li><strong>Photo editing software</strong> — Older versions of Photoshop, Lightroom, and other editors don't support HEIC</li>
+          <li><strong>Government portals</strong> — Visa applications, passport systems, and other official forms require JPG or PNG</li>
+        </ul>
+
+        <h2>How to Convert HEIC to JPG</h2>
+        <p>Converting HEIC to JPG is the simplest solution. Here are the main methods:</p>
+
+        <h3>Online Converters (Recommended)</h3>
+        <p>Our <a href="/heic-to-jpg">HEIC to JPG converter</a> processes images entirely in your browser. No files are uploaded to any server. Simply drag and drop your HEIC photos and download JPG versions instantly.</p>
+
+        <h3>On Mac</h3>
+        <p>If you have a Mac, you can open HEIC photos in Preview and export them as JPG. Go to File → Export → Choose JPEG from the format dropdown. This works but is slow for large batches of photos.</p>
+
+        <h3>On iPhone</h3>
+        <p>You can set your iPhone to save photos as JPG instead of HEIC. Go to Settings → Camera → Formats → Most Compatible. Note that this uses more storage space on your device.</p>
+
+        <h2>HEIC vs Other Formats</h2>
+
+        <div class="not-prose my-6 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-surface-muted border-b border-border-default">
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Feature</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">HEIC</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">JPG</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">PNG</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">WebP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Compression</td>
+                <td class="px-4 py-3 text-text-secondary">Lossy/Lossless</td>
+                <td class="px-4 py-3 text-text-secondary">Lossy only</td>
+                <td class="px-4 py-3 text-text-secondary">Lossless only</td>
+                <td class="px-4 py-3 text-text-secondary">Lossy/Lossless</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">File size</td>
+                <td class="px-4 py-3 text-text-secondary">Very small</td>
+                <td class="px-4 py-3 text-text-secondary">Medium</td>
+                <td class="px-4 py-3 text-text-secondary">Large</td>
+                <td class="px-4 py-3 text-text-secondary">Very small</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Transparency</td>
+                <td class="px-4 py-3 text-text-secondary">Yes</td>
+                <td class="px-4 py-3 text-text-secondary">No</td>
+                <td class="px-4 py-3 text-text-secondary">Yes</td>
+                <td class="px-4 py-3 text-text-secondary">Yes</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Universal support</td>
+                <td class="px-4 py-3 text-text-secondary">Apple only</td>
+                <td class="px-4 py-3 text-text-secondary">Universal</td>
+                <td class="px-4 py-3 text-text-secondary">Universal</td>
+                <td class="px-4 py-3 text-text-secondary">97%+ browsers</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-text-primary">Best use case</td>
+                <td class="px-4 py-3 text-text-secondary">iPhone storage</td>
+                <td class="px-4 py-3 text-text-secondary">Universal sharing</td>
+                <td class="px-4 py-3 text-text-secondary">Transparent graphics</td>
+                <td class="px-4 py-3 text-text-secondary">Web images</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Should You Keep HEIC or Switch to JPG?</h2>
+        <p>Keep HEIC as your iPhone's default if:</p>
+        <ul>
+          <li>You're primarily sharing photos within the Apple ecosystem</li>
+          <li>You want to maximize storage space on your iPhone</li>
+          <li>You're comfortable converting to JPG when needed</li>
+        </ul>
+        <p>Switch to JPG if:</p>
+        <ul>
+          <li>You frequently share photos with non-Apple users</li>
+          <li>You need to upload photos to government portals or forms</li>
+          <li>You use Windows-based photo editing software</li>
+          <li>You want maximum compatibility without conversion steps</li>
+        </ul>
+        <p>The best of both worlds: keep HEIC for storage, and use our <a href="/heic-to-jpg">HEIC to JPG converter</a> whenever you need a universally compatible version.</p>
+
+        <div class="not-prose bg-surface-muted rounded-2xl p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-2">Convert Your HEIC Photos Now</h3>
+          <p class="text-text-secondary text-sm mb-4">Free, private, and works in your browser. No software needed.</p>
+          <a href="/heic-to-jpg" class="btn-primary">
+            Convert HEIC to JPG
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="text-center mb-8">
+        <h2 class="text-xl font-bold text-text-primary">Related Articles</h2>
+      </div>
+      <div class="space-y-4">
+        <a href="/blog/heic-to-jpg-iphone-photos" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">How to Convert HEIC to JPG on iPhone Photos</h3>
+          <p class="text-sm text-text-secondary">Step-by-step guide to converting HEIC photos to JPG format.</p>
+        </a>
+        <a href="/blog/jpg-to-png-vs-webp-which-should-you-use" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">JPG to PNG vs JPG to WebP: Which Format Should You Use?</h3>
+          <p class="text-sm text-text-secondary">Compare PNG and WebP formats to choose the right one for your images.</p>
+        </a>
+        <a href="/blog/browser-based-vs-server-image-conversion" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">Browser-Based vs Server Image Conversion</h3>
+          <p class="text-sm text-text-secondary">Why processing images locally is faster and more private.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

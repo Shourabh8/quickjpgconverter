@@ -1,0 +1,206 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Blog", url: "/blog" },
+  { name: "Compress Images for Website Speed", url: "/blog/how-to-compress-images-for-website-speed" },
+];
+
+const publishDate = "June 10, 2026";
+---
+
+<BaseLayout
+  title="How to Compress Images for Website Speed (2026 Guide)"
+  description="Learn how to compress images for faster website loading. Step-by-step guide to image optimization for WordPress, Shopify, and static sites."
+  canonical="https://quickjpgconverter.com/blog/how-to-compress-images-for-website-speed"
+  keywords={["compress images for website", "image optimization guide", "website speed images", "compress jpg for web", "reduce image size for website"]}
+  faqItems={[
+    {
+      question: "What is the ideal image size for websites?",
+      answer: "For most web images, aim for under 200KB. Hero images can be up to 500KB. Thumbnails should be under 50KB. The key is balancing visual quality with file size — use WebP format to get the best of both worlds.",
+    },
+    {
+      question: "How much should I compress images for my website?",
+      answer: "For JPG images, compress to quality 75-85 for an excellent balance of quality and size. For WebP, quality 80-90 works well. Test visually — at these settings, most people cannot see any difference from the original.",
+    },
+    {
+      question: "Does image compression affect SEO?",
+      answer: "Yes. Faster loading images improve Core Web Vitals scores, which Google uses as a ranking signal. Compressed images also reduce bounce rates and improve user engagement, both of which indirectly boost SEO.",
+    },
+    {
+      question: "Should I use JPG or WebP for my website?",
+      answer: "Use WebP as your primary format — it produces 25-35% smaller files than JPG at comparable quality. Provide JPG as a fallback for older browsers. Most modern CMS platforms support automatic WebP conversion.",
+    },
+  ]}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <article class="prose mt-8">
+        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
+          <time datetime="2026-06-10">{publishDate}</time>
+          <span>·</span>
+          <span>8 min read</span>
+        </div>
+
+        <h1>How to Compress Images for Website Speed (2026 Guide)</h1>
+
+        <p class="lead">
+          Slow images kill website performance. Uncompressed images are the #1 cause of slow page loads. Here's a step-by-step guide to compressing images for maximum speed without sacrificing quality.
+        </p>
+
+        <h2>Why Image Compression Matters for SEO</h2>
+        <p>Google's Core Web Vitals directly measure how fast your page loads, and images are usually the heaviest assets on any page. A single uncompressed hero image can add 2-3 seconds to your load time. Here's what slow images cost you:</p>
+        <ul>
+          <li><strong>Higher bounce rates</strong> — 53% of mobile users abandon sites that take over 3 seconds to load</li>
+          <li><strong>Lower search rankings</strong> — Google uses page speed as a ranking factor since 2018</li>
+          <li><strong>Poor Core Web Vitals</strong> — Largest Contentful Paint (LCP) is directly affected by image load time</li>
+          <li><strong>Higher hosting costs</strong> — Bandwidth isn't free; smaller images mean lower server bills</li>
+          <li><strong>Worse mobile experience</strong> — Mobile networks are slower; every KB matters</li>
+        </ul>
+
+        <h2>Image Compression Techniques</h2>
+
+        <h3>Lossy Compression</h3>
+        <p>Lossy compression removes some image data that humans can't easily perceive. JPG and WebP both use lossy compression. The quality parameter controls how much data is removed. At quality 85, the file is 40-60% smaller than the original with no visible difference for most photos.</p>
+
+        <h3>Lossless Compression</h3>
+        <p>Lossless compression reduces file size without removing any image data. PNG and lossless WebP use this method. File size reduction is typically 10-30%, smaller than lossy compression, but quality is preserved perfectly.</p>
+
+        <h3>Responsive Images</h3>
+        <p>Serving different image sizes for different screen sizes is one of the most effective optimization techniques. A mobile user doesn't need a 4K hero image. Use the <code>srcset</code> attribute to serve appropriately sized images:</p>
+
+        <h2>Step-by-Step Image Optimization Workflow</h2>
+
+        <h3>Step 1: Choose the Right Format</h3>
+        <ul>
+          <li><strong>Photographs</strong> → JPG or lossy WebP</li>
+          <li><strong>Graphics with transparency</strong> → PNG or WebP</li>
+          <li><strong>Icons and logos</strong> → SVG (if possible) or PNG</li>
+          <li><strong>Animations</strong> → WebP or GIF (WebP is much smaller)</li>
+        </ul>
+
+        <h3>Step 2: Resize to the Display Size</h3>
+        <p>Never serve a 4000px wide image in a 1200px container. Resize images to the maximum display size they'll actually be shown at. Common breakpoints:</p>
+        <ul>
+          <li>Mobile: 640-768px wide</li>
+          <li>Tablet: 1024px wide</li>
+          <li>Desktop: 1280-1920px wide</li>
+          <li>Hero images: 1920px wide is usually sufficient</li>
+        </ul>
+
+        <h3>Step 3: Compress to the Optimal Quality</h3>
+        <p>Use our <a href="/jpg-compressor">JPG compressor</a> to reduce file size while maintaining visual quality. For most photos, quality 80-85 is the sweet spot. Use our <a href="/image-compressor">image compressor</a> for batch processing multiple files at once.</p>
+
+        <h3>Step 4: Convert to WebP</h3>
+        <p>After compressing, convert to WebP for even smaller files. Our <a href="/jpg-to-webp">JPG to WebP converter</a> handles this in your browser with no upload required.</p>
+
+        <h3>Step 5: Serve Responsive Images</h3>
+        <p>Use HTML <code>srcset</code> to serve different sizes based on the user's screen. This ensures mobile users get small, fast-loading images while desktop users get the full resolution.</p>
+
+        <h2>Target File Sizes by Use Case</h2>
+
+        <div class="not-prose my-6 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-surface-muted border-b border-border-default">
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Image Type</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Max Width</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Target Size</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Recommended Format</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Hero/Banner</td>
+                <td class="px-4 py-3 text-text-secondary">1920px</td>
+                <td class="px-4 py-3 text-text-secondary">Under 300KB</td>
+                <td class="px-4 py-3 text-text-secondary">WebP (quality 80)</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Blog post image</td>
+                <td class="px-4 py-3 text-text-secondary">1200px</td>
+                <td class="px-4 py-3 text-text-secondary">Under 150KB</td>
+                <td class="px-4 py-3 text-text-secondary">WebP (quality 80)</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Product photo</td>
+                <td class="px-4 py-3 text-text-secondary">800px</td>
+                <td class="px-4 py-3 text-text-secondary">Under 100KB</td>
+                <td class="px-4 py-3 text-text-secondary">WebP (quality 85)</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Thumbnail</td>
+                <td class="px-4 py-3 text-text-secondary">300px</td>
+                <td class="px-4 py-3 text-text-secondary">Under 30KB</td>
+                <td class="px-4 py-3 text-text-secondary">WebP (quality 75)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-text-primary">Icon/Logo</td>
+                <td class="px-4 py-3 text-text-secondary">200px</td>
+                <td class="px-4 py-3 text-text-secondary">Under 10KB</td>
+                <td class="px-4 py-3 text-text-secondary">SVG or PNG</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Platform-Specific Tips</h2>
+
+        <h3>WordPress</h3>
+        <p>WordPress generates multiple sizes by default, but you should still optimize the originals. Use a plugin like ShortPixel or Smush for automatic compression. Enable WebP serving through your CDN or a plugin.</p>
+
+        <h3>Shopify</h3>
+        <p>Shopify automatically compresses and serves WebP images through its CDN. However, you should still upload reasonably sized originals — don't upload 10MB files and expect Shopify to handle it gracefully.</p>
+
+        <h3>Static Sites (Hugo, Astro, Next.js)</h3>
+        <p>Pre-compress images at build time. Use build plugins or scripts to automatically convert images to WebP and generate responsive sizes. Serve images through a CDN for global performance.</p>
+
+        <h2>Tools for Image Optimization</h2>
+        <ul>
+          <li><strong><a href="/jpg-compressor">Quick JPG Converter — JPG Compressor</a></strong> — Browser-based, no upload, free</li>
+          <li><strong><a href="/image-compressor">Quick JPG Converter — Image Compressor</a></strong> — Batch compression for JPG, PNG, WebP</li>
+          <li><strong><a href="/jpg-to-webp">JPG to WebP Converter</a></strong> — Convert to the modern web format</li>
+          <li><strong>ImageOptim</strong> — Desktop app for Mac, excellent lossless compression</li>
+          <li><strong>Squoosh</strong> — Google's browser-based tool with advanced controls</li>
+        </ul>
+
+        <div class="not-prose bg-surface-muted rounded-2xl p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-2">Optimize Your Website Images Now</h3>
+          <p class="text-text-secondary text-sm mb-4">Compress and convert images for faster page loads — free, private, no signup.</p>
+          <a href="/image-compressor" class="btn-primary">
+            Compress Images
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="text-center mb-8">
+        <h2 class="text-xl font-bold text-text-primary">Related Articles</h2>
+      </div>
+      <div class="space-y-4">
+        <a href="/blog/jpg-to-png-vs-webp-which-should-you-use" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">JPG to PNG vs JPG to WebP: Which Format Should You Use?</h3>
+          <p class="text-sm text-text-secondary">Compare PNG and WebP formats to choose the right one for your images.</p>
+        </a>
+        <a href="/blog/best-free-image-compressor-online" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">Best Free Image Compressor Online (2026)</h3>
+          <p class="text-sm text-text-secondary">Compare top free image compressors and find the best one for your needs.</p>
+        </a>
+        <a href="/blog/browser-based-vs-server-image-conversion" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">Browser-Based vs Server Image Conversion</h3>
+          <p class="text-sm text-text-secondary">Why processing images locally is faster and more private.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,245 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Blog", url: "/blog" },
+  { name: "Passport Photo Size by Country", url: "/blog/passport-photo-size-requirements-by-country" },
+];
+
+const publishDate = "June 6, 2026";
+---
+
+<BaseLayout
+  title="Passport Photo Size Requirements by Country (2026 Updated)"
+  description="Complete guide to passport photo sizes for all countries. Learn the exact dimensions, file size, and background requirements for your passport application."
+  canonical="https://quickjpgconverter.com/blog/passport-photo-size-requirements-by-country"
+  keywords={["passport photo size", "passport photo requirements", "passport photo dimensions", "passport size photo by country", "passport photo size india usa uk"]}
+  faqItems={[
+    {
+      question: "What is the standard passport photo size worldwide?",
+      answer: "There is no single worldwide standard. The most common size is 35mm × 45mm, used by India, UK, most European countries, and Australia. The USA uses 2 inches × 2 inches (51mm × 51mm). Canada uses 50mm × 70mm. Always check your specific country's requirements.",
+    },
+    {
+      question: "Can I use the same passport photo for different countries?",
+      answer: "No. Each country has specific size, background, and file size requirements. A photo formatted for an Indian passport won't meet US requirements. Always use your country's specific dimensions when preparing passport photos.",
+    },
+    {
+      question: "What file format and size do I need for passport photos?",
+      answer: "Most countries require JPEG format. File size limits vary: India requires 10-50KB, USA allows up to 600KB, UK allows up to 10MB, and Canada allows up to 4MB. Digital submissions often have different limits than printed photos.",
+    },
+    {
+      question: "What background color is required for passport photos?",
+      answer: "Most countries require a plain white background. Some accept light grey or off-white. The USA, India, and most European countries require white. The UK accepts both grey and white. Never use colored, patterned, or gradient backgrounds.",
+    },
+  ]}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <article class="prose mt-8">
+        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
+          <time datetime="2026-06-06">{publishDate}</time>
+          <span>·</span>
+          <span>9 min read</span>
+        </div>
+
+        <h1>Passport Photo Size Requirements by Country (2026 Updated)</h1>
+
+        <p class="lead">
+          Passport photo requirements vary by country and getting them wrong can delay your application. Here are the exact dimensions, file sizes, and background requirements for passport photos worldwide.
+        </p>
+
+        <h2>Complete Passport Photo Size Table</h2>
+
+        <div class="not-prose my-6 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-surface-muted border-b border-border-default">
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Country</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Size (mm)</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Pixels (300 DPI)</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">File Size</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Background</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">India</td>
+                <td class="px-4 py-3 text-text-secondary">35 × 45</td>
+                <td class="px-4 py-3 text-text-secondary">413 × 531</td>
+                <td class="px-4 py-3 text-text-secondary">10-50KB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">USA</td>
+                <td class="px-4 py-3 text-text-secondary">51 × 51 (2×2 in)</td>
+                <td class="px-4 py-3 text-text-secondary">600 × 600</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 600KB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">UK</td>
+                <td class="px-4 py-3 text-text-secondary">35 × 45</td>
+                <td class="px-4 py-3 text-text-secondary">413 × 531</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 10MB</td>
+                <td class="px-4 py-3 text-text-secondary">Grey/White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Canada</td>
+                <td class="px-4 py-3 text-text-secondary">50 × 70</td>
+                <td class="px-4 py-3 text-text-secondary">591 × 827</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 4MB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Australia</td>
+                <td class="px-4 py-3 text-text-secondary">35 × 45</td>
+                <td class="px-4 py-3 text-text-secondary">413 × 531</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 2MB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Germany</td>
+                <td class="px-4 py-3 text-text-secondary">35 × 45</td>
+                <td class="px-4 py-3 text-text-secondary">413 × 531</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 1MB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">France</td>
+                <td class="px-4 py-3 text-text-secondary">35 × 45</td>
+                <td class="px-4 py-3 text-text-secondary">413 × 531</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 1MB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Japan</td>
+                <td class="px-4 py-3 text-text-secondary">35 × 45</td>
+                <td class="px-4 py-3 text-text-secondary">413 × 531</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 1MB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">China</td>
+                <td class="px-4 py-3 text-text-secondary">33 × 48</td>
+                <td class="px-4 py-3 text-text-secondary">390 × 567</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 500KB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Brazil</td>
+                <td class="px-4 py-3 text-text-secondary">50 × 70</td>
+                <td class="px-4 py-3 text-text-secondary">591 × 827</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 1MB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">South Korea</td>
+                <td class="px-4 py-3 text-text-secondary">35 × 45</td>
+                <td class="px-4 py-3 text-text-secondary">413 × 531</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 500KB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-text-primary">UAE</td>
+                <td class="px-4 py-3 text-text-secondary">43 × 55</td>
+                <td class="px-4 py-3 text-text-secondary">508 × 650</td>
+                <td class="px-4 py-3 text-text-secondary">Up to 500KB</td>
+                <td class="px-4 py-3 text-text-secondary">White</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Common Requirements Across All Countries</h2>
+        <p>While dimensions vary, most countries share these requirements:</p>
+        <ul>
+          <li><strong>Face must be centered</strong> — Take up 70-80% of the photo area</li>
+          <li><strong>Neutral expression</strong> — Mouth closed, no smiling for some countries</li>
+          <li><strong>Open eyes</strong> — Looking directly at the camera</li>
+          <li><strong>No headwear</strong> — Unless for religious reasons (with documentation)</li>
+          <li><strong>No glasses</strong> — Many countries now require glasses to be removed</li>
+          <li><strong>Recent photo</strong> — Taken within the last 6 months</li>
+          <li><strong>No filters</strong> — No beauty filters, color adjustments, or retouching</li>
+          <li><strong>Even lighting</strong> — No harsh shadows on face or background</li>
+        </ul>
+
+        <h2>India-Specific Requirements</h2>
+        <p>Indian passport photos have strict requirements that differ from most other countries:</p>
+        <ul>
+          <li><strong>Size:</strong> 35mm × 45mm (3.5cm × 4.5cm)</li>
+          <li><strong>Pixels:</strong> 413 × 531 at 300 DPI</li>
+          <li><strong>File Size:</strong> 10KB to 50KB (JPG format)</li>
+          <li><strong>Background:</strong> Plain white</li>
+          <li><strong>Expression:</strong> Neutral, mouth closed</li>
+          <li><strong>Eyes:</strong> Open, looking directly at camera</li>
+        </ul>
+        <p>For Indian government forms, file size requirements vary:</p>
+        <ul>
+          <li><strong>SSC CGL/CHSL:</strong> 20-50KB</li>
+          <li><strong>UPSC Civil Services:</strong> 20-50KB</li>
+          <li><strong>Aadhar Card:</strong> Up to 300KB</li>
+          <li><strong>PAN Card:</strong> Up to 200KB</li>
+          <li><strong>Bank Account:</strong> 20-50KB</li>
+        </ul>
+
+        <h2>How to Create Passport Photos Online</h2>
+        <p>Creating a passport photo that meets all requirements is straightforward:</p>
+        <ol>
+          <li><strong>Take a photo</strong> — Use natural lighting, white background, face the camera directly from 1-2 meters away</li>
+          <li><strong>Use our tool</strong> — Visit <a href="/passport-photo-size">our passport photo tool</a></li>
+          <li><strong>Select country</strong> — Choose your country to get the correct dimensions automatically</li>
+          <li><strong>Adjust file size</strong> — Select the target file size (20KB, 50KB, or 100KB depending on requirements)</li>
+          <li><strong>Download</strong> — Get your passport-ready photo instantly</li>
+        </ol>
+
+        <h2>Common Mistakes to Avoid</h2>
+        <ul>
+          <li><strong>Wrong dimensions</strong> — Always check your country's specific requirements</li>
+          <li><strong>Wrong file size</strong> — Some countries have strict maximum file sizes</li>
+          <li><strong>Wrong background</strong> — White is required by most countries; avoid any patterns</li>
+          <li><strong>Shadows</strong> — Use even lighting, avoid harsh shadows on face or background</li>
+          <li><strong>Glasses</strong> — Remove if possible, or ensure no glare on lenses</li>
+          <li><strong>Old photos</strong> — Use a photo taken within the last 6 months</li>
+          <li><strong>Selfies</strong> — Avoid selfie distortion; use a tripod or have someone take the photo</li>
+        </ul>
+
+        <div class="not-prose bg-surface-muted rounded-2xl p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-2">Create Your Passport Photo Now</h3>
+          <p class="text-text-secondary text-sm mb-4">Free online tool to resize, crop, and compress passport photos for any country.</p>
+          <a href="/passport-photo-size" class="btn-primary">
+            Open Passport Photo Tool
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="text-center mb-8">
+        <h2 class="text-xl font-bold text-text-primary">Related Articles</h2>
+      </div>
+      <div class="space-y-4">
+        <a href="/blog/indian-passport-photo-size-2026" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">Indian Passport Photo Size 2026 — Complete Guide</h3>
+          <p class="text-sm text-text-secondary">Detailed requirements for Indian passport photos including dimensions and file sizes.</p>
+        </a>
+        <a href="/blog/compress-image-to-100kb-for-passport" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">Compress Image to 100KB for Passport Application</h3>
+          <p class="text-sm text-text-secondary">Step-by-step guide to reducing photo file size for passport submissions.</p>
+        </a>
+        <a href="/blog/compress-image-for-government-forms" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
+          <h3 class="font-semibold text-text-primary mb-1">Compress Image for Government Forms</h3>
+          <p class="text-sm text-text-secondary">How to prepare images for Indian government portals and applications.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
