@@ -1,0 +1,315 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Compress Image for Email", url: "/compress-image-for-email" },
+];
+
+const faqItems = [
+  {
+    question: "What is the maximum attachment size for Gmail?",
+    answer: "Gmail allows attachments up to 25MB per email. However, after Base64 encoding, the effective limit is around 18–20MB. We recommend compressing images to under 1MB for smooth delivery.",
+  },
+  {
+    question: "Why should I compress images before emailing?",
+    answer: "Large image attachments slow down email delivery, may be blocked by the recipient's mail server, and consume unnecessary bandwidth. Compressed images send faster and are less likely to trigger spam filters.",
+  },
+  {
+    question: "How small can I compress my images for email?",
+    answer: "Our compressor can reduce images to as small as 20KB while maintaining readability. For email, we recommend targeting 200KB–1MB depending on how many images you're sending.",
+  },
+  {
+    question: "Will the recipient see a quality difference?",
+    answer: "At compression levels suitable for email (200KB–1MB), the quality difference is negligible for most photos. The recipient will see a clear, sharp image that loads quickly in their email client.",
+  },
+  {
+    question: "Can I compress multiple images for a single email?",
+    answer: "Yes. Upload multiple images, compress them all, and download them as individual files or a ZIP. Attach the compressed files to your email as usual.",
+  },
+  {
+    question: "Is my email content private?",
+    answer: "Absolutely. Our tool processes images entirely in your browser — no data is sent to any server. Your photos remain completely private before, during, and after compression.",
+  },
+];
+
+const keywords = [
+  "compress image for email",
+  "reduce photo for email",
+  "email image compressor",
+  "compress jpg for email",
+  "small image for email attachment",
+];
+---
+
+<BaseLayout
+  title="Compress Image for Email — Reduce Photo Size for Attachments"
+  description="Compress images to under 1MB for email attachments. Fast, free, and private — no uploads required."
+  canonical="https://quickjpgconverter.com/compress-image-for-email"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={keywords}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">📧 Email-Ready Images</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Compress Image for <span class="gradient-text">Email</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Reduce photo sizes for email attachments. Fast, free, and private —
+          no uploads required. Works in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Compressor Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <!-- Top bar -->
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Compress for email</span>
+            <div class="flex items-center gap-1.5 text-xs text-text-tertiary">
+              <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+              Local Processing
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[440px]">
+            <!-- LEFT: Upload / Preview -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your images here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Images
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp,image/*" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG / PNG / WebP · Multiple files supported · Max 50MB each</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to compress</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Options + Actions -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Target Size</h3>
+                <div class="space-y-2 mb-6">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="target-size" value="1000" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-medium text-text-primary">Under 1MB (Recommended)</div>
+                      <div class="text-xs text-text-tertiary mt-0.5">Best balance of quality and size</div>
+                    </div>
+                  </label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="target-size" value="500" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-medium text-text-primary">Under 500KB</div>
+                      <div class="text-xs text-text-tertiary mt-0.5">Faster sending, slightly less detail</div>
+                    </div>
+                  </label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="target-size" value="200" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-medium text-text-primary">Under 200KB</div>
+                      <div class="text-xs text-text-tertiary mt-0.5">Ultra compact for many attachments</div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="h-px bg-border-default mb-6"></div>
+
+                <div class="mb-6">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-sm font-semibold text-text-primary" for="quality-slider">Quality</label>
+                    <span id="quality-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">80%</span>
+                  </div>
+                  <input
+                    id="quality-slider"
+                    type="range"
+                    min="10"
+                    max="95"
+                    value="80"
+                    class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
+                  />
+                  <div class="flex justify-between text-xs text-text-tertiary mt-1">
+                    <span>Smaller</span>
+                    <span>Better Quality</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div id="progress-area" class="hidden mb-4">
+                  <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                  </div>
+                  <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Compressing...</p>
+                </div>
+
+                <div id="compress-btn-area">
+                  <button id="compress-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                    Compress for Email
+                  </button>
+                  <p class="text-xs text-text-tertiary text-center mt-2">Processed locally in your browser</p>
+                </div>
+
+                <div id="download-area" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Simple Process</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">How to Compress Images for Email</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload Your Photos</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select. Supports JPG, PNG, and WebP formats.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Choose Target Size</h3>
+          <p class="text-sm text-text-secondary">Select under 1MB, 500KB, or 200KB based on your needs.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Attach to Email</h3>
+          <p class="text-sm text-text-secondary">Download compressed images and attach them to your email.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQ -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Compress Images for Email?</h2>
+        <p>
+          Email attachment size limits remain one of the most common frustrations when sending photos digitally. Gmail caps attachments at 25MB, Outlook allows 20MB, and Yahoo Mail limits to 25MB. But these limits account for Base64 encoding overhead, which inflates file sizes by approximately 33%. A 25MB limit effectively means you can only attach files up to about 18MB before encoding. For photos taken on modern smartphones — which often produce 5–10MB files — sending even two or three uncompressed images can push you past these limits.
+        </p>
+        <p>
+          Beyond the hard limits, large attachments cause practical problems. They take longer to send, consume more bandwidth (critical for mobile users), may be silently rejected by corporate mail servers with stricter limits, and can trigger spam filters. Recipients on slow connections may wait minutes for your email to load, and some email clients display a warning when attachments exceed certain thresholds.
+        </p>
+
+        <h3>Understanding Email Attachment Limits</h3>
+        <p>
+          Different email providers enforce different attachment limits, and understanding these helps you choose the right compression target:
+        </p>
+        <ul>
+          <li><strong>Gmail:</strong> 25MB per message (including Base64 overhead). Practical limit is ~18MB of actual file data</li>
+          <li><strong>Microsoft Outlook:</strong> 20MB for Exchange accounts, 20MB for Outlook.com. Corporate policies may reduce this further</li>
+          <li><strong>Yahoo Mail:</strong> 25MB per email. Similar to Gmail in practical capacity</li>
+          <li><strong>Apple Mail (iCloud):</strong> 20MB per email for iCloud accounts</li>
+          <li><strong>Corporate servers:</strong> Many organizations enforce 5–10MB limits for security and storage reasons</li>
+        </ul>
+
+        <h3>Optimal Compression for Email</h3>
+        <p>
+          For most email use cases, compressing images to under 1MB provides the ideal balance between quality and deliverability. A 1MB compressed photo typically maintains 95%+ of the original's visual quality while being small enough to send multiple images in a single email without hitting attachment limits.
+        </p>
+        <p>
+          If you're sending a large batch of photos (say, 20 images from an event), consider compressing each to under 500KB. This keeps the total email size under 10MB even with 20 attachments, well within most providers' limits. For quick snapshots where quality is less critical — such as document scans or reference photos — 200KB per image is sufficient and allows you to send dozens of images without issues.
+        </p>
+
+        <h3>Email-Specific Compression Tips</h3>
+        <ul>
+          <li><strong>Resize before compressing:</strong> If recipients only need to view the image on screen, resize to 1200–1920px wide before compressing — this dramatically reduces file size</li>
+          <li><strong>Use JPG for photos:</strong> JPG is more efficient than PNG for photographic content, achieving smaller files at equivalent visual quality</li>
+          <li><strong>Strip metadata:</strong> Our compressor automatically removes EXIF data, which can account for 5–10% of file size</li>
+          <li><strong>Consider the recipient:</strong> If they're on mobile or have limited bandwidth, lean toward smaller file sizes (200–500KB)</li>
+          <li><strong>Use cloud sharing for large batches:</strong> If you have more than 10 high-resolution photos, consider sharing via Google Drive or Dropbox instead of email</li>
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <!-- Related tools -->
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/image-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
+          <p class="text-sm text-text-secondary">General-purpose image compression tool.</p>
+        </a>
+        <a href="/compress-to-100kb" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 100KB</h3>
+          <p class="text-sm text-text-secondary">Target specific file size for web uploads.</p>
+        </a>
+        <a href="/jpg-to-pdf" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PDF</h3>
+          <p class="text-sm text-text-secondary">Convert JPG images to PDF documents.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initImageCompressor } from "@scripts/compressor.js";
+    document.addEventListener("DOMContentLoaded", () => {
+      initImageCompressor();
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,320 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Compress Image to 50KB", url: "/compress-image-to-50kb" },
+];
+
+const faqItems = [
+  {
+    question: "Why do government forms require images under 50KB?",
+    answer: "Government portals like SSC, UPSC, and various state recruitment boards enforce strict file size limits to manage server load. A 50KB limit ensures uploads process quickly and consistently for millions of applicants.",
+  },
+  {
+    question: "Will my photo still look good after compressing to 50KB?",
+    answer: "Yes. Our compressor uses intelligent quality optimization so your photo remains clear and recognizable. For passport-size photos (3.5cm x 4.5cm), 50KB is more than sufficient for sharp, professional results.",
+  },
+  {
+    question: "What image formats can I compress to 50KB?",
+    answer: "You can upload JPG, JPEG, PNG, and WebP files. The output will always be a compressed JPG file optimized to fit under your target size.",
+  },
+  {
+    question: "Is my photo uploaded to any server?",
+    answer: "No. All processing happens locally in your browser using the Canvas API. Your photo never leaves your device, ensuring complete privacy.",
+  },
+  {
+    question: "Can I compress multiple images to 50KB at once?",
+    answer: "Yes. Upload multiple photos and compress them all in one session. Download them individually or as a ZIP archive.",
+  },
+  {
+    question: "What if my image can't be compressed to exactly 50KB?",
+    answer: "The tool will compress your image to the closest size possible below 50KB. For very large originals, it will still achieve the maximum reduction to get as close as possible.",
+  },
+];
+
+const keywords = [
+  "compress image to 50kb",
+  "reduce photo to 50kb",
+  "50kb image compressor",
+  "photo size 50kb",
+  "compress jpg to 50kb",
+  "image to 50kb online",
+];
+---
+
+<BaseLayout
+  title="Compress Image to 50KB — Free Online Photo Resizer"
+  description="Compress any image to under 50KB instantly. Perfect for government forms, job applications, and portal uploads. 100% private, browser-based."
+  canonical="https://quickjpgconverter.com/compress-image-to-50kb"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={keywords}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">🎯 Precise Size Control</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Compress Image to <span class="gradient-text">50KB</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Reduce any photo to under 50KB instantly. Perfect for government forms,
+          job applications, and portal uploads. 100% private, browser-based.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Compressor Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <!-- Top bar -->
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Compress to 50KB</span>
+            <div class="flex items-center gap-1.5 text-xs text-text-tertiary">
+              <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+              Local Processing
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[440px]">
+            <!-- LEFT: Upload / Preview -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your images here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Images
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp,image/*" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG / PNG / WebP · Multiple files supported · Max 50MB each</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to compress</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Options + Actions -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Target Size</h3>
+                <div class="space-y-2 mb-6">
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="target-size" value="50" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-medium text-text-primary">50KB (Recommended)</div>
+                      <div class="text-xs text-text-tertiary mt-0.5">Ideal for most government forms</div>
+                    </div>
+                  </label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="target-size" value="40" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-medium text-text-primary">40KB (Stricter)</div>
+                      <div class="text-xs text-text-tertiary mt-0.5">For portals with tight limits</div>
+                    </div>
+                  </label>
+                  <label class="flex items-start gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="target-size" value="30" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="text-sm font-medium text-text-primary">30KB (Ultra Small)</div>
+                      <div class="text-xs text-text-tertiary mt-0.5">Maximum compression</div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="h-px bg-border-default mb-6"></div>
+
+                <div class="mb-6">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-sm font-semibold text-text-primary" for="quality-slider">Quality</label>
+                    <span id="quality-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">80%</span>
+                  </div>
+                  <input
+                    id="quality-slider"
+                    type="range"
+                    min="10"
+                    max="95"
+                    value="80"
+                    class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
+                  />
+                  <div class="flex justify-between text-xs text-text-tertiary mt-1">
+                    <span>Smaller</span>
+                    <span>Better Quality</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div id="progress-area" class="hidden mb-4">
+                  <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                  </div>
+                  <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Compressing...</p>
+                </div>
+
+                <div id="compress-btn-area">
+                  <button id="compress-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                    Compress to 50KB
+                  </button>
+                  <p class="text-xs text-text-tertiary text-center mt-2">Processed locally in your browser</p>
+                </div>
+
+                <div id="download-area" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Simple Process</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">How to Compress an Image to 50KB</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload Your Image</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select. Supports JPG, PNG, and WebP formats.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Set Target to 50KB</h3>
+          <p class="text-sm text-text-secondary">The 50KB target is pre-selected. Adjust the quality slider if needed.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download Your Photo</h3>
+          <p class="text-sm text-text-secondary">Get your compressed photo ready for form submissions and uploads.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQ -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Compress Images to 50KB?</h2>
+        <p>
+          Many Indian government portals, job application websites, and examination registration systems enforce strict image file size limits. The SSC (Staff Selection Commission), UPSC (Union Public Service Commission), IBPS, and numerous state-level recruitment boards typically require uploaded photographs and signatures to be under 50KB. This isn't an arbitrary restriction — it's a practical necessity when millions of candidates upload documents within a narrow registration window.
+        </p>
+        <p>
+          A typical smartphone photo taken today ranges from 3MB to 10MB in size. Submitting such a file directly to a government portal will almost certainly result in an upload error. Even if the portal accepts it, the processing time increases dramatically, and the file may be rejected during verification. Compressing your image to 50KB ensures smooth, fast uploads and eliminates the frustration of repeated rejections.
+        </p>
+
+        <h3>Common Use Cases for 50KB Image Compression</h3>
+        <p>
+          The 50KB threshold is the most commonly specified limit across Indian government and institutional forms. Here are the primary scenarios where you'll need a 50KB-compressed image:
+        </p>
+        <ul>
+          <li><strong>SSC and UPSC applications:</strong> Both commissions require photograph uploads under 50KB for online application forms</li>
+          <li><strong>IBPS bank recruitment forms:</strong> The Institute of Banking Personnel Selection mandates similar size limits for candidate photos</li>
+          <li><strong>State government job portals:</strong> Most state-level recruitment boards (BPSC, UPPSC, MPPSC, etc.) enforce the 50KB limit</li>
+          <li><strong>Aadhaar and PAN card updates:</strong> UIDAI and NSDL portals often require compressed photos for online applications</li>
+          <li><strong>E-passport and visa applications:</strong> Indian passport applications require specific photo sizes that fit within 50KB</li>
+          <li><strong>University admission forms:</strong> Many Indian universities require compressed photos for online admission portals</li>
+        </ul>
+
+        <h3>How Our 50KB Compressor Works</h3>
+        <p>
+          Unlike generic image compressors, our tool is specifically optimized for the 50KB target size. When you upload a photo, the compressor intelligently adjusts encoding quality, reduces unnecessary metadata, and optimizes color profiles to achieve the target size while maintaining the best possible visual quality.
+        </p>
+        <p>
+          The entire process happens in your browser using the HTML5 Canvas API and JavaScript. Your image is never uploaded to any server, which means your personal photos remain completely private. This is especially important for government form photos, which contain biometric data. Once compression is complete, you can download the result instantly and use it directly in your application form.
+        </p>
+
+        <h3>Tips for Getting the Best Results</h3>
+        <p>
+          While our compressor handles the technical work, a few tips can help you get the best results when compressing images to 50KB:
+        </p>
+        <ul>
+          <li><strong>Crop before compressing:</strong> If the portal requires a specific aspect ratio (like 3.5cm x 4.5cm for passports), crop the image first to remove unnecessary background</li>
+          <li><strong>Use a clean background:</strong> Plain white or light-colored backgrounds compress more efficiently than complex backgrounds</li>
+          <li><strong>Start with a reasonable resolution:</strong> There's no benefit to uploading a 20MB photo when a 500KB source will produce an identical 50KB result</li>
+          <li><strong>Check the output quality:</strong> Always preview the compressed image to ensure your face is clearly visible and recognizable before submitting</li>
+          <li><strong>Use the quality slider:</strong> If the default compression is too aggressive, reduce the quality setting slightly to preserve more detail</li>
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <!-- Related tools -->
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/compress-image-to-20kb" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 20KB</h3>
+          <p class="text-sm text-text-secondary">Even smaller file size for strict requirements.</p>
+        </a>
+        <a href="/compress-for-govt-form" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress for Govt Form</h3>
+          <p class="text-sm text-text-secondary">Optimized for Indian government form uploads.</p>
+        </a>
+        <a href="/image-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
+          <p class="text-sm text-text-secondary">General-purpose image compression tool.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initImageCompressor } from "@scripts/compressor.js";
+    document.addEventListener("DOMContentLoaded", () => {
+      initImageCompressor();
+    });
+  </script>
+</BaseLayout>

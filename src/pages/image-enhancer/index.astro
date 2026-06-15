@@ -1,0 +1,337 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [{ name: "Image Enhancer", url: "/image-enhancer" }];
+
+const faqItems = [
+  {
+    question: "What adjustments can I make with the image enhancer?",
+    answer: "You can adjust brightness, contrast, saturation, and sharpness. Each control has a slider that lets you fine-tune the effect in real time before exporting.",
+  },
+  {
+    question: "Does enhancing an image reduce quality?",
+    answer: "Adjusting brightness, contrast, and saturation remaps pixel values but does not introduce compression artifacts. Sharpening can amplify noise if pushed too far, so moderate values are recommended.",
+  },
+  {
+    question: "What image formats are supported?",
+    answer: "The enhancer accepts all common image types including JPG, PNG, WebP, GIF, BMP, and TIFF. The output is always a JPG file.",
+  },
+  {
+    question: "Can I enhance multiple images at once?",
+    answer: "Yes. You can upload multiple images, apply the same enhancement settings to all of them, and download the results as a ZIP archive.",
+  },
+  {
+    question: "Are my images uploaded to a server?",
+    answer: "No. All processing happens locally in your browser using the Canvas API. Your images never leave your device.",
+  },
+  {
+    question: "Can I reset the adjustments back to zero?",
+    answer: "Yes. Each slider has a reset button, or you can double-click the slider handle to snap it back to the default value of 0 (or 0 for sharpness).",
+  },
+];
+---
+
+<BaseLayout
+  title="Free Image Enhancer — Improve Photo Quality Online"
+  description="Enhance images with brightness, contrast, saturation, and sharpness controls. 100% private, runs in your browser, no uploads required."
+  canonical="https://quickjpgconverter.com/image-enhancer"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["image enhancer", "enhance image", "photo enhancer", "adjust brightness", "increase contrast", "sharpen image", "improve photo quality", "free image editor", "online photo editor"]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">✨ Professional Photo Enhancement</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          <span class="gradient-text">Image</span> Enhancer
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Enhance images with brightness, contrast, saturation, and sharpness controls.
+          100% private — processed entirely in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Enhancer Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <!-- Top bar -->
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Enhance your images</span>
+            <div class="flex items-center gap-1.5 text-xs text-text-tertiary">
+              <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+              Local Processing
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[440px]">
+            <!-- LEFT: Upload / Preview -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your images here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Image Files
+                    <input type="file" class="sr-only" accept="image/*" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP, GIF, BMP, TIFF · Multiple files supported</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to enhance</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Options + Actions -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Enhancement Controls</h3>
+
+                <div class="space-y-4 mb-6">
+                  <!-- Brightness -->
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label class="text-sm font-medium text-text-primary" for="brightness-slider">Brightness</label>
+                      <span id="brightness-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">0</span>
+                    </div>
+                    <input
+                      id="brightness-slider"
+                      type="range"
+                      min="-100"
+                      max="100"
+                      value="0"
+                      class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
+                    />
+                    <div class="flex justify-between text-xs text-text-tertiary mt-1">
+                      <span>Darker</span>
+                      <span>Brighter</span>
+                    </div>
+                  </div>
+
+                  <!-- Contrast -->
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label class="text-sm font-medium text-text-primary" for="contrast-slider">Contrast</label>
+                      <span id="contrast-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">0</span>
+                    </div>
+                    <input
+                      id="contrast-slider"
+                      type="range"
+                      min="-100"
+                      max="100"
+                      value="0"
+                      class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
+                    />
+                    <div class="flex justify-between text-xs text-text-tertiary mt-1">
+                      <span>Lower</span>
+                      <span>Higher</span>
+                    </div>
+                  </div>
+
+                  <!-- Saturation -->
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label class="text-sm font-medium text-text-primary" for="saturation-slider">Saturation</label>
+                      <span id="saturation-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">0</span>
+                    </div>
+                    <input
+                      id="saturation-slider"
+                      type="range"
+                      min="-100"
+                      max="100"
+                      value="0"
+                      class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
+                    />
+                    <div class="flex justify-between text-xs text-text-tertiary mt-1">
+                      <span>Desaturated</span>
+                      <span>Vivid</span>
+                    </div>
+                  </div>
+
+                  <!-- Sharpness -->
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label class="text-sm font-medium text-text-primary" for="sharpness-slider">Sharpness</label>
+                      <span id="sharpness-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">0</span>
+                    </div>
+                    <input
+                      id="sharpness-slider"
+                      type="range"
+                      min="0"
+                      max="100"
+                      value="0"
+                      class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
+                    />
+                    <div class="flex justify-between text-xs text-text-tertiary mt-1">
+                      <span>Soft</span>
+                      <span>Sharpest</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div id="progress-area" class="hidden mb-4">
+                  <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                  </div>
+                  <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Enhancing...</p>
+                </div>
+
+                <div id="enhance-btn-area">
+                  <button id="enhance-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                    </svg>
+                    Enhance Image
+                  </button>
+                  <p class="text-xs text-text-tertiary text-center mt-2">Processed locally in your browser</p>
+                </div>
+
+                <div id="download-area" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Simple Process</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps to Better Photos</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload Images</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select. Supports batch upload.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Adjust Settings</h3>
+          <p class="text-sm text-text-secondary">Tweak brightness, contrast, saturation, and sharpness.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download Results</h3>
+          <p class="text-sm text-text-secondary">Get enhanced files individually or as a ZIP.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQ -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Enhance Your Images?</h2>
+        <p>
+          Even well-captured photos can benefit from post-processing. Subtle adjustments to brightness, contrast, and saturation can transform a flat, dull image into a vibrant, professional-looking photograph. Enhancement is especially useful for photos taken in challenging lighting conditions, underexposed shots, or images that need extra punch for social media or print.
+        </p>
+        <p>
+          Unlike heavy filters that alter the look of an image, basic enhancement preserves the natural appearance while improving clarity and visual appeal. The result is a photo that looks like a better version of itself — not a different image entirely.
+        </p>
+
+        <h3>When to Use Each Adjustment</h3>
+        <p>
+          <strong>Brightness</strong> is ideal for correcting underexposed or overexposed images. Increasing brightness brings out details in dark areas, while decreasing it can rescue blown-out highlights and add mood.
+        </p>
+        <p>
+          <strong>Contrast</strong> defines the difference between the lightest and darkest parts of an image. Increasing contrast makes images pop with deeper blacks and brighter whites, while reducing it produces a softer, more muted look.
+        </p>
+        <p>
+          <strong>Saturation</strong> controls the intensity of colors. Boosting saturation makes colors more vivid and eye-catching — perfect for landscapes and product photos. Reducing it can create a subtle, desaturated aesthetic.
+        </p>
+        <p>
+          <strong>Sharpness</strong> enhances edge detail and definition. A small amount of sharpening can make an image look crisper and more focused, which is especially helpful for photos that appear slightly soft.
+        </p>
+
+        <h3>Tips for Natural-Looking Enhancement</h3>
+        <ul>
+          <li>Make small adjustments — increments of 10–20 usually produce the best results</li>
+          <li>Increase brightness and contrast together for a balanced, punchy look</li>
+          <li>Keep saturation moderate (10–30) to avoid unnatural skin tones</li>
+          <li>Apply sharpening sparingly — too much introduces halos and noise</li>
+          <li>Compare before and after by toggling the original preview</li>
+          <li>Enhance once per image — stacking multiple passes degrades quality</li>
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <!-- Related tools -->
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/image-resizer" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Resizer</h3>
+          <p class="text-sm text-text-secondary">Resize images to exact dimensions.</p>
+        </a>
+        <a href="/remove-background" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Remove Background</h3>
+          <p class="text-sm text-text-secondary">Remove image backgrounds instantly.</p>
+        </a>
+        <a href="/jpg-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG Compressor</h3>
+          <p class="text-sm text-text-secondary">Reduce JPG file size without quality loss.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initImageEnhancer } from "@scripts/image-enhancer.js";
+    document.addEventListener("DOMContentLoaded", () => {
+      initImageEnhancer();
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,322 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Passport Photo Size India", url: "/passport-photo-size-india" },
+];
+
+const faqItems = [
+  {
+    question: "What is the exact passport photo size for Indian passport applications?",
+    answer: "The Indian passport requires a photograph measuring 3.5cm x 4.5cm (35mm x 45mm). At 300 DPI, this translates to 413 x 531 pixels. The file size should typically be under 50KB for online applications.",
+  },
+  {
+    question: "What background color is required for Indian passport photos?",
+    answer: "The background must be plain white. No patterns, shadows, or colored backgrounds are accepted. The photo should have even lighting with no harsh shadows on the face or background.",
+  },
+  {
+    question: "Can I use this tool to resize my photo for Indian passport?",
+    answer: "Yes. Our passport photo tool resizes your image to the exact 3.5cm x 4.5cm dimensions (413x531 pixels at 300 DPI) required for Indian passport applications. You can then use it for both online and printed applications.",
+  },
+  {
+    question: "What are the other photo specifications for Indian passport?",
+    answer: "Photos must be recent (within 6 months), show a neutral expression with mouth closed, have both ears visible, no glasses (unless medically required), and the head should occupy 50–70% of the photo height.",
+  },
+  {
+    question: "How do I ensure my passport photo meets all requirements?",
+    answer: "Use our tool to resize to 3.5cm x 4.5cm, ensure a white background, check that your face is clearly visible and centered, and verify the file size is under 50KB for online submissions.",
+  },
+  {
+    question: "Is the passport photo tool private and secure?",
+    answer: "Yes. All processing happens entirely in your browser using JavaScript. Your photo is never uploaded to any server, ensuring complete privacy for your biometric data.",
+  },
+];
+
+const keywords = [
+  "passport photo size india",
+  "indian passport photo dimensions",
+  "passport photo maker india",
+  "resize photo for indian passport",
+  "passport size photo online india",
+];
+---
+
+<BaseLayout
+  title="Passport Photo Size India — Free Online Passport Photo Maker"
+  description="Create passport-size photos for Indian passport applications. Resize to exact 3.5cm x 4.5cm dimensions. 100% private, browser-based."
+  canonical="https://quickjpgconverter.com/passport-photo-size-india"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={keywords}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">🇮🇳 India Passport Specs</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Passport Photo Size — <span class="gradient-text">India</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Resize your photo to the exact 3.5cm x 4.5cm dimensions required for
+          Indian passport applications. 100% private, browser-based.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Compressor Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <!-- Top bar -->
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Passport photo resizer</span>
+            <div class="flex items-center gap-1.5 text-xs text-text-tertiary">
+              <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+              Local Processing
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[440px]">
+            <!-- LEFT: Upload / Preview -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your photo here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Photo
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp,image/*" />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG / PNG / WebP · Single file · Max 50MB</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to resize</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">Photo ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 flex items-center justify-center overflow-y-auto max-h-[350px]"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Options + Actions -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Passport Specifications</h3>
+                <div class="space-y-2 mb-6">
+                  <div class="p-3 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30">
+                    <div class="text-sm font-medium text-text-primary">Indian Passport (3.5cm x 4.5cm)</div>
+                    <div class="text-xs text-text-tertiary mt-0.5">413 x 531 pixels at 300 DPI</div>
+                  </div>
+                  <div class="p-3 rounded-xl border border-border-default">
+                    <div class="text-sm font-medium text-text-primary">Other Passport Sizes</div>
+                    <div class="text-xs text-text-tertiary mt-0.5">US, UK, Schengen, and more available</div>
+                  </div>
+                </div>
+
+                <div class="h-px bg-border-default mb-6"></div>
+
+                <div class="mb-6">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-sm font-semibold text-text-primary" for="quality-slider">Quality</label>
+                    <span id="quality-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">90%</span>
+                  </div>
+                  <input
+                    id="quality-slider"
+                    type="range"
+                    min="50"
+                    max="100"
+                    value="90"
+                    class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
+                  />
+                  <div class="flex justify-between text-xs text-text-tertiary mt-1">
+                    <span>Smaller File</span>
+                    <span>Higher Quality</span>
+                  </div>
+                </div>
+
+                <div class="h-px bg-border-default mb-6"></div>
+
+                <div class="p-3 rounded-xl bg-surface-muted border border-border-default">
+                  <h4 class="text-xs font-semibold text-text-primary mb-2">Photo Requirements</h4>
+                  <ul class="text-xs text-text-secondary space-y-1">
+                    <li>• White background, plain and even</li>
+                    <li>• Neutral expression, mouth closed</li>
+                    <li>• Both ears visible, no hair covering face</li>
+                    <li>• No glasses (unless medically needed)</li>
+                    <li>• Recent photo (within 6 months)</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div>
+                <div id="progress-area" class="hidden mb-4">
+                  <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                  </div>
+                  <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Resizing...</p>
+                </div>
+
+                <div id="compress-btn-area">
+                  <button id="compress-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                    Resize for Passport
+                  </button>
+                  <p class="text-xs text-text-tertiary text-center mt-2">Processed locally in your browser</p>
+                </div>
+
+                <div id="download-area" class="hidden"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Simple Process</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">How to Create an Indian Passport Photo</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload Your Photo</h3>
+          <p class="text-sm text-text-secondary">Use a well-lit photo with a white background, facing the camera directly.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Auto-Resize to 3.5x4.5cm</h3>
+          <p class="text-sm text-text-secondary">The tool automatically crops and resizes to exact passport dimensions.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download & Use</h3>
+          <p class="text-sm text-text-secondary">Get your passport-ready photo for online applications or printing.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQ -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Indian Passport Photo Requirements — Complete Guide</h2>
+        <p>
+          The Indian Ministry of External Affairs (MEA) enforces strict photograph specifications for passport applications. Whether you're applying for a fresh passport, renewing an existing one, or updating details, your photograph must meet precise dimensional and quality standards. Failure to comply is one of the most common reasons for application rejection, causing delays in an already lengthy process.
+        </p>
+        <p>
+          The standard Indian passport photograph measures <strong>3.5cm x 4.5cm</strong> (35mm x 45mm). At the standard print resolution of 300 DPI (dots per inch), this translates to approximately <strong>413 x 531 pixels</strong>. The photo must be in color, printed on matte or glossy photo paper, and the file size for online applications should be under 50KB.
+        </p>
+
+        <h3>Exact Specifications for Indian Passport Photos</h3>
+        <p>
+          Beyond dimensions, the MEA specifies several other requirements that your photograph must meet:
+        </p>
+        <ul>
+          <li><strong>Background:</strong> Plain white, with no patterns, shadows, or gradients. The background should be uniform and free of any objects</li>
+          <li><strong>Face position:</strong> The face should occupy 50–70% of the photo height, with the head centered horizontally</li>
+          <li><strong>Expression:</strong> Neutral expression with mouth closed. No smiling, frowning, or exaggerated expressions</li>
+          <li><strong>Eyes:</strong> Both eyes must be open and clearly visible. No red-eye effect</li>
+          <li><strong>Ears:</strong> Both ears must be visible. Hair should not cover the ears or face</li>
+          <li><strong>Glasses:</strong> Spectacles are generally not allowed. If medically necessary, the lenses must be clear with no reflections</li>
+          <li><strong>Headgear:</strong> Not permitted except for religious reasons, and even then, the full face must be visible from chin to forehead</li>
+          <li><strong>Recency:</strong> The photograph must be taken within the last 6 months</li>
+        </ul>
+
+        <h3>Why Dimension Accuracy Matters</h3>
+        <p>
+          Passport photos are used for biometric verification at immigration checkpoints worldwide. The facial recognition systems used at airports and border crossings rely on precise proportions between facial features. If your photo dimensions are incorrect — even by a few millimeters — the biometric system may fail to match your face, causing delays or denial at immigration.
+        </p>
+        <p>
+          For Indian passport applications submitted online, the portal performs automated validation. Photos that don't meet the dimensional requirements are rejected immediately, forcing you to redo the entire process. Using our tool ensures your photo is resized to the exact 413x531 pixel dimensions, eliminating this common source of rejection.
+        </p>
+
+        <h3>Tips for Taking a Perfect Passport Photo at Home</h3>
+        <p>
+          You don't need a professional studio to take a passport-compliant photo. Here's how to get good results at home:
+        </p>
+        <ul>
+          <li><strong>Lighting:</strong> Use natural daylight from a window facing you. Avoid overhead lighting that creates shadows under the eyes and nose</li>
+          <li><strong>Background:</strong> Stand 2–3 feet in front of a plain white wall or hang a white sheet behind you</li>
+          <li><strong>Camera position:</strong> Have someone take the photo at eye level, or use a tripod with timer. The camera should be 4–5 feet away</li>
+          <li><strong>Framing:</strong> Center your face in the frame with equal space on both sides. Leave some space above your head</li>
+          <li><strong>Clothing:</strong> Wear dark-colored clothing that contrasts with the white background. Avoid uniforms or heavily patterned clothes</li>
+          <li><strong>Post-processing:</strong> Use our tool to resize to exact dimensions, then verify the white background and face positioning before printing</li>
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <!-- Related tools -->
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/passport-photo-size" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Passport Photo Size</h3>
+          <p class="text-sm text-text-secondary">Standard passport photo dimensions for all countries.</p>
+        </a>
+        <a href="/compress-for-govt-form" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress for Govt Form</h3>
+          <p class="text-sm text-text-secondary">Optimized compression for Indian government forms.</p>
+        </a>
+        <a href="/image-resizer" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Resizer</h3>
+          <p class="text-sm text-text-secondary">Resize images to any custom dimensions.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initResizer } from "@scripts/resize.js";
+    document.addEventListener("DOMContentLoaded", () => {
+      initResizer();
+    });
+  </script>
+</BaseLayout>
