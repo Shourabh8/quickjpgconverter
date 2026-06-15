@@ -18,6 +18,7 @@ interface Props {
   faqItems?: { question: string; answer: string }[];
   keywords?: string[];
   howToSteps?: { name: string; text: string; image?: string }[];
+  locale?: string;
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   faqItems,
   keywords,
   howToSteps,
+  locale = "en",
 } = Astro.props;
 ---
 

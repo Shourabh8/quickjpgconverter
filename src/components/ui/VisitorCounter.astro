@@ -1,0 +1,12 @@
+---
+// Visitor counter component - tracks unique visitors using localStorage
+---
+
+<div id="visitor-counter" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-muted border border-border-default">
+  <svg class="w-4 h-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128H9m6-3.07a8.959 8.959 0 00-2.625-.372 9.337 9.337 0 00-4.121.952M9 19.128v-.003c0-1.113.285-2.16.786-3.07m0 0a8.959 8.959 0 012.625-.372c1.348 0 2.611.363 3.71.987m-6.71-.987a3.375 3.375 0 114.773 0M12 10.5a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+  </svg>
+  <span class="text-xs font-medium text-text-secondary">
+    <span id="visitor-count" class="text-brand-600 dark:text-brand-400">...</span> visitors
+  </span>
+</div>
