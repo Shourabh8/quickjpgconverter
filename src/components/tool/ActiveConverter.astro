@@ -92,7 +92,7 @@ const conversionOptions = [
         <div class="space-y-2 mb-6">
           {conversionOptions.map((opt) => (
             <label class:list={[
-              "flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all duration-200",
+              "quality-label flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all duration-200",
               opt.checked
                 ? "border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30"
                 : "border-border-default hover:border-border-strong hover:bg-surface-subtle/50"
@@ -165,5 +165,32 @@ const conversionOptions = [
       const targetMime = configEl.getAttribute("data-target-mime") || "image/png";
       initConverter({ targetFormat, targetExt, targetMime });
     }
+
+    // Quality selector styling
+    const qualityRadios = document.querySelectorAll('input[name="quality"]');
+    const qualityLabels = document.querySelectorAll('.quality-label');
+
+    function updateQualityStyles() {
+      const isDark = document.documentElement.classList.contains('dark');
+      qualityLabels.forEach((label) => {
+        const radio = label.querySelector('input[type="radio"]');
+        if (radio?.checked) {
+          label.style.borderColor = isDark ? '#1d4ed8' : '#60a5fa';
+          label.style.backgroundColor = isDark ? 'rgba(59,130,246,0.08)' : '#eff6ff';
+        } else {
+          label.style.borderColor = '';
+          label.style.backgroundColor = '';
+        }
+      });
+    }
+
+    qualityRadios.forEach((radio) => {
+      radio.addEventListener('change', updateQualityStyles);
+    });
+
+    const observer = new MutationObserver(updateQualityStyles);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    updateQualityStyles();
   });
 </script>
