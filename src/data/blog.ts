@@ -18,6 +18,16 @@ export const blogAuthor = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "heic-to-jpg-windows",
+    title: "How to Convert HEIC to JPG on Windows 10 & 11 — 4 Free Methods (2026)",
+    description: "Convert HEIC iPhone photos to JPG on Windows 10 and 11. Four free methods: online converter, HEIC codec, Paint, and iPhone settings. No software required.",
+    publishDate: "2026-06-15",
+    dateModified: "2026-06-15",
+    readTime: "5 min read",
+    keywords: ["how to convert heic to jpg on windows", "heic to jpg windows 10", "heic to jpg windows 11", "convert heic to jpg windows", "heic converter windows"],
+    category: "Image Conversion",
+  },
+  {
     slug: "compress-image-to-100kb",
     title: "How to Compress Image to 100KB Without Losing Quality",
     description: "Step-by-step guide to compress any image to under 100KB for passport photos, job portals, and government forms. Free online tool, no signup required.",

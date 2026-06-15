@@ -20,7 +20,15 @@ const trustBadges = [
   title="QuickJPG — Free Browser-Based Online Image Tools Platform"
   description="Convert, compress, and resize JPG, PNG, WebP, HEIC, and PDF files instantly in your browser. Complete privacy, zero server uploads, fast and free."
   canonical={site.url}
-  keywords={["jpg converter", "free image platform", "convert jpg to png", "compress image online", "webp converter", "pdf converter", "image resizer", "no upload converter"]}
+  keywords={["jpg converter", "image converter online free", "convert jpg to png", "compress image", "resize image online", "webp converter", "heic to jpg", "free image tools"]}
+  faqItems={[
+    { question: "Is QuickJPG completely free?", answer: "Yes, QuickJPG is 100% free with no hidden costs, no registration required, and no usage limits." },
+    { question: "Are my files safe and private?", answer: "Your files never leave your device. All processing happens in your browser using Canvas and WebAssembly technology." },
+    { question: "What is the maximum file size?", answer: "You can upload files up to 50MB per file." },
+    { question: "Does it work on iPhone and Android?", answer: "Yes! QuickJPG works on all modern mobile browsers including Safari on iPhone and Chrome on Android." },
+    { question: "What image formats are supported?", answer: "We support JPG, PNG, WebP, HEIC, GIF, and PDF." },
+    { question: "Do I need to create an account?", answer: "No account needed ever. Just visit the tool, upload your file, and download the result." },
+  ]}
 >
   <!-- ============================================
        HERO & CONVERTER
@@ -77,7 +85,7 @@ const trustBadges = [
                     </svg>
                   </div>
                   <h3 class="text-sm sm:text-base font-semibold text-text-primary mb-1.5">Drop images or PDF here</h3>
-                  <p class="text-xs text-text-secondary mb-4">or click to browse from your device</p>
+                  <p class="text-xs text-text-secondary mb-4">tap to browse or drag and drop</p>
                   <label class="btn-primary btn-sm cursor-pointer">
                     Choose Files
                     <input type="file" class="sr-only" accept="image/*,.pdf" multiple />
@@ -274,6 +282,94 @@ const trustBadges = [
   </section>
 
   <!-- ============================================
+       FAQ
+       ============================================ -->
+  <section class="section-sm" id="faq">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+        <Badge class="mb-3">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-[-0.02em] mb-3">
+          Frequently Asked Questions
+        </h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-3">
+        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
+          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
+            <span class="text-sm font-semibold text-text-primary">Is QuickJPG completely free?</span>
+            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
+            Yes, QuickJPG is 100% free with no hidden costs, no registration required, and no usage limits.
+          </div>
+        </div>
+
+        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
+          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
+            <span class="text-sm font-semibold text-text-primary">Are my files safe and private?</span>
+            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
+            Absolutely. Your files never leave your device. All processing happens in your browser using Canvas and WebAssembly technology. We cannot see your files.
+          </div>
+        </div>
+
+        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
+          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
+            <span class="text-sm font-semibold text-text-primary">What is the maximum file size?</span>
+            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
+            You can upload files up to 50MB per file. For larger files, try our compressor tool first to reduce the size before converting.
+          </div>
+        </div>
+
+        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
+          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
+            <span class="text-sm font-semibold text-text-primary">Does it work on iPhone and Android?</span>
+            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
+            Yes! QuickJPG works on all modern mobile browsers including Safari on iPhone and Chrome on Android. No app download needed.
+          </div>
+        </div>
+
+        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
+          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
+            <span class="text-sm font-semibold text-text-primary">What image formats are supported?</span>
+            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
+            We support JPG, PNG, WebP, HEIC, GIF, and PDF. We're constantly adding new formats based on user requests.
+          </div>
+        </div>
+
+        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
+          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
+            <span class="text-sm font-semibold text-text-primary">Do I need to create an account?</span>
+            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
+            No account needed ever. Just visit the tool, upload your file, and download the result. That's it.
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
        CTA
        ============================================ -->
   <section class="section-sm relative overflow-hidden bg-surface-muted border-t border-border-default/50">
@@ -330,6 +426,36 @@ const trustBadges = [
 
       // Set initial state
       updateQualityStyles();
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach((q) => {
+        q.addEventListener('click', () => {
+          const item = q.closest('.faq-item');
+          const answer = item.querySelector('.faq-answer');
+          const icon = q.querySelector('svg');
+          const isOpen = !answer.classList.contains('hidden');
+
+          // Close all others
+          document.querySelectorAll('.faq-item').forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.querySelector('.faq-answer')?.classList.add('hidden');
+              otherItem.querySelector('svg')?.classList.remove('rotate-180');
+              otherItem.classList.remove('border-brand-200', 'dark:border-brand-800');
+            }
+          });
+
+          // Toggle current
+          if (isOpen) {
+            answer.classList.add('hidden');
+            icon?.classList.remove('rotate-180');
+            item.classList.remove('border-brand-200', 'dark:border-brand-800');
+          } else {
+            answer.classList.remove('hidden');
+            icon?.classList.add('rotate-180');
+            item.classList.add('border-brand-200', 'dark:border-brand-800');
+          }
+        });
+      });
     });
   </script>
 </BaseLayout>

@@ -19,10 +19,73 @@ function getExtension(filename) {
 
 const COMPRESS_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "avif"];
 
+// ADDED: file size validation
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+
+function validateFileSize(file) {
+  if (file.size > MAX_FILE_SIZE) {
+    // ADDED: show banner instead of alert — banner is shown by caller
+    return false;
+  }
+  return true;
+}
+
+// ADDED: file size error banner helper
+function showFileSizeError(file, container) {
+  showErrorBanner(
+    "File too large: " + file.name + " (" + (file.size / 1024 / 1024).toFixed(1) + "MB) — Maximum allowed: 50MB. Try compressing your image first.",
+    container
+  );
+}
+
 function isCompressible(f) {
   if (f.type.startsWith("image/")) return true;
   const ext = getExtension(f.name);
   return COMPRESS_EXTENSIONS.includes(ext);
+}
+
+// ADDED: Red error banner with auto-dismiss and X button
+function showErrorBanner(message, container) {
+  // Remove any existing banner first
+  const existing = container?.querySelector(".error-banner");
+  if (existing) existing.remove();
+
+  const banner = document.createElement("div");
+  banner.className = "error-banner flex items-start gap-3 p-3 sm:p-4 rounded-xl border border-danger/30 bg-danger/5 mb-4 animate-fade-in";
+  banner.innerHTML = `
+    <svg class="w-5 h-5 text-danger flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+    </svg>
+    <div class="flex-1 min-w-0">
+      <p class="text-sm font-semibold text-danger">${message}</p>
+    </div>
+    <button class="error-banner-close flex-shrink-0 p-1 rounded-lg hover:bg-danger/10 transition-colors" aria-label="Dismiss error">
+      <svg class="w-4 h-4 text-danger" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  `;
+
+  // Insert banner at the top of the container
+  if (container) {
+    container.prepend(banner);
+  } else {
+    document.body.prepend(banner);
+  }
+
+  // X button dismiss
+  banner.querySelector(".error-banner-close")?.addEventListener("click", () => {
+    banner.remove();
+  });
+
+  // Auto-dismiss after 5 seconds
+  setTimeout(() => {
+    if (banner.parentNode) {
+      banner.style.transition = "opacity 0.3s ease";
+      banner.style.opacity = "0";
+      setTimeout(() => banner.remove(), 300);
+    }
+  }, 5000);
 }
 
 function getOutputMime(file) {
@@ -106,14 +169,12 @@ export function initImageCompressor() {
   const compressBtn = document.getElementById("compress-btn");
   const compressBtnArea = document.getElementById("compress-btn-area");
   const downloadArea = document.getElementById("download-area");
-  const downloadAllBtn = document.getElementById("download-all-btn");
   const dropOverlay = document.getElementById("drop-overlay");
   const progressArea = document.getElementById("progress-area");
   const progressBar = document.getElementById("progress-bar");
   const progressText = document.getElementById("progress-text");
   const qualitySlider = document.getElementById("quality-slider");
   const qualityValue = document.getElementById("quality-value");
-  const modeRadios = document.querySelectorAll('input[name="mode"]');
 
   if (!dropArea || !uploadZone) return;
 
@@ -176,7 +237,23 @@ export function initImageCompressor() {
   compressBtn?.addEventListener("click", compressFiles);
 
   function addFiles(newFiles) {
-    const valid = newFiles.filter(isCompressible);
+    // ADDED: file size validation + unsupported file error banner
+    const valid = [];
+    for (const f of newFiles) {
+      if (!isCompressible(f)) {
+        const ext = getExtension(f.name);
+        showErrorBanner(
+          "Unsupported file: ." + ext + " — This tool accepts: JPG, JPEG, PNG, WebP, AVIF. Browse our other tools for ." + ext + " files.",
+          uploadZone
+        );
+        continue;
+      }
+      if (!validateFileSize(f)) {
+        showFileSizeError(f, uploadZone);
+        continue;
+      }
+      valid.push(f);
+    }
     if (valid.length === 0) return;
     files = [...files, ...valid];
     showPreviewZone();

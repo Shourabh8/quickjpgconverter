@@ -189,6 +189,16 @@ export const tools: Tool[] = [
     keywords: ["remove background", "background remover", "remove image background", "transparent background", "AI background removal", "free background remover", "online background eraser", "cut out image", "remove bg", "photo background remover", "erase background", "background delete", "image background remover free", "remove background from photo"],
     category: "image-tools",
   },
+  {
+    slug: "crop-image",
+    title: "Crop Image",
+    description: "Crop images to any dimension or aspect ratio with a draggable crop box.",
+    from: "IMG",
+    to: "IMG",
+    icon: "✂️",
+    keywords: ["crop image", "image cropper", "crop photo online", "crop jpg", "crop png", "free image crop tool", "online image crop", "crop picture", "cut image", "trim image", "crop image to square", "crop image for instagram"],
+    category: "image-tools",
+  },
 
   // PDF Converters
   {
@@ -285,6 +295,16 @@ export const tools: Tool[] = [
     to: "Text",
     icon: "🔧",
     keywords: ["photo to base64", "image to base64", "base64 encoder", "convert image to base64", "base64 image", "jpg to base64", "png to base64"],
+    category: "image-tools",
+  },
+  {
+    slug: "qr-code-generator",
+    title: "QR Code Generator",
+    description: "Generate QR codes for URLs, text, email, phone, WiFi, and contacts with custom colors and logos.",
+    from: "Text",
+    to: "QR",
+    icon: "📱",
+    keywords: ["qr code generator", "create qr code", "free qr code", "qr code maker", "generate qr code online", "qr code for url", "wifi qr code", "vcard qr code", "qr code with logo", "custom qr code"],
     category: "image-tools",
   },
 ] as const;

@@ -1,0 +1,260 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Blog", url: "/blog" },
+  { name: "HEIC to JPG on Windows", url: "/blog/heic-to-jpg-windows" },
+];
+
+const publishDate = "June 15, 2026";
+const readTime = "5 min read";
+
+const faqItems = [
+  {
+    question: "Why can't Windows open HEIC files?",
+    answer: "Windows 10 and 11 don't include native HEIC support. Microsoft offers a free codec extension in the Microsoft Store, but it must be installed manually. Alternatively, use QuickJPG's online converter — no installation required.",
+  },
+  {
+    question: "Is there a free HEIC viewer for Windows?",
+    answer: "Yes. Install the free 'HEIF Image Extensions' from the Microsoft Store. This lets Windows Photos open HEIC files. For conversion to JPG, use QuickJPG's free online tool.",
+  },
+  {
+    question: "Can I batch convert HEIC to JPG on Windows?",
+    answer: "Yes. QuickJPG supports batch conversion — upload multiple HEIC files at once and download them all as JPG or ZIP. Windows Photos and Paint don't support batch conversion.",
+  },
+  {
+    question: "Does Windows 11 support HEIC natively?",
+    answer: "No. Windows 11 still requires installing the HEIC codec extension from the Microsoft Store. Without it, HEIC files won't open in Photos or File Explorer.",
+  },
+  {
+    question: "How to convert HEIC to JPG without losing quality?",
+    answer: "QuickJPG uses high-quality encoding that preserves visual detail. The quality difference between HEIC and JPG is imperceptible for sharing, social media, and printing.",
+  },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "How to Convert HEIC to JPG on Windows 10 & 11 — 4 Free Methods (2026)",
+  description: "Step-by-step guide to convert HEIC iPhone photos to JPG on Windows 10 and 11. Four free methods: online converter, HEIC codec, Paint, and iPhone settings.",
+  author: {
+    "@type": "Organization",
+    name: "QuickJPG",
+    url: "https://quickjpgconverter.com",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "QuickJPG",
+    url: "https://quickjpgconverter.com",
+  },
+  datePublished: "2026-06-15",
+  dateModified: "2026-06-15",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://quickjpgconverter.com/blog/heic-to-jpg-windows",
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="How to Convert HEIC to JPG on Windows 10 & 11 — 4 Free Methods (2026)"
+  description="Convert HEIC iPhone photos to JPG on Windows 10 and 11. Four free methods: online converter, HEIC codec, Paint, and iPhone settings. No software required."
+  canonical="https://quickjpgconverter.com/blog/heic-to-jpg-windows"
+  breadcrumbs={breadcrumbs}
+  keywords={["how to convert heic to jpg on windows", "heic to jpg windows 10", "heic to jpg windows 11", "convert heic to jpg windows", "heic converter windows", "heic to jpg free windows"]}
+  faqItems={faqItems}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+          </svg>
+          Windows Guide
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          How to Convert <span class="gradient-text">HEIC to JPG</span> on Windows 10 & 11
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          4 free methods to open and convert iPhone HEIC photos on any Windows PC.
+        </p>
+        <p class="text-sm text-text-tertiary mt-3">Published {publishDate} · {readTime}</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container variant="narrow">
+      <div class="prose">
+        <p>
+          You just received HEIC photos from an iPhone user, and Windows won't open them. You try
+          to upload them to a website and get an error. This is the most common problem Windows
+          users face when sharing photos with iPhone owners. The solution is converting HEIC to JPG —
+          and here are four completely free methods that work on Windows 10 and Windows 11.
+        </p>
+
+        <h2>Method 1 — Use QuickJPG Online (Fastest)</h2>
+        <p>
+          The fastest way to convert HEIC to JPG on Windows is using a free online converter.
+          No software installation, no account creation, and it works on any browser — Chrome,
+          Edge, Firefox, or Opera.
+        </p>
+
+        <h3>Step by Step</h3>
+        <ol>
+          <li>Open your browser and go to <a href="/heic-to-jpg">QuickJPG's HEIC to JPG converter</a></li>
+          <li>Click "Choose Files" or drag and drop your HEIC photos into the upload area</li>
+          <li>The conversion happens instantly in your browser — your photos never leave your device</li>
+          <li>Download your converted JPG files individually or as a ZIP archive</li>
+        </ol>
+
+        <p>
+          QuickJPG supports batch conversion, so you can convert multiple HEIC files at once.
+          The converted JPGs maintain the original resolution with quality that's visually
+          identical to the source.
+        </p>
+
+        <h2>Method 2 — Install HEIC Codec from Microsoft Store</h2>
+        <p>
+          Microsoft offers a free HEIC codec extension that lets Windows open HEIC files
+          natively. Once installed, you can view HEIC photos in the Photos app and convert
+          them using Windows tools.
+        </p>
+
+        <h3>How to Install</h3>
+        <ol>
+          <li>Open the Microsoft Store app on your Windows PC</li>
+          <li>Search for "HEIF Image Extensions"</li>
+          <li>Click "Install" on the free extension by Microsoft</li>
+          <li>Wait for installation to complete</li>
+        </ol>
+
+        <p>
+          After installation, double-click any HEIC file and it will open in the Photos app.
+          From there, you can right-click → "Save as" and choose JPG format.
+        </p>
+
+        <h2>Method 3 — Use Windows Paint</h2>
+        <p>
+          After installing the HEIC codec (Method 2), you can use the built-in Paint app to
+          convert HEIC to JPG. Paint is pre-installed on all Windows versions.
+        </p>
+
+        <h3>How to Convert in Paint</h3>
+        <ol>
+          <li>Make sure the HEIC codec is installed (see Method 2)</li>
+          <li>Right-click your HEIC file → "Open with" → "Paint"</li>
+          <li>Click "File" in the top menu</li>
+          <li>Select "Save as" → "JPEG picture"</li>
+          <li>Choose your save location and click "Save"</li>
+        </ol>
+
+        <p>
+          This method works well for single files. For batch conversion, QuickJPG is faster
+          since Paint doesn't support converting multiple files at once.
+        </p>
+
+        <h2>Method 4 — Change iPhone Camera Settings</h2>
+        <p>
+          If you own the iPhone taking the photos, you can prevent the problem entirely by
+          changing your camera format to JPG. This way, every new photo saves as JPG directly —
+          no conversion needed.
+        </p>
+
+        <h3>How to Change iPhone Camera Format</h3>
+        <ol>
+          <li>Open "Settings" on your iPhone</li>
+          <li>Scroll down and tap "Camera"</li>
+          <li>Tap "Formats"</li>
+          <li>Select "Most Compatible"</li>
+        </ol>
+
+        <p>
+          After this change, all new photos save as JPG instead of HEIC. Note that JPG files
+          are about twice the size of HEIC files, so you may need more storage space on your
+          iPhone.
+        </p>
+
+        <h2>Convert Multiple HEIC Files on Windows</h2>
+        <p>
+          If you have a large collection of HEIC photos to convert, use QuickJPG's batch
+          converter. Upload all your files at once and download them as JPGs or a single ZIP
+          archive. This is much faster than converting files one by one using Paint or other
+          Windows tools.
+        </p>
+
+        <p>
+          Need to reduce file sizes after conversion? Try our <a href="/image-compressor">Image Compressor</a>
+          to shrink JPG files for email or web uploads. Or use <a href="/compress-to-100kb">Compress to 100KB</a>
+          for government forms and passport applications.
+        </p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>Why can't Windows open HEIC files?</h3>
+        <p>
+          Windows 10 and 11 don't include native HEIC support. Microsoft offers a free codec
+          extension in the Microsoft Store, but it must be installed manually. Alternatively,
+          use <a href="/heic-to-jpg">QuickJPG's free online converter</a> — no installation required.
+        </p>
+
+        <h3>Is there a free HEIC viewer for Windows?</h3>
+        <p>
+          Yes. Install the free "HEIF Image Extensions" from the Microsoft Store. This lets
+          Windows Photos open HEIC files. For conversion to JPG, use
+          <a href="/heic-to-jpg">QuickJPG's free online tool</a>.
+        </p>
+
+        <h3>Can I batch convert HEIC to JPG on Windows?</h3>
+        <p>
+          Yes. <a href="/heic-to-jpg">QuickJPG</a> supports batch conversion — upload multiple
+          HEIC files at once and download them all as JPG or ZIP. Windows Photos and Paint
+          don't support batch conversion.
+        </p>
+
+        <h3>Does Windows 11 support HEIC natively?</h3>
+        <p>
+          No. Windows 11 still requires installing the HEIC codec extension from the Microsoft
+          Store. Without it, HEIC files won't open in Photos or File Explorer.
+        </p>
+
+        <h3>How to convert HEIC to JPG without losing quality?</h3>
+        <p>
+          QuickJPG uses high-quality encoding that preserves visual detail. The quality
+          difference between HEIC and JPG is imperceptible for sharing, social media, and
+          printing.
+        </p>
+      </div>
+
+      <div class="mt-8 p-6 rounded-2xl bg-brand-50 dark:bg-brand-950/30 border border-brand-200 dark:border-brand-800 text-center">
+        <h3 class="text-lg font-semibold text-text-primary mb-2">Convert Your HEIC Photos Now</h3>
+        <p class="text-sm text-text-secondary mb-4">Free, instant, and private. No signup required.</p>
+        <a href="/heic-to-jpg" class="btn-primary">Convert HEIC to JPG →</a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
