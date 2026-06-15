@@ -5,7 +5,7 @@ export const site = {
   title: "Quick JPG Converter — Free Online Image Format Conversion",
   description:
     "Convert JPG, PNG, WebP, HEIC, and PDF images instantly with our free online JPG converter. Fast, private, and browser-based — no uploads required.",
-  ogImage: "/og-default.svg",
+  ogImage: "/og-default.png",
   twitter: "@quickjpgconverter",
   lang: "en",
   locale: "en_US",
