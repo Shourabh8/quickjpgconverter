@@ -1,8 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-
-# Crawl-delay for polite bots
-Crawl-delay: 1
+Disallow: /api/
+Disallow: /_astro/
 
 Sitemap: https://quickjpgconverter.com/sitemap-index.xml

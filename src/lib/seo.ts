@@ -116,62 +116,19 @@ export function generateJsonLd(opts: JsonLdOptions) {
     sameAs: [],
   });
 
-  // WebSite schema
+  // WebSite schema with SearchAction
   graphs.push({
     "@type": "WebSite",
     name: site.name,
     url: baseUrl,
-  });
-
-  // LocalBusiness schema for US/India targeting
-  graphs.push({
-    "@type": "SoftwareApplication",
-    name: site.name,
-    description: "Free online image converter and compressor. Convert JPG, PNG, WebP, HEIC, and PDF images instantly in your browser. No uploads, no signup, completely private.",
-    url: baseUrl,
-    applicationCategory: "MultimediaApplication",
-    operatingSystem: "Web Browser",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      ratingCount: "1250",
-      bestRating: "5",
-      worstRating: "1",
-    },
-    review: [
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        author: {
-          "@type": "Person",
-          name: "Sarah K.",
-        },
-        reviewBody: "Finally, a converter that doesn't make me upload my photos to some random server. Game changer for client work.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${baseUrl}/tools?q={search_term_string}`,
       },
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        author: {
-          "@type": "Person",
-          name: "Marcus T.",
-        },
-        reviewBody: "We use this daily for our e-commerce product images. Fast, reliable, and the WebP conversion saves us hours of optimization.",
-      },
-    ],
+      "query-input": "required name=search_term_string",
+    },
   });
 
   // BreadcrumbList schema
