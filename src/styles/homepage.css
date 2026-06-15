@@ -28,15 +28,15 @@
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600));
+  background: linear-gradient(135deg, var(--color-brand-400), var(--color-accent-500));
   z-index: -1;
-  opacity: 0.5;
+  opacity: 0.4;
   filter: blur(16px);
   transition: opacity 0.3s ease;
 }
 
 .cta-glow:hover::before {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 /* Comparison table */
@@ -58,4 +58,46 @@
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
+}
+
+/* Converter widget refinements */
+.converter-widget {
+  position: relative;
+}
+
+.converter-widget::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-brand-200), var(--color-border-default), var(--color-accent-200));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.dark .converter-widget::before {
+  background: linear-gradient(135deg, var(--color-brand-800), var(--color-border-default), var(--color-accent-800));
+}
+
+/* Upload zone pulse animation */
+@keyframes upload-pulse {
+  0%, 100% { border-color: var(--color-border-default); }
+  50% { border-color: var(--color-brand-400); }
+}
+
+.upload-active {
+  animation: upload-pulse 1.5s ease-in-out infinite;
+}
+
+/* Tool card icon hover */
+.tool-icon {
+  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s ease;
+}
+
+.tool-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
 }

@@ -2,13 +2,15 @@
 import { cn } from "@lib/utils";
 
 interface Props {
-  variant?: "brand" | "success";
+  variant?: "brand" | "accent" | "success" | "neutral";
   class?: string;
 }
 
 const { variant = "brand", class: className } = Astro.props;
+
+const variantClass = variant === "accent" ? "badge-accent" : variant === "success" ? "badge-success" : variant === "neutral" ? "badge-neutral" : "badge-brand";
 ---
 
-<span class:list={[variant === "brand" ? "badge-brand" : "badge-success", className]}>
+<span class:list={[variantClass, className]}>
   <slot />
 </span>

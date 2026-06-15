@@ -11,8 +11,8 @@ import "@styles/homepage.css";
 const trustBadges = [
   { icon: "🛡️", title: "100% Private", desc: "No Server Uploads" },
   { icon: "⚡", title: "Instant", desc: "Local CPU Processing" },
-  { icon: "🚫", title: "Zero Ads Walls", desc: "No Account Required" },
-  { icon: "🔒", title: "Secure", desc: "Full Browser Sandboxing" },
+  { icon: "🚫", title: "No Limits", desc: "Unlimited Conversions" },
+  { icon: "🔒", title: "Secure", desc: "Browser Sandboxing" },
 ];
 ---
 
@@ -23,57 +23,66 @@ const trustBadges = [
   keywords={["jpg converter", "free image platform", "convert jpg to png", "compress image online", "webp converter", "pdf converter", "image resizer", "no upload converter"]}
 >
   <!-- ============================================
-       SECTION 1: HERO & CONVERTER ABOVE THE FOLD
+       HERO & CONVERTER
        ============================================ -->
-  <section class="relative overflow-hidden bg-glow pt-16 sm:pt-20 lg:pt-24 pb-12">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-brand-500/5 rounded-full blur-3xl"></div>
+  <section class="relative overflow-hidden bg-mesh pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20">
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0 bg-grid opacity-40"></div>
+    <!-- Top gradient glow -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-500/8 rounded-full blur-3xl"></div>
+    <div class="absolute top-20 right-1/4 w-[300px] h-[300px] bg-accent-500/5 rounded-full blur-3xl"></div>
 
-    <Container>
-      <div class="text-center max-w-3xl mx-auto mb-8">
-        <div class="mb-4 animate-fade-in">
-          <Badge>✨ Modern 2026 Sandbox Tools</Badge>
+    <Container class="relative">
+      <!-- Hero Content -->
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <div class="mb-5 animate-fade-in">
+          <Badge>✨ 100% Browser-Based Tools</Badge>
         </div>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tracking-tight leading-[1.15] mb-4 animate-fade-in-up">
-          Convert & Optimize Images<br />
-          <span class="gradient-text">Directly in Your Browser</span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tracking-[-0.03em] leading-[1.1] mb-5 animate-fade-in-up">
+          Convert & Optimize<br />
+          <span class="gradient-text">Images Instantly</span>
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto leading-relaxed animate-fade-in-up delay-100">
-          Super-fast client-side utilities. Your photos never touch our servers — 100% private and secure image processing.
+          Your photos never leave your device. Fast, private, and free — powered by WebAssembly and Canvas API.
         </p>
       </div>
 
-      <!-- Working Converter Area -->
+      <!-- Converter Widget -->
       <div class="max-w-5xl mx-auto animate-fade-in-up delay-200">
         <div class="rounded-2xl border border-border-default bg-surface shadow-2xl shadow-brand-500/5 overflow-hidden">
           <!-- Top bar -->
-          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
-            <span class="text-sm font-semibold text-text-secondary">Browser Converter Console</span>
-            <div class="flex items-center gap-1.5 text-xs text-text-tertiary">
-              <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span> Sandbox Active
+          <div class="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-border-default bg-surface-muted/50">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-semibold text-text-primary tracking-tight">Image Converter</span>
+              <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-success-muted text-[10px] font-medium text-success">
+                <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse-soft"></span>
+                Active
+              </span>
             </div>
+            <span class="text-[11px] text-text-tertiary">Local Processing</span>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[400px]">
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[380px] sm:min-h-[420px]">
             <!-- LEFT: Dropzone / Preview -->
-            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+            <div class="lg:col-span-3 p-4 sm:p-5 border-b lg:border-b-0 lg:border-r border-border-default">
               <!-- Upload zone -->
               <div id="upload-zone" class="h-full">
                 <div
                   id="drop-area"
-                  class="relative h-full min-h-[280px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/20 dark:hover:bg-brand-950/10 cursor-pointer group"
+                  class="relative h-full min-h-[260px] sm:min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/30 flex flex-col items-center justify-center text-center p-5 transition-all duration-300 hover:border-brand-400 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
                 >
-                  <div class="w-14 h-14 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <svg class="w-7 h-7 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-950/50 dark:to-brand-900/30 flex items-center justify-center border border-brand-100 dark:border-brand-800/50 mb-4 group-hover:scale-105 transition-transform duration-300">
+                    <svg class="w-7 h-7 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
                   </div>
-                  <h3 class="text-base font-semibold text-text-primary mb-1">Drop images or PDF here</h3>
+                  <h3 class="text-sm sm:text-base font-semibold text-text-primary mb-1.5">Drop images or PDF here</h3>
                   <p class="text-xs text-text-secondary mb-4">or click to browse from your device</p>
                   <label class="btn-primary btn-sm cursor-pointer">
                     Choose Files
                     <input type="file" class="sr-only" accept="image/*,.pdf" multiple />
                   </label>
-                  <p class="text-[10px] text-text-tertiary mt-3">Supports JPG, PNG, WebP, HEIC, PDF · Max 50MB per file</p>
+                  <p class="text-[10px] text-text-tertiary mt-3">JPG, PNG, WebP, HEIC, PDF · Max 50MB per file</p>
                   <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/90 dark:bg-brand-950/40 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
                     <svg class="w-10 h-10 text-brand-500 mb-2 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
@@ -86,14 +95,14 @@ const trustBadges = [
               <!-- Preview zone -->
               <div id="preview-zone" class="hidden h-full">
                 <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
-                  <div class="flex items-center justify-between px-4 py-2.5 border-b border-border-default bg-surface-muted">
+                  <div class="flex items-center justify-between px-4 py-2.5 border-b border-border-default bg-surface-muted/50">
                     <div class="flex items-center gap-2">
                       <div class="w-2 h-2 rounded-full bg-success"></div>
                       <span id="file-count" class="text-xs font-semibold text-text-primary">0 files ready</span>
                     </div>
                     <button id="clear-btn" class="text-[10px] text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
                   </div>
-                  <div id="preview-grid" class="flex-1 p-3 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[260px] content-start"></div>
+                  <div id="preview-grid" class="flex-1 p-3 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[240px] sm:max-h-[280px] content-start"></div>
                   <div class="px-4 py-2.5 border-t border-border-default flex items-center justify-between text-xs">
                     <span class="text-text-tertiary">Source: Uploaded</span>
                     <span class="text-text-tertiary">→</span>
@@ -104,32 +113,32 @@ const trustBadges = [
             </div>
 
             <!-- RIGHT: Controls & Actions -->
-            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col justify-between">
+            <div class="lg:col-span-2 p-4 sm:p-5 flex flex-col justify-between bg-surface-muted/20">
               <div>
                 <div class="mb-4">
-                  <label class="text-xs font-bold text-text-primary uppercase tracking-wider block mb-2">Convert to Format</label>
-                  <select id="homepage-target-format" class="field-input w-full cursor-pointer">
-                    <option value="png" data-ext="png" data-mime="image/png" selected>PNG (Lossless, Transparent)</option>
-                    <option value="jpg" data-ext="jpg" data-mime="image/jpeg">JPG (Highly Compatible)</option>
-                    <option value="webp" data-ext="webp" data-mime="image/webp">WebP (Modern, Light Weight)</option>
+                  <label class="text-[11px] font-semibold text-text-tertiary uppercase tracking-wider block mb-2">Output Format</label>
+                  <select id="homepage-target-format" class="field-input w-full cursor-pointer text-sm">
+                    <option value="png" data-ext="png" data-mime="image/png" selected>PNG — Lossless</option>
+                    <option value="jpg" data-ext="jpg" data-mime="image/jpeg">JPG — Compatible</option>
+                    <option value="webp" data-ext="webp" data-mime="image/webp">WebP — Lightweight</option>
                   </select>
                 </div>
 
                 <div class="mb-5">
-                  <label class="text-xs font-bold text-text-primary uppercase tracking-wider block mb-2">Compression Quality</label>
+                  <label class="text-[11px] font-semibold text-text-tertiary uppercase tracking-wider block mb-2">Quality</label>
                   <div class="space-y-1.5">
-                    <label class="flex items-start gap-2.5 p-2 rounded-lg border border-border-default cursor-pointer hover:bg-surface-subtle transition-all duration-200">
+                    <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-950/30 cursor-pointer transition-all duration-200">
                       <input type="radio" name="quality" value="quality-high" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
                       <div>
                         <div class="text-xs font-semibold text-text-primary">High Quality</div>
-                        <div class="text-[10px] text-text-tertiary mt-0.5">Best visual clarity, larger size</div>
+                        <div class="text-[10px] text-text-tertiary mt-0.5">Best visual clarity</div>
                       </div>
                     </label>
-                    <label class="flex items-start gap-2.5 p-2 rounded-lg border border-border-default cursor-pointer hover:bg-surface-subtle transition-all duration-200">
+                    <label class="flex items-start gap-2.5 p-2.5 rounded-lg border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
                       <input type="radio" name="quality" value="quality-balanced" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
                       <div>
-                        <div class="text-xs font-semibold text-text-primary">Balanced Compression</div>
-                        <div class="text-[10px] text-text-tertiary mt-0.5">Perfect size/quality ratio</div>
+                        <div class="text-xs font-semibold text-text-primary">Balanced</div>
+                        <div class="text-[10px] text-text-tertiary mt-0.5">Optimal size/quality</div>
                       </div>
                     </label>
                   </div>
@@ -140,9 +149,9 @@ const trustBadges = [
                 <!-- Progress bar -->
                 <div id="progress-area" class="hidden mb-3">
                   <div class="w-full h-1.5 bg-surface-muted rounded-full overflow-hidden">
-                    <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-brand-500 to-accent-500 rounded-full transition-all duration-300" style="width: 0%"></div>
                   </div>
-                  <p id="progress-text" class="text-[10px] text-text-tertiary text-center mt-1">Ready...</p>
+                  <p id="progress-text" class="text-[10px] text-text-tertiary text-center mt-1.5">Ready...</p>
                 </div>
 
                 <!-- Convert trigger -->
@@ -153,7 +162,7 @@ const trustBadges = [
                     </svg>
                     Convert Files
                   </button>
-                  <p class="text-[10px] text-text-tertiary text-center mt-2">All files processed locally via GPU & Canvas</p>
+                  <p class="text-[10px] text-text-tertiary text-center mt-2">Processed locally via Canvas & WebAssembly</p>
                 </div>
 
                 <!-- Download portal -->
@@ -167,19 +176,19 @@ const trustBadges = [
   </section>
 
   <!-- ============================================
-       SECTION 2: TRUST BADGES
+       TRUST BADGES
        ============================================ -->
-  <section class="py-10 border-y border-border-default/60 bg-surface-muted">
+  <section class="py-8 sm:py-10 border-y border-border-default/50 bg-surface-muted/50">
     <Container>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {trustBadges.map((badge) => (
-          <div class="flex items-start gap-3.5 p-2">
-            <div class="w-10 h-10 rounded-xl bg-surface border border-border-default flex items-center justify-center text-lg flex-shrink-0 shadow-xs">
+          <div class="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-surface border border-border-default/50 shadow-xs">
+            <div class="w-9 h-9 rounded-lg bg-surface-muted flex items-center justify-center text-base flex-shrink-0">
               {badge.icon}
             </div>
             <div>
-              <h4 class="text-xs font-bold text-text-primary tracking-wide uppercase">{badge.title}</h4>
-              <p class="text-xs text-text-secondary mt-0.5 leading-relaxed">{badge.desc}</p>
+              <h4 class="text-[11px] font-semibold text-text-primary tracking-wide uppercase">{badge.title}</h4>
+              <p class="text-[11px] text-text-secondary leading-snug">{badge.desc}</p>
             </div>
           </div>
         ))}
@@ -188,160 +197,92 @@ const trustBadges = [
   </section>
 
   <!-- ============================================
-       SECTION 3: TOOL CATEGORIES & NAV
+       TOOL CATEGORIES & GRID
        ============================================ -->
   <section class="section" id="categories">
     <Container>
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <Badge class="mb-3">Toolbox Overview</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
-          Explore Our Specialized Toolkits
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <Badge class="mb-3">Toolbox</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-[-0.02em] mb-3">
+          All-in-One Image Tools
         </h2>
         <p class="text-sm text-text-secondary leading-relaxed">
-          Select from our suite of high-fidelity client-side image editing and document optimization tools.
+          Every tool runs in your browser. No uploads. No waiting. No limits.
         </p>
       </div>
 
-      <!-- Categories Selector Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 max-w-5xl mx-auto mb-16">
+      <!-- Categories Selector -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 max-w-4xl mx-auto mb-12 sm:mb-16">
         {(["image-converters", "image-compressors", "image-tools", "pdf-converters", "pdf-tools"] as const).map((cat) => (
           <a
             href={`#${cat}-section`}
-            class="flex flex-col items-center text-center p-5 rounded-2xl border border-border-default bg-surface hover:border-brand-400 dark:hover:border-brand-700 hover:shadow-lg transition-all duration-300 group"
+            class="flex flex-col items-center text-center p-4 sm:p-5 rounded-xl border border-border-default bg-surface hover:border-brand-300 dark:hover:border-brand-700 hover:shadow-md transition-all duration-200 group"
           >
-            <div class="w-12 h-12 rounded-2xl bg-brand-50 dark:bg-brand-950/40 flex items-center justify-center text-xl border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <div class="w-10 h-10 rounded-xl bg-surface-muted flex items-center justify-center text-lg mb-2 group-hover:scale-105 transition-transform duration-200">
               {categories[cat].icon}
             </div>
-            <span class="text-xs font-bold text-text-primary uppercase tracking-wide group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+            <span class="text-[11px] font-semibold text-text-primary uppercase tracking-wide group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
               {categories[cat].title}
             </span>
           </a>
         ))}
       </div>
 
-      <!-- GRIDS: CONVERSION TOOLS -->
-      <div id="image-converters-section" class="scroll-mt-24 mb-16">
-        <div class="flex items-center gap-3 mb-6 border-b border-border-default/60 pb-3">
-          <span class="text-2xl">{categories["image-converters"].icon}</span>
-          <div>
-            <h3 class="text-lg font-bold text-text-primary">{categories["image-converters"].title}</h3>
-            <p class="text-xs text-text-secondary">{categories["image-converters"].description}</p>
+      <!-- Tool Grids -->
+      {(["image-converters", "image-compressors", "image-tools"] as const).map((catKey) => (
+        <div id={`${catKey}-section`} class="scroll-mt-24 mb-12 sm:mb-16">
+          <div class="flex items-center gap-2.5 mb-5 sm:mb-6 border-b border-border-default/50 pb-3">
+            <span class="text-lg">{categories[catKey].icon}</span>
+            <div>
+              <h3 class="text-base font-bold text-text-primary">{categories[catKey].title}</h3>
+              <p class="text-[11px] text-text-secondary">{categories[catKey].description}</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {getToolsByCategory(catKey).map((tool) => (
+              <a href={`/tools/${tool.slug}`} class="card-gradient group block p-4 sm:p-5">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="w-9 h-9 rounded-lg bg-surface-muted flex items-center justify-center text-base border border-border-default group-hover:scale-105 transition-all duration-200">
+                    {tool.icon}
+                  </div>
+                  <svg class="w-4 h-4 text-text-tertiary group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+                <h4 class="text-sm font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                  {tool.title}
+                </h4>
+                <p class="text-[11px] text-text-secondary leading-relaxed mb-3">{tool.description}</p>
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2 py-0.5 text-[10px] font-medium rounded-md bg-surface-subtle text-text-secondary border border-border-muted">{tool.from}</span>
+                  <span class="text-[10px] text-text-tertiary">→</span>
+                  <span class="px-2 py-0.5 text-[10px] font-medium rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-400 border border-brand-100 dark:border-brand-800">{tool.to}</span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {getToolsByCategory("image-converters").map((tool) => (
-            <a href={`/tools/${tool.slug}`} class="card-gradient group block p-5">
-              <div class="flex items-start justify-between mb-3">
-                <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-lg border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 transition-all duration-300">
-                  {tool.icon}
-                </div>
-                <svg class="w-4 h-4 text-text-tertiary group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-              <h4 class="text-sm font-bold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                {tool.title}
-              </h4>
-              <p class="text-xs text-text-secondary leading-relaxed mb-3">{tool.description}</p>
-              <div class="flex items-center gap-1.5">
-                <span class="px-2 py-0.5 text-[10px] font-medium rounded-md bg-surface-subtle text-text-secondary border border-border-muted">{tool.from}</span>
-                <span class="text-[10px] text-text-tertiary">→</span>
-                <span class="px-2 py-0.5 text-[10px] font-medium rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-400 border border-brand-200 dark:border-brand-800">{tool.to}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <!-- GRIDS: COMPRESSION TOOLS -->
-      <div id="image-compressors-section" class="scroll-mt-24 mb-16">
-        <div class="flex items-center gap-3 mb-6 border-b border-border-default/60 pb-3">
-          <span class="text-2xl">{categories["image-compressors"].icon}</span>
-          <div>
-            <h3 class="text-lg font-bold text-text-primary">{categories["image-compressors"].title}</h3>
-            <p class="text-xs text-text-secondary">{categories["image-compressors"].description}</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {getToolsByCategory("image-compressors").map((tool) => (
-            <a href={`/tools/${tool.slug}`} class="card-gradient group block p-5">
-              <div class="flex items-start justify-between mb-3">
-                <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-lg border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 transition-all duration-300">
-                  {tool.icon}
-                </div>
-                <svg class="w-4 h-4 text-text-tertiary group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-              <h4 class="text-sm font-bold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                {tool.title}
-              </h4>
-              <p class="text-xs text-text-secondary leading-relaxed mb-3">{tool.description}</p>
-              <div class="flex items-center gap-1.5">
-                <span class="px-2 py-0.5 text-[10px] font-medium rounded-md bg-surface-subtle text-text-secondary border border-border-muted">{tool.from}</span>
-                <span class="text-[10px] text-text-tertiary">→</span>
-                <span class="px-2 py-0.5 text-[10px] font-medium rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-400 border border-brand-200 dark:border-brand-800">{tool.to}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <!-- GRIDS: IMAGE UTILITY TOOLS -->
-      <div id="image-tools-section" class="scroll-mt-24">
-        <div class="flex items-center gap-3 mb-6 border-b border-border-default/60 pb-3">
-          <span class="text-2xl">{categories["image-tools"].icon}</span>
-          <div>
-            <h3 class="text-lg font-bold text-text-primary">{categories["image-tools"].title}</h3>
-            <p class="text-xs text-text-secondary">{categories["image-tools"].description}</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {getToolsByCategory("image-tools").map((tool) => (
-            <a href={`/tools/${tool.slug}`} class="card-gradient group block p-5">
-              <div class="flex items-start justify-between mb-3">
-                <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-lg border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 transition-all duration-300">
-                  {tool.icon}
-                </div>
-                <svg class="w-4 h-4 text-text-tertiary group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-              <h4 class="text-sm font-bold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                {tool.title}
-              </h4>
-              <p class="text-xs text-text-secondary leading-relaxed mb-3">{tool.description}</p>
-              <div class="flex items-center gap-1.5">
-                <span class="px-2 py-0.5 text-[10px] font-medium rounded-md bg-surface-subtle text-text-secondary border border-border-muted">{tool.from}</span>
-                <span class="text-[10px] text-text-tertiary">→</span>
-                <span class="px-2 py-0.5 text-[10px] font-medium rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-400 border border-brand-200 dark:border-brand-800">{tool.to}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
+      ))}
     </Container>
   </section>
 
   <!-- ============================================
-       SECTION 4: FINAL CTA
+       CTA
        ============================================ -->
-  <section class="section relative overflow-hidden bg-glow border-t border-border-default/60">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-brand-500/5 rounded-full blur-3xl"></div>
-
+  <section class="section-sm relative overflow-hidden bg-surface-muted border-t border-border-default/50">
     <Container class="relative">
-      <div class="text-center max-w-2xl mx-auto">
-        <h2 class="text-3xl font-bold text-text-primary tracking-tight mb-4">
-          Ready to Start Converting?
+      <div class="text-center max-w-xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-[-0.02em] mb-3">
+          Ready to Convert?
         </h2>
-        <p class="text-sm text-text-secondary mb-8">
-          No credit card. No registration. No tracking. Just drag your files above and get converted in milliseconds.
+        <p class="text-sm text-text-secondary mb-6">
+          No account. No uploads. No limits. Just drag your files above.
         </p>
         <div class="flex items-center justify-center gap-3">
-          <Button href="#categories" size="xl" variant="secondary">
+          <Button href="#categories" size="lg" variant="secondary">
             Browse All Tools
           </Button>
-          <Button href="/why" size="xl" variant="secondary">
+          <Button href="/why" size="lg" variant="ghost">
             Why Browser-Based?
           </Button>
         </div>

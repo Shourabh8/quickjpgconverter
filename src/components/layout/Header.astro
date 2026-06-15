@@ -1,6 +1,5 @@
 ---
 import { site } from "@data/site";
-import Badge from "../ui/Badge.astro";
 import { categories } from "@data/tools";
 
 const currentPath = Astro.url.pathname;
@@ -9,8 +8,6 @@ const navLinks = [
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
 ];
 
 const toolCategories = [
@@ -22,12 +19,12 @@ const toolCategories = [
 ];
 ---
 
-<header class="sticky top-0 z-50 glass border-b border-border-default/60">
-  <div class="container-main flex items-center justify-between h-16">
+<header class="sticky top-0 z-50 glass border-b border-border-default/50">
+  <div class="container-main flex items-center justify-between h-14 sm:h-16">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center shadow-sm group-hover:shadow-glow transition-shadow duration-300">
-        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Quick JPG Converter logo">
+    <a href="/" class="flex items-center gap-2 group">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-sm group-hover:shadow-glow transition-all duration-300">
+        <svg class="w-4.5 h-4.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="QuickJPG logo">
           <rect x="3" y="3" width="18" height="18" rx="3" />
           <path d="M9 3v18" />
           <path d="M14 9l3 3-3 3" />
@@ -53,7 +50,7 @@ const toolCategories = [
           ]}
         >
           Tools
-          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <svg class="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </a>
@@ -61,7 +58,7 @@ const toolCategories = [
           id="tools-menu"
           class="absolute left-0 top-full pt-2 w-64 opacity-0 invisible translate-y-1 transition-all duration-200 z-50"
         >
-          <div class="bg-surface rounded-xl border border-border-default shadow-xl p-2">
+          <div class="bg-surface rounded-xl border border-border-default shadow-xl p-1.5">
             {toolCategories.map(({ key, icon }) => (
               <a
                 href={`/tools#${key}`}
@@ -69,12 +66,12 @@ const toolCategories = [
               >
                 <span class="text-base">{icon}</span>
                 <div>
-                  <div class="font-medium">{categories[key].title}</div>
-                  <div class="text-xs text-text-tertiary">{categories[key].description}</div>
+                  <div class="font-medium text-[13px]">{categories[key].title}</div>
+                  <div class="text-[11px] text-text-tertiary">{categories[key].description}</div>
                 </div>
               </a>
             ))}
-            <div class="border-t border-border-default mt-2 pt-2">
+            <div class="border-t border-border-default mt-1.5 pt-1.5">
               <a
                 href="/tools"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-brand-600 dark:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-950/50 transition-colors"
@@ -104,7 +101,7 @@ const toolCategories = [
     </nav>
 
     <!-- Right side -->
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-1.5">
       <!-- Dark mode toggle -->
       <button
         id="theme-toggle"
@@ -152,7 +149,7 @@ const toolCategories = [
     <div class="container-main py-4 flex flex-col gap-1">
       <!-- Tools Section -->
       <div class="px-3 py-2">
-        <div class="text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-2">Tools</div>
+        <div class="text-[10px] font-semibold text-text-tertiary uppercase tracking-wider mb-2">Tools</div>
         <div class="grid grid-cols-2 gap-1">
           {toolCategories.map(({ key, icon }) => (
             <a
@@ -167,7 +164,7 @@ const toolCategories = [
         <a href="/tools" class="mt-2 text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline">View All Tools →</a>
       </div>
 
-      <div class="border-t border-border-default my-2"></div>
+      <div class="border-t border-border-default my-1"></div>
 
       {navLinks.map((link) => (
         <a
@@ -182,6 +179,22 @@ const toolCategories = [
           {link.label}
         </a>
       ))}
+
+      <div class="border-t border-border-default my-1"></div>
+
+      <a href="/why" class="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors">
+        Why Browser-Based?
+      </a>
+      <a href="/faq" class="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors">
+        FAQ
+      </a>
+      <a href="/privacy" class="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors">
+        Privacy
+      </a>
+      <a href="/terms" class="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors">
+        Terms
+      </a>
+
       <a href="/" class="btn-primary btn-sm mt-2 justify-center">
         Start Converting
       </a>
