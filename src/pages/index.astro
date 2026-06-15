@@ -126,7 +126,7 @@ const trustBadges = [
 
                 <div class="mb-5">
                   <label class="text-[11px] font-semibold text-text-tertiary uppercase tracking-wider block mb-2">Quality</label>
-                  <div class="space-y-1.5 quality-selector">
+                  <div class="space-y-1.5">
                     <label class="quality-option flex items-start gap-2.5 p-2.5 rounded-lg border border-border-default cursor-pointer transition-all duration-200 hover:border-border-strong">
                       <input type="radio" name="quality" value="quality-high" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
                       <div>
@@ -294,6 +294,30 @@ const trustBadges = [
     import { initConverter } from "@scripts/converter.js";
     document.addEventListener("DOMContentLoaded", () => {
       initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" });
+
+      // Quality selector styling
+      const qualityRadios = document.querySelectorAll('input[name="quality"]');
+      const qualityOptions = document.querySelectorAll('.quality-option');
+
+      function updateQualityStyles() {
+        qualityOptions.forEach((option) => {
+          const radio = option.querySelector('input[type="radio"]');
+          if (radio?.checked) {
+            option.classList.add('border-brand-400', 'bg-brand-50', 'dark:border-brand-700', 'dark:bg-brand-950/30');
+            option.classList.remove('border-border-default');
+          } else {
+            option.classList.remove('border-brand-400', 'bg-brand-50', 'dark:border-brand-700', 'dark:bg-brand-950/30');
+            option.classList.add('border-border-default');
+          }
+        });
+      }
+
+      qualityRadios.forEach((radio) => {
+        radio.addEventListener('change', updateQualityStyles);
+      });
+
+      // Set initial state
+      updateQualityStyles();
     });
   </script>
 </BaseLayout>

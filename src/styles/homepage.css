@@ -101,24 +101,3 @@
   transform: scale(1.05);
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
 }
-
-/* Quality selector - selected state */
-.quality-option:has(input:checked) {
-  border-color: var(--color-brand-400);
-  background: var(--color-brand-50);
-}
-
-.dark .quality-option:has(input:checked) {
-  border-color: var(--color-brand-700);
-  background: rgb(59 130 246 / 0.08);
-}
-
-.quality-option:has(input:not(:checked)) {
-  border-color: var(--color-border-default);
-  background: transparent;
-}
-
-.quality-option:has(input:not(:checked)):hover {
-  border-color: var(--color-border-strong);
-  background: var(--color-surface-subtle);
-}
