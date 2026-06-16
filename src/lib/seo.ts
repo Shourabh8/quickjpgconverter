@@ -9,11 +9,12 @@ interface MetaOptions {
 }
 
 export function generateMeta(opts: MetaOptions) {
-  // Only append brand suffix if not already present in the title
-  const title = opts.title === site.title || opts.title.includes(site.name)
+  const canonical = opts.canonical ?? site.url;
+  // Skip brand suffix on blog posts — titles are already descriptive and would exceed 60 chars
+  const isBlog = canonical.includes("/blog/");
+  const title = opts.title === site.title || opts.title.includes(site.name) || isBlog
     ? opts.title
     : `${opts.title} | ${site.name}`;
-  const canonical = opts.canonical ?? site.url;
   const ogImage = opts.ogImage ?? site.ogImage;
 
   return {
@@ -175,7 +176,6 @@ export function generateJsonLd(opts: JsonLdOptions) {
     name: site.name,
     url: baseUrl,
     logo: new URL("/favicon.svg", baseUrl).href,
-    sameAs: [],
   });
 
   // WebSite schema with SearchAction for sitelinks searchbox

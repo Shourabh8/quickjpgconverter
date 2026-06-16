@@ -141,6 +141,14 @@ const categoryOrder: Array<keyof typeof categories> = [
         searchInput.dispatchEvent(new Event("input"));
         searchInput.focus();
       });
+
+      // Read ?q= param from URL (used by Google SearchAction sitelinks searchbox)
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialQuery = urlParams.get("q");
+      if (initialQuery) {
+        searchInput.value = initialQuery;
+        searchInput.dispatchEvent(new Event("input"));
+      }
     })();
   </script>
 </BaseLayout>
