@@ -1,0 +1,208 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Blog", url: "/blog" },
+  { name: "How to Compress Image for UPSC Form", url: "/blog/compress-image-for-upsc-form" },
+];
+---
+
+<BaseLayout
+  title="How to Compress Image for UPSC Application Form (2026)"
+  description="Step-by-step guide to compress your photo for UPSC Civil Services application. Meet the exact file size requirements without losing quality."
+  canonical="https://quickjpgconverter.com/blog/compress-image-for-upsc-form"
+  breadcrumbs={breadcrumbs}
+  keywords={[
+    "compress image for upsc form",
+    "upsc photo size",
+    "upsc application photo requirements",
+    "compress photo for upsc civil services",
+    "upsc photo file size",
+    "how to compress photo for upsc",
+    "upsc form photo compressor",
+  ]}
+  faqItems={[
+    {
+      question: "What is the photo file size limit for UPSC application?",
+      answer: "UPSC requires your photo to be between 20KB and 50KB in JPG format. The photo must be recent, with a white background, and face the camera directly.",
+    },
+    {
+      question: "Can I use a PNG photo for UPSC form?",
+      answer: "No. UPSC strictly requires JPG/JPEG format. If your photo is in PNG, convert it to JPG first using our free converter.",
+    },
+    {
+      question: "What are the UPSC photo dimension requirements?",
+      answer: "UPSC requires passport-size photos (3.5cm x 4.5cm). The pixel dimensions should be approximately 350x450 pixels at 300 DPI.",
+    },
+  ]}
+  howToSteps={[
+    {
+      name: "Take a passport-size photo",
+      text: "Use natural lighting, white background, face the camera directly with a neutral expression. Photo should be recent (within 10 days of application).",
+    },
+    {
+      name: "Visit the UPSC photo compressor",
+      text: "Go to our free Government Form Photo Compressor. No signup or software needed.",
+    },
+    {
+      name: "Select 20KB or 50KB target size",
+      text: "Choose the file size required by UPSC. For most candidates, 20-50KB is the standard range.",
+    },
+    {
+      name: "Download and verify",
+      text: "Download your compressed photo and verify the file size before uploading to the UPSC portal.",
+    },
+  ]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container variant="narrow">
+      <div class="mb-6">
+        <Badge class="mb-4">Updated June 2026</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          How to Compress Image for UPSC Application Form
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary">
+          Step-by-step guide to compress your photo for UPSC Civil Services application. Meet the exact file size requirements without losing quality.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-4 py-4 border-y border-border-default">
+        <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
+          QJ
+        </div>
+        <div>
+          <p class="text-sm font-medium text-text-primary">Quick JPG Converter Team</p>
+          <p class="text-xs text-text-tertiary">4 min read · Updated June 12, 2026</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <article class="pb-12 sm:pb-16">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>UPSC Photo Requirements (2026)</h2>
+        <p>
+          The UPSC Civil Services application has strict photo requirements. Getting the file size
+          wrong is one of the most common reasons for application rejection. Here's what you need:
+        </p>
+
+        <div class="not-prose my-6 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-surface-muted border-b border-border-default">
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Requirement</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Specification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">File Format</td>
+                <td class="px-4 py-3 text-text-secondary">JPG / JPEG only</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">File Size</td>
+                <td class="px-4 py-3 text-text-secondary">20KB – 50KB</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Dimensions</td>
+                <td class="px-4 py-3 text-text-secondary">3.5cm × 4.5cm (passport size)</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">Background</td>
+                <td class="px-4 py-3 text-text-secondary">Plain white</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-text-primary">Photo Age</td>
+                <td class="px-4 py-3 text-text-secondary">Recent (within 10 days)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Why UPSC Photos Get Rejected</h2>
+        <p>
+          The UPSC portal validates your photo before accepting it. Common rejection reasons include:
+        </p>
+        <ul>
+          <li><strong>File too large:</strong> Photo exceeds 50KB — the portal won't accept it</li>
+          <li><strong>Wrong format:</strong> PNG or WebP instead of JPG</li>
+          <li><strong>Wrong dimensions:</strong> Not passport size (3.5cm × 4.5cm)</li>
+          <li><strong>Bad background:</strong> Colored or patterned background instead of white</li>
+          <li><strong>Old photo:</strong> Photo not taken within the last 10 days</li>
+        </ul>
+
+        <h2>Step-by-Step: Compress Your UPSC Photo</h2>
+
+        <h3>Step 1: Take a Proper Photo</h3>
+        <p>
+          Before compressing, make sure your photo meets UPSC requirements:
+        </p>
+        <ul>
+          <li>Use natural, even lighting (no harsh shadows)</li>
+          <li>Plain white background</li>
+          <li>Face the camera directly</li>
+          <li>Neutral expression, mouth closed</li>
+          <li>Eyes open, looking at camera</li>
+          <li>Photo taken within the last 10 days</li>
+        </ul>
+
+        <h3>Step 2: Upload to Our Free Tool</h3>
+        <p>
+          Visit our <a href="/tools/compress-for-govt-form">Government Form Photo Compressor</a> and
+          upload your photo. The tool runs entirely in your browser — your photo never leaves your device.
+        </p>
+
+        <h3>Step 3: Select 20KB or 50KB</h3>
+        <p>
+          Choose the target file size. For UPSC, <strong>20-50KB</strong> is the standard range.
+          The tool will compress your photo to meet the exact requirements.
+        </p>
+
+        <h3>Step 4: Download and Verify</h3>
+        <p>
+          Download your compressed photo. Before uploading to the UPSC portal, verify:
+        </p>
+        <ul>
+          <li>File size is between 20KB and 50KB</li>
+          <li>Format is JPG/JPEG</li>
+          <li>Dimensions are passport size (3.5cm × 4.5cm)</li>
+        </ul>
+
+        <h2>Pro Tips for UPSC Applicants</h2>
+        <ul>
+          <li><strong>Take a new photo</strong> — UPSC requires photos taken within 10 days of application</li>
+          <li><strong>Use JPG format</strong> — it's the only format accepted by the portal</li>
+          <li><strong>Keep originals</strong> — save the uncompressed version in case you need to re-compress</li>
+          <li><strong>Check the preview</strong> — make sure your face is clearly visible after compression</li>
+          <li><strong>Apply early</strong> — don't wait until the last day to upload your photo</li>
+        </ul>
+
+        <h2>Convert PNG to JPG First</h3>
+        <p>
+          If your photo is saved as PNG, you'll need to convert it to JPG before compressing.
+          Use our free <a href="/tools/png-to-jpg">PNG to JPG converter</a> — it runs in your browser
+          and preserves quality.
+        </p>
+
+        <div class="not-prose bg-surface-muted rounded-2xl p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-2">Compress Your UPSC Photo Now</h3>
+          <p class="text-text-secondary text-sm mb-4">Free, private, and meets UPSC requirements.</p>
+          <a href="/tools/compress-for-govt-form" class="btn-primary">
+            Open Govt Form Compressor
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </article>
+</BaseLayout>

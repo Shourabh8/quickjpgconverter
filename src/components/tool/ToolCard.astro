@@ -9,14 +9,16 @@ interface Props {
   to: string;
   icon: string;
   class?: string;
+  "data-search"?: string;
 }
 
-const { slug, title, description, from, to, icon, class: className } = Astro.props;
+const { slug, title, description, from, to, icon, class: className, "data-search": dataSearch } = Astro.props;
 ---
 
 <a
   href={`/tools/${slug}`}
   class:list={["card-gradient group block p-6 sm:p-7", className]}
+  data-search={dataSearch}
 >
   <div class="flex items-start justify-between mb-4">
     <div class="w-12 h-12 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-2xl border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">

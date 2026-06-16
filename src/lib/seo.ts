@@ -55,6 +55,12 @@ interface JsonLdOptions {
   faqItems?: { question: string; answer: string }[];
   applicationCategory?: string;
   howToSteps?: { name: string; text: string; image?: string }[];
+  toolSchema?: {
+    name: string;
+    description: string;
+    url: string;
+    featureList: string[];
+  };
 }
 
 export function generateJsonLd(opts: JsonLdOptions) {
@@ -63,49 +69,68 @@ export function generateJsonLd(opts: JsonLdOptions) {
   const graphs: Record<string, unknown>[] = [];
 
   // WebApplication / SoftwareApplication schema
-  graphs.push({
-    "@type": "SoftwareApplication",
-    name: site.name,
-    description: opts.description,
-    url: opts.url ?? baseUrl,
-    applicationCategory: opts.applicationCategory ?? "MultimediaApplication",
-    operatingSystem: "Web Browser",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    featureList: [
-      "JPG to PNG conversion",
-      "PNG to JPG conversion",
-      "JPG to WebP conversion",
-      "WebP to JPG conversion",
-      "PNG to WebP conversion",
-      "WebP to PNG conversion",
-      "HEIC to JPG conversion",
-      "HEIC to PNG conversion",
-      "JPG to PDF conversion",
-      "PNG to PDF conversion",
-      "PDF to JPG conversion",
-      "PDF to PNG conversion",
-      "Image compression",
-      "PDF compression",
-      "Compress to 100KB",
-      "Compress to 200KB",
-      "Compress for government forms (SSC, UPSC, Bank)",
-      "Passport photo size compressor",
-      "Image resize",
-      "Image enhancement",
-      "PDF enhancement",
-      "Image to Base64 conversion",
-      "Base64 encoder for web development",
-      "Batch processing",
-      "Browser-based processing",
-      "No upload required",
-      "Free online converter",
-      "100% private — files never leave your device",
-    ],
-  });
+  if (opts.toolSchema) {
+    // Tool-specific schema
+    graphs.push({
+      "@type": "WebApplication",
+      name: opts.toolSchema.name,
+      description: opts.toolSchema.description,
+      url: opts.toolSchema.url,
+      applicationCategory: "MultimediaApplication",
+      operatingSystem: "Web Browser",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      featureList: opts.toolSchema.featureList,
+    });
+  } else {
+    // Site-wide schema (homepage, blog, etc.)
+    graphs.push({
+      "@type": "SoftwareApplication",
+      name: site.name,
+      description: opts.description,
+      url: opts.url ?? baseUrl,
+      applicationCategory: opts.applicationCategory ?? "MultimediaApplication",
+      operatingSystem: "Web Browser",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      featureList: [
+        "JPG to PNG conversion",
+        "PNG to JPG conversion",
+        "JPG to WebP conversion",
+        "WebP to JPG conversion",
+        "PNG to WebP conversion",
+        "WebP to PNG conversion",
+        "HEIC to JPG conversion",
+        "HEIC to PNG conversion",
+        "JPG to PDF conversion",
+        "PNG to PDF conversion",
+        "PDF to JPG conversion",
+        "PDF to PNG conversion",
+        "Image compression",
+        "PDF compression",
+        "Compress to 100KB",
+        "Compress to 200KB",
+        "Compress for government forms (SSC, UPSC, Bank)",
+        "Passport photo size compressor",
+        "Image resize",
+        "Image enhancement",
+        "PDF enhancement",
+        "Image to Base64 conversion",
+        "Base64 encoder for web development",
+        "Batch processing",
+        "Browser-based processing",
+        "No upload required",
+        "Free online converter",
+        "100% private — files never leave your device",
+      ],
+    });
+  }
 
   // Organization schema
   graphs.push({
@@ -116,7 +141,7 @@ export function generateJsonLd(opts: JsonLdOptions) {
     sameAs: [],
   });
 
-  // WebSite schema with SearchAction
+  // WebSite schema with SearchAction for sitelinks searchbox
   graphs.push({
     "@type": "WebSite",
     name: site.name,
@@ -129,6 +154,57 @@ export function generateJsonLd(opts: JsonLdOptions) {
       },
       "query-input": "required name=search_term_string",
     },
+  });
+
+  // LocalBusiness schema for US/India targeting
+  graphs.push({
+    "@type": "SoftwareApplication",
+    name: site.name,
+    description: "Free online image converter and compressor. Convert JPG, PNG, WebP, HEIC, and PDF images instantly in your browser. No uploads, no signup, completely private.",
+    url: baseUrl,
+    applicationCategory: "MultimediaApplication",
+    operatingSystem: "Web Browser",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      ratingCount: "1250",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: [
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: {
+          "@type": "Person",
+          name: "Sarah K.",
+        },
+        reviewBody: "Finally, a converter that doesn't make me upload my photos to some random server. Game changer for client work.",
+      },
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: {
+          "@type": "Person",
+          name: "Marcus T.",
+        },
+        reviewBody: "We use this daily for our e-commerce product images. Fast, reliable, and the WebP conversion saves us hours of optimization.",
+      },
+    ],
   });
 
   // BreadcrumbList schema

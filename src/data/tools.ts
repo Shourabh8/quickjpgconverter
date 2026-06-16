@@ -122,6 +122,46 @@ export const tools: Tool[] = [
     keywords: ["heic to png", "convert heic to png", "iphone to png", "heic to png converter", "free heic to png", "online heic to png", "heic to png no signup"],
     category: "image-converters",
   },
+  {
+    slug: "avif-to-jpg",
+    title: "AVIF to JPG",
+    description: "Convert AVIF images to JPG for universal compatibility.",
+    from: "AVIF",
+    to: "JPG",
+    icon: "🖼️",
+    keywords: ["avif to jpg", "convert avif to jpg", "avif to jpeg", "avif to jpg converter", "free avif to jpg", "online avif to jpg", "avif to jpg no signup"],
+    category: "image-converters",
+  },
+  {
+    slug: "avif-to-png",
+    title: "AVIF to PNG",
+    description: "Convert AVIF images to PNG with lossless quality and transparency.",
+    from: "AVIF",
+    to: "PNG",
+    icon: "🖼️",
+    keywords: ["avif to png", "convert avif to png", "avif to png converter", "free avif to png", "online avif to png", "avif to png no signup"],
+    category: "image-converters",
+  },
+  {
+    slug: "jpg-to-avif",
+    title: "JPG to AVIF",
+    description: "Convert JPG images to AVIF for 50% smaller files and faster loading.",
+    from: "JPG",
+    to: "AVIF",
+    icon: "⚡",
+    keywords: ["jpg to avif", "convert jpg to avif", "jpeg to avif", "jpg to avif converter", "free jpg to avif", "online jpg to avif", "jpg to avif no signup"],
+    category: "image-converters",
+  },
+  {
+    slug: "png-to-avif",
+    title: "PNG to AVIF",
+    description: "Convert PNG images to AVIF for next-gen compression.",
+    from: "PNG",
+    to: "AVIF",
+    icon: "⚡",
+    keywords: ["png to avif", "convert png to avif", "png to avif converter", "free png to avif", "online png to avif", "png to avif no signup"],
+    category: "image-converters",
+  },
 
   // Image Compressors
   {
@@ -157,8 +197,39 @@ export const tools: Tool[] = [
     category: "image-compressors",
     isCompressor: true,
   },
+  {
+    slug: "compress-to-size",
+    title: "Compress to Any Size",
+    description: "Compress images to any target size in KB. Enter your own target — 50KB, 150KB, 500KB, anything.",
+    from: "IMG",
+    to: "IMG",
+    icon: "🎚️",
+    keywords: ["compress image to size", "compress to any size", "custom image compressor", "compress to 150kb", "compress to 500kb", "image size reducer", "compress photo to size", "compress to target size", "compress to specific size", "reduce image to kb"],
+    category: "image-compressors",
+    isCompressor: true,
+  },
 
   // Image Tools
+  {
+    slug: "crop-image",
+    title: "Crop Image",
+    description: "Crop images to any aspect ratio or custom dimensions. Free online tool.",
+    from: "IMG",
+    to: "IMG",
+    icon: "✂️",
+    keywords: ["crop image", "image cropper", "crop photo", "crop picture", "online image crop", "free crop tool", "resize and crop", "aspect ratio crop"],
+    category: "image-tools",
+  },
+  {
+    slug: "batch-converter",
+    title: "Batch Converter",
+    description: "Convert multiple images to any format at once — JPG, PNG, WebP, or HEIC.",
+    from: "Any",
+    to: "Any",
+    icon: "📦",
+    keywords: ["batch converter", "batch image converter", "convert multiple images", "bulk image converter", "convert all images", "multi image converter", "batch jpg to png", "batch convert photos"],
+    category: "image-converters",
+  },
   {
     slug: "resize-jpg",
     title: "Resize JPG",
@@ -198,6 +269,28 @@ export const tools: Tool[] = [
     icon: "✂️",
     keywords: ["crop image", "image cropper", "crop photo online", "crop jpg", "crop png", "free image crop tool", "online image crop", "crop picture", "cut image", "trim image", "crop image to square", "crop image for instagram"],
     category: "image-tools",
+  },
+
+  // SVG Converters
+  {
+    slug: "svg-to-png",
+    title: "SVG to PNG",
+    description: "Convert SVG images to PNG with transparency and scalable quality.",
+    from: "SVG",
+    to: "PNG",
+    icon: "🖼️",
+    keywords: ["svg to png", "convert svg to png", "svg to png converter", "free svg to png", "online svg to png", "svg to png no signup", "change svg to png", "make png from svg"],
+    category: "image-converters",
+  },
+  {
+    slug: "svg-to-jpg",
+    title: "SVG to JPG",
+    description: "Convert SVG images to JPG for wider compatibility and smaller files.",
+    from: "SVG",
+    to: "JPG",
+    icon: "🖼️",
+    keywords: ["svg to jpg", "convert svg to jpg", "svg to jpeg", "svg to jpg converter", "free svg to jpg", "online svg to jpg", "svg to jpg no signup", "change svg to jpg", "make jpg from svg"],
+    category: "image-converters",
   },
 
   // PDF Converters
@@ -265,6 +358,18 @@ export const tools: Tool[] = [
     category: "pdf-tools",
   },
 
+  // EXIF Tools
+  {
+    slug: "exif-viewer",
+    title: "EXIF Viewer & Remover",
+    description: "View and strip EXIF metadata — GPS location, camera info — from your photos. 100% private.",
+    from: "IMG",
+    to: "IMG",
+    icon: "🔍",
+    keywords: ["exif viewer", "exif remover", "strip exif", "remove metadata", "exif data", "gps data photo", "remove gps from photo", "photo metadata viewer", "strip metadata", "exif editor", "remove exif data", "privacy photo tool"],
+    category: "image-tools",
+  },
+
   // Specialized Tools
   {
     slug: "passport-photo-size",
@@ -274,6 +379,26 @@ export const tools: Tool[] = [
     to: "IMG",
     icon: "📸",
     keywords: ["passport photo size", "passport photo size india", "passport photo size usa", "passport size photo online", "passport photo maker", "passport photo compressor", "resize photo for passport", "passport photo requirements"],
+    category: "image-tools",
+  },
+  {
+    slug: "upsc-photo-compressor",
+    title: "UPSC Photo Compressor",
+    description: "Resize and compress photos for UPSC exam. 3.5cm × 4.5cm, under 100KB.",
+    from: "IMG",
+    to: "IMG",
+    icon: "📋",
+    keywords: ["upsc photo size", "upsc photo compressor", "upsc application photo", "resize photo for upsc", "upsc passport photo", "upsc photo requirements 2026", "upsc online form photo size", "ias photo size", "upsc civil services photo"],
+    category: "image-tools",
+  },
+  {
+    slug: "aadhar-photo-resize",
+    title: "Aadhaar Photo Resize",
+    description: "Resize and compress photos for Aadhaar card enrollment and update. Under 30KB.",
+    from: "IMG",
+    to: "IMG",
+    icon: "🪪",
+    keywords: ["aadhaar photo size", "aadhar photo resize", "aadhaar card photo", "resize photo for aadhaar", "aadhaar photo compressor", "aadhaar enrollment photo", "aadhaar update photo size", "uidai photo requirements", "aadhar card photo size"],
     category: "image-tools",
   },
   {

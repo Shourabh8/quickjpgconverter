@@ -1,0 +1,134 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Why Browser-Based?", url: "/why-browser-based" },
+];
+---
+
+<BaseLayout
+  title="Why Browser-Based? — Privacy, Speed, No Uploads"
+  description="Learn why browser-based image conversion is faster, safer, and more private than server-based tools. Your files never leave your device."
+  canonical="https://quickjpgconverter.com/why-browser-based"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="mt-8">
+        <Badge class="mb-4">Why Browser-Based?</Badge>
+      </div>
+
+      <article class="prose mt-6">
+        <h1>Why Browser-Based Conversion Wins</h1>
+
+        <p class="lead">
+          Most online converters upload your files to a remote server. Ours doesn't.
+          Every conversion happens entirely in your browser — your images never
+          leave your device. Here's why that matters.
+        </p>
+
+        <h2>Your Files Never Leave Your Device</h2>
+        <p>
+          When you use a server-based converter, your images travel across the
+          internet to a company's servers, get processed, and then travel back.
+          At every step, your files are exposed — to data breaches, to third-party
+          tracking, and to policies that may allow the company to store or analyze
+          your images.
+        </p>
+        <p>
+          With browser-based conversion, your files stay on your device the entire
+          time. The processing happens locally using your browser's built-in APIs.
+          Nothing is uploaded. Nothing is stored. Nothing is transmitted.
+        </p>
+
+        <h2>How It Works</h2>
+        <p>
+          Modern browsers include powerful APIs that can handle image processing
+          directly on your device:
+        </p>
+        <ul>
+          <li><strong>Canvas API</strong> — reads, transforms, and re-encodes images without any server involvement</li>
+          <li><strong>WebAssembly</strong> — runs native-quality compression algorithms at near-native speed inside your browser</li>
+          <li><strong>File System Access API</strong> — lets you save converted files directly to your device without download prompts</li>
+        </ul>
+        <p>
+          These technologies let us offer the same (or better) conversion quality
+          as desktop software — but with zero installation, zero configuration,
+          and zero risk to your privacy.
+        </p>
+
+        <h2>Privacy by Design</h2>
+        <p>
+          Privacy isn't an afterthought for us — it's the foundation. Because
+          your files are processed locally, there's literally no way for us to
+          access them. We don't have the capability to see, store, or analyze
+          your images. This isn't a policy promise — it's a technical
+          architectural reality.
+        </p>
+        <p>
+          This matters especially for:
+        </p>
+        <ul>
+          <li><strong>Personal photos</strong> — family pictures, medical records, ID documents</li>
+          <li><strong>Business documents</strong> — contracts, financial reports, proprietary designs</li>
+          <li><strong>Sensitive content</strong> — anything you wouldn't want a stranger to see</li>
+        </ul>
+
+        <h2>Speed: No Upload, No Wait</h2>
+        <p>
+          Server-based converters require you to upload your file (which can take
+          minutes on slow connections), wait for server processing, and then
+          download the result. Browser-based conversion eliminates all three
+          steps — your file is already on your device, processing is instant, and
+          the result appears right in your browser.
+        </p>
+        <p>
+          For large files or batch conversions, this speed difference is
+          dramatic. A 50MB image that might take 30 seconds to upload converts
+          in under a second locally.
+        </p>
+
+        <h2>No File Size Limits</h2>
+        <p>
+          Server-based converters impose file size limits to protect their
+          infrastructure. Browser-based tools have no such constraints — the only
+          limit is your device's available memory, which is typically many gigabytes.
+        </p>
+
+        <h2>No Account Required</h2>
+        <p>
+          Many server-based tools force you to create an account, provide an email
+          address, or sign up for a free trial before you can convert a single
+          file. Browser-based tools require nothing — open the page and start
+          converting immediately.
+        </p>
+
+        <h2>Works on Any Device</h2>
+        <p>
+          Browser-based tools work on any device with a modern web browser —
+          Windows, macOS, Linux, ChromeOS, iOS, Android. There's nothing to
+          install, no compatibility issues, and no OS-specific versions to
+          maintain.
+        </p>
+
+        <h2>The Bottom Line</h2>
+        <p>
+          Browser-based conversion isn't just a technical choice — it's a
+          commitment to user privacy and control. Your files are yours. Your
+          photos are yours. Your documents are yours. We process them on your
+          device and give them back to you. That's it.
+        </p>
+        <p>
+          Ready to try it? <a href="/tools">Browse all our tools</a> and see the
+          difference for yourself.
+        </p>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>

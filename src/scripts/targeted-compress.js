@@ -102,9 +102,34 @@ export function initTargetedCompressor(config) {
 
   config.targetSize = config.targetSize || 100 * 1024;
 
-  if (targetSizeDisplay) {
-    targetSizeDisplay.textContent = formatBytes(config.targetSize);
+  function updateTargetDisplay() {
+    if (targetSizeDisplay) {
+      targetSizeDisplay.textContent = formatBytes(config.targetSize);
+    }
+    // Update compress button text
+    if (compressBtn) {
+      const btnText = compressBtn.querySelector("span:last-child") || compressBtn;
+      // Only update if it's a targeted compress button (not generic)
+      if (compressBtn.dataset.targeted !== "false") {
+        compressBtn.childNodes.forEach((n) => {
+          if (n.nodeType === 3 && n.textContent.includes("Compress")) {
+            n.textContent = `Compress to ${formatBytes(config.targetSize)}`;
+          }
+        });
+      }
+    }
+    // Update target display in sidebar if present
+    const sidebarTarget = document.getElementById("sidebar-target-size");
+    if (sidebarTarget) sidebarTarget.textContent = formatBytes(config.targetSize);
   }
+
+  updateTargetDisplay();
+
+  // Expose setter for dynamic target pages
+  window.__setTargetSize = (kb) => {
+    config.targetSize = kb * 1024;
+    updateTargetDisplay();
+  };
 
   // Keyboard accessibility
   dropArea.setAttribute("tabindex", "0");
@@ -248,6 +273,7 @@ export function initTargetedCompressor(config) {
       try {
         const img = await loadImage(files[i]);
         const result = await compressToTargetSize(img, files[i].name, config.targetSize);
+        result.originalFile = files[i];
         compressedResults.push(result);
       } catch (err) {
         console.error("Compression failed:", files[i].name, err);
@@ -371,6 +397,12 @@ export function initTargetedCompressor(config) {
               Download
             </button>
           </div>
+          <div class="flex gap-2 mt-2">
+            <button data-compare="${i}" class="flex-1 text-xs py-1.5 px-2 rounded-lg border border-border-default bg-surface hover:bg-surface-subtle text-text-secondary transition-colors flex items-center justify-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+              Compare
+            </button>
+          </div>
         </div>
       `;
     });
@@ -390,7 +422,7 @@ export function initTargetedCompressor(config) {
       html += `
         <button id="download-all-btn" class="w-full btn-primary btn-lg justify-center mt-4">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-          Download All (${successItems.length} files)
+          Download All (${successItems.length} files as ZIP)
         </button>
       `;
     }
@@ -407,6 +439,24 @@ export function initTargetedCompressor(config) {
         const idx = parseInt(btn.dataset.download);
         const item = compressedResults[idx];
         downloadBlob(item.blob, item.name);
+      });
+    });
+
+    downloadArea.querySelectorAll("[data-compare]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.dataset.compare);
+        const item = compressedResults[idx];
+        if (!item || item.failed || !item.originalFile) return;
+        if (window.CompareSlider) {
+          window.CompareSlider.show({
+            originalUrl: URL.createObjectURL(item.originalFile),
+            compressedUrl: URL.createObjectURL(item.blob),
+            originalSize: item.originalSize,
+            compressedSize: item.compressedSize,
+            fileName: item.name,
+            title: "Compare Quality",
+          });
+        }
       });
     });
 

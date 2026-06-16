@@ -11,49 +11,49 @@ const breadcrumbs = [
   { name: "Crop Image", url: "/tools/crop-image" },
 ];
 
-const ratios = [
-  { label: "Free", value: "free", icon: "↔" },
-  { label: "1:1", value: "1:1", icon: "⬜" },
-  { label: "16:9", value: "16:9", icon: "🖥" },
-  { label: "4:3", value: "4:3", icon: "📺" },
-  { label: "3:2", value: "3:2", icon: "📷" },
-  { label: "9:16", value: "9:16", icon: "📱" },
-];
-
 const faqItems = [
   {
-    question: "What is the best tool to crop images online?",
-    answer: "QuickJPG is a free browser-based image cropper that lets you crop JPG, PNG, and WebP images without uploading them to a server. Your files never leave your device, ensuring complete privacy.",
-  },
-  {
-    question: "How do I crop an image to a specific aspect ratio?",
-    answer: "After uploading your image, click one of the preset ratio buttons like 1:1 for square or 16:9 for widescreen. You can also enter custom dimensions in the width and height fields for any ratio you need.",
-  },
-  {
-    question: "Will cropping reduce image quality?",
-    answer: "No. Cropping simply removes pixels from the edges of your image. The remaining pixels stay at their original quality. Cropper.js uses high-quality resampling to ensure the best results.",
-  },
-  {
     question: "What image formats can I crop?",
-    answer: "You can crop JPG, JPEG, PNG, and WebP images up to 50MB. After cropping, you can download the result as either PNG (lossless) or JPG (smaller file size).",
+    answer: "You can crop JPG, JPEG, PNG, WebP, and HEIC images. The tool detects the format automatically and preserves it in the output.",
   },
   {
-    question: "Is my uploaded image stored on a server?",
-    answer: "No. QuickJPG processes all images entirely in your browser using the Canvas API. Your images are never uploaded to any server and cannot be seen by anyone else.",
+    question: "Does cropping reduce image quality?",
+    answer: "No. Cropping simply removes parts of the image — it doesn't compress or re-encode the remaining pixels. The cropped area retains its original quality.",
+  },
+  {
+    question: "Can I crop to a specific aspect ratio?",
+    answer: "Yes. Choose from preset ratios like 1:1 (square), 4:3, 16:9, 3:2, or use Free mode to crop to any custom dimension.",
+  },
+  {
+    question: "Is my data safe?",
+    answer: "Absolutely. All cropping happens entirely in your browser. Your images are never uploaded to any server. They stay on your device from start to finish.",
+  },
+  {
+    question: "Can I crop multiple images at once?",
+    answer: "Currently, the tool processes one image at a time for precise control. For batch processing, use our Batch Converter tool.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Free Crop Image Tool — Online Image Cropper"
-  description="Crop images to any dimension or aspect ratio with our free online image cropper. JPG, PNG, WebP support. 100% private, no uploads, instant results."
+  title="Free Online Image Cropper — Crop Photos to Any Size"
+  description="Crop images to any aspect ratio or custom dimensions. Free online tool with preview. JPG, PNG, WebP supported. 100% private — no uploads."
   canonical="https://quickjpgconverter.com/tools/crop-image"
-  keywords={["crop image", "image cropper", "crop photo online", "crop jpg", "crop png", "free image crop tool"]}
+  keywords={["crop image", "image cropper", "crop photo", "online crop tool"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
+  howToSteps={[
+    { name: "Upload an image", text: "Drag and drop your image or click to browse." },
+    { name: "Select aspect ratio", text: "Choose Free, 1:1, 4:3, 16:9, or 3:2." },
+    { name: "Adjust and download", text: "Drag the crop box to select your area, then download." },
+  ]}
+  toolSchema={{
+    name: "Image Cropper",
+    description: "Crop images to any aspect ratio or custom dimensions. Free online tool.",
+    url: "https://quickjpgconverter.com/tools/crop-image",
+    featureList: ["Free crop mode", "Preset aspect ratios (1:1, 4:3, 16:9, 3:2)", "Rule of thirds grid", "Drag to reposition", "Corner resize handles", "100% browser-based", "No signup required"],
+  }}
 >
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
-
   <Container class="py-5 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
   </Container>
@@ -63,15 +63,15 @@ const faqItems = [
       <div class="text-center max-w-2xl mx-auto">
         <Badge class="mb-4">
           <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
           Free · No Signup · Private
         </Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          <span class="gradient-text">Crop</span> Image
+          Free Online <span class="gradient-text">Image Cropper</span> — Crop Photos to Any Size
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          Crop images to any dimension or aspect ratio. Drag the crop box, use presets, or enter exact pixel values.
+          Crop images to any aspect ratio or custom dimensions. Everything runs in your browser.
         </p>
       </div>
     </Container>
@@ -79,17 +79,23 @@ const faqItems = [
 
   <section class="pb-12 sm:pb-16">
     <Container>
-      <div class="max-w-6xl mx-auto">
+      <div class="max-w-5xl mx-auto">
         <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
-          <!-- Top bar -->
-          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
-            <span class="text-sm font-medium text-text-secondary">Crop Image</span>
-            <span id="dimension-display" class="text-xs font-medium text-brand-600 dark:text-brand-400"></span>
+          <!-- Top bar: aspect ratio selector -->
+          <div class="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Aspect Ratio:</span>
+            <div class="flex items-center gap-1.5">
+              <button data-aspect="free" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-brand-600 bg-brand-600 text-white transition-colors">Free</button>
+              <button data-aspect="1" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-secondary hover:text-text-primary transition-colors">1:1</button>
+              <button data-aspect="4/3" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-secondary hover:text-text-primary transition-colors">4:3</button>
+              <button data-aspect="16/9" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-secondary hover:text-text-primary transition-colors">16:9</button>
+              <button data-aspect="3/2" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-secondary hover:text-text-primary transition-colors">3:2</button>
+            </div>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-3 min-h-[500px]">
-            <!-- LEFT: Upload / Crop preview -->
-            <div class="lg:col-span-2 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <!-- LEFT: Upload / Canvas -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
               <!-- Upload zone -->
               <div id="upload-zone" class="h-full">
                 <div
@@ -98,19 +104,19 @@ const faqItems = [
                 >
                   <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 01-5.196 3 3 3 0 015.196-3zm1.536-.887a2.165 2.165 0 001.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863l2.077-1.199m0-3.328a4.323 4.323 0 012.068-1.379l5.325-1.628a4.5 4.5 0 012.48-.044l.803.215m-7.6 1.558l5.325 1.628a4.5 4.5 0 012.48.044l.803.215m-7.6-1.558l-1.536.887" />
                     </svg>
                   </div>
                   <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your image here</h3>
-                  <p class="text-sm text-text-secondary mb-5 max-w-xs">tap to browse or drag and drop</p>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
                   <label class="btn-primary btn-md cursor-pointer">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
-                    Choose File
-                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp" />
+                    Choose Image
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp,.heic,.heif" />
                   </label>
-                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Max 50MB</p>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP, HEIC · Max 50MB</p>
                   <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
                     <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
@@ -120,185 +126,95 @@ const faqItems = [
                 </div>
               </div>
 
-              <!-- Preview / Crop zone -->
-              <div id="preview-zone" class="hidden h-full">
-                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
-                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
-                    <div class="flex items-center gap-2">
-                      <div class="w-2 h-2 rounded-full bg-success"></div>
-                      <span class="text-sm font-medium text-text-primary">Ready to crop</span>
-                    </div>
-                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear</button>
-                  </div>
-                  <div id="crop-container" class="flex-1 p-2 bg-black/5 dark:bg-black/20 flex items-center justify-center min-h-[350px]">
-                    <img id="crop-image" class="hidden max-w-full max-h-[450px]" />
+              <!-- Editor zone -->
+              <div id="editor-zone" class="hidden">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden">
+                  <div class="relative flex items-center justify-center bg-gray-900 p-2" style="min-height: 300px;">
+                    <canvas id="crop-canvas" class="max-w-full rounded cursor-crosshair"></canvas>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- RIGHT: Controls -->
-            <div class="lg:col-span-1 p-5 sm:p-6 flex flex-col">
-              <!-- Aspect Ratio -->
-              <div class="mb-5">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Aspect Ratio</h3>
-                <div class="grid grid-cols-3 gap-2">
-                  {ratios.map((r, i) => (
-                    <button
-                      data-ratio={r.value}
-                      class:list={[
-                        "flex flex-col items-center gap-1 px-2 py-2.5 rounded-lg border text-xs font-medium transition-all duration-200",
-                        i === 0
-                          ? "bg-brand-600 text-white border-brand-600"
-                          : "bg-surface text-text-secondary border-border-default hover:border-brand-300 dark:hover:border-brand-700",
-                      ]}
-                    >
-                      <span class="text-base">{r.icon}</span>
-                      <span>{r.label}</span>
-                    </button>
-                  ))}
+            <!-- RIGHT: Info & Actions -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <h3 class="text-sm font-semibold text-text-primary mb-4">Crop Settings</h3>
+
+              <!-- Size info -->
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center justify-between p-3 rounded-lg border border-border-default bg-surface-muted">
+                  <span class="text-xs text-text-tertiary">Original</span>
+                  <span id="original-size" class="text-xs font-medium text-text-primary">—</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-lg border border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-950/50">
+                  <span class="text-xs text-text-tertiary">Cropped area</span>
+                  <span id="cropped-size" class="text-xs font-medium text-brand-700 dark:text-brand-400">—</span>
                 </div>
               </div>
 
-              <!-- Custom Ratio -->
-              <div class="mb-5">
-                <h3 class="text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-2">Custom Ratio</h3>
-                <div class="flex items-center gap-2">
-                  <input id="custom-ratio-w" type="number" min="1" max="100" placeholder="W" class="flex-1 px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
-                  <span class="text-text-tertiary text-sm">:</span>
-                  <input id="custom-ratio-h" type="number" min="1" max="100" placeholder="H" class="flex-1 px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
-                  <button id="apply-custom-ratio" class="px-3 py-2 rounded-lg bg-surface-subtle border border-border-default text-sm font-medium text-text-secondary hover:bg-surface transition-colors">
-                    Set
-                  </button>
-                </div>
-              </div>
-
-              <div class="h-px bg-border-default mb-5"></div>
-
-              <!-- Crop Settings -->
-              <div class="mb-5">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Crop Position & Size</h3>
-                <div class="grid grid-cols-2 gap-3">
-                  <div>
-                    <label class="text-xs text-text-tertiary mb-1 block">X Position</label>
-                    <input id="crop-x" type="number" min="0" placeholder="0" class="w-full px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
-                  </div>
-                  <div>
-                    <label class="text-xs text-text-tertiary mb-1 block">Y Position</label>
-                    <input id="crop-y" type="number" min="0" placeholder="0" class="w-full px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
-                  </div>
-                  <div>
-                    <label class="text-xs text-text-tertiary mb-1 block">Width (px)</label>
-                    <input id="crop-width" type="number" min="1" placeholder="Width" class="w-full px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
-                  </div>
-                  <div>
-                    <label class="text-xs text-text-tertiary mb-1 block">Height (px)</label>
-                    <input id="crop-height" type="number" min="1" placeholder="Height" class="w-full px-3 py-2 rounded-lg border border-border-default bg-surface text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent" />
-                  </div>
-                </div>
-                <p class="text-[10px] text-text-tertiary mt-2">Drag the crop box on the image or edit values above</p>
-              </div>
-
-              <div class="flex-1"></div>
-
-              <!-- Crop button -->
-              <div id="convert-btn-area">
-                <button id="crop-btn" class="w-full btn-primary btn-lg justify-center">
+              <!-- Actions -->
+              <div id="download-btn-area" class="mt-auto space-y-2">
+                <button id="download-btn" class="w-full btn-primary btn-lg justify-center">
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                   </svg>
-                  Crop Image
+                  Download Cropped Image
                 </button>
-                <p class="text-xs text-text-tertiary text-center mt-2">Upload an image to start cropping</p>
+                <button id="crop-again-btn" class="w-full btn-secondary btn-md justify-center">Crop Another Image</button>
               </div>
 
-              <!-- Download area -->
-              <div id="download-area" class="hidden"></div>
+              <!-- Tips -->
+              <div class="mt-6 pt-4 border-t border-border-default">
+                <h4 class="text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-2">Tips</h4>
+                <ul class="text-xs text-text-secondary space-y-1.5">
+                  <li>• Drag the crop box to reposition</li>
+                  <li>• Drag corners to resize</li>
+                  <li>• Grid lines show rule of thirds</li>
+                  <li>• Choose an aspect ratio above for fixed proportions</li>
+                </ul>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-border-default">
+                <FeatureRequest toolName="Crop Image" />
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
-          <span class="font-medium text-text-secondary">Supported:</span>
-          {["JPG", "JPEG", "PNG", "WebP"].map((fmt) => (
-            <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
-          ))}
-          <span class="text-text-tertiary">·</span>
-          <span>Max 50MB</span>
-        </div>
       </div>
     </Container>
   </section>
 
-  <FeatureRequest toolName="Crop Image" />
-
-  <section class="section bg-surface-muted">
-    <Container>
-      <div class="text-center mb-10">
-        <Badge class="mb-4">How It Works</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
-          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload your image</h3>
-          <p class="text-sm text-text-secondary">Drag and drop or click to select your image file.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
-          <h3 class="text-base font-semibold text-text-primary mb-1.5">Adjust the crop area</h3>
-          <p class="text-sm text-text-secondary">Drag the box, use presets, or enter exact dimensions.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
-          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download your image</h3>
-          <p class="text-sm text-text-secondary">Save as PNG or JPG with one click.</p>
-        </div>
-      </div>
-    </Container>
-  </section>
+  <script>
+    import { initCropImage } from "@scripts/crop-image";
+    document.addEventListener("DOMContentLoaded", () => initCropImage());
+  </script>
 
   <section class="section">
     <Container variant="narrow">
       <div class="prose">
-        <h2>Why Use an Online Image Cropper?</h2>
+        <h2>Why Crop Your Images?</h2>
         <p>
-          Cropping images is one of the most common photo editing tasks. Whether you need to remove unwanted
-          background elements, focus on a specific subject, or resize for a particular platform, cropping
-          gives you precise control over your image composition.
+          Cropping removes unwanted areas from your images — extra background, distracting elements, or simply the parts you don't need. It's the easiest way to improve composition and focus attention on what matters.
         </p>
-        <h3>Common Cropping Use Cases</h3>
+        <p>
+          Common use cases include removing borders from screenshots, focusing on a product in a photo, preparing images for social media aspect ratios, or trimming scanned documents.
+        </p>
+
+        <h2>Preset Aspect Ratios</h2>
         <ul>
-          <li>Social media profile photos (square 1:1 crop for Instagram)</li>
-          <li>YouTube thumbnails and banner images (16:9 widescreen)</li>
-          <li>Passport and ID photos (exact aspect ratio requirements)</li>
-          <li>Product photos for e-commerce listings</li>
-          <li>Removing unwanted objects from the edges of photos</li>
+          <li><strong>Free</strong> — Crop to any custom dimension, no restrictions</li>
+          <li><strong>1:1 (Square)</strong> — Perfect for Instagram posts and profile pictures</li>
+          <li><strong>4:3</strong> — Standard photo ratio, great for printing</li>
+          <li><strong>16:9</strong> — Widescreen format for YouTube thumbnails and banners</li>
+          <li><strong>3:2</strong> — Classic 35mm film ratio, common in photography</li>
         </ul>
-        <h3>Why Browser-Based Cropping?</h3>
+
+        <h2>100% Private — No Uploads</h2>
         <p>
-          Traditional image editors require you to upload your photos to their servers.
-          With QuickJPG, all cropping happens locally in your browser using the Canvas API.
-          Your images never leave your device, ensuring complete privacy and security.
-          No account required, no file size limits beyond 50MB, and instant results.
+          Unlike server-based croppers that upload your images to their servers, our tool processes everything locally in your browser. Your images never leave your device. This is especially important for personal photos and sensitive documents.
         </p>
+        <p>Also check out our <a href="/tools/resize-jpg">Resize tool</a> for changing dimensions, and our <a href="/tools/passport-photo-size">Passport Photo tool</a> for specific document sizes.</p>
       </div>
     </Container>
   </section>
-
-  <section class="section">
-    <Container variant="narrow">
-      <div class="text-center mb-10">
-        <Badge class="mb-4">FAQ</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
-      </div>
-      <FAQ items={faqItems} />
-    </Container>
-  </section>
-
-  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
-  <script>
-    import { initCropper } from "@scripts/crop.js";
-    document.addEventListener("DOMContentLoaded", () => initCropper());
-  </script>
 </BaseLayout>

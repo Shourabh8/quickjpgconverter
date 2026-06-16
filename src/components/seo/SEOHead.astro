@@ -1,6 +1,5 @@
 ---
 import { generateMeta, generateJsonLd } from "@lib/seo";
-import { locales, getLocalePrefix } from "@i18n/index";
 
 interface Props {
   title: string;
@@ -13,7 +12,12 @@ interface Props {
   faqItems?: { question: string; answer: string }[];
   keywords?: string[];
   howToSteps?: { name: string; text: string; image?: string }[];
-  locale?: string;
+  toolSchema?: {
+    name: string;
+    description: string;
+    url: string;
+    featureList: string[];
+  };
 }
 
 const {
@@ -27,7 +31,7 @@ const {
   faqItems,
   keywords,
   howToSteps,
-  locale = "en",
+  toolSchema,
 } = Astro.props;
 
 const meta = generateMeta({ title, description, canonical, ogImage, noindex });
@@ -40,22 +44,17 @@ const jsonLdData = jsonLd
       breadcrumbs,
       faqItems,
       howToSteps,
+      toolSchema,
     })
   : null;
-
-// Generate hreflang links
-const currentPath = Astro.url.pathname;
-const basePath = currentPath.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2");
-const siteUrl = "https://quickjpgconverter.com";
-const hreflangLinks = locales.map((l) => {
-  const prefix = getLocalePrefix(l);
-  return { lang: l, href: `${siteUrl}${prefix}${basePath}` };
-});
-// x-default points to English version
-hreflangLinks.push({ lang: "x-default", href: `${siteUrl}${basePath}` });
 ---
 
 <meta name="generator" content={Astro.generator} />
+
+<!-- Font preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
 
 <title>{meta.title}</title>
 
@@ -71,14 +70,8 @@ hreflangLinks.push({ lang: "x-default", href: `${siteUrl}${basePath}` });
   <link {...l} />
 ))}
 
-<!-- Hreflang for international targeting -->
-{hreflangLinks.map((link) => (
-  <link rel="alternate" hreflang={link.lang} href={link.href} />
-))}
-
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
-<link rel="manifest" href="/manifest.json" />
 
 {jsonLdData && (
   <script type="application/ld+json" set:html={JSON.stringify(jsonLdData)} />

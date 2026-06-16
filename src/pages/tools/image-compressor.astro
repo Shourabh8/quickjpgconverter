@@ -3,9 +3,9 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
-import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 import AdBanner from "@components/ui/AdBanner.astro";
+import CompareSlider from "@components/ui/CompareSlider.astro";
 
 const breadcrumbs = [
   { name: "Tools", url: "/tools" },
@@ -53,6 +53,12 @@ const conversionOptions = [
   keywords={["image compressor", "compress image", "reduce image size", "compress jpg", "compress png", "compress webp"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
+  toolSchema={{
+    name: "Image Compressor",
+    description: "Compress JPG, PNG, WebP, and AVIF images without visible quality loss.",
+    url: "https://quickjpgconverter.com/tools/image-compressor",
+    featureList: ["JPG PNG WebP AVIF support", "Lossy and lossless modes", "Quality slider control", "Batch compression", "Up to 90% size reduction", "Instant browser processing", "100% private"],
+  }}
 >
   <section class="section">
     <Container>
@@ -61,7 +67,7 @@ const conversionOptions = [
       <div class="mt-8 mb-8">
         <Badge class="mb-4">Free · No Signup · Private</Badge>
         <h1 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-3">
-          Image <span class="gradient-text">Compressor</span>
+          Free Online Image <span class="gradient-text">Compressor</span> — JPG, PNG, WebP, No Upload
         </h1>
         <p class="text-base text-text-secondary max-w-xl">
           Reduce JPG, PNG, WebP, and AVIF file sizes without visible quality loss. Everything runs in your browser — your images never leave your device.
@@ -149,31 +155,6 @@ const conversionOptions = [
                 <span class="text-xs text-text-tertiary">Better</span>
               </div>
               <input type="range" id="quality-slider" min="10" max="100" value="80" class="w-full h-2 rounded-full appearance-none cursor-pointer bg-surface-muted accent-brand-600" />
-            </div>
-          </div>
-
-          <div class="h-px bg-border-default mb-6"></div>
-
-          <div class="mb-6">
-            <h3 class="text-sm font-semibold text-text-primary mb-3">Resize (Optional)</h3>
-            <p class="text-xs text-text-tertiary mb-3">Reduce dimensions for even smaller files</p>
-            <div class="space-y-2">
-              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
-                <input type="radio" name="resize" value="none" checked class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                <span class="text-sm text-text-primary">Keep original size</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
-                <input type="radio" name="resize" value="1920" class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                <span class="text-sm text-text-primary">Max 1920px (HD)</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
-                <input type="radio" name="resize" value="1280" class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                <span class="text-sm text-text-primary">Max 1280px (Web)</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 rounded-xl border border-border-default hover:border-border-strong hover:bg-surface-subtle/50 cursor-pointer transition-all duration-200">
-                <input type="radio" name="resize" value="800" class="w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                <span class="text-sm text-text-primary">Max 800px (Thumbnail)</span>
-              </label>
             </div>
           </div>
 
@@ -287,8 +268,11 @@ const conversionOptions = [
     </Container>
   </section>
 
-  <FeatureRequest toolName="Image Compressor" />
+  <CompareSlider />
 
-  <section class="section">
-    <Container variant="narrow">
-      <div class="prose">
+</BaseLayout>
+
+<script>
+  import { initImageCompressor } from "@scripts/compressor";
+  document.addEventListener("DOMContentLoaded", () => initImageCompressor());
+</script>

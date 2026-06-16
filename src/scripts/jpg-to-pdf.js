@@ -308,6 +308,7 @@ export function initJpgToPdf() {
     if (!downloadArea) return;
 
     const totalPages = files.length;
+    const totalOriginalSize = files.reduce((sum, f) => sum + f.size, 0);
     const pdfName = files.length === 1
       ? replaceExtension(files[0].name, "pdf")
       : "images.pdf";
@@ -320,7 +321,7 @@ export function initJpgToPdf() {
           </svg>
           <span class="text-sm font-semibold text-success">PDF created!</span>
         </div>
-        <p class="text-xs text-text-secondary">${totalPages} page${totalPages !== 1 ? "s" : ""} · ${formatBytes(pdfBlob.size)}</p>
+        <p class="text-xs text-text-secondary">${formatBytes(totalOriginalSize)} → ${formatBytes(pdfBlob.size)} · ${totalPages} page${totalPages !== 1 ? "s" : ""}</p>
       </div>
 
       <div class="flex items-center justify-between p-3 rounded-lg border border-border-default bg-surface mb-2">
@@ -332,7 +333,7 @@ export function initJpgToPdf() {
           </div>
           <div class="min-w-0">
             <div class="text-xs font-medium text-text-primary truncate">${pdfName}</div>
-            <div class="text-xs text-text-tertiary">${formatBytes(pdfBlob.size)} · ${totalPages} pages</div>
+            <div class="text-xs text-text-tertiary">${formatBytes(totalOriginalSize)} → ${formatBytes(pdfBlob.size)} · ${totalPages} pages</div>
           </div>
         </div>
         <button id="download-pdf-btn" class="btn-primary btn-sm flex-shrink-0 ml-3">

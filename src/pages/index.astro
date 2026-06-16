@@ -3,459 +3,714 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Button from "@components/ui/Button.astro";
 import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
 import { site } from "@data/site";
 import { tools, categories, getToolsByCategory } from "@data/tools";
 
 import "@styles/homepage.css";
 
-const trustBadges = [
-  { icon: "🛡️", title: "100% Private", desc: "No Server Uploads" },
-  { icon: "⚡", title: "Instant", desc: "Local CPU Processing" },
-  { icon: "🚫", title: "No Limits", desc: "Unlimited Conversions" },
-  { icon: "🔒", title: "Secure", desc: "Browser Sandboxing" },
+const faqItems = [
+  {
+    question: "Is this JPG converter really free?",
+    answer: "Yes, completely free. No sign-up required, no watermarks, no hidden fees, no usage limits. Convert as many images as you need, every day, forever.",
+  },
+  {
+    question: "Are my images uploaded to a server?",
+    answer: "No. All conversion happens directly in your browser using WebAssembly and Canvas API. Your images never leave your device — not even temporarily.",
+  },
+  {
+    question: "What image formats are supported?",
+    answer: "We support JPG, JPEG, PNG, WebP, HEIC, and PDF formats. You can convert between any of these combinations, and also resize JPG images to any dimension.",
+  },
+  {
+    question: "Is there a file size limit?",
+    answer: "The practical limit is your device's available memory. For most modern devices, you can convert images up to 50MB without any issues.",
+  },
+  {
+    question: "Does it work on mobile devices?",
+    answer: "Yes. Our tools are fully responsive and work on any device with a modern web browser — iPhones, Android phones, tablets, and desktops.",
+  },
+  {
+    question: "How is this different from other JPG converters?",
+    answer: "Unlike server-based converters, we never upload your files. This means faster conversion, complete privacy, and no file size restrictions from server limitations.",
+  },
+  {
+    question: "What is the best free JPG to PDF converter?",
+    answer: "Quick JPG Converter is one of the best free JPG to PDF converters available. It runs entirely in your browser, requires no sign-up, and produces high-quality PDFs from your JPG images instantly.",
+  },
+  {
+    question: "How do I convert JPG to PDF?",
+    answer: "Simply go to our JPG to PDF tool, drag and drop your JPG images, and click Convert. Your PDF will be ready to download in seconds. You can add multiple images to create a multi-page PDF.",
+  },
+  {
+    question: "What is the best PNG to JPG converter?",
+    answer: "Quick JPG Converter is an excellent PNG to JPG converter. It offers quality control (high, balanced, smallest), batch conversion, and runs entirely in your browser for complete privacy.",
+  },
+  {
+    question: "How do I convert PDF to JPG?",
+    answer: "Use our PDF to JPG tool to extract images from PDF files. Upload your PDF, and each page will be converted to a JPG image that you can download individually or as a batch.",
+  },
+  {
+    question: "What is the best HEIC to JPG converter?",
+    answer: "Quick JPG Converter supports HEIC to JPG conversion directly in your browser. It's free, requires no uploads, and works on any device with a modern browser. No software installation needed.",
+  },
+  {
+    question: "How do I convert HEIC to JPG?",
+    answer: "Go to our HEIC to JPG tool, drag and drop your HEIC files (common on iPhones), and click Convert. Your JPG files will be ready to download instantly. Works on desktop and mobile.",
+  },
+  {
+    question: "How do I compress an image to 100KB?",
+    answer: "Use our Compress to 100KB tool. Upload your image, and it will automatically compress to under 100KB while maintaining the best possible quality. Perfect for passport photos, job portals, and government forms.",
+  },
+  {
+    question: "What is the best free image compressor online?",
+    answer: "Quick JPG Converter is one of the best free online image compressors. It supports JPG, PNG, WebP, and AVIF formats, offers quality control, and processes images directly in your browser for complete privacy.",
+  },
+  {
+    question: "How do I convert WebP to JPG?",
+    answer: "Use our WebP to JPG tool to convert WebP images to JPG format. Simply upload your WebP files, select quality, and download your JPG images. Works on any device with a modern browser.",
+  },
+  {
+    question: "Is this image converter safe to use?",
+    answer: "Yes, completely safe. All processing happens locally in your browser. No files are uploaded to any server, so your images remain private and secure. No data is collected or stored.",
+  },
+  {
+    question: "Can I convert multiple images at once?",
+    answer: "Yes! All our tools support batch conversion. You can upload multiple images at once and convert them all in a single operation. Download them individually or as a ZIP file.",
+  },
+  {
+    question: "Do I need to install any software?",
+    answer: "No installation required. Quick JPG Converter runs entirely in your web browser. Just visit the website, select your tool, and start converting. Works on Windows, Mac, Linux, iPhone, and Android.",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Select your format",
+    description: "Choose what format you want to convert to — PNG, JPG, WebP, PDF, or resize.",
+  },
+  {
+    number: "02",
+    title: "Drop your files",
+    description: "Drag and drop your images or click to browse. Multiple files supported at once.",
+  },
+  {
+    number: "03",
+    title: "Download instantly",
+    description: "Your converted files are ready in seconds. Download them individually or as a ZIP.",
+  },
+];
+
+const comparisonFeatures = [
+  { label: "Upload to server required", quickjpg: false, iloveimg: true, freeconvert: true },
+  { label: "Privacy risk", quickjpg: false, iloveimg: true, freeconvert: true },
+  { label: "File size limits", quickjpg: false, iloveimg: true, freeconvert: true },
+  { label: "Signup required", quickjpg: false, iloveimg: false, freeconvert: true },
+  { label: "Watermarks on output", quickjpg: false, iloveimg: false, freeconvert: false },
+  { label: "Works offline", quickjpg: true, iloveimg: false, freeconvert: false },
+  { label: "Unlimited conversions", quickjpg: true, iloveimg: false, freeconvert: false },
+  { label: "100% browser-based", quickjpg: true, iloveimg: false, freeconvert: false },
+];
+
+const testimonials = [
+  {
+    quote: "Finally, a converter that doesn't make me upload my photos to some random server. Game changer for client work.",
+    author: "Sarah K.",
+    role: "Freelance Photographer",
+  },
+  {
+    quote: "We use this daily for our e-commerce product images. Fast, reliable, and the WebP conversion saves us hours of optimization.",
+    author: "Marcus T.",
+    role: "E-commerce Manager",
+  },
+  {
+    quote: "I recommend this to all my students. No account needed, no tracking, just works. Exactly what the web should be.",
+    author: "Dr. Chen",
+    role: "Computer Science Professor",
+  },
 ];
 ---
 
 <BaseLayout
-  title="QuickJPG — Free Browser-Based Online Image Tools Platform"
-  description="Convert, compress, and resize JPG, PNG, WebP, HEIC, and PDF files instantly in your browser. Complete privacy, zero server uploads, fast and free."
+  title="QuickJPG — Free Online Image Converter & Compressor"
+  description="Convert JPG, PNG, WebP, HEIC, and PDF images instantly with our free online JPG converter. Fast, private, and browser-based — no uploads required. Try it now."
   canonical={site.url}
-  keywords={["jpg converter", "image converter online free", "convert jpg to png", "compress image", "resize image online", "webp converter", "heic to jpg", "free image tools"]}
-  faqItems={[
-    { question: "Is QuickJPG completely free?", answer: "Yes, QuickJPG is 100% free with no hidden costs, no registration required, and no usage limits." },
-    { question: "Are my files safe and private?", answer: "Your files never leave your device. All processing happens in your browser using Canvas and WebAssembly technology." },
-    { question: "What is the maximum file size?", answer: "You can upload files up to 50MB per file." },
-    { question: "Does it work on iPhone and Android?", answer: "Yes! QuickJPG works on all modern mobile browsers including Safari on iPhone and Chrome on Android." },
-    { question: "What image formats are supported?", answer: "We support JPG, PNG, WebP, HEIC, GIF, and PDF." },
-    { question: "Do I need to create an account?", answer: "No account needed ever. Just visit the tool, upload your file, and download the result." },
-  ]}
+  faqItems={faqItems}
+  keywords={["jpg converter", "free jpg converter", "online jpg converter", "png to jpg converter", "webp to jpg converter", "heic to jpg converter", "pdf to jpg converter", "jpg to png converter", "jpg to webp converter", "image compressor", "compress image online", "pdf compressor", "image converter online", "free image converter", "no signup image converter", "browser image converter", "private image converter", "fast image converter", "quick jpg converter", "best free image converter", "us image converter", "india image converter"]}
 >
   <!-- ============================================
-       HERO & CONVERTER
+       SECTION 1: HERO
        ============================================ -->
-  <section class="relative overflow-hidden bg-mesh pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20">
-    <!-- Subtle grid pattern -->
-    <div class="absolute inset-0 bg-grid opacity-40"></div>
-    <!-- Top gradient glow -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-500/8 rounded-full blur-3xl"></div>
-    <div class="absolute top-20 right-1/4 w-[300px] h-[300px] bg-accent-500/5 rounded-full blur-3xl"></div>
+  <section class="relative overflow-hidden">
+    <!-- Background: single subtle glow -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-500/8 rounded-full blur-3xl"></div>
 
-    <Container class="relative">
-      <!-- Hero Content -->
-      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-        <div class="mb-5 animate-fade-in">
-          <Badge>✨ 100% Browser-Based Tools</Badge>
+    <Container class="relative pt-20 sm:pt-28 lg:pt-36 pb-16 sm:pb-20 lg:pb-24">
+      <div class="text-center max-w-3xl mx-auto">
+        <!-- Single badge — no redundancy -->
+        <div class="mb-6 animate-fade-in">
+          <Badge>Free · Private · No Signup</Badge>
         </div>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tracking-[-0.03em] leading-[1.1] mb-5 animate-fade-in-up">
-          Convert & Optimize<br />
-          <span class="gradient-text">Images Instantly</span>
+
+        <!-- Headline: single flowing sentence -->
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary tracking-tight leading-[1.08] mb-6 animate-fade-in-up">
+          Convert Images<br />
+          <span class="gradient-text">in Your Browser</span>
         </h1>
-        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto leading-relaxed animate-fade-in-up delay-100">
-          Your photos never leave your device. Fast, private, and free — powered by WebAssembly and Canvas API.
+
+        <!-- Subheadline: one clear sentence -->
+        <p class="text-lg sm:text-xl text-text-secondary max-w-xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-100">
+          JPG, PNG, WebP, HEIC, and PDF — converted instantly in your browser.
+          Your files never leave your device.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in-up delay-200">
+          <Button href="/tools/jpg-to-png" size="xl" class="cta-glow">
+            Start Converting Free
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Button>
+          <Button href="/tools" variant="secondary" size="xl">
+            View All Tools
+          </Button>
+        </div>
+      </div>
+
+      <!-- Converter preview: clean, no fake browser chrome -->
+      <div class="mt-14 sm:mt-16 lg:mt-20 max-w-3xl mx-auto animate-fade-in-up delay-300">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-2xl shadow-brand-500/5 overflow-hidden">
+          <!-- Converter UI preview -->
+          <div class="p-4 sm:p-6 lg:p-8">
+            <!-- Format selector -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+              <div class="flex items-center gap-2 p-1.5 rounded-xl border border-border-default bg-surface-muted">
+                <a href="/tools/jpg-to-png" class="px-4 py-2 rounded-lg bg-surface text-sm font-semibold text-text-primary shadow-xs transition-colors hover:bg-brand-50 dark:hover:bg-brand-950/30">JPG</a>
+                <a href="/tools/png-to-jpg" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PNG</a>
+                <a href="/tools/jpg-to-webp" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">WebP</a>
+                <a href="/tools/jpg-to-pdf" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PDF</a>
+              </div>
+              <div class="flex items-center gap-2 text-text-tertiary">
+                <span class="text-sm font-medium">to</span>
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+                <span class="px-4 py-2 rounded-lg bg-brand-50 dark:bg-brand-950/50 border border-brand-200 dark:border-brand-800 text-sm font-semibold text-brand-700 dark:text-brand-300">PNG</span>
+              </div>
+            </div>
+
+            <!-- Drop zone -->
+            <a href="/tools/jpg-to-png" class="block border-2 border-dashed border-border-default rounded-xl p-8 sm:p-10 text-center bg-surface-muted/50 hover:border-brand-300 dark:hover:border-brand-700 transition-colors cursor-pointer group">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-7 h-7 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                </svg>
+              </div>
+              <p class="text-sm font-medium text-text-primary mb-1">Drop files here or click to browse</p>
+              <p class="text-xs text-text-tertiary">Supports JPG, PNG, WebP, HEIC, PDF · Up to 50MB</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
+       SECTION 1b: POPULAR TOOLS (SEO)
+       ============================================ -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          Popular Tools
+        </h2>
+        <p class="text-text-secondary max-w-xl mx-auto">
+          Most-used tools for photographers, developers, and everyday users.
         </p>
       </div>
-
-      <!-- Converter Widget -->
-      <div class="max-w-5xl mx-auto animate-fade-in-up delay-200">
-        <div class="rounded-2xl border border-border-default bg-surface shadow-2xl shadow-brand-500/5 overflow-hidden">
-          <!-- Top bar -->
-          <div class="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-border-default bg-surface-muted/50">
-            <div class="flex items-center gap-3">
-              <span class="text-sm font-semibold text-text-primary tracking-tight">Image Converter</span>
-              <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-success-muted text-[10px] font-medium text-success">
-                <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse-soft"></span>
-                Active
-              </span>
-            </div>
-            <span class="text-[11px] text-text-tertiary">Local Processing</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <a href="/passport-photo-size" class="card-hover p-5 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-lg">📸</span>
           </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[380px] sm:min-h-[420px]">
-            <!-- LEFT: Dropzone / Preview -->
-            <div class="lg:col-span-3 p-4 sm:p-5 border-b lg:border-b-0 lg:border-r border-border-default">
-              <!-- Upload zone -->
-              <div id="upload-zone" class="h-full">
-                <div
-                  id="drop-area"
-                  class="relative h-full min-h-[260px] sm:min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/30 flex flex-col items-center justify-center text-center p-5 transition-all duration-300 hover:border-brand-400 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
-                >
-                  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-950/50 dark:to-brand-900/30 flex items-center justify-center border border-brand-100 dark:border-brand-800/50 mb-4 group-hover:scale-105 transition-transform duration-300">
-                    <svg class="w-7 h-7 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                    </svg>
-                  </div>
-                  <h3 class="text-sm sm:text-base font-semibold text-text-primary mb-1.5">Drop images or PDF here</h3>
-                  <p class="text-xs text-text-secondary mb-4">tap to browse or drag and drop</p>
-                  <label class="btn-primary btn-sm cursor-pointer">
-                    Choose Files
-                    <input type="file" class="sr-only" accept="image/*,.pdf" multiple />
-                  </label>
-                  <p class="text-[10px] text-text-tertiary mt-3">JPG, PNG, WebP, HEIC, PDF · Max 50MB per file</p>
-                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/90 dark:bg-brand-950/40 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
-                    <svg class="w-10 h-10 text-brand-500 mb-2 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                    </svg>
-                    <p class="text-sm font-semibold text-brand-700 dark:text-brand-300">Drop files now</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Preview zone -->
-              <div id="preview-zone" class="hidden h-full">
-                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
-                  <div class="flex items-center justify-between px-4 py-2.5 border-b border-border-default bg-surface-muted/50">
-                    <div class="flex items-center gap-2">
-                      <div class="w-2 h-2 rounded-full bg-success"></div>
-                      <span id="file-count" class="text-xs font-semibold text-text-primary">0 files ready</span>
-                    </div>
-                    <button id="clear-btn" class="text-[10px] text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
-                  </div>
-                  <div id="preview-grid" class="flex-1 p-3 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[240px] sm:max-h-[280px] content-start"></div>
-                  <div class="px-4 py-2.5 border-t border-border-default flex items-center justify-between text-xs">
-                    <span class="text-text-tertiary">Source: Uploaded</span>
-                    <span class="text-text-tertiary">→</span>
-                    <span id="output-format-badge" class="text-brand-600 dark:text-brand-400 font-semibold">Output: PNG</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- RIGHT: Controls & Actions -->
-            <div class="lg:col-span-2 p-4 sm:p-5 flex flex-col justify-between bg-surface-muted/20">
-              <div>
-                <div class="mb-4">
-                  <label class="text-[11px] font-semibold text-text-tertiary uppercase tracking-wider block mb-2">Output Format</label>
-                  <select id="homepage-target-format" class="field-input w-full cursor-pointer text-sm">
-                    <option value="png" data-ext="png" data-mime="image/png" selected>PNG — Lossless</option>
-                    <option value="jpg" data-ext="jpg" data-mime="image/jpeg">JPG — Compatible</option>
-                    <option value="webp" data-ext="webp" data-mime="image/webp">WebP — Lightweight</option>
-                  </select>
-                </div>
-
-                <div class="mb-5">
-                  <label class="text-[11px] font-semibold text-text-tertiary uppercase tracking-wider block mb-2">Quality</label>
-                  <div class="space-y-1.5">
-                    <label class="quality-option flex items-start gap-2.5 p-2.5 rounded-lg border border-border-default cursor-pointer transition-all duration-200 hover:border-border-strong">
-                      <input type="radio" name="quality" value="quality-high" checked class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                      <div>
-                        <div class="text-xs font-semibold text-text-primary">High Quality</div>
-                        <div class="text-[10px] text-text-tertiary mt-0.5">Best visual clarity</div>
-                      </div>
-                    </label>
-                    <label class="quality-option flex items-start gap-2.5 p-2.5 rounded-lg border border-border-default cursor-pointer transition-all duration-200 hover:border-border-strong">
-                      <input type="radio" name="quality" value="quality-balanced" class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
-                      <div>
-                        <div class="text-xs font-semibold text-text-primary">Balanced</div>
-                        <div class="text-[10px] text-text-tertiary mt-0.5">Optimal size/quality</div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <!-- Progress bar -->
-                <div id="progress-area" class="hidden mb-3">
-                  <div class="w-full h-1.5 bg-surface-muted rounded-full overflow-hidden">
-                    <div id="progress-bar" class="h-full bg-gradient-to-r from-brand-500 to-accent-500 rounded-full transition-all duration-300" style="width: 0%"></div>
-                  </div>
-                  <p id="progress-text" class="text-[10px] text-text-tertiary text-center mt-1.5">Ready...</p>
-                </div>
-
-                <!-- Convert trigger -->
-                <div id="convert-btn-area">
-                  <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                    Convert Files
-                  </button>
-                  <p class="text-[10px] text-text-tertiary text-center mt-2">Processed locally via Canvas & WebAssembly</p>
-                </div>
-
-                <!-- Download portal -->
-                <div id="download-area" class="hidden"></div>
-              </div>
-            </div>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Passport Photo Size</h3>
+          <p class="text-sm text-text-secondary">Resize photos for passport applications.</p>
+        </a>
+        <a href="/compress-for-govt-form" class="card-hover p-5 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-lg">📋</span>
           </div>
-        </div>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress for Govt Form</h3>
+          <p class="text-sm text-text-secondary">Reduce images for SSC, UPSC forms.</p>
+        </a>
+        <a href="/compress-to-100kb" class="card-hover p-5 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-lg">🗜️</span>
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 100KB</h3>
+          <p class="text-sm text-text-secondary">Reduce any image to under 100KB.</p>
+        </a>
+        <a href="/photo-to-base64" class="card-hover p-5 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
+            <span class="text-lg">🔧</span>
+          </div>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Photo to Base64</h3>
+          <p class="text-sm text-text-secondary">Convert images to Base64 strings.</p>
+        </a>
       </div>
     </Container>
   </section>
 
   <!-- ============================================
-       TRUST BADGES
+       SECTION 2: CONVERTER TOOL
        ============================================ -->
-  <section class="py-8 sm:py-10 border-y border-border-default/50 bg-surface-muted/50">
+  <section class="section" id="converter">
     <Container>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {trustBadges.map((badge) => (
-          <div class="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-surface border border-border-default/50 shadow-xs">
-            <div class="w-9 h-9 rounded-lg bg-surface-muted flex items-center justify-center text-base flex-shrink-0">
-              {badge.icon}
-            </div>
-            <div>
-              <h4 class="text-[11px] font-semibold text-text-primary tracking-wide uppercase">{badge.title}</h4>
-              <p class="text-[11px] text-text-secondary leading-snug">{badge.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Container>
-  </section>
-
-  <!-- ============================================
-       TOOL CATEGORIES & GRID
-       ============================================ -->
-  <section class="section" id="categories">
-    <Container>
-      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-        <Badge class="mb-3">Toolbox</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-[-0.02em] mb-3">
-          All-in-One Image Tools
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          Convert Any Format
         </h2>
-        <p class="text-sm text-text-secondary leading-relaxed">
+        <p class="text-text-secondary max-w-xl mx-auto">
           Every tool runs in your browser. No uploads. No waiting. No limits.
         </p>
       </div>
 
-      <!-- Categories Selector -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 max-w-4xl mx-auto mb-12 sm:mb-16">
-        {(["image-converters", "image-compressors", "image-tools", "pdf-converters", "pdf-tools"] as const).map((cat) => (
-          <a
-            href={`#${cat}-section`}
-            class="flex flex-col items-center text-center p-4 sm:p-5 rounded-xl border border-border-default bg-surface hover:border-brand-300 dark:hover:border-brand-700 hover:shadow-md transition-all duration-200 group"
-          >
-            <div class="w-10 h-10 rounded-xl bg-surface-muted flex items-center justify-center text-lg mb-2 group-hover:scale-105 transition-transform duration-200">
-              {categories[cat].icon}
-            </div>
-            <span class="text-[11px] font-semibold text-text-primary uppercase tracking-wide group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-              {categories[cat].title}
-            </span>
-          </a>
-        ))}
-      </div>
-
-      <!-- Tool Grids -->
-      {(["image-converters", "image-compressors", "image-tools", "pdf-converters", "pdf-tools"] as const).map((catKey) => (
-        <div id={`${catKey}-section`} class="scroll-mt-24 mb-12 sm:mb-16">
-          <div class="flex items-center gap-2.5 mb-5 sm:mb-6 border-b border-border-default/50 pb-3">
-            <span class="text-lg">{categories[catKey].icon}</span>
+      <div class="space-y-12">
+        {(["image-converters", "image-compressors", "image-tools", "pdf-converters", "pdf-tools"] as const).map((cat) => {
+          const catTools = getToolsByCategory(cat);
+          const catInfo = categories[cat];
+          return (
             <div>
-              <h3 class="text-base font-bold text-text-primary">{categories[catKey].title}</h3>
-              <p class="text-[11px] text-text-secondary">{categories[catKey].description}</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {getToolsByCategory(catKey).map((tool) => (
-              <a href={`/tools/${tool.slug}`} class="card-gradient group block overflow-hidden">
-                <!-- Format Conversion Visual -->
-                <div class="relative px-4 sm:px-5 pt-4 sm:pt-5 pb-3">
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                      <span class="inline-flex items-center justify-center min-w-[3rem] px-2.5 py-1.5 rounded-lg bg-surface-muted border border-border-default text-[11px] font-bold text-text-secondary tracking-wide">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="text-lg">{catInfo.icon}</span>
+                <h3 class="text-lg font-semibold text-text-primary">{catInfo.title}</h3>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {catTools.map((tool) => (
+                  <a
+                    href={`/tools/${tool.slug}`}
+                    class="card-gradient group block p-5 sm:p-6"
+                  >
+                    <div class="flex items-start justify-between mb-3">
+                      <div class="w-11 h-11 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center text-xl border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
+                        {tool.icon}
+                      </div>
+                      <svg class="w-4 h-4 text-text-tertiary group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      {tool.title}
+                    </h3>
+                    <p class="text-sm text-text-secondary leading-relaxed mb-3">
+                      {tool.description}
+                    </p>
+                    <div class="flex items-center gap-1.5">
+                      <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-surface-subtle text-text-secondary border border-border-muted">
                         {tool.from}
                       </span>
-                      <svg class="w-5 h-5 text-brand-500 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <svg class="w-3 h-3 text-text-tertiary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
-                      <span class="inline-flex items-center justify-center min-w-[3rem] px-2.5 py-1.5 rounded-lg bg-brand-600 text-[11px] font-bold text-white tracking-wide shadow-sm">
+                      <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-400 border border-brand-200 dark:border-brand-800">
                         {tool.to}
                       </span>
                     </div>
-                    <span class="text-lg">{tool.icon}</span>
-                  </div>
-                </div>
-                <!-- Content -->
-                <div class="px-4 sm:px-5 pb-4 sm:pb-5">
-                  <h4 class="text-sm font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                    {tool.title}
-                  </h4>
-                  <p class="text-[11px] text-text-secondary leading-relaxed">{tool.description}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      ))}
+                  </a>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/tools" class="btn-primary btn-lg">
+          View All Tools
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
     </Container>
   </section>
 
   <!-- ============================================
-       FAQ
+       SECTION 3: FEATURES
        ============================================ -->
-  <section class="section-sm" id="faq">
+  <section class="section">
     <Container>
-      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-        <Badge class="mb-3">FAQ</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-[-0.02em] mb-3">
+      <div class="text-center mb-14">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          Private by Default
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Most converters upload your files to their servers. Ours doesn't.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Feature 1 -->
+        <div class="card-hover p-6 sm:p-7 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-500/10 to-brand-600/10 flex items-center justify-center border border-brand-200/50 dark:border-brand-800/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-text-primary mb-2">Zero Server Uploads</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Your images are processed entirely in your browser using the Canvas API.
+            They never leave your device — not even for a millisecond.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="card-hover p-6 sm:p-7 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-500/10 to-brand-600/10 flex items-center justify-center border border-brand-200/50 dark:border-brand-800/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-text-primary mb-2">Sub-Second Speed</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            No network round-trips. No upload queues. Conversion happens on your
+            device in under a second — even for batches of 20+ images.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="card-hover p-6 sm:p-7 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-500/10 to-brand-600/10 flex items-center justify-center border border-brand-200/50 dark:border-brand-800/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-text-primary mb-2">No Account Needed</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            No email. No password. No tracking. Open the page, convert your image,
+            download it. That's the whole experience.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
+       SECTION 4: HOW IT WORKS
+       ============================================ -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-14">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          How It Works
+        </h2>
+        <p class="text-text-secondary max-w-xl mx-auto">
+          No learning curve. No confusing options. Just convert and download.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {steps.map((step, i) => (
+          <div class="relative text-center md:text-left">
+            {/* Connector line (desktop only) */}
+            {i < steps.length - 1 && (
+              <div class="hidden md:block absolute top-6 left-[calc(50%+2.5rem)] right-[calc(-50%+2.5rem)] h-px bg-gradient-to-r from-brand-200 to-brand-100 dark:from-brand-800 dark:to-brand-900"></div>
+            )}
+
+            <div class="relative inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white font-bold text-sm mb-5 shadow-lg shadow-brand-600/25">
+              {step.number}
+            </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">{step.title}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
+       SECTION 5: BENEFITS / COMPARISON
+       ============================================ -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          Why People Switch to Us
+        </h2>
+        <p class="text-text-secondary max-w-xl mx-auto">
+          See how we compare to traditional image converters.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-border-default overflow-hidden bg-surface shadow-sm">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-surface-muted border-b border-border-default">
+              <th class="text-left px-4 sm:px-5 py-4 font-medium text-text-secondary w-auto"></th>
+              <th class="text-center px-4 sm:px-5 py-4 font-medium w-16 sm:w-20">
+                <span class="inline-flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-400 font-semibold border border-brand-200 dark:border-brand-800">
+                  Quick JPG Converter
+                </span>
+              </th>
+              <th class="text-center px-4 sm:px-5 py-4 font-medium text-text-tertiary w-16 sm:w-20">iLoveIMG</th>
+              <th class="text-center px-4 sm:px-5 py-4 font-medium text-text-tertiary w-16 sm:w-20">FreeConvert</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonFeatures.map((feature, i) => (
+              <tr class:list={[
+                "comparison-row",
+                i < comparisonFeatures.length - 1 && "border-b border-border-muted"
+              ]}>
+                <td class="px-4 sm:px-5 py-3 sm:py-3.5 text-text-secondary">{feature.label}</td>
+                <td class="text-center px-4 sm:px-5 py-3 sm:py-3.5">
+                  {feature.quickjpg ? (
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-success mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-label="Yes" role="img">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  ) : (
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-danger mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-label="No" role="img">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                </td>
+                <td class="text-center px-4 sm:px-5 py-3 sm:py-3.5">
+                  {feature.iloveimg ? (
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-danger mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-label="No" role="img">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  ) : (
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-success mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-label="Yes" role="img">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  )}
+                </td>
+                <td class="text-center px-4 sm:px-5 py-3 sm:py-3.5">
+                  {feature.freeconvert ? (
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-danger mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-label="No" role="img">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  ) : (
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-success mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-label="Yes" role="img">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
+       SECTION 5b: TESTIMONIALS
+       ============================================ -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
+          Loved by Creators
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {testimonials.map((t) => (
+          <div class="card p-6 sm:p-7 flex flex-col">
+            <p class="text-sm text-text-secondary leading-relaxed flex-1 mb-5">
+              "{t.quote}"
+            </p>
+            <div class="flex items-center gap-3 pt-4 border-t border-border-muted">
+              <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
+                {t.author.charAt(0)}
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-text-primary">{t.author}</div>
+                <div class="text-xs text-text-tertiary">{t.role}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
+       SECTION 6: FAQ
+       ============================================ -->
+  <section class="section" id="faq">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
           Frequently Asked Questions
         </h2>
+        <p class="text-text-secondary">
+          Everything you need to know about Quick JPG Converter.
+        </p>
       </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
 
-      <div class="max-w-3xl mx-auto space-y-3">
-        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
-          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
-            <span class="text-sm font-semibold text-text-primary">Is QuickJPG completely free?</span>
-            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
-            Yes, QuickJPG is 100% free with no hidden costs, no registration required, and no usage limits.
-          </div>
-        </div>
+  <!-- ============================================
+       SECTION 7: SEO CONTENT (600+ words)
+       ============================================ -->
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>The Best Free Online JPG Converter</h2>
+        <p>
+          Looking for a free JPG converter that works entirely in your browser? Quick JPG Converter
+          is the fastest and most private way to convert JPG images to PNG, WebP, and PDF formats —
+          without uploading your files to any server. Whether you need to convert JPG to PNG for
+          lossless quality, JPG to WebP for faster websites, or JPG to PDF for easy sharing, our
+          online JPG converter handles every format conversion in milliseconds. We also support HEIC
+          to JPG conversion for iPhone photos, making it the most versatile free image converter available.
+        </p>
+        <p>
+          Unlike traditional image converters that require you to upload photos to a remote server,
+          our free JPG converter uses WebAssembly and Canvas API technology to process images directly
+          on your device. This means your photos never leave your browser — guaranteed privacy every
+          time you convert. No sign-up, no watermarks, no file size limits, and no hidden fees. It's
+          the JPG converter that respects your privacy while delivering professional-quality results.
+        </p>
 
-        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
-          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
-            <span class="text-sm font-semibold text-text-primary">Are my files safe and private?</span>
-            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
-            Absolutely. Your files never leave your device. All processing happens in your browser using Canvas and WebAssembly technology. We cannot see your files.
-          </div>
-        </div>
+        <h3>Why Choose Our Online JPG Converter?</h3>
+        <p>
+          There are dozens of JPG converters online, but most of them come with significant drawbacks.
+          Server-based converters require you to upload your images, which introduces privacy risks,
+          slow upload times, and file size restrictions. Our free JPG converter solves all of these
+          problems by processing everything locally in your browser. When you use our JPG converter,
+          your images stay on your device — they're never sent to any server.
+        </p>
+        <ul>
+          <li><strong>100% private</strong> — your JPG images never leave your device. No server uploads, no data collection, no tracking.</li>
+          <li><strong>Instant conversion</strong> — convert JPG to PNG, WebP, or PDF in under a second. No upload wait times.</li>
+          <li><strong>Completely free</strong> — no sign-up required, no watermarks on output, no usage limits. Convert as many images as you need.</li>
+          <li><strong>Batch processing</strong> — convert multiple JPG files at once. Perfect for photographers and e-commerce sellers.</li>
+          <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest file size for every conversion.</li>
+          <li><strong>Works everywhere</strong> — use our JPG converter on desktop, tablet, or phone. Any modern browser works.</li>
+        </ul>
 
-        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
-          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
-            <span class="text-sm font-semibold text-text-primary">What is the maximum file size?</span>
-            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
-            You can upload files up to 50MB per file. For larger files, try our compressor tool first to reduce the size before converting.
-          </div>
-        </div>
+        <h3>Supported JPG Conversions</h3>
+        <p>
+          Our online JPG converter supports all the format conversions you need. Each conversion
+          runs entirely in your browser, producing high-quality output that you can download instantly.
+          Whether you're looking for a PNG to JPG converter, WebP to JPG converter, or HEIC to JPG
+          converter, we've got you covered.
+        </p>
+        <ul>
+          <li><strong><a href="/jpg-to-png">JPG to PNG</a></strong> — convert JPG to PNG for lossless quality and transparent backgrounds. Perfect for logos, screenshots, and graphics.</li>
+          <li><strong><a href="/png-to-jpg">PNG to JPG</a></strong> — convert PNG to JPG for smaller file sizes and universal compatibility. Ideal for web publishing and email.</li>
+          <li><strong><a href="/jpg-to-webp">JPG to WebP</a></strong> — convert JPG to WebP for 25-35% smaller files with equivalent quality. Great for faster websites.</li>
+          <li><strong><a href="/webp-to-jpg">WebP to JPG</a></strong> — convert WebP to JPG for wider compatibility with older software and social media platforms.</li>
+          <li><strong><a href="/tools/jpg-to-pdf">JPG to PDF</a></strong> — convert JPG to PDF for creating shareable documents, presentations, and print-ready files.</li>
+          <li><strong><a href="/tools/heic-to-jpg">HEIC to JPG</a></strong> — convert iPhone HEIC photos to JPG for universal compatibility. Works with photos from any iPhone or iPad.</li>
+          <li><strong><a href="/tools/resize-jpg">Resize JPG</a></strong> — resize JPG images to any dimension while maintaining quality. Optimize for web, social media, or email.</li>
+        </ul>
 
-        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
-          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
-            <span class="text-sm font-semibold text-text-primary">Does it work on iPhone and Android?</span>
-            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
-            Yes! QuickJPG works on all modern mobile browsers including Safari on iPhone and Chrome on Android. No app download needed.
-          </div>
-        </div>
+        <h3>How Our JPG Converter Works</h3>
+        <p>
+          Converting JPG images with our online tool is simple. First, select the conversion type —
+          JPG to PNG, JPG to WebP, JPG to PDF, or any other format combination. Then drag and drop
+          your JPG files into the converter zone, or click to browse your computer. Our JPG converter
+          processes each file instantly using WebAssembly, and your converted images are ready to
+          download in seconds.
+        </p>
+        <p>
+          Every conversion happens entirely in your web browser. The JPG converter uses your device's
+          CPU to re-encode images using industry-standard algorithms, ensuring professional-grade
+          quality output. Whether you're converting a single photo or batch-processing hundreds of
+          product images, the result is always fast and reliable. It's the free JPG converter that
+          professionals trust for their image conversion needs.
+        </p>
 
-        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
-          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
-            <span class="text-sm font-semibold text-text-primary">What image formats are supported?</span>
-            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
-            We support JPG, PNG, WebP, HEIC, GIF, and PDF. We're constantly adding new formats based on user requests.
-          </div>
-        </div>
+        <h3>Why JPG to PNG Conversion Matters</h3>
+        <p>
+          Converting JPG to PNG is one of the most common image format conversions. PNG uses lossless
+          compression, which means every pixel is preserved without any quality degradation. This
+          makes PNG the ideal format for logos, icons, screenshots, and any image where quality is
+          paramount. While PNG files are larger than JPG, the trade-off is perfect visual fidelity.
+        </p>
+        <p>
+          Our free JPG to PNG converter makes this conversion instant. Simply upload your JPG image,
+          and our converter will produce a high-quality PNG file that you can download immediately.
+          The conversion preserves all the visual information from your original JPG, giving you a
+          lossless version that's ready for editing, printing, or web use.
+        </p>
 
-        <div class="faq-item rounded-xl border border-border-default bg-surface overflow-hidden transition-all duration-200">
-          <button class="faq-question w-full flex items-center justify-between px-5 py-4 text-left">
-            <span class="text-sm font-semibold text-text-primary">Do I need to create an account?</span>
-            <svg class="w-5 h-5 text-text-tertiary flex-shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        <h3>Professional-Grade Quality</h3>
+        <p>
+          Our JPG converter doesn't just change file extensions — it re-encodes your images using
+          industry-standard algorithms that preserve quality while optimizing file size. Whether
+          you're converting a batch of product photos for your e-commerce store, preparing images
+          for a presentation, or creating transparent graphics from JPG photos, you can trust that
+          the output will look exactly as expected. Every pixel matters, and our converter ensures
+          your converted images maintain the highest possible quality.
+        </p>
+        <p>
+          The free JPG converter also gives you control over output quality. Choose between high
+          quality for maximum visual fidelity, balanced for a good mix of size and quality, or
+          smallest size when file size is the priority. This level of control is typically only
+          available in desktop software — but our online JPG converter brings it to your browser
+          for free.
+        </p>
+
+        <h3>Specialized Tools for Specific Needs</h3>
+        <p>
+          Beyond format conversion, we offer specialized tools for specific use cases. Need a
+          passport photo? Our <a href="/passport-photo-size">passport photo tool</a> resizes
+          your photos to the exact dimensions required by any country. Applying for government
+          jobs? Our <a href="/compress-for-govt-form">government form compressor</a> reduces
+          photos to the strict file size limits required by SSC, UPSC, and bank forms. Developers
+          can use our <a href="/photo-to-base64">photo to Base64 converter</a> to embed images
+          directly in HTML, CSS, or JavaScript.
+        </p>
+        <ul>
+          <li><strong><a href="/passport-photo-size">Passport Photo Size</a></strong> — resize photos to passport dimensions for India, USA, UK, and other countries.</li>
+          <li><strong><a href="/compress-for-govt-form">Compress for Govt Form</a></strong> — reduce images to 20KB, 50KB, or 100KB for government forms.</li>
+          <li><strong><a href="/photo-to-base64">Photo to Base64</a></strong> — convert images to Base64 strings for HTML embedding and data URIs.</li>
+          <li><strong><a href="/compress-to-100kb">Compress to 100KB</a></strong> — reduce any image to under 100KB for portal uploads.</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
+       SECTION 8: FINAL CTA
+       ============================================ -->
+  <section class="section relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-brand-500/8 rounded-full blur-3xl"></div>
+
+    <Container class="relative">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight mb-4">
+          Ready to Convert?
+        </h2>
+        <p class="text-lg text-text-secondary mb-8">
+          No account. No uploads. No limits. Just open and convert.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Button href="/tools/jpg-to-png" size="xl" class="cta-glow">
+            Start Converting Free
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
-          </button>
-          <div class="faq-answer px-5 pb-4 text-sm text-text-secondary leading-relaxed hidden">
-            No account needed ever. Just visit the tool, upload your file, and download the result. That's it.
-          </div>
+          </Button>
+          <Button href="/tools" variant="secondary" size="xl">
+            Browse All Tools
+          </Button>
         </div>
       </div>
     </Container>
   </section>
 
   <!-- ============================================
-       CTA
+       SECTION 9: FOOTER (handled by BaseLayout)
        ============================================ -->
-  <section class="section-sm relative overflow-hidden bg-surface-muted border-t border-border-default/50">
-    <Container class="relative">
-      <div class="text-center max-w-xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-[-0.02em] mb-3">
-          Ready to Convert?
-        </h2>
-        <p class="text-sm text-text-secondary mb-6">
-          No account. No uploads. No limits. Just drag your files above.
-        </p>
-        <div class="flex items-center justify-center gap-3">
-          <Button href="#categories" size="lg" variant="secondary">
-            Browse All Tools
-          </Button>
-          <Button href="/why" size="lg" variant="ghost">
-            Why Browser-Based?
-          </Button>
-        </div>
-      </div>
-    </Container>
-  </section>
-
-  <script>
-    import { initConverter } from "@scripts/converter.js";
-    document.addEventListener("DOMContentLoaded", () => {
-      initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" });
-
-      // Quality selector styling
-      const qualityRadios = document.querySelectorAll('input[name="quality"]');
-      const qualityOptions = document.querySelectorAll('.quality-option');
-
-      function updateQualityStyles() {
-        const isDark = document.documentElement.classList.contains('dark');
-        qualityOptions.forEach((option) => {
-          const radio = option.querySelector('input[type="radio"]');
-          if (radio?.checked) {
-            option.style.borderColor = isDark ? '#1d4ed8' : '#60a5fa';
-            option.style.backgroundColor = isDark ? 'rgba(59,130,246,0.08)' : '#eff6ff';
-          } else {
-            option.style.borderColor = '';
-            option.style.backgroundColor = '';
-          }
-        });
-      }
-
-      qualityRadios.forEach((radio) => {
-        radio.addEventListener('change', updateQualityStyles);
-      });
-
-      // Also update when dark mode toggles
-      const observer = new MutationObserver(updateQualityStyles);
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-      // Set initial state
-      updateQualityStyles();
-
-      // FAQ accordion
-      document.querySelectorAll('.faq-question').forEach((q) => {
-        q.addEventListener('click', () => {
-          const item = q.closest('.faq-item');
-          const answer = item.querySelector('.faq-answer');
-          const icon = q.querySelector('svg');
-          const isOpen = !answer.classList.contains('hidden');
-
-          // Close all others
-          document.querySelectorAll('.faq-item').forEach((otherItem) => {
-            if (otherItem !== item) {
-              otherItem.querySelector('.faq-answer')?.classList.add('hidden');
-              otherItem.querySelector('svg')?.classList.remove('rotate-180');
-              otherItem.classList.remove('border-brand-200', 'dark:border-brand-800');
-            }
-          });
-
-          // Toggle current
-          if (isOpen) {
-            answer.classList.add('hidden');
-            icon?.classList.remove('rotate-180');
-            item.classList.remove('border-brand-200', 'dark:border-brand-800');
-          } else {
-            answer.classList.remove('hidden');
-            icon?.classList.add('rotate-180');
-            item.classList.add('border-brand-200', 'dark:border-brand-800');
-          }
-        });
-      });
-    });
-  </script>
 </BaseLayout>

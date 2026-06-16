@@ -1,6 +1,6 @@
 /**
  * Client-side image converter using Canvas API.
- * Supports: JPG→PNG, PNG→JPG, JPG→WebP, WebP→JPG
+ * Supports: JPG→PNG, PNG→JPG, JPG→WebP, WebP→JPG, AVIF→JPG/PNG, JPG/PNG→AVIF
  *
  * Usage: initConverter({ targetFormat: 'png', targetExt: 'png', targetMime: 'image/png' })
  */
@@ -11,7 +11,12 @@ const QUALITY_MAP = {
   "quality-small": 0.60,
 };
 
-import JSZip from "jszip";
+const FORMAT_INFO = {
+  png: { label: "PNG", desc: "Lossless · Transparency · ~3-5× larger" },
+  jpg: { label: "JPG", desc: "Lossy · Universal · Smaller files" },
+  webp: { label: "WebP", desc: "Modern · 25-35% smaller · Fast" },
+  avif: { label: "AVIF", desc: "Next-gen · 50% smaller · Best compression" },
+};
 
 function formatBytes(bytes) {
   if (bytes === 0) return "0 B";
@@ -25,7 +30,7 @@ function getExtension(filename) {
   return filename.split(".").pop().toLowerCase();
 }
 
-const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "heic", "heif"];
+const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "heic", "heif", "avif"];
 
 function isImageFile(f) {
   if (f.type.startsWith("image/")) return true;
@@ -93,38 +98,6 @@ export function initConverter(config) {
 
   if (!dropArea || !uploadZone) return;
 
-  function getActiveTarget() {
-    const select = document.getElementById("homepage-target-format");
-    if (select) {
-      const val = select.value;
-      let mimeType = "image/png";
-      let ext = "png";
-      if (val === "jpg" || val === "jpeg") {
-        mimeType = "image/jpeg";
-        ext = "jpg";
-      } else if (val === "webp") {
-        mimeType = "image/webp";
-        ext = "webp";
-      } else if (val === "pdf") {
-        mimeType = "application/pdf";
-        ext = "pdf";
-      }
-      return { format: val, ext, mime: mimeType };
-    }
-    return { format: targetFormat, ext: targetExt, mime: targetMime };
-  }
-
-  // Bind change listener on format selector
-  const formatSelector = document.getElementById("homepage-target-format");
-  formatSelector?.addEventListener("change", () => {
-    renderPreviewGrid();
-    const active = getActiveTarget();
-    const badge = document.getElementById("output-format-badge");
-    if (badge) {
-      badge.textContent = `Output: ${active.format.toUpperCase()}`;
-    }
-  });
-
   // --- Keyboard accessibility for drop zone ---
   dropArea.setAttribute("tabindex", "0");
   dropArea.setAttribute("role", "button");
@@ -182,9 +155,9 @@ export function initConverter(config) {
     convertAll();
   });
 
-  // --- Download ZIP ---
+  // --- Download all ---
   downloadAllBtn?.addEventListener("click", () => {
-    downloadAsZip();
+    downloadAll();
   });
 
   function addFiles(newFiles) {
@@ -238,8 +211,6 @@ export function initConverter(config) {
     if (!previewGrid) return;
     previewGrid.innerHTML = "";
 
-    const active = getActiveTarget();
-
     files.forEach((file, i) => {
       const card = document.createElement("div");
       card.className = "relative rounded-lg border border-border-default bg-surface overflow-hidden";
@@ -263,7 +234,7 @@ export function initConverter(config) {
           <span class="text-xs text-text-tertiary">${formatBytes(file.size)}</span>
         </div>
         <div class="flex items-center justify-between mt-1">
-          <span class="text-xs text-text-tertiary">→ ${active.format.toUpperCase()}</span>
+          <span class="text-xs text-text-tertiary">→ ${targetFormat.toUpperCase()}</span>
           <button data-remove="${i}" class="text-xs text-danger hover:text-danger/80 font-medium transition-colors">Remove</button>
         </div>
       `;
@@ -301,8 +272,6 @@ export function initConverter(config) {
     downloadArea?.classList.add("hidden");
     convertedBlobs = [];
 
-    const active = getActiveTarget();
-
     const quality = QUALITY_MAP[
       document.querySelector('input[name="quality"]:checked')?.value || "quality-high"
     ];
@@ -314,10 +283,10 @@ export function initConverter(config) {
 
       try {
         const img = await loadImage(files[i]);
-        const blob = await imageToBlob(img, active.mime, quality);
+        const blob = await imageToBlob(img, targetMime, quality);
         convertedBlobs.push({
           blob,
-          name: replaceExtension(files[i].name, active.ext),
+          name: replaceExtension(files[i].name, targetExt),
           width: img.naturalWidth,
           height: img.naturalHeight,
           originalName: files[i].name,
@@ -395,7 +364,7 @@ export function initConverter(config) {
             </div>
             <div class="min-w-0">
               <div class="text-xs font-medium text-text-primary truncate">${item.name}</div>
-              <div class="text-xs text-text-tertiary">${formatBytes(item.blob.size)} · ${item.width}×${item.height}</div>
+              <div class="text-xs text-text-tertiary">${formatBytes(item.originalSize)} → ${formatBytes(item.blob.size)} · ${item.originalSize > item.blob.size ? "saved " + Math.round((1 - item.blob.size / item.originalSize) * 100) + "%" : "converted"} · ${item.width}×${item.height}</div>
             </div>
           </div>
           <button data-download="${i}" class="btn-primary btn-sm flex-shrink-0 ml-3">
@@ -412,9 +381,9 @@ export function initConverter(config) {
       html += `
         <button id="download-all-btn" class="w-full btn-primary btn-lg justify-center mt-4">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
           </svg>
-          Download ZIP (${successCount} files)
+          Download All (${successCount} files as ZIP)
         </button>
       `;
     }
@@ -438,8 +407,8 @@ export function initConverter(config) {
       });
     });
 
-    // Download ZIP
-    downloadArea.querySelector("#download-all-btn")?.addEventListener("click", downloadAsZip);
+    // Download all
+    downloadArea.querySelector("#download-all-btn")?.addEventListener("click", downloadAll);
 
     // Convert more
     downloadArea.querySelector("#convert-more-btn")?.addEventListener("click", () => {
@@ -460,22 +429,13 @@ export function initConverter(config) {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  async function downloadAsZip() {
-    const successItems = convertedBlobs.filter((item) => item && !item.failed);
-    if (successItems.length === 0) return;
-
-    if (successItems.length === 1) {
-      downloadBlob(successItems[0].blob, successItems[0].name);
-      return;
-    }
-
+  async function downloadAll() {
+    const items = convertedBlobs.filter((item) => item && !item.failed);
+    if (items.length === 0) return;
+    const { default: JSZip } = await import("https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm");
     const zip = new JSZip();
-    for (const item of successItems) {
-      zip.file(item.name, item.blob);
-    }
-    const zipBlob = await zip.generateAsync({ type: "blob" });
-    const ext = targetExt || "zip";
-    const zipName = `converted-images.${ext === "jpg" ? "zip" : ext + ".zip"}`;
-    downloadBlob(zipBlob, zipName);
+    items.forEach((item) => zip.file(item.name, item.blob));
+    const content = await zip.generateAsync({ type: "blob" });
+    downloadBlob(content, "converted-images.zip");
   }
 }
