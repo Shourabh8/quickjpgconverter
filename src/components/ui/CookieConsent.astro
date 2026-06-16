@@ -1,0 +1,64 @@
+---
+---
+
+<div
+  id="cookie-consent"
+  class="fixed bottom-0 inset-x-0 z-[90] p-4 sm:p-6 hidden"
+  role="dialog"
+  aria-label="Cookie consent"
+>
+  <div class="container-main max-w-3xl mx-auto">
+    <div class="bg-surface border border-border-default rounded-2xl shadow-2xl p-5 sm:p-6">
+      <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+        <div class="flex-1">
+          <h2 class="text-sm font-semibold text-text-primary mb-1">We value your privacy</h2>
+          <p class="text-xs text-text-secondary leading-relaxed">
+            We use cookies to enhance your browsing experience, serve personalized ads, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
+            <a href="/privacy" class="underline hover:text-text-primary transition-colors">Privacy Policy</a>
+          </p>
+        </div>
+        <div class="flex items-center gap-2 sm:flex-shrink-0">
+          <button
+            id="cookie-reject"
+            type="button"
+            class="px-3 py-1.5 text-xs font-medium rounded-lg border border-border-default text-text-secondary hover:bg-surface-subtle transition-colors"
+          >
+            Reject
+          </button>
+          <button
+            id="cookie-accept"
+            type="button"
+            class="px-3 py-1.5 text-xs font-medium rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition-colors"
+          >
+            Accept All
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  var consent = document.getElementById('cookie-consent');
+  if (!consent) return;
+
+  // Check if user already made a choice
+  if (localStorage.getItem('qjc_cookie_consent')) return;
+
+  // Show banner after a short delay
+  setTimeout(function() {
+    consent.classList.remove('hidden');
+  }, 1000);
+
+  document.getElementById('cookie-accept')?.addEventListener('click', function() {
+    localStorage.setItem('qjc_cookie_consent', 'accepted');
+    consent.classList.add('hidden');
+  });
+
+  document.getElementById('cookie-reject')?.addEventListener('click', function() {
+    localStorage.setItem('qjc_cookie_consent', 'rejected');
+    consent.classList.add('hidden');
+  });
+})();
+</script>

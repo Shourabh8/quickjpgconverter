@@ -423,3 +423,47 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+/* ============================================
+   DROP ZONE — mobile-first enhancements
+   ============================================ */
+
+#drop-area {
+  border-width: 2px;
+}
+
+@media (max-width: 639px) {
+  #drop-area {
+    min-height: 260px;
+    padding: 2rem 1.25rem;
+    border-style: dashed;
+    border-width: 2px;
+  }
+
+  #drop-area > div:first-child {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+  }
+
+  #drop-area > div:first-child svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #drop-area h3 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  #drop-area p {
+    font-size: 0.8125rem;
+  }
+
+  #drop-area label.btn-primary {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    min-height: 48px;
+  }
+}

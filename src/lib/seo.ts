@@ -55,6 +55,12 @@ interface JsonLdOptions {
   faqItems?: { question: string; answer: string }[];
   applicationCategory?: string;
   howToSteps?: { name: string; text: string; image?: string }[];
+  toolSchema?: {
+    name: string;
+    description: string;
+    url: string;
+    featureList: string[];
+  };
 }
 
 export function generateJsonLd(opts: JsonLdOptions) {
@@ -63,49 +69,68 @@ export function generateJsonLd(opts: JsonLdOptions) {
   const graphs: Record<string, unknown>[] = [];
 
   // WebApplication / SoftwareApplication schema
-  graphs.push({
-    "@type": "SoftwareApplication",
-    name: site.name,
-    description: opts.description,
-    url: opts.url ?? baseUrl,
-    applicationCategory: opts.applicationCategory ?? "MultimediaApplication",
-    operatingSystem: "Web Browser",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    featureList: [
-      "JPG to PNG conversion",
-      "PNG to JPG conversion",
-      "JPG to WebP conversion",
-      "WebP to JPG conversion",
-      "PNG to WebP conversion",
-      "WebP to PNG conversion",
-      "HEIC to JPG conversion",
-      "HEIC to PNG conversion",
-      "JPG to PDF conversion",
-      "PNG to PDF conversion",
-      "PDF to JPG conversion",
-      "PDF to PNG conversion",
-      "Image compression",
-      "PDF compression",
-      "Compress to 100KB",
-      "Compress to 200KB",
-      "Compress for government forms (SSC, UPSC, Bank)",
-      "Passport photo size compressor",
-      "Image resize",
-      "Image enhancement",
-      "PDF enhancement",
-      "Image to Base64 conversion",
-      "Base64 encoder for web development",
-      "Batch processing",
-      "Browser-based processing",
-      "No upload required",
-      "Free online converter",
-      "100% private — files never leave your device",
-    ],
-  });
+  if (opts.toolSchema) {
+    // Tool-specific schema
+    graphs.push({
+      "@type": "WebApplication",
+      name: opts.toolSchema.name,
+      description: opts.toolSchema.description,
+      url: opts.toolSchema.url,
+      applicationCategory: "MultimediaApplication",
+      operatingSystem: "Web Browser",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      featureList: opts.toolSchema.featureList,
+    });
+  } else {
+    // Site-wide schema (homepage, blog, etc.)
+    graphs.push({
+      "@type": "SoftwareApplication",
+      name: site.name,
+      description: opts.description,
+      url: opts.url ?? baseUrl,
+      applicationCategory: opts.applicationCategory ?? "MultimediaApplication",
+      operatingSystem: "Web Browser",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      featureList: [
+        "JPG to PNG conversion",
+        "PNG to JPG conversion",
+        "JPG to WebP conversion",
+        "WebP to JPG conversion",
+        "PNG to WebP conversion",
+        "WebP to PNG conversion",
+        "HEIC to JPG conversion",
+        "HEIC to PNG conversion",
+        "JPG to PDF conversion",
+        "PNG to PDF conversion",
+        "PDF to JPG conversion",
+        "PDF to PNG conversion",
+        "Image compression",
+        "PDF compression",
+        "Compress to 100KB",
+        "Compress to 200KB",
+        "Compress for government forms (SSC, UPSC, Bank)",
+        "Passport photo size compressor",
+        "Image resize",
+        "Image enhancement",
+        "PDF enhancement",
+        "Image to Base64 conversion",
+        "Base64 encoder for web development",
+        "Batch processing",
+        "Browser-based processing",
+        "No upload required",
+        "Free online converter",
+        "100% private — files never leave your device",
+      ],
+    });
+  }
 
   // Organization schema
   graphs.push({
@@ -116,11 +141,19 @@ export function generateJsonLd(opts: JsonLdOptions) {
     sameAs: [],
   });
 
-  // WebSite schema
+  // WebSite schema with SearchAction for sitelinks searchbox
   graphs.push({
     "@type": "WebSite",
     name: site.name,
     url: baseUrl,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${baseUrl}/tools?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   });
 
   // LocalBusiness schema for US/India targeting

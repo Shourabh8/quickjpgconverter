@@ -1,0 +1,201 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Blog", url: "/blog" },
+  { name: "How to Resize Photo to 35x45mm", url: "/blog/resize-photo-to-35x45mm" },
+];
+---
+
+<BaseLayout
+  title="How to Resize Photo to 35x45mm Online (Free Tool)"
+  description="Resize your photo to 35x45mm passport size instantly. Free online tool — no signup, no uploads, works in your browser."
+  canonical="https://quickjpgconverter.com/blog/resize-photo-to-35x45mm"
+  breadcrumbs={breadcrumbs}
+  keywords={[
+    "resize photo to 35x45mm",
+    "35x45mm photo size",
+    "passport photo size online",
+    "resize image to passport size",
+    "35x45mm in pixels",
+    "how to resize photo to 35x45mm",
+    "passport size photo resizer",
+  ]}
+  faqItems={[
+    {
+      question: "What is 35x45mm in pixels?",
+      answer: "At 300 DPI (standard print quality), 35x45mm equals approximately 413x531 pixels. At 72 DPI (screen), it's about 99x127 pixels.",
+    },
+    {
+      question: "Which countries use 35x45mm passport photo size?",
+      answer: "35x45mm is the standard passport photo size for most European countries, India, China, Japan, and many other nations. The US uses a different size (2x2 inches).",
+    },
+    {
+      question: "Can I resize a photo to 35x45mm without losing quality?",
+      answer: "Yes, if your original photo has sufficient resolution. Our resizer maintains the best possible quality while fitting your image to the exact 35x45mm dimensions.",
+    },
+  ]}
+  howToSteps={[
+    {
+      name: "Take a high-resolution photo",
+      text: "Use a camera or phone with at least 5MP resolution. The higher the original resolution, the better the quality after resizing.",
+    },
+    {
+      name: "Open the resize tool",
+      text: "Go to our free Resize JPG tool. No signup, no software installation needed.",
+    },
+    {
+      name: "Upload and set dimensions to 35x45mm",
+      text: "Upload your photo and enter 35mm width and 45mm height. The tool will automatically lock the aspect ratio.",
+    },
+    {
+      name: "Download your resized photo",
+      text: "Preview the result and download your 35x45mm passport-size photo.",
+    },
+  ]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container variant="narrow">
+      <div class="mb-6">
+        <Badge class="mb-4">Updated June 2026</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          How to Resize Photo to 35x45mm Online
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary">
+          Resize your photo to 35x45mm passport size instantly. Free online tool — no signup, no uploads, works in your browser.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-4 py-4 border-y border-border-default">
+        <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
+          QJ
+        </div>
+        <div>
+          <p class="text-sm font-medium text-text-primary">Quick JPG Converter Team</p>
+          <p class="text-xs text-text-tertiary">3 min read · Updated June 12, 2026</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <article class="pb-12 sm:pb-16">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>What is 35x45mm Photo Size?</h2>
+        <p>
+          35x45mm is the standard passport photo size used by most countries around the world.
+          It's the size required for passport applications, visa forms, government IDs, and
+          official documents in India, Europe, China, Japan, and many other nations.
+        </p>
+
+        <h3>35x45mm in Pixels</h3>
+        <div class="not-prose my-6 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-surface-muted border-b border-border-default">
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">DPI</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Width (px)</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Height (px)</th>
+                <th class="text-left px-4 py-3 font-medium text-text-secondary">Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">300 DPI</td>
+                <td class="px-4 py-3 text-text-secondary">413</td>
+                <td class="px-4 py-3 text-text-secondary">531</td>
+                <td class="px-4 py-3 text-text-secondary">Print (standard)</td>
+              </tr>
+              <tr class="border-b border-border-muted">
+                <td class="px-4 py-3 font-medium text-text-primary">150 DPI</td>
+                <td class="px-4 py-3 text-text-secondary">207</td>
+                <td class="px-4 py-3 text-text-secondary">266</td>
+                <td class="px-4 py-3 text-text-secondary">Online upload</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-text-primary">72 DPI</td>
+                <td class="px-4 py-3 text-text-secondary">99</td>
+                <td class="px-4 py-3 text-text-secondary">127</td>
+                <td class="px-4 py-3 text-text-secondary">Screen only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Which Countries Use 35x45mm?</h2>
+        <p>
+          35x45mm is the most common passport photo size globally. Here are some countries that use it:
+        </p>
+        <ul>
+          <li><strong>India</strong> — Passport, Aadhar, PAN card</li>
+          <li><strong>Germany, France, Italy, Spain</strong> — EU passport standard</li>
+          <li><strong>China, Japan, South Korea</strong> — Passport and visa photos</li>
+          <li><strong>Australia, New Zealand</strong> — Passport photos</li>
+          <li><strong>Brazil, Mexico, Argentina</strong> — Passport and ID photos</li>
+        </ul>
+        <p>
+          <strong>Note:</strong> The United States uses a different size (2x2 inches / 51x51mm).
+          Always check your country's specific requirements.
+        </p>
+
+        <h2>How to Resize to 35x45mm</h2>
+
+        <h3>Step 1: Take a High-Resolution Photo</h3>
+        <p>
+          For best results, start with a photo that has at least 2 megapixels (1600x1200).
+          Modern phone cameras easily exceed this. Higher resolution means better quality
+          after resizing.
+        </p>
+
+        <h3>Step 2: Use Our Free Resize Tool</h3>
+        <p>
+          Visit our <a href="/tools/resize-jpg">Resize JPG tool</a>. No signup, no software
+          installation — it runs entirely in your browser.
+        </p>
+
+        <h3>Step 3: Set Dimensions to 35x45mm</h3>
+        <p>
+          Upload your photo and enter the dimensions:
+        </p>
+        <ul>
+          <li>Width: <strong>35mm</strong></li>
+          <li>Height: <strong>45mm</strong></li>
+        </ul>
+        <p>
+          The tool will automatically maintain the aspect ratio and crop if needed.
+        </p>
+
+        <h3>Step 4: Download Your Photo</h3>
+        <p>
+          Preview the result and download your 35x45mm photo. You can then use it for
+          passport applications, visa forms, or any official document.
+        </p>
+
+        <h2>After Resizing: Compress for Upload</h2>
+        <p>
+          If you need to upload your photo to an online portal, you may also need to compress
+          it to meet file size limits. Use our <a href="/tools/compress-to-100kb">Compress to 100KB tool</a>
+          to reduce the file size while maintaining quality.
+        </p>
+
+        <div class="not-prose bg-surface-muted rounded-2xl p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-2">Resize Your Photo to 35x45mm Now</h3>
+          <p class="text-text-secondary text-sm mb-4">Free, private, and works in your browser.</p>
+          <a href="/tools/resize-jpg" class="btn-primary">
+            Open Resize Tool
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </article>
+</BaseLayout>

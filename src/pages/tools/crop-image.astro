@@ -1,0 +1,220 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Crop Image", url: "/tools/crop-image" },
+];
+
+const faqItems = [
+  {
+    question: "What image formats can I crop?",
+    answer: "You can crop JPG, JPEG, PNG, WebP, and HEIC images. The tool detects the format automatically and preserves it in the output.",
+  },
+  {
+    question: "Does cropping reduce image quality?",
+    answer: "No. Cropping simply removes parts of the image — it doesn't compress or re-encode the remaining pixels. The cropped area retains its original quality.",
+  },
+  {
+    question: "Can I crop to a specific aspect ratio?",
+    answer: "Yes. Choose from preset ratios like 1:1 (square), 4:3, 16:9, 3:2, or use Free mode to crop to any custom dimension.",
+  },
+  {
+    question: "Is my data safe?",
+    answer: "Absolutely. All cropping happens entirely in your browser. Your images are never uploaded to any server. They stay on your device from start to finish.",
+  },
+  {
+    question: "Can I crop multiple images at once?",
+    answer: "Currently, the tool processes one image at a time for precise control. For batch processing, use our Batch Converter tool.",
+  },
+];
+---
+
+<BaseLayout
+  title="Free Online Image Cropper — Crop Photos to Any Size"
+  description="Crop images to any aspect ratio or custom dimensions. Free online tool with preview. JPG, PNG, WebP supported. 100% private — no uploads."
+  canonical="https://quickjpgconverter.com/tools/crop-image"
+  keywords={["crop image", "image cropper", "crop photo", "online crop tool"]}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  howToSteps={[
+    { name: "Upload an image", text: "Drag and drop your image or click to browse." },
+    { name: "Select aspect ratio", text: "Choose Free, 1:1, 4:3, 16:9, or 3:2." },
+    { name: "Adjust and download", text: "Drag the crop box to select your area, then download." },
+  ]}
+  toolSchema={{
+    name: "Image Cropper",
+    description: "Crop images to any aspect ratio or custom dimensions. Free online tool.",
+    url: "https://quickjpgconverter.com/tools/crop-image",
+    featureList: ["Free crop mode", "Preset aspect ratios (1:1, 4:3, 16:9, 3:2)", "Rule of thirds grid", "Drag to reposition", "Corner resize handles", "100% browser-based", "No signup required"],
+  }}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Free · No Signup · Private
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Free Online <span class="gradient-text">Image Cropper</span> — Crop Photos to Any Size
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Crop images to any aspect ratio or custom dimensions. Everything runs in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <!-- Top bar: aspect ratio selector -->
+          <div class="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Aspect Ratio:</span>
+            <div class="flex items-center gap-1.5">
+              <button data-aspect="free" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-brand-600 bg-brand-600 text-white transition-colors">Free</button>
+              <button data-aspect="1" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-secondary hover:text-text-primary transition-colors">1:1</button>
+              <button data-aspect="4/3" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-secondary hover:text-text-primary transition-colors">4:3</button>
+              <button data-aspect="16/9" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-secondary hover:text-text-primary transition-colors">16:9</button>
+              <button data-aspect="3/2" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-secondary hover:text-text-primary transition-colors">3:2</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <!-- LEFT: Upload / Canvas -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <!-- Upload zone -->
+              <div id="upload-zone" class="h-full">
+                <div
+                  id="drop-area"
+                  class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 01-5.196 3 3 3 0 015.196-3zm1.536-.887a2.165 2.165 0 001.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863l2.077-1.199m0-3.328a4.323 4.323 0 012.068-1.379l5.325-1.628a4.5 4.5 0 012.48-.044l.803.215m-7.6 1.558l5.325 1.628a4.5 4.5 0 012.48.044l.803.215m-7.6-1.558l-1.536.887" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your image here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Image
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp,.heic,.heif" />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP, HEIC · Max 50MB</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Editor zone -->
+              <div id="editor-zone" class="hidden">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden">
+                  <div class="relative flex items-center justify-center bg-gray-900 p-2" style="min-height: 300px;">
+                    <canvas id="crop-canvas" class="max-w-full rounded cursor-crosshair"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Info & Actions -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <h3 class="text-sm font-semibold text-text-primary mb-4">Crop Settings</h3>
+
+              <!-- Size info -->
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center justify-between p-3 rounded-lg border border-border-default bg-surface-muted">
+                  <span class="text-xs text-text-tertiary">Original</span>
+                  <span id="original-size" class="text-xs font-medium text-text-primary">—</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-lg border border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-950/50">
+                  <span class="text-xs text-text-tertiary">Cropped area</span>
+                  <span id="cropped-size" class="text-xs font-medium text-brand-700 dark:text-brand-400">—</span>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div id="download-btn-area" class="mt-auto space-y-2">
+                <button id="download-btn" class="w-full btn-primary btn-lg justify-center">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                  </svg>
+                  Download Cropped Image
+                </button>
+                <button id="crop-again-btn" class="w-full btn-secondary btn-md justify-center">Crop Another Image</button>
+              </div>
+
+              <!-- Tips -->
+              <div class="mt-6 pt-4 border-t border-border-default">
+                <h4 class="text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-2">Tips</h4>
+                <ul class="text-xs text-text-secondary space-y-1.5">
+                  <li>• Drag the crop box to reposition</li>
+                  <li>• Drag corners to resize</li>
+                  <li>• Grid lines show rule of thirds</li>
+                  <li>• Choose an aspect ratio above for fixed proportions</li>
+                </ul>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-border-default">
+                <FeatureRequest toolName="Crop Image" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initCropImage } from "@scripts/crop-image";
+    document.addEventListener("DOMContentLoaded", () => initCropImage());
+  </script>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Crop Your Images?</h2>
+        <p>
+          Cropping removes unwanted areas from your images — extra background, distracting elements, or simply the parts you don't need. It's the easiest way to improve composition and focus attention on what matters.
+        </p>
+        <p>
+          Common use cases include removing borders from screenshots, focusing on a product in a photo, preparing images for social media aspect ratios, or trimming scanned documents.
+        </p>
+
+        <h2>Preset Aspect Ratios</h2>
+        <ul>
+          <li><strong>Free</strong> — Crop to any custom dimension, no restrictions</li>
+          <li><strong>1:1 (Square)</strong> — Perfect for Instagram posts and profile pictures</li>
+          <li><strong>4:3</strong> — Standard photo ratio, great for printing</li>
+          <li><strong>16:9</strong> — Widescreen format for YouTube thumbnails and banners</li>
+          <li><strong>3:2</strong> — Classic 35mm film ratio, common in photography</li>
+        </ul>
+
+        <h2>100% Private — No Uploads</h2>
+        <p>
+          Unlike server-based croppers that upload your images to their servers, our tool processes everything locally in your browser. Your images never leave your device. This is especially important for personal photos and sensitive documents.
+        </p>
+        <p>Also check out our <a href="/tools/resize-jpg">Resize tool</a> for changing dimensions, and our <a href="/tools/passport-photo-size">Passport Photo tool</a> for specific document sizes.</p>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

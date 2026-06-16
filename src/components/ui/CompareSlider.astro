@@ -1,0 +1,172 @@
+---
+---
+
+<div
+  id="compare-modal"
+  class="fixed inset-0 z-[80] hidden items-center justify-center p-4 sm:p-6"
+  role="dialog"
+  aria-label="Image comparison"
+>
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="compare-backdrop"></div>
+  <div class="relative bg-surface rounded-2xl border border-border-default shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-5 py-4 border-b border-border-default">
+      <div>
+        <h3 id="compare-title" class="text-sm font-semibold text-text-primary">Compare Quality</h3>
+        <p id="compare-subtitle" class="text-xs text-text-tertiary mt-0.5"></p>
+      </div>
+      <button id="compare-close" class="w-8 h-8 rounded-lg hover:bg-surface-subtle flex items-center justify-center transition-colors" aria-label="Close comparison">
+        <svg class="w-4 h-4 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Slider area -->
+    <div class="relative flex-1 min-h-[300px] max-h-[60vh] overflow-hidden select-none" id="compare-container">
+      <!-- Original (left side) -->
+      <div class="absolute inset-0" id="compare-original-wrap">
+        <img id="compare-original-img" src="" alt="Original" class="w-full h-full object-contain" />
+      </div>
+      <!-- Compressed (right side, clipped) -->
+      <div class="absolute inset-0" id="compare-compressed-wrap" style="clip-path: inset(0 0 0 50%);">
+        <img id="compare-compressed-img" src="" alt="Compressed" class="w-full h-full object-contain" />
+      </div>
+
+      <!-- Divider line -->
+      <div id="compare-divider" class="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_4px_rgba(0,0,0,0.5)] cursor-ew-resize z-10" style="left: 50%;">
+        <!-- Handle -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center cursor-ew-resize">
+          <svg class="w-5 h-5 text-text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Labels -->
+      <div class="absolute top-3 left-3 px-2 py-1 rounded-md bg-black/60 text-white text-[11px] font-medium backdrop-blur-sm z-20">
+        Original · <span id="compare-original-size">—</span>
+      </div>
+      <div class="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/60 text-white text-[11px] font-medium backdrop-blur-sm z-20">
+        Compressed · <span id="compare-compressed-size">—</span>
+      </div>
+
+      <!-- Savings badge -->
+      <div class="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-success text-white text-xs font-semibold shadow-lg z-20">
+        <span id="compare-savings">—</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  const modal = document.getElementById('compare-modal');
+  if (!modal) return;
+
+  const backdrop = document.getElementById('compare-backdrop');
+  const closeBtn = document.getElementById('compare-close');
+  const container = document.getElementById('compare-container');
+  const divider = document.getElementById('compare-divider');
+  const originalWrap = document.getElementById('compare-original-wrap');
+  const compressedWrap = document.getElementById('compare-compressed-wrap');
+  const originalImg = document.getElementById('compare-original-img');
+  const compressedImg = document.getElementById('compare-compressed-img');
+  const originalSizeEl = document.getElementById('compare-original-size');
+  const compressedSizeEl = document.getElementById('compare-compressed-size');
+  const savingsEl = document.getElementById('compare-savings');
+  const titleEl = document.getElementById('compare-title');
+  const subtitleEl = document.getElementById('compare-subtitle');
+
+  let isDragging = false;
+
+  function formatBytes(bytes) {
+    if (bytes === 0) return '0 B';
+    var k = 1024;
+    var sizes = ['B', 'KB', 'MB', 'GB'];
+    var i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+  }
+
+  function setPosition(pct) {
+    pct = Math.max(2, Math.min(98, pct));
+    divider.style.left = pct + '%';
+    originalWrap.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+    compressedWrap.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+  }
+
+  function onMove(clientX) {
+    var rect = container.getBoundingClientRect();
+    var x = clientX - rect.left;
+    var pct = (x / rect.width) * 100;
+    setPosition(pct);
+  }
+
+  // Mouse events
+  divider.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    onMove(e.clientX);
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
+
+  // Touch events
+  divider.addEventListener('touchstart', function(e) {
+    isDragging = true;
+    e.preventDefault();
+  }, { passive: false });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    onMove(e.touches[0].clientX);
+  }, { passive: true });
+
+  document.addEventListener('touchend', function() {
+    isDragging = false;
+  });
+
+  // Click on container to move divider
+  container.addEventListener('click', function(e) {
+    if (e.target.closest('#compare-divider')) return;
+    onMove(e.clientX);
+  });
+
+  // Close
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+  });
+
+  // Public API
+  window.CompareSlider = {
+    show: function(opts) {
+      originalImg.src = opts.originalUrl;
+      compressedImg.src = opts.compressedUrl;
+      originalSizeEl.textContent = formatBytes(opts.originalSize);
+      compressedSizeEl.textContent = formatBytes(opts.compressedSize);
+      var savings = opts.originalSize > 0 ? Math.round((1 - opts.compressedSize / opts.originalSize) * 100) : 0;
+      savingsEl.textContent = savings > 0 ? '-' + savings + '% size' : 'Already small';
+      titleEl.textContent = opts.title || 'Compare Quality';
+      subtitleEl.textContent = opts.fileName || '';
+      setPosition(50);
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+})();
+</script>

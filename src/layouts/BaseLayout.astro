@@ -2,6 +2,7 @@
 import SEOHead from "@components/seo/SEOHead.astro";
 import Header from "@components/layout/Header.astro";
 import Footer from "@components/layout/Footer.astro";
+import CookieConsent from "@components/ui/CookieConsent.astro";
 
 import "@styles/global.css";
 import "@styles/components.css";
@@ -19,6 +20,12 @@ interface Props {
   keywords?: string[];
   howToSteps?: { name: string; text: string; image?: string }[];
   locale?: string;
+  toolSchema?: {
+    name: string;
+    description: string;
+    url: string;
+    featureList: string[];
+  };
 }
 
 const {
@@ -33,6 +40,7 @@ const {
   keywords,
   howToSteps,
   locale = "en",
+  toolSchema,
 } = Astro.props;
 ---
 
@@ -60,6 +68,7 @@ const {
       {faqItems}
       {keywords}
       {howToSteps}
+      {toolSchema}
     />
     <script is:inline>
       // Prevent flash of wrong theme
@@ -80,5 +89,6 @@ const {
       <slot />
     </main>
     <Footer />
+    <CookieConsent />
   </body>
 </html>

@@ -12,6 +12,12 @@ interface Props {
   faqItems?: { question: string; answer: string }[];
   keywords?: string[];
   howToSteps?: { name: string; text: string; image?: string }[];
+  toolSchema?: {
+    name: string;
+    description: string;
+    url: string;
+    featureList: string[];
+  };
 }
 
 const {
@@ -25,6 +31,7 @@ const {
   faqItems,
   keywords,
   howToSteps,
+  toolSchema,
 } = Astro.props;
 
 const meta = generateMeta({ title, description, canonical, ogImage, noindex });
@@ -37,6 +44,7 @@ const jsonLdData = jsonLd
       breadcrumbs,
       faqItems,
       howToSteps,
+      toolSchema,
     })
   : null;
 ---

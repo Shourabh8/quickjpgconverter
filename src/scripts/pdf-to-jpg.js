@@ -306,8 +306,11 @@ export function initPdfConverter(config) {
   function renderDownloadArea() {
     if (!downloadArea) return;
 
-    const successCount = convertedBlobs.filter((item) => item && !item.failed).length;
+    const successItems = convertedBlobs.filter((item) => item && !item.failed);
     const failCount = convertedBlobs.filter((item) => item && item.failed).length;
+    const successCount = successItems.length;
+    const totalOutputSize = successItems.reduce((sum, item) => sum + item.blob.size, 0);
+    const originalPdfSize = successItems.length > 0 ? successItems[0].originalSize : 0;
 
     let html = `
       <div class="p-4 rounded-xl border border-success/30 bg-success/5 mb-4">
@@ -317,7 +320,8 @@ export function initPdfConverter(config) {
           </svg>
           <span class="text-sm font-semibold text-success">${successCount} image${successCount !== 1 ? "s" : ""} extracted!</span>
         </div>
-        ${failCount > 0 ? `<p class="text-xs text-danger">${failCount} file${failCount !== 1 ? "s" : ""} failed</p>` : ""}
+        <p class="text-xs text-text-secondary">PDF ${formatBytes(originalPdfSize)} → ${successCount} image${successCount !== 1 ? "s" : ""} (${formatBytes(totalOutputSize)} total)</p>
+        ${failCount > 0 ? `<p class="text-xs text-danger mt-1">${failCount} file${failCount !== 1 ? "s" : ""} failed</p>` : ""}
       </div>
     `;
 
@@ -370,7 +374,7 @@ export function initPdfConverter(config) {
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
           </svg>
-          Download All (${successCount} images)
+          Download All (${successCount} images as ZIP)
         </button>
       `;
     }
@@ -417,11 +421,12 @@ export function initPdfConverter(config) {
   }
 
   async function downloadAll() {
-    for (const item of convertedBlobs) {
-      if (item) {
-        downloadBlob(item.blob, item.name);
-        await new Promise((r) => setTimeout(r, 200));
-      }
-    }
+    const items = convertedBlobs.filter((item) => item && !item.failed);
+    if (items.length === 0) return;
+    const { default: JSZip } = await import("https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm");
+    const zip = new JSZip();
+    items.forEach((item) => zip.file(item.name, item.blob));
+    const content = await zip.generateAsync({ type: "blob" });
+    downloadBlob(content, "extracted-images.zip");
   }
 }

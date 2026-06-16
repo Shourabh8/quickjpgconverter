@@ -1,0 +1,231 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "PNG to AVIF", url: "/tools/png-to-avif" },
+];
+
+const conversionOptions = [
+  { id: "quality-high", label: "High Quality", desc: "Best visual fidelity, larger file", checked: true },
+  { id: "quality-balanced", label: "Balanced", desc: "Good balance of size and quality", checked: false },
+  { id: "quality-small", label: "Smallest Size", desc: "Smallest file, slight quality loss", checked: false },
+];
+
+const faqItems = [
+  {
+    question: "Why should I convert PNG to AVIF?",
+    answer: "PNG files are often very large due to lossless compression. Converting to AVIF can reduce file sizes by 50-80% while maintaining excellent visual quality, making your images much faster to load.",
+  },
+  {
+    question: "Will converting PNG to AVIF lose quality?",
+    answer: "AVIF uses lossy compression, so some data is lost compared to the original PNG. However, at high quality settings, the difference is imperceptible for most use cases, and the file size reduction is dramatic.",
+  },
+  {
+    question: "What about transparency?",
+    answer: "AVIF supports transparency (alpha channel) just like PNG. Your transparent backgrounds will be preserved during conversion.",
+  },
+  {
+    question: "Can I convert multiple PNG files at once?",
+    answer: "Yes. You can drag and drop or select multiple PNG files. They'll all be converted to AVIF simultaneously, and you can download them individually or as a ZIP.",
+  },
+  {
+    question: "Is my data safe?",
+    answer: "Absolutely. All conversion happens entirely in your browser. Your images are never uploaded to any server. They stay on your device from start to finish.",
+  },
+];
+---
+
+<BaseLayout
+  title="Free PNG to AVIF Converter — Next-Gen Compression"
+  description="Convert PNG to AVIF for 50-80% smaller files. Free online converter with quality control. 100% private — no uploads."
+  canonical="https://quickjpgconverter.com/tools/png-to-avif"
+  keywords={["png to avif", "convert png to avif", "png to avif converter"]}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  toolSchema={{
+    name: "PNG to AVIF Converter",
+    description: "Convert PNG images to AVIF for next-gen compression.",
+    url: "https://quickjpgconverter.com/tools/png-to-avif",
+    featureList: ["50-80% smaller file sizes", "Transparency support", "Batch conversion", "Quality control", "Instant browser conversion", "No software needed", "Free to use"],
+  }}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Free · No Signup · Private
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Free PNG to <span class="gradient-text">AVIF</span> Converter — Next-Gen Compression
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Convert your PNG images to AVIF for dramatically smaller files.
+          Everything runs in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Convert to:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">AVIF</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full min-h-[300px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your PNG files here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">or click to browse from your computer</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Files
+                    <input type="file" class="sr-only" accept=".png" multiple />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">PNG · Max 50MB per file · Multiple files supported</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
+                  <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
+                    <span class="text-text-tertiary">Input: PNG</span>
+                    <span class="text-text-tertiary">→</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">Output: AVIF</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div class="mb-6">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Conversion Options</h3>
+                <div class="space-y-2">
+                  {conversionOptions.map((opt) => (
+                    <label class:list={[
+                      "flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all duration-200",
+                      opt.checked ? "border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30" : "border-border-default hover:border-border-strong hover:bg-surface-subtle/50"
+                    ]}>
+                      <input type="radio" name="quality" value={opt.id} checked={opt.checked} class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                      <div class="flex-1 min-w-0">
+                        <div class="text-sm font-medium text-text-primary">{opt.label}</div>
+                        <div class="text-xs text-text-tertiary mt-0.5">{opt.desc}</div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              <div class="h-px bg-border-default mb-6"></div>
+              <div class="mb-6">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Output Format</h3>
+                <div class="p-3 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50 dark:bg-brand-950/30">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center">
+                      <svg class="w-5 h-5 text-brand-600 dark:text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="text-sm font-semibold text-text-primary">AVIF</div>
+                      <div class="text-xs text-text-tertiary">Next-gen · 50-80% smaller · Best compression</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-1"></div>
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Converting...</p>
+              </div>
+              <div id="convert-btn-area">
+                <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  Convert to AVIF
+                </button>
+                <p class="text-xs text-text-tertiary text-center mt-2">Upload a file to start conversion</p>
+              </div>
+              <div id="download-area" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <FeatureRequest toolName="PNG to AVIF" />
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Convert PNG to AVIF?</h2>
+        <p>PNG files are often very large due to lossless compression. A typical PNG screenshot might be 2-5MB, while the same image in AVIF could be under 500KB — without any visible quality loss.</p>
+        <h3>Best For</h3>
+        <ul>
+          <li><strong>Web publishing</strong> — dramatically faster page loads</li>
+          <li><strong>Progressive web apps</strong> — reduce bundle size</li>
+          <li><strong>Email attachments</strong> — smaller files, faster sending</li>
+          <li><strong>Storage</strong> — save disk space with equivalent quality</li>
+        </ul>
+        <p>Also check out our <a href="/tools/jpg-to-avif">JPG to AVIF converter</a>, and our <a href="/tools/avif-to-png">AVIF to PNG converter</a> for lossless conversion back to PNG.</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <script>
+    import { initConverter } from "@scripts/converter.js";
+    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "avif", targetExt: "avif", targetMime: "image/avif" }));
+  </script>
+</BaseLayout>

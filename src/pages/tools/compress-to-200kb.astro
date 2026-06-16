@@ -5,6 +5,7 @@ import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
 import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import CompareSlider from "@components/ui/CompareSlider.astro";
 
 const breadcrumbs = [
   { name: "Tools", url: "/tools" },
@@ -46,6 +47,12 @@ const faqItems = [
   keywords={["compress image to 200kb", "reduce image to 200kb", "200kb image compressor"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
+  toolSchema={{
+    name: "Compress to 200KB",
+    description: "Compress images to under 200KB for portal uploads and form submissions.",
+    url: "https://quickjpgconverter.com/tools/compress-to-200kb",
+    featureList: ["Target 200KB file size", "Smart quality optimization", "Portal upload ready", "Batch compression", "Instant processing", "Free to use", "Browser-based"],
+  }}
 >
   <Container class="py-5 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
@@ -61,7 +68,7 @@ const faqItems = [
           Free · No Signup · Private
         </Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          Compress Image to <span class="gradient-text">200KB</span>
+          Free Image Compressor to <span class="gradient-text">200KB</span> — No Upload, No Signup
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
           Perfect for job portals, applications, and professional use. Compress any image to under 200KB while maintaining quality.
@@ -278,6 +285,8 @@ const faqItems = [
       </div>
     </Container>
   </section>
+
+  <CompareSlider />
 
   <script>
     import { initTargetedCompressor } from "@scripts/targeted-compress.js";
