@@ -206,6 +206,32 @@ const faqItems = [
 
   <CompareSlider />
 
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">How It Works</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your images</h3>
+          <p class="text-sm text-text-secondary">Any format accepted — JPG, PNG, WebP, HEIC, AVIF. Multiple files at once.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Choose output format</h3>
+          <p class="text-sm text-text-secondary">Select JPG, PNG, or WebP. Adjust quality with the slider.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Convert and download</h3>
+          <p class="text-sm text-text-secondary">All files converted at once. Download everything as a ZIP.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
   <script>
     import { initBatchConverter } from "@scripts/batch-converter";
     document.addEventListener("DOMContentLoaded", () => initBatchConverter());

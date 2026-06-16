@@ -156,14 +156,25 @@ const faqItems = [
     <Container variant="narrow">
       <div class="prose">
         <h2>Why 200KB?</h2>
-        <p>200KB is a common file size limit for online forms, social media profiles, and email attachments. Our compressor ensures your image fits perfectly.</p>
+        <p>200KB is a common file size limit for online forms, social media profiles, and email attachments. Our compressor ensures your image fits perfectly under this threshold without visible quality loss.</p>
+
+        <h3>JPG vs PNG vs WebP at 200KB</h3>
+        <p>At 200KB, <strong>JPG</strong> produces the sharpest photos because its lossy compression is optimized for photographic content. <strong>PNG</strong> at 200KB works best for screenshots and graphics with text — it preserves sharp edges that JPG blurs. <strong>WebP</strong> gives you the best of both worlds: 25-35% smaller than JPG at the same quality, meaning more detail preserved at the 200KB limit.</p>
+
+        <h3>When to Use 200KB vs 100KB</h3>
+        <p>Use <strong>200KB</strong> when you need higher visual quality — profile photos, portfolio images, or form submissions where clarity matters. Use <strong>100KB</strong> when the portal has a strict limit or you need faster upload times — government exam portals, job applications, or bulk uploads.</p>
+
         <h3>Common Use Cases</h3>
         <ul>
-          <li>Social media profile photos</li>
-          <li>Email signature images</li>
-          <li>Online form uploads</li>
-          <li>Website thumbnails</li>
+          <li><strong>Social media profile photos</strong> — LinkedIn, Facebook, Twitter require images under 200KB</li>
+          <li><strong>Email signature images</strong> — keeps emails lightweight without pixelated logos</li>
+          <li><strong>Online form uploads</strong> — university admissions, job portals, registration forms</li>
+          <li><strong>Website thumbnails</strong> — fast-loading preview images for blogs and e-commerce</li>
+          <li><strong>Resume/CV photos</strong> — professional headshots that meet submission requirements</li>
         </ul>
+
+        <h3>Tips for Best Results</h3>
+        <p>Start with the highest quality source image possible. Our compressor works best when it has maximum detail to work with. If your original is already compressed, re-compressing may cause visible artifacts. For photos, JPG output at 200KB typically looks excellent. For screenshots or images with text, try PNG output instead.</p>
       </div>
     </Container>
   </section>
