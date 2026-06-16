@@ -26,6 +26,13 @@ interface Props {
     url: string;
     featureList: string[];
   };
+  articleSchema?: {
+    headline: string;
+    datePublished: string;
+    dateModified?: string;
+    author?: string;
+    image?: string;
+  };
 }
 
 const {
@@ -41,6 +48,7 @@ const {
   howToSteps,
   locale = "en",
   toolSchema,
+  articleSchema,
 } = Astro.props;
 ---
 
@@ -69,6 +77,7 @@ const {
       {keywords}
       {howToSteps}
       {toolSchema}
+      {articleSchema}
     />
     <script is:inline>
       // Prevent flash of wrong theme

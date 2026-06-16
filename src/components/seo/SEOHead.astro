@@ -18,6 +18,13 @@ interface Props {
     url: string;
     featureList: string[];
   };
+  articleSchema?: {
+    headline: string;
+    datePublished: string;
+    dateModified?: string;
+    author?: string;
+    image?: string;
+  };
 }
 
 const {
@@ -32,6 +39,7 @@ const {
   keywords,
   howToSteps,
   toolSchema,
+  articleSchema,
 } = Astro.props;
 
 const meta = generateMeta({ title, description, canonical, ogImage, noindex });
@@ -45,6 +53,7 @@ const jsonLdData = jsonLd
       faqItems,
       howToSteps,
       toolSchema,
+      articleSchema,
     })
   : null;
 ---

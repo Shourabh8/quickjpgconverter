@@ -9,7 +9,10 @@ interface MetaOptions {
 }
 
 export function generateMeta(opts: MetaOptions) {
-  const title = opts.title === site.title ? opts.title : `${opts.title} | ${site.name}`;
+  // Only append brand suffix if not already present in the title
+  const title = opts.title === site.title || opts.title.includes(site.name)
+    ? opts.title
+    : `${opts.title} | ${site.name}`;
   const canonical = opts.canonical ?? site.url;
   const ogImage = opts.ogImage ?? site.ogImage;
 
@@ -61,6 +64,13 @@ interface JsonLdOptions {
     url: string;
     featureList: string[];
   };
+  articleSchema?: {
+    headline: string;
+    datePublished: string;
+    dateModified?: string;
+    author?: string;
+    image?: string;
+  };
 }
 
 export function generateJsonLd(opts: JsonLdOptions) {
@@ -85,8 +95,35 @@ export function generateJsonLd(opts: JsonLdOptions) {
       },
       featureList: opts.toolSchema.featureList,
     });
+  } else if (opts.articleSchema) {
+    // Blog/Article schema
+    graphs.push({
+      "@type": "BlogPosting",
+      headline: opts.articleSchema.headline,
+      description: opts.description,
+      url: opts.url ?? baseUrl,
+      datePublished: opts.articleSchema.datePublished,
+      dateModified: opts.articleSchema.dateModified ?? opts.articleSchema.datePublished,
+      author: {
+        "@type": "Organization",
+        name: opts.articleSchema.author ?? site.name,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: site.name,
+        logo: {
+          "@type": "ImageObject",
+          url: new URL("/favicon.svg", baseUrl).href,
+        },
+      },
+      ...(opts.articleSchema.image ? { image: opts.articleSchema.image } : {}),
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": opts.url ?? baseUrl,
+      },
+    });
   } else {
-    // Site-wide schema (homepage, blog, etc.)
+    // Site-wide schema (homepage only)
     graphs.push({
       "@type": "SoftwareApplication",
       name: site.name,
@@ -154,57 +191,6 @@ export function generateJsonLd(opts: JsonLdOptions) {
       },
       "query-input": "required name=search_term_string",
     },
-  });
-
-  // LocalBusiness schema for US/India targeting
-  graphs.push({
-    "@type": "SoftwareApplication",
-    name: site.name,
-    description: "Free online image converter and compressor. Convert JPG, PNG, WebP, HEIC, and PDF images instantly in your browser. No uploads, no signup, completely private.",
-    url: baseUrl,
-    applicationCategory: "MultimediaApplication",
-    operatingSystem: "Web Browser",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      ratingCount: "1250",
-      bestRating: "5",
-      worstRating: "1",
-    },
-    review: [
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        author: {
-          "@type": "Person",
-          name: "Sarah K.",
-        },
-        reviewBody: "Finally, a converter that doesn't make me upload my photos to some random server. Game changer for client work.",
-      },
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
-        author: {
-          "@type": "Person",
-          name: "Marcus T.",
-        },
-        reviewBody: "We use this daily for our e-commerce product images. Fast, reliable, and the WebP conversion saves us hours of optimization.",
-      },
-    ],
   });
 
   // BreadcrumbList schema
