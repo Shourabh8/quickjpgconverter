@@ -1,7 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Container from "@components/ui/Container.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -11,15 +9,17 @@ const breadcrumbs = [
 const publishDate = "June 8, 2026";
 ---
 
-<BaseLayout
-  title="What is HEIC? Why iPhone Photos Need Conversion"
-  description="Why are iPhone photos in HEIC format? Learn what HEIC is, why Apple uses it, and how to convert HEIC to JPG for universal compatibility."
-  canonical="https://quickjpgconverter.com/blog/what-is-heic-why-iphone-photos-need-conversion"
-  keywords={["what is heic", "heic format", "iphone photo format", "heic to jpg", "convert heic photos"]}
-  articleSchema={{
-    headline: "What is HEIC? Why iPhone Photos Need Conversion",
-    datePublished: "2026-06-08",
+<BlogPostLayout
+  post={{
+    slug: "what-is-heic-why-iphone-photos-need-conversion",
+    title: "What is HEIC? Why iPhone Photos Need Conversion",
+    description: "Why are iPhone photos in HEIC format? Learn what HEIC is, why Apple uses it, and how to convert HEIC to JPG for universal compatibility.",
+    publishDate: "2026-06-08",
+    readTime: "6 min read",
+    keywords: ["what is heic", "heic format", "iphone photo format", "heic to jpg", "convert heic photos"],
+    category: "Image Formats",
   }}
+  breadcrumbs={breadcrumbs}
   faqItems={[
     {
       question: "What does HEIC stand for?",
@@ -39,22 +39,10 @@ const publishDate = "June 8, 2026";
     },
   ]}
 >
-  <section class="section">
-    <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
-
-      <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-08">{publishDate}</time>
-          <span>·</span>
-          <span>6 min read</span>
-        </div>
-
-        <h1>What is HEIC? Why iPhone Photos Need Conversion</h1>
-
-        <p class="lead">
-          You try to open an iPhone photo on your Windows PC and get an error. The file has a .HEIC extension. What is HEIC, why does Apple use it, and how do you deal with it?
-        </p>
+  <div class="prose mt-8">
+    <p class="lead">
+      You try to open an iPhone photo on your Windows PC and get an error. The file has a .HEIC extension. What is HEIC, why does Apple use it, and how do you deal with it?
+    </p>
 
         <h2>What is HEIC?</h2>
         <p>HEIC stands for <strong>High Efficiency Image Container</strong>. It's Apple's implementation of the HEIF (High Efficiency Image Format) standard. The format uses the same compression technology as HEVC video (also known as H.265), which is significantly more efficient than the older JPG standard.</p>
@@ -174,29 +162,5 @@ const publishDate = "June 8, 2026";
             </svg>
           </a>
         </div>
-      </article>
-    </Container>
-  </section>
-
-  <section class="section bg-surface-muted">
-    <Container variant="narrow">
-      <div class="text-center mb-8">
-        <h2 class="text-xl font-bold text-text-primary">Related Articles</h2>
-      </div>
-      <div class="space-y-4">
-        <a href="/blog/heic-to-jpg-iphone-photos" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">How to Convert HEIC to JPG on iPhone Photos</h3>
-          <p class="text-sm text-text-secondary">Step-by-step guide to converting HEIC photos to JPG format.</p>
-        </a>
-        <a href="/blog/jpg-to-png-vs-webp-which-should-you-use" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">JPG to PNG vs JPG to WebP: Which Format Should You Use?</h3>
-          <p class="text-sm text-text-secondary">Compare PNG and WebP formats to choose the right one for your images.</p>
-        </a>
-        <a href="/blog/browser-based-vs-server-image-conversion" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">Browser-Based vs Server Image Conversion</h3>
-          <p class="text-sm text-text-secondary">Why processing images locally is faster and more private.</p>
-        </a>
-      </div>
-    </Container>
-  </section>
-</BaseLayout>
+  </div>
+</BlogPostLayout>

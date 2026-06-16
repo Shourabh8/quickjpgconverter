@@ -1,7 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Container from "@components/ui/Container.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -11,15 +9,17 @@ const breadcrumbs = [
 const publishDate = "June 10, 2026";
 ---
 
-<BaseLayout
-  title="How to Compress Images for Website Speed (2026 Guide)"
-  description="Learn how to compress images for faster website loading. Step-by-step guide to image optimization for WordPress, Shopify, and static sites."
-  canonical="https://quickjpgconverter.com/blog/how-to-compress-images-for-website-speed"
-  keywords={["compress images for website", "image optimization guide", "website speed images", "compress jpg for web", "reduce image size for website"]}
-  articleSchema={{
-    headline: "How to Compress Images for Website Speed (2026 Guide)",
-    datePublished: "2026-06-10",
+<BlogPostLayout
+  post={{
+    slug: "how-to-compress-images-for-website-speed",
+    title: "How to Compress Images for Website Speed (2026 Guide)",
+    description: "Learn how to compress images for faster website loading. Step-by-step guide to image optimization for WordPress, Shopify, and static sites.",
+    publishDate: "2026-06-10",
+    readTime: "8 min read",
+    keywords: ["compress images for website", "image optimization guide", "website speed images", "compress jpg for web", "reduce image size for website"],
+    category: "Image Optimization",
   }}
+  breadcrumbs={breadcrumbs}
   faqItems={[
     {
       question: "What is the ideal image size for websites?",
@@ -39,22 +39,10 @@ const publishDate = "June 10, 2026";
     },
   ]}
 >
-  <section class="section">
-    <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
-
-      <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-10">{publishDate}</time>
-          <span>·</span>
-          <span>8 min read</span>
-        </div>
-
-        <h1>How to Compress Images for Website Speed (2026 Guide)</h1>
-
-        <p class="lead">
-          Slow images kill website performance. Uncompressed images are the #1 cause of slow page loads. Here's a step-by-step guide to compressing images for maximum speed without sacrificing quality.
-        </p>
+  <div class="prose mt-8">
+    <p class="lead">
+      Slow images kill website performance. Uncompressed images are the #1 cause of slow page loads. Here's a step-by-step guide to compressing images for maximum speed without sacrificing quality.
+    </p>
 
         <h2>Why Image Compression Matters for SEO</h2>
         <p>Google's Core Web Vitals directly measure how fast your page loads, and images are usually the heaviest assets on any page. A single uncompressed hero image can add 2-3 seconds to your load time. Here's what slow images cost you:</p>
@@ -182,29 +170,5 @@ const publishDate = "June 10, 2026";
             </svg>
           </a>
         </div>
-      </article>
-    </Container>
-  </section>
-
-  <section class="section bg-surface-muted">
-    <Container variant="narrow">
-      <div class="text-center mb-8">
-        <h2 class="text-xl font-bold text-text-primary">Related Articles</h2>
-      </div>
-      <div class="space-y-4">
-        <a href="/blog/jpg-to-png-vs-webp-which-should-you-use" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">JPG to PNG vs JPG to WebP: Which Format Should You Use?</h3>
-          <p class="text-sm text-text-secondary">Compare PNG and WebP formats to choose the right one for your images.</p>
-        </a>
-        <a href="/blog/best-free-image-compressor-online" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">Best Free Image Compressor Online (2026)</h3>
-          <p class="text-sm text-text-secondary">Compare top free image compressors and find the best one for your needs.</p>
-        </a>
-        <a href="/blog/browser-based-vs-server-image-conversion" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">Browser-Based vs Server Image Conversion</h3>
-          <p class="text-sm text-text-secondary">Why processing images locally is faster and more private.</p>
-        </a>
-      </div>
-    </Container>
-  </section>
-</BaseLayout>
+  </div>
+</BlogPostLayout>

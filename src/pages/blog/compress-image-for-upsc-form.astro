@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { authors, defaultAuthor } from "@data/authors";
+import { blogPosts } from "@data/blog";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -10,7 +10,7 @@ const breadcrumbs = [
 ];
 ---
 
-<BaseLayout
+<BlogPostLayout
   title="How to Compress Image for UPSC Application Form (2026)"
   description="Step-by-step guide to compress your photo for UPSC Civil Services application. Meet the exact file size requirements without losing quality."
   canonical="https://quickjpgconverter.com/blog/compress-image-for-upsc-form"
@@ -60,35 +60,8 @@ const breadcrumbs = [
       text: "Download your compressed photo and verify the file size before uploading to the UPSC portal.",
     },
   ]}
+  post={blogPosts.find(p => p.slug === "compress-image-for-upsc-form")!}
 >
-  <Container class="py-5 sm:py-6">
-    <Breadcrumb items={breadcrumbs} />
-  </Container>
-
-  <section class="pb-6 sm:pb-8">
-    <Container variant="narrow">
-      <div class="mb-6">
-        <Badge class="mb-4">Updated June 2026</Badge>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          How to Compress Image for UPSC Application Form
-        </h1>
-        <p class="text-base sm:text-lg text-text-secondary">
-          Step-by-step guide to compress your photo for UPSC Civil Services application. Meet the exact file size requirements without losing quality.
-        </p>
-      </div>
-
-      <div class="flex items-center gap-4 py-4 border-y border-border-default">
-        <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
-          QJ
-        </div>
-        <div>
-          <p class="text-sm font-medium text-text-primary">Quick JPG Converter Team</p>
-          <p class="text-xs text-text-tertiary">4 min read · Updated June 12, 2026</p>
-        </div>
-      </div>
-    </Container>
-  </section>
-
   <article class="pb-12 sm:pb-16">
     <Container variant="narrow">
       <div class="prose">
@@ -209,4 +182,4 @@ const breadcrumbs = [
       </div>
     </Container>
   </article>
-</BaseLayout>
+</BlogPostLayout>

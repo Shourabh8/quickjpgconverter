@@ -1,8 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -20,58 +17,29 @@ const tableOfContents = [
 ];
 ---
 
-<BaseLayout
-  title="Passport Photo Size Guide 2026 — All Countries & Requirements"
-  description="Complete passport photo size guide for 2026. Standard dimensions for India, USA, UK, Canada, Australia. File size, background color, and format requirements."
-  canonical="https://quickjpgconverter.com/blog/passport-photo-size-guide-2026"
-  breadcrumbs={breadcrumbs}
-  keywords={[
-    "passport photo size",
-    "passport photo size 2026",
-    "passport photo size india",
-    "passport photo size usa",
-    "passport photo size uk",
-    "passport photo requirements",
-    "passport photo background",
-    "passport size photo online",
-    "passport photo maker",
-  ]}
-  articleSchema={{
-    headline: "Passport Photo Size Guide 2026 — All Countries & Requirements",
-    datePublished: "2026-06-11",
+<BlogPostLayout
+  post={{
+    slug: "passport-photo-size-guide-2026",
+    title: "Passport Photo Size Guide 2026 — All Countries & Requirements",
+    description: "Complete passport photo size guide for 2026. Standard dimensions for India, USA, UK, Canada, Australia. File size, background color, and format requirements.",
+    publishDate: "2026-06-11",
+    readTime: "5 min read",
+    keywords: [
+      "passport photo size",
+      "passport photo size 2026",
+      "passport photo size india",
+      "passport photo size usa",
+      "passport photo size uk",
+      "passport photo requirements",
+      "passport photo background",
+      "passport size photo online",
+      "passport photo maker",
+    ],
+    category: "Passport Photos",
   }}
+  breadcrumbs={breadcrumbs}
 >
-  <Container class="py-5 sm:py-6">
-    <Breadcrumb items={breadcrumbs} />
-  </Container>
-
-  <section class="pb-6 sm:pb-8">
-    <Container variant="narrow">
-      <div class="mb-6">
-        <Badge class="mb-4">Updated June 2026</Badge>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          Passport Photo Size Guide 2026 — All Countries & Requirements
-        </h1>
-        <p class="text-base sm:text-lg text-text-secondary">
-          Everything you need to know about passport photo sizes, dimensions, file requirements, and how to create the perfect passport photo online.
-        </p>
-      </div>
-
-      <div class="flex items-center gap-4 py-4 border-y border-border-default">
-        <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
-          QJ
-        </div>
-        <div>
-          <p class="text-sm font-medium text-text-primary">Quick JPG Converter Team</p>
-          <p class="text-xs text-text-tertiary">5 min read · Updated June 11, 2026</p>
-        </div>
-      </div>
-    </Container>
-  </section>
-
-  <article class="pb-12 sm:pb-16">
-    <Container variant="narrow">
-      <div class="prose">
+  <div class="prose">
         <h2 id="standard-sizes">Standard Passport Photo Sizes</h2>
         <p>
           Passport photo requirements vary by country, but there are some common standards. The most
@@ -236,23 +204,4 @@ const tableOfContents = [
           select your country, and the tool will automatically resize it to the correct dimensions.
         </p>
       </div>
-    </Container>
-  </article>
-
-  <section class="section bg-surface-muted">
-    <Container>
-      <div class="text-center mb-10">
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Create Your Passport Photo Now</h2>
-        <p class="text-text-secondary max-w-xl mx-auto">Free online tool to resize, crop, and compress passport photos.</p>
-      </div>
-      <div class="flex justify-center">
-        <a href="/passport-photo-size" class="btn-primary btn-lg">
-          Open Passport Photo Tool
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </a>
-      </div>
-    </Container>
-  </section>
-</BaseLayout>
+</BlogPostLayout>

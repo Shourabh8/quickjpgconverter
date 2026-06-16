@@ -1,27 +1,23 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
   { name: "JPG to PDF Guide", url: "/blog/jpg-to-pdf-converter-guide" },
 ];
-
-const publishDate = "June 6, 2026";
 ---
 
-<BaseLayout
-  title="How to Convert JPG to PDF: Complete Guide (2026)"
-  description="Need to convert JPG images to PDF? Learn the fastest way to create PDFs from photos without software. Free, private, and works in your browser."
-  canonical="https://quickjpgconverter.com/blog/jpg-to-pdf-converter-guide"
-  breadcrumbs={breadcrumbs}
-  keywords={["jpg to pdf", "convert jpg to pdf", "image to pdf converter", "photo to pdf", "jpg to pdf online free"]}
-  articleSchema={{
-    headline: "How to Convert JPG to PDF: Complete Guide (2026)",
-    datePublished: "2026-06-06",
+<BlogPostLayout
+  post={{
+    slug: "jpg-to-pdf-converter-guide",
+    title: "How to Convert JPG to PDF: Complete Guide (2026)",
+    description: "Need to convert JPG images to PDF? Learn the fastest way to create PDFs from photos without software. Free, private, and works in your browser.",
+    publishDate: "2026-06-06",
+    readTime: "5 min read",
+    keywords: ["jpg to pdf", "convert jpg to pdf", "image to pdf converter", "photo to pdf", "jpg to pdf online free"],
+    category: "Image Conversion",
   }}
+  breadcrumbs={breadcrumbs}
   faqItems={[
     {
       question: "How do I convert JPG to PDF?",
@@ -51,22 +47,10 @@ const publishDate = "June 6, 2026";
     },
   ]}
 >
-  <section class="section">
-    <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
-
-      <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-06">{publishDate}</time>
-          <span>·</span>
-          <span>5 min read</span>
-        </div>
-
-        <h1>How to Convert JPG to PDF: Complete Guide</h1>
-
-        <p class="lead">
-          Need to convert JPG images to a PDF document? Whether it's for work, school, or official documents, here's the fastest way to create PDFs from photos — free and without software.
-        </p>
+  <div class="prose mt-8">
+    <p class="lead">
+      Need to convert JPG images to a PDF document? Whether it's for work, school, or official documents, here's the fastest way to create PDFs from photos — free and without software.
+    </p>
 
         <h2>Why Convert JPG to PDF?</h2>
         <ul>
@@ -119,7 +103,5 @@ const publishDate = "June 6, 2026";
             </svg>
           </a>
         </div>
-      </article>
-    </Container>
-  </section>
-</BaseLayout>
+  </div>
+</BlogPostLayout>

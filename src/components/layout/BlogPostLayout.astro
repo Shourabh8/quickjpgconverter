@@ -1,0 +1,95 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { authors, defaultAuthor } from "@data/authors";
+import type { BlogPost } from "@data/blog";
+
+interface Props {
+  post: BlogPost;
+  author?: string;
+  breadcrumbs?: { name: string; url: string }[];
+  faqItems?: { question: string; answer: string }[];
+  howToSteps?: { name: string; text: string }[];
+}
+
+const { post, author: authorKey, breadcrumbs: customBreadcrumbs, faqItems, howToSteps } = Astro.props;
+
+const authorProfile = authors[authorKey ?? defaultAuthor] ?? authors[defaultAuthor];
+
+const breadcrumbs = customBreadcrumbs ?? [
+  { name: "Blog", url: "/blog" },
+  { name: post.title, url: `/blog/${post.slug}` },
+];
+---
+
+<BaseLayout
+  title={post.title}
+  description={post.description}
+  canonical={`https://quickjpgconverter.com/blog/${post.slug}`}
+  breadcrumbs={breadcrumbs}
+  keywords={post.keywords}
+  articleSchema={{
+    headline: post.title,
+    datePublished: post.publishDate,
+    authorName: authorProfile.name,
+  }}
+  faqItems={faqItems}
+  howToSteps={howToSteps}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container variant="narrow">
+      <div class="mb-6">
+        <Badge class="mb-4">{post.category}</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          {post.title}
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary">
+          {post.description}
+        </p>
+      </div>
+
+      <div class="flex items-center gap-4 py-4 border-y border-border-default">
+        <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
+          {authorProfile.initials}
+        </div>
+        <div>
+          <p class="text-sm font-medium text-text-primary">{authorProfile.name}</p>
+          <p class="text-xs text-text-tertiary">{post.readTime} · Published {post.publishDate}</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <article class="pb-12 sm:pb-16">
+    <Container variant="narrow">
+      <slot />
+    </Container>
+  </article>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="max-w-3xl mx-auto p-6 rounded-2xl border border-border-default bg-surface">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300 flex-shrink-0">
+            {authorProfile.initials}
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-text-primary mb-1">Written by {authorProfile.name}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">{authorProfile.bio}</p>
+            <div class="flex flex-wrap gap-2 mt-3">
+              {authorProfile.expertise.map((skill) => (
+                <span class="text-xs px-2 py-1 rounded-full bg-surface-muted border border-border-default text-text-secondary">{skill}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

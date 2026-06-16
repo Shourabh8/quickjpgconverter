@@ -70,6 +70,7 @@ interface JsonLdOptions {
     datePublished: string;
     dateModified?: string;
     author?: string;
+    authorName?: string;
     image?: string;
   };
 }
@@ -105,10 +106,9 @@ export function generateJsonLd(opts: JsonLdOptions) {
       url: opts.url ?? baseUrl,
       datePublished: opts.articleSchema.datePublished,
       dateModified: opts.articleSchema.dateModified ?? opts.articleSchema.datePublished,
-      author: {
-        "@type": "Organization",
-        name: opts.articleSchema.author ?? site.name,
-      },
+      author: opts.articleSchema.authorName
+        ? { "@type": "Person", name: opts.articleSchema.authorName }
+        : { "@type": "Organization", name: opts.articleSchema.author ?? site.name },
       publisher: {
         "@type": "Organization",
         name: site.name,

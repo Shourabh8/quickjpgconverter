@@ -1,7 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Container from "@components/ui/Container.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -11,16 +9,17 @@ const breadcrumbs = [
 const publishDate = "June 12, 2026";
 ---
 
-<BaseLayout
-  title="JPG to PNG vs JPG to WebP: Which Format Should You Use in 2026?"
-  description="Confused between PNG and WebP? Compare JPG to PNG vs JPG to WebP conversion — quality, file size, browser support, and when to use each format."
-  canonical="https://quickjpgconverter.com/blog/jpg-to-png-vs-webp-which-should-you-use"
-  breadcrumbs={breadcrumbs}
-  keywords={["jpg to png vs webp", "png vs webp", "which image format to use", "webp vs png quality", "best image format for web"]}
-  articleSchema={{
-    headline: "JPG to PNG vs JPG to WebP: Which Format Should You Use in 2026?",
-    datePublished: "2026-06-12",
+<BlogPostLayout
+  post={{
+    slug: "jpg-to-png-vs-webp-which-should-you-use",
+    title: "JPG to PNG vs JPG to WebP: Which Format Should You Use in 2026?",
+    description: "Confused between PNG and WebP? Compare JPG to PNG vs JPG to WebP conversion — quality, file size, browser support, and when to use each format.",
+    publishDate: "2026-06-12",
+    readTime: "7 min read",
+    keywords: ["jpg to png vs webp", "png vs webp", "which image format to use", "webp vs png quality", "best image format for web"],
+    category: "Image Formats",
   }}
+  breadcrumbs={breadcrumbs}
   faqItems={[
     {
       question: "Which format has better quality — PNG or WebP?",
@@ -40,22 +39,10 @@ const publishDate = "June 12, 2026";
     },
   ]}
 >
-  <section class="section">
-    <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
-
-      <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-12">{publishDate}</time>
-          <span>·</span>
-          <span>7 min read</span>
-        </div>
-
-        <h1>JPG to PNG vs JPG to WebP: Which Format Should You Use in 2026?</h1>
-
-        <p class="lead">
-          You have a JPG file and need to convert it. Should you choose PNG or WebP? The answer depends on what you're using the image for. Here's a complete comparison to help you decide.
-        </p>
+  <div class="prose mt-8">
+    <p class="lead">
+      You have a JPG file and need to convert it. Should you choose PNG or WebP? The answer depends on what you're using the image for. Here's a complete comparison to help you decide.
+    </p>
 
         <h2>Understanding the Two Formats</h2>
         <p>Before choosing, it helps to understand what makes PNG and WebP different under the hood.</p>
@@ -198,29 +185,5 @@ const publishDate = "June 12, 2026";
             </svg>
           </a>
         </div>
-      </article>
-    </Container>
-  </section>
-
-  <section class="section bg-surface-muted">
-    <Container variant="narrow">
-      <div class="text-center mb-8">
-        <h2 class="text-xl font-bold text-text-primary">Related Articles</h2>
-      </div>
-      <div class="space-y-4">
-        <a href="/blog/how-to-compress-images-for-website-speed" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">How to Compress Images for Website Speed (2026 Guide)</h3>
-          <p class="text-sm text-text-secondary">Learn how to compress images for faster website loading and better SEO.</p>
-        </a>
-        <a href="/blog/browser-based-vs-server-image-conversion" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">Browser-Based vs Server Image Conversion: Why Privacy Matters</h3>
-          <p class="text-sm text-text-secondary">Compare browser-based and server-based image converters.</p>
-        </a>
-        <a href="/blog/best-free-image-compressor-online" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">Best Free Image Compressor Online (2026)</h3>
-          <p class="text-sm text-text-secondary">Compare top free image compressors and find the best one for your needs.</p>
-        </a>
-      </div>
-    </Container>
-  </section>
-</BaseLayout>
+  </div>
+</BlogPostLayout>

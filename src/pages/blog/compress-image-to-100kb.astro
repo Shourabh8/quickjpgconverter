@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { authors, defaultAuthor } from "@data/authors";
+import { blogPosts } from "@data/blog";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -12,7 +12,7 @@ const breadcrumbs = [
 const publishDate = "June 10, 2026";
 ---
 
-<BaseLayout
+<BlogPostLayout
   title="How to Compress Image to 100KB Without Losing Quality"
   description="Step-by-step guide to compress any image to under 100KB for passport photos, job portals, and government forms. Free online tool, no signup required."
   canonical="https://quickjpgconverter.com/blog/compress-image-to-100kb"
@@ -50,20 +50,11 @@ const publishDate = "June 10, 2026";
       text: "Click Compress to 100KB and your image will be compressed instantly. Download it ready to upload to any portal.",
     },
   ]}
+  post={blogPosts.find(p => p.slug === "compress-image-to-100kb")!}
 >
   <section class="section">
     <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
-
       <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-10">{publishDate}</time>
-          <span>·</span>
-          <span>5 min read</span>
-        </div>
-
-        <h1>How to Compress Image to 100KB Without Losing Quality</h1>
-
         <p class="lead">
           Need to compress an image to under 100KB for a passport photo, job portal, or government form? Here's the fastest way to do it — free, online, and without losing quality.
         </p>
@@ -138,4 +129,4 @@ const publishDate = "June 10, 2026";
       </div>
     </Container>
   </section>
-</BaseLayout>
+</BlogPostLayout>

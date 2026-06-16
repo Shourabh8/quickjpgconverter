@@ -1,7 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Container from "@components/ui/Container.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -11,15 +9,17 @@ const breadcrumbs = [
 const publishDate = "June 4, 2026";
 ---
 
-<BaseLayout
-  title="Browser-Based vs Server Image Conversion: Why Privacy Matters"
-  description="Compare browser-based and server-based image converters. Learn why processing images locally is faster, more private, and more secure."
-  canonical="https://quickjpgconverter.com/blog/browser-based-vs-server-image-conversion"
-  keywords={["browser based image converter", "server vs browser conversion", "private image converter", "no upload image converter", "local image processing"]}
-  articleSchema={{
-    headline: "Browser-Based vs Server Image Conversion: Why Privacy Matters",
-    datePublished: "2026-06-04",
+<BlogPostLayout
+  post={{
+    slug: "browser-based-vs-server-image-conversion",
+    title: "Browser-Based vs Server Image Conversion: Why Privacy Matters",
+    description: "Compare browser-based and server-based image converters. Learn why processing images locally is faster, more private, and more secure.",
+    publishDate: "2026-06-04",
+    readTime: "7 min read",
+    keywords: ["browser based image converter", "server vs browser conversion", "private image converter", "no upload image converter", "local image processing"],
+    category: "Image Conversion",
   }}
+  breadcrumbs={breadcrumbs}
   faqItems={[
     {
       question: "Is browser-based image conversion really private?",
@@ -39,22 +39,10 @@ const publishDate = "June 4, 2026";
     },
   ]}
 >
-  <section class="section">
-    <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
-
-      <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-04">{publishDate}</time>
-          <span>·</span>
-          <span>7 min read</span>
-        </div>
-
-        <h1>Browser-Based vs Server Image Conversion: Why Privacy Matters</h1>
-
-        <p class="lead">
-          Most image converters online upload your files to a server. But a growing number of tools process images entirely in your browser. Here's why the difference matters and how browser-based conversion works.
-        </p>
+  <div class="prose mt-8">
+    <p class="lead">
+      Most image converters online upload your files to a server. But a growing number of tools process images entirely in your browser. Here's why the difference matters and how browser-based conversion works.
+    </p>
 
         <h2>How Server-Based Converters Work</h2>
         <p>Traditional online image converters follow a simple process:</p>
@@ -177,29 +165,5 @@ const publishDate = "June 4, 2026";
             </svg>
           </a>
         </div>
-      </article>
-    </Container>
-  </section>
-
-  <section class="section bg-surface-muted">
-    <Container variant="narrow">
-      <div class="text-center mb-8">
-        <h2 class="text-xl font-bold text-text-primary">Related Articles</h2>
-      </div>
-      <div class="space-y-4">
-        <a href="/blog/best-free-image-compressor-online" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">Best Free Image Compressor Online (2026)</h3>
-          <p class="text-sm text-text-secondary">Compare top free image compressors and find the best one for your needs.</p>
-        </a>
-        <a href="/blog/how-to-compress-images-for-website-speed" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">How to Compress Images for Website Speed</h3>
-          <p class="text-sm text-text-secondary">Step-by-step guide to image optimization for faster page loads.</p>
-        </a>
-        <a href="/blog/jpg-to-png-vs-webp-which-should-you-use" class="block rounded-xl border border-border-default bg-surface p-5 hover:border-brand-300 transition-colors">
-          <h3 class="font-semibold text-text-primary mb-1">JPG to PNG vs JPG to WebP: Which Format Should You Use?</h3>
-          <p class="text-sm text-text-secondary">Compare PNG and WebP formats to choose the right one for your images.</p>
-        </a>
-      </div>
-    </Container>
-  </section>
-</BaseLayout>
+  </div>
+</BlogPostLayout>

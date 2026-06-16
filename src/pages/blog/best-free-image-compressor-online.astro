@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { authors, defaultAuthor } from "@data/authors";
+import { blogPosts } from "@data/blog";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -12,7 +12,7 @@ const breadcrumbs = [
 const publishDate = "June 7, 2026";
 ---
 
-<BaseLayout
+<BlogPostLayout
   title="Best Free Image Compressor Online (2026) - No Signup, No Watermark"
   description="Looking for the best free image compressor? Compare top tools and learn why browser-based compression is faster and more private than server-based alternatives."
   canonical="https://quickjpgconverter.com/blog/best-free-image-compressor-online"
@@ -36,20 +36,11 @@ const publishDate = "June 7, 2026";
       answer: "It depends on the tool. Server-based compressors upload your images to their servers, which poses privacy risks. Browser-based tools like Quick JPG Converter process images locally on your device, so your images never leave your computer.",
     },
   ]}
+  post={blogPosts.find(p => p.slug === "best-free-image-compressor-online")!}
 >
   <section class="section">
     <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
-
       <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-07">{publishDate}</time>
-          <span>·</span>
-          <span>6 min read</span>
-        </div>
-
-        <h1>Best Free Image Compressor Online (2026)</h1>
-
         <p class="lead">
           Need to compress images for your website, email, or social media? Here's a comparison of the best free image compressors and why browser-based tools are the future.
         </p>
@@ -131,4 +122,4 @@ const publishDate = "June 7, 2026";
       </article>
     </Container>
   </section>
-</BaseLayout>
+</BlogPostLayout>

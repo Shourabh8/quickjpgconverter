@@ -1,16 +1,10 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { blogPosts } from "@data/blog";
 
-const breadcrumbs = [
-  { name: "Blog", url: "/blog" },
-  { name: "How to Convert HEIC to JPG", url: "/blog/how-to-convert-heic-to-jpg" },
-];
-
+const post = blogPosts.find((p) => p.slug === "how-to-convert-heic-to-jpg")!;
 const publishDate = "June 15, 2026";
-const readTime = "6 min read";
 
 const faqItems = [
   {
@@ -72,41 +66,16 @@ const faqSchema = {
 };
 ---
 
-<BaseLayout
-  title="How to Convert HEIC to JPG — iPhone Photo Converter Guide (2026)"
-  description="Convert HEIC iPhone photos to JPG in seconds. Free online converter, no signup. Works on Windows, Mac, and iPhone. preserves quality."
-  canonical="https://quickjpgconverter.com/blog/how-to-convert-heic-to-jpg"
-  breadcrumbs={breadcrumbs}
-  keywords={["heic to jpg converter", "convert heic to jpg", "heic to jpg online", "iphone photos to jpg", "how to convert heic to jpg", "heic converter", "heic to jpg free"]}
+<BlogPostLayout
+  post={post}
+  breadcrumbs={[
+    { name: "Blog", url: "/blog" },
+    { name: "How to Convert HEIC to JPG", url: "/blog/how-to-convert-heic-to-jpg" },
+  ]}
   faqItems={faqItems}
-  articleSchema={articleSchema}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-
-  <Container class="py-5 sm:py-6">
-    <Breadcrumb items={breadcrumbs} />
-  </Container>
-
-  <section class="pb-6 sm:pb-8">
-    <Container>
-      <div class="text-center max-w-2xl mx-auto">
-        <Badge class="mb-4">
-          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-          </svg>
-          iPhone Photo Guide
-        </Badge>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          How to Convert <span class="gradient-text">HEIC to JPG</span> Free — iPhone Photo Guide
-        </h1>
-        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          Convert HEIC iPhone photos to JPG in seconds. Free online tool, works on every device.
-        </p>
-        <p class="text-sm text-text-tertiary mt-3">Published {publishDate} · {readTime}</p>
-      </div>
-    </Container>
-  </section>
 
   <section class="pb-12 sm:pb-16">
     <Container variant="narrow">
@@ -321,4 +290,4 @@ const faqSchema = {
       </div>
     </Container>
   </section>
-</BaseLayout>
+</BlogPostLayout>

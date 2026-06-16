@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { authors, defaultAuthor } from "@data/authors";
+import { blogPosts } from "@data/blog";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -12,7 +12,7 @@ const breadcrumbs = [
 const publishDate = "June 9, 2026";
 ---
 
-<BaseLayout
+<BlogPostLayout
   title="How to Convert HEIC to JPG on iPhone Photos (Free Online Tool)"
   description="iPhone photos are saved as HEIC but many websites don't support it. Learn how to convert HEIC to JPG instantly in your browser without uploading."
   canonical="https://quickjpgconverter.com/blog/heic-to-jpg-iphone-photos"
@@ -50,20 +50,11 @@ const publishDate = "June 9, 2026";
       text: "Drag and drop your HEIC photos, click Convert to JPG, and download your JPG files instantly.",
     },
   ]}
+  post={blogPosts.find(p => p.slug === "heic-to-jpg-iphone-photos")!}
 >
   <section class="section">
     <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
-
       <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-09">{publishDate}</time>
-          <span>·</span>
-          <span>4 min read</span>
-        </div>
-
-        <h1>How to Convert HEIC to JPG on iPhone Photos</h1>
-
         <p class="lead">
           iPhone photos are saved as HEIC, but many websites, apps, and computers can't open them. Here's how to convert HEIC to JPG instantly — free, private, and without any software.
         </p>
@@ -126,4 +117,4 @@ const publishDate = "June 9, 2026";
       </article>
     </Container>
   </section>
-</BaseLayout>
+</BlogPostLayout>

@@ -6,6 +6,7 @@ export interface BlogPost {
   readTime: string;
   keywords: string[];
   category: string;
+  author?: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -89,5 +90,59 @@ export const blogPosts: BlogPost[] = [
     readTime: "5 min read",
     keywords: ["jpg to pdf", "convert jpg to pdf", "image to pdf converter", "photo to pdf", "jpg to pdf online free"],
     category: "PDF Conversion",
+  },
+  {
+    slug: "how-to-convert-heic-to-jpg",
+    title: "How to Convert HEIC to JPG Free — iPhone Photo Guide (2026)",
+    description: "Convert HEIC iPhone photos to JPG in seconds. Free online converter, no signup. Works on Windows, Mac, and iPhone. preserves quality.",
+    publishDate: "2026-06-15",
+    readTime: "6 min read",
+    keywords: ["heic to jpg converter", "convert heic to jpg", "heic to jpg online", "iphone photos to jpg", "how to convert heic to jpg", "heic converter", "heic to jpg free"],
+    category: "Image Conversion",
+  },
+  {
+    slug: "heic-to-jpg-windows",
+    title: "How to Convert HEIC to JPG on Windows 10 & 11 — 4 Free Methods (2026)",
+    description: "Convert HEIC iPhone photos to JPG on Windows 10 and 11. Four free methods: online converter, HEIC codec, Paint, and iPhone settings. No software required.",
+    publishDate: "2026-06-15",
+    readTime: "5 min read",
+    keywords: ["how to convert heic to jpg on windows", "heic to jpg windows 10", "heic to jpg windows 11", "convert heic to jpg windows", "heic converter windows", "heic to jpg free windows"],
+    category: "Image Conversion",
+  },
+  {
+    slug: "how-to-convert-webp-to-jpg",
+    title: "How to Convert WebP to JPG Free Online (2026)",
+    description: "Learn how to convert WebP to JPG in 4 easy steps. Free online converter, no signup. Works on Windows, Mac, and iPhone. preserves quality.",
+    publishDate: "2026-06-15",
+    readTime: "6 min read",
+    keywords: ["webp to jpg converter", "convert webp to jpg", "webp to jpg online", "how to convert webp to jpg", "webp converter", "webp to jpg free", "change webp to jpg"],
+    category: "Image Conversion",
+  },
+  {
+    slug: "webp-to-jpg-converter-guide",
+    title: "WebP to JPG Converter: Why WebP Images Won't Open & How to Fix",
+    description: "WebP images won't open or upload? Learn why WebP format causes problems and how to convert WebP to JPG instantly — free, no signup required.",
+    publishDate: "2026-06-11",
+    readTime: "5 min read",
+    keywords: ["webp to jpg", "convert webp to jpg", "webp image won't open", "webp converter", "why is my image webp", "webp format problems", "convert webp to jpg free"],
+    category: "Image Conversion",
+  },
+  {
+    slug: "indian-passport-photo-size-2026",
+    title: "Indian Passport Photo Size 2026: Complete Guide (630×810 Pixels)",
+    description: "Everything you need to know about Indian passport photo size in 2026 — dimensions, file size, background, and how to prepare your photo online.",
+    publishDate: "2026-06-11",
+    readTime: "7 min read",
+    keywords: ["indian passport photo size", "passport photo size 2026", "630x810 passport photo", "passport seva photo requirements", "india passport photo dimensions", "passport photo size in pixels", "passport seva 2.0 photo", "indian passport photo background"],
+    category: "Passport Photos",
+  },
+  {
+    slug: "passport-photo-size-requirements-by-country",
+    title: "Passport Photo Size Requirements by Country (2026 Updated)",
+    description: "Complete guide to passport photo sizes for all countries. Learn the exact dimensions, file size, and background requirements for your passport application.",
+    publishDate: "2026-06-06",
+    readTime: "9 min read",
+    keywords: ["passport photo size", "passport photo requirements", "passport photo dimensions", "passport size photo by country", "passport photo size india usa uk"],
+    category: "Passport Photos",
   },
 ];

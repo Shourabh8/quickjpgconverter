@@ -1,61 +1,45 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { blogPosts } from "@data/blog";
+
+const post = blogPosts.find((p) => p.slug === "passport-photo-size-requirements-by-country")!;
+const publishDate = "June 6, 2026";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
   { name: "Passport Photo Size by Country", url: "/blog/passport-photo-size-requirements-by-country" },
 ];
 
-const publishDate = "June 6, 2026";
+const faqItems = [
+  {
+    question: "What is the standard passport photo size worldwide?",
+    answer: "There is no single worldwide standard. The most common size is 35mm × 45mm, used by India, UK, most European countries, and Australia. The USA uses 2 inches × 2 inches (51mm × 51mm). Canada uses 50mm × 70mm. Always check your specific country's requirements.",
+  },
+  {
+    question: "Can I use the same passport photo for different countries?",
+    answer: "No. Each country has specific size, background, and file size requirements. A photo formatted for an Indian passport won't meet US requirements. Always use your country's specific dimensions when preparing passport photos.",
+  },
+  {
+    question: "What file format and size do I need for passport photos?",
+    answer: "Most countries require JPEG format. File size limits vary: India requires 10-50KB, USA allows up to 600KB, UK allows up to 10MB, and Canada allows up to 4MB. Digital submissions often have different limits than printed photos.",
+  },
+  {
+    question: "What background color is required for passport photos?",
+    answer: "Most countries require a plain white background. Some accept light grey or off-white. The USA, India, and most European countries require white. The UK accepts both grey and white. Never use colored, patterned, or gradient backgrounds.",
+  },
+];
 ---
 
-<BaseLayout
-  title="Passport Photo Size Requirements by Country (2026 Updated)"
-  description="Complete guide to passport photo sizes for all countries. Learn the exact dimensions, file size, and background requirements for your passport application."
-  canonical="https://quickjpgconverter.com/blog/passport-photo-size-requirements-by-country"
-  keywords={["passport photo size", "passport photo requirements", "passport photo dimensions", "passport size photo by country", "passport photo size india usa uk"]}
-  articleSchema={{
-    headline: "Passport Photo Size Requirements by Country (2026 Updated)",
-    datePublished: "2026-06-06",
-  }}
-  faqItems={[
-    {
-      question: "What is the standard passport photo size worldwide?",
-      answer: "There is no single worldwide standard. The most common size is 35mm × 45mm, used by India, UK, most European countries, and Australia. The USA uses 2 inches × 2 inches (51mm × 51mm). Canada uses 50mm × 70mm. Always check your specific country's requirements.",
-    },
-    {
-      question: "Can I use the same passport photo for different countries?",
-      answer: "No. Each country has specific size, background, and file size requirements. A photo formatted for an Indian passport won't meet US requirements. Always use your country's specific dimensions when preparing passport photos.",
-    },
-    {
-      question: "What file format and size do I need for passport photos?",
-      answer: "Most countries require JPEG format. File size limits vary: India requires 10-50KB, USA allows up to 600KB, UK allows up to 10MB, and Canada allows up to 4MB. Digital submissions often have different limits than printed photos.",
-    },
-    {
-      question: "What background color is required for passport photos?",
-      answer: "Most countries require a plain white background. Some accept light grey or off-white. The USA, India, and most European countries require white. The UK accepts both grey and white. Never use colored, patterned, or gradient backgrounds.",
-    },
-  ]}
+<BlogPostLayout
+  post={post}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
 >
   <section class="section">
     <Container variant="narrow">
-      <Breadcrumb items={breadcrumbs} />
 
       <article class="prose mt-8">
-        <div class="flex items-center gap-3 text-sm text-text-tertiary mb-6">
-          <time datetime="2026-06-06">{publishDate}</time>
-          <span>·</span>
-          <span>9 min read</span>
-        </div>
-
-        <h1>Passport Photo Size Requirements by Country (2026 Updated)</h1>
-
-        <p class="lead">
-          Passport photo requirements vary by country and getting them wrong can delay your application. Here are the exact dimensions, file sizes, and background requirements for passport photos worldwide.
-        </p>
-
         <h2>Complete Passport Photo Size Table</h2>
 
         <div class="not-prose my-6 overflow-x-auto">
@@ -246,4 +230,4 @@ const publishDate = "June 6, 2026";
       </div>
     </Container>
   </section>
-</BaseLayout>
+</BlogPostLayout>

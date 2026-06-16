@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { authors, defaultAuthor } from "@data/authors";
+import { blogPosts } from "@data/blog";
 
 const breadcrumbs = [
   { name: "Blog", url: "/blog" },
@@ -10,7 +10,7 @@ const breadcrumbs = [
 ];
 ---
 
-<BaseLayout
+<BlogPostLayout
   title="WebP Images Not Working? Here's the Fix (2026 Guide)"
   description="WebP images won't open? Learn why WebP files don't work and how to convert them to JPG/PNG. Free online converter included."
   canonical="https://quickjpgconverter.com/blog/webp-images-not-working-fix"
@@ -65,35 +65,8 @@ const breadcrumbs = [
       text: "Click Convert and download your JPG file instantly.",
     },
   ]}
+  post={blogPosts.find(p => p.slug === "webp-images-not-working-fix")!}
 >
-  <Container class="py-5 sm:py-6">
-    <Breadcrumb items={breadcrumbs} />
-  </Container>
-
-  <section class="pb-6 sm:pb-8">
-    <Container variant="narrow">
-      <div class="mb-6">
-        <Badge class="mb-4">Updated June 2026</Badge>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          WebP Images Not Working? Here's the Fix
-        </h1>
-        <p class="text-base sm:text-lg text-text-secondary">
-          WebP images won't open? Learn why WebP files don't work and how to convert them to JPG/PNG. Free online converter included.
-        </p>
-      </div>
-
-      <div class="flex items-center gap-4 py-4 border-y border-border-default">
-        <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
-          QJ
-        </div>
-        <div>
-          <p class="text-sm font-medium text-text-primary">Quick JPG Converter Team</p>
-          <p class="text-xs text-text-tertiary">3 min read · Updated June 11, 2026</p>
-        </div>
-      </div>
-    </Container>
-  </section>
-
   <article class="pb-12 sm:pb-16">
     <Container variant="narrow">
       <div class="prose">
@@ -285,4 +258,4 @@ const breadcrumbs = [
       </div>
     </Container>
   </section>
-</BaseLayout>
+</BlogPostLayout>

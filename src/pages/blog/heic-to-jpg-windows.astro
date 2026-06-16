@@ -1,16 +1,10 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPostLayout from "@components/layout/BlogPostLayout.astro";
 import Container from "@components/ui/Container.astro";
-import Badge from "@components/ui/Badge.astro";
-import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { blogPosts } from "@data/blog";
 
-const breadcrumbs = [
-  { name: "Blog", url: "/blog" },
-  { name: "HEIC to JPG on Windows", url: "/blog/heic-to-jpg-windows" },
-];
-
+const post = blogPosts.find((p) => p.slug === "heic-to-jpg-windows")!;
 const publishDate = "June 15, 2026";
-const readTime = "5 min read";
 
 const faqItems = [
   {
@@ -72,41 +66,16 @@ const faqSchema = {
 };
 ---
 
-<BaseLayout
-  title="How to Convert HEIC to JPG on Windows 10 & 11 — 4 Free Methods (2026)"
-  description="Convert HEIC iPhone photos to JPG on Windows 10 and 11. Four free methods: online converter, HEIC codec, Paint, and iPhone settings. No software required."
-  canonical="https://quickjpgconverter.com/blog/heic-to-jpg-windows"
-  breadcrumbs={breadcrumbs}
-  keywords={["how to convert heic to jpg on windows", "heic to jpg windows 10", "heic to jpg windows 11", "convert heic to jpg windows", "heic converter windows", "heic to jpg free windows"]}
+<BlogPostLayout
+  post={post}
+  breadcrumbs={[
+    { name: "Blog", url: "/blog" },
+    { name: "HEIC to JPG on Windows", url: "/blog/heic-to-jpg-windows" },
+  ]}
   faqItems={faqItems}
-  articleSchema={articleSchema}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-
-  <Container class="py-5 sm:py-6">
-    <Breadcrumb items={breadcrumbs} />
-  </Container>
-
-  <section class="pb-6 sm:pb-8">
-    <Container>
-      <div class="text-center max-w-2xl mx-auto">
-        <Badge class="mb-4">
-          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-          </svg>
-          Windows Guide
-        </Badge>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          How to Convert <span class="gradient-text">HEIC to JPG</span> on Windows 10 & 11
-        </h1>
-        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          4 free methods to open and convert iPhone HEIC photos on any Windows PC.
-        </p>
-        <p class="text-sm text-text-tertiary mt-3">Published {publishDate} · {readTime}</p>
-      </div>
-    </Container>
-  </section>
 
   <section class="pb-12 sm:pb-16">
     <Container variant="narrow">
@@ -258,4 +227,4 @@ const faqSchema = {
       </div>
     </Container>
   </section>
-</BaseLayout>
+</BlogPostLayout>
