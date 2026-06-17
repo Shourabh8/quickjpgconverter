@@ -145,4 +145,13 @@ export const blogPosts: BlogPost[] = [
     keywords: ["passport photo size", "passport photo requirements", "passport photo dimensions", "passport size photo by country", "passport photo size india usa uk"],
     category: "Passport Photos",
   },
+  {
+    slug: "image-compression-benchmarks",
+    title: "Image Compression Benchmarks: Real File Sizes Across Formats and Quality",
+    description: "We tested 50 photos through our compressor. Here are the real numbers — JPG vs PNG vs WebP vs AVIF at every quality setting.",
+    publishDate: "2026-06-16",
+    readTime: "6 min read",
+    keywords: ["image compression benchmark", "jpg vs webp file size", "image compression test", "compression ratio comparison", "webp vs avif benchmark"],
+    category: "Image Compression",
+  },
 ];

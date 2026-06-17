@@ -8,6 +8,7 @@ import ActiveConverter from "@components/tool/ActiveConverter.astro";
 
 const breadcrumbs = [
   { name: "Home", url: "/" },
+  { name: "Tools", url: "/tools" },
   { name: "PNG to JPG", url: "/png-to-jpg" },
 ];
 
@@ -40,11 +41,12 @@ const faqItems = [
 ---
 
 <BaseLayout
-  title="Convert PNG to JPG — Reduce File Size Without Visible Quality Loss"
-  description="Convert PNG images to JPG for smaller files and universal compatibility. Quality-controlled compression, batch processing, and 100% private — no uploads required."
+  title="Free PNG to JPG Converter — Reduce File Size Online"
+  description="Convert PNG images to JPG with our free PNG to JPG converter. Smaller files, universal compatibility, quality control, and 100% private — no uploads required."
   canonical="https://quickjpgconverter.com/png-to-jpg"
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
+  keywords={["png to jpg converter", "png to jpg", "convert png to jpg", "png to jpeg", "png to jpg online free", "free png to jpg converter", "png to jpg free", "reduce png file size"]}
 >
   <Container class="py-5 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
@@ -56,10 +58,10 @@ const faqItems = [
       <div class="text-center max-w-2xl mx-auto">
         <Badge class="mb-4">🛡️ 100% In-Browser Privacy</Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          Convert PNG to <span class="gradient-text">JPG</span>
+          Free PNG to <span class="gradient-text">JPG</span> Converter
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          Reduce PNG file sizes by 5-10× while keeping visually identical quality.
+          Convert PNG images to JPG with our free PNG to JPG converter. Reduce file sizes by 5-10× while keeping visually identical quality.
           Runs entirely on your computer — no server uploads.
         </p>
       </div>
@@ -216,10 +218,12 @@ const faqItems = [
 
       <div class="mt-8 text-xs text-text-tertiary">
         <p>Related tools:
+          <a href="/jpg-converter" class="text-brand-600 dark:text-brand-400 hover:underline">JPG Converter</a> ·
           <a href="/jpg-to-png" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PNG</a> ·
-          <a href="/jpg-to-webp" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to WebP</a> ·
           <a href="/webp-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">WebP to JPG</a> ·
-          <a href="/tools/jpg-to-pdf" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PDF</a>
+          <a href="/heic-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">HEIC to JPG</a> ·
+          <a href="/avif-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">AVIF to JPG</a> ·
+          <a href="/tools/image-compressor" class="text-brand-600 dark:text-brand-400 hover:underline">Image Compressor</a>
         </p>
       </div>
     </Container>

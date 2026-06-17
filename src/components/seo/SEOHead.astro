@@ -1,5 +1,6 @@
 ---
 import { generateMeta, generateJsonLd } from "@lib/seo";
+import { getAlternateLinks } from "@i18n/index";
 
 interface Props {
   title: string;
@@ -12,6 +13,7 @@ interface Props {
   faqItems?: { question: string; answer: string }[];
   keywords?: string[];
   howToSteps?: { name: string; text: string; image?: string }[];
+  locale?: string;
   toolSchema?: {
     name: string;
     description: string;
@@ -38,11 +40,14 @@ const {
   faqItems,
   keywords,
   howToSteps,
+  locale = "en",
   toolSchema,
   articleSchema,
 } = Astro.props;
 
 const meta = generateMeta({ title, description, canonical, ogImage, noindex });
+
+const alternateLinks = getAlternateLinks(locale as any, Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2"));
 
 const jsonLdData = jsonLd
   ? generateJsonLd({
@@ -78,6 +83,11 @@ const jsonLdData = jsonLd
 {meta.link.map((l) => (
   <link {...l} />
 ))}
+
+{alternateLinks.map((link) => (
+  <link rel="alternate" hreflang={link.lang} href={link.href} />
+))}
+<link rel="alternate" hreflang="x-default" href={`https://quickjpgconverter.com${Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2")}`} />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />

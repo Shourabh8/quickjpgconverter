@@ -7,6 +7,8 @@ import Breadcrumb from "@components/seo/Breadcrumb.astro";
 import ActiveConverter from "@components/tool/ActiveConverter.astro";
 
 const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Tools", url: "/tools" },
   { name: "HEIC to JPG", url: "/heic-to-jpg" },
 ];
 
@@ -39,12 +41,12 @@ const faqItems = [
 ---
 
 <BaseLayout
-  title="Free HEIC to JPG Converter — Convert iPhone Photos Instantly"
-  description="Convert iPhone HEIC photos to JPG instantly with our free online converter. No uploads, 100% private. Works in your browser on any device."
+  title="Free HEIC to JPG Converter — Convert iPhone Photos Online"
+  description="Convert iPhone HEIC photos to JPG instantly with our free HEIC to JPG converter. No uploads, 100% private. Works in your browser on any device."
   canonical="https://quickjpgconverter.com/heic-to-jpg"
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
-  keywords={["heic to jpg", "convert heic to jpg", "heic converter", "iphone photo converter", "heic to jpg online free", "heic to jpeg"]}
+  keywords={["heic to jpg converter", "heic to jpg", "convert heic to jpg", "heic converter", "iphone photo converter", "heic to jpg online free", "heic to jpeg", "free heic to jpg converter", "heic to jpg free"]}
 >
   <Container class="py-5 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
@@ -159,17 +161,29 @@ const faqItems = [
       </div>
 
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <a href="/tools/jpg-to-png" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PNG</h3>
-          <p class="text-sm text-text-secondary">Convert JPG to PNG with lossless quality.</p>
+        <a href="/png-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PNG to JPG</h3>
+          <p class="text-sm text-text-secondary">Reduce PNG file sizes by 5-10x.</p>
+        </a>
+        <a href="/webp-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">WebP to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert WebP for universal compatibility.</p>
+        </a>
+        <a href="/jpg-converter" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG Converter</h3>
+          <p class="text-sm text-text-secondary">Convert any image to JPG format.</p>
+        </a>
+        <a href="/avif-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">AVIF to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert next-gen AVIF to universal JPG.</p>
+        </a>
+        <a href="/cr2-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">CR2 to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert Canon RAW photos to JPG.</p>
         </a>
         <a href="/tools/image-compressor" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
           <p class="text-sm text-text-secondary">Compress images without quality loss.</p>
-        </a>
-        <a href="/tools/resize-jpg" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Resize JPG</h3>
-          <p class="text-sm text-text-secondary">Resize images to any dimension.</p>
         </a>
       </div>
     </Container>

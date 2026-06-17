@@ -1,0 +1,177 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import ActiveConverter from "@components/tool/ActiveConverter.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "RAW to JPG", url: "/raw-to-jpg" },
+];
+
+const faqItems = [
+  {
+    question: "What is a RAW file?",
+    answer: "A RAW file is an unprocessed image format captured directly by digital camera sensors. Unlike JPG, RAW files preserve all the original sensor data, giving photographers maximum flexibility for editing exposure, white balance, color, and other settings.",
+  },
+  {
+    question: "Why convert RAW to JPG?",
+    answer: "RAW files are large (20-50MB each), require specialized software to view, and can't be easily shared. Converting to JPG creates smaller, universally compatible files that can be shared, uploaded, and viewed on any device.",
+  },
+  {
+    question: "Which camera formats are supported?",
+    answer: "RAW formats include CR2/CR3 (Canon), NEF (Nikon), ARW (Sony), ORF (Olympus), RW2 (Panasonic), RAF (Fuji), and DNG (Adobe). Browser support varies by format. For best results, convert to DNG first or use desktop software.",
+  },
+  {
+    question: "Will converting RAW to JPG reduce quality?",
+    answer: "RAW files contain significantly more data than JPG. Converting to JPG applies lossy compression and reduces dynamic range. For casual sharing, the quality is excellent. For professional editing, keep the RAW file and work with it in RAW-capable software.",
+  },
+  {
+    question: "What software can open RAW files?",
+    answer: "Adobe Lightroom, Capture One, darktable (free), RawTherapee (free), and most modern photo editors can open and process RAW files. Camera manufacturers also provide free RAW processing software with their cameras.",
+  },
+  {
+    question: "Should I shoot in RAW or JPG?",
+    answer: "Shoot in RAW if you want maximum editing flexibility and quality. Shoot in JPG if you want smaller files and ready-to-share images. Many photographers shoot RAW+JPG to get both options. Use our converter to batch convert RAW files to JPG when needed.",
+  },
+];
+---
+
+<BaseLayout
+  title="Free RAW to JPG Converter — Convert Camera RAW Online"
+  description="Convert camera RAW photos to JPG with our free RAW to JPG converter. Supports Canon, Nikon, Sony, and more. No uploads, 100% private."
+  canonical="https://quickjpgconverter.com/raw-to-jpg"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["raw to jpg converter", "raw to jpg", "convert raw to jpg", "raw to jpeg", "raw to jpg online free", "free raw to jpg converter", "raw to jpg free", "camera raw to jpg", "canon raw to jpg", "nikon raw to jpg", "sony raw to jpg"]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">📷 Camera RAW Converter</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          RAW to <span class="gradient-text">JPG</span> Converter
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Convert camera RAW photos from Canon, Nikon, Sony, and more to JPG.
+          No uploads, 100% private — runs entirely in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Converter Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <ActiveConverter
+          targetFormat="jpg"
+          targetExt="jpg"
+          targetMime="image/jpeg"
+          accept=".cr2,.cr3,.nef,.arw,.orf,.rw2,.raf,.dng,.raw,.srw,.pef,.x3f"
+          inputFormat="RAW (Camera)"
+          outputFormat="JPG"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">How It Works</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your RAW files</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select your camera RAW files.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Convert instantly</h3>
+          <p class="text-sm text-text-secondary">Your image is converted in-browser. No server uploads.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download JPG</h3>
+          <p class="text-sm text-text-secondary">Get your compatible JPG file instantly.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQs -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Convert RAW to JPG?</h2>
+        <p>
+          RAW files are the digital equivalent of a film negative — they contain unprocessed sensor data from your camera, giving photographers maximum control in post-processing. However, RAW files are large (20-50MB each), require specialized software to view, and can't be easily shared or uploaded to most platforms.
+        </p>
+        <p>
+          Converting RAW to JPG creates smaller, universally compatible files that can be shared, uploaded, and viewed on any device. JPG is the most widely supported image format in the world — it works on every device, every browser, every social media platform, and every design tool.
+        </p>
+
+        <h3>When You Need JPG</h3>
+        <ul>
+          <li>Sharing photos on social media platforms</li>
+          <li>Uploading to photo printing services</li>
+          <li>Sending photos via email or messaging apps</li>
+          <li>Using in web projects or presentations</li>
+          <li>Archiving photos for long-term storage</li>
+          <li>Sharing with people who don't have RAW-capable software</li>
+        </ul>
+
+        <h3>RAW vs JPG: Key Differences</h3>
+        <p>
+          RAW files preserve all sensor data with maximum dynamic range and color depth. They're ideal for professional editing but require specialized software and significant storage space. A typical RAW file is 20-50MB.
+        </p>
+        <p>
+          JPG files are processed and compressed, typically 2-8MB each. They offer excellent quality for viewing and sharing while being universally compatible. The trade-off is less editing flexibility — once converted, you can't recover the full dynamic range of the original RAW data.
+        </p>
+
+        <h3>Benefits of Our Converter</h3>
+        <ul>
+          <li><strong>100% private</strong> — your photos never leave your device</li>
+          <li><strong>No software needed</strong> — works in your browser</li>
+          <li><strong>Batch conversion</strong> — convert multiple photos at once</li>
+          <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest size</li>
+          <li><strong>Free forever</strong> — no sign-up, no payment, no watermarks</li>
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/tools/cr2-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">CR2 to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert Canon RAW photos to JPG.</p>
+        </a>
+        <a href="/tools/heic-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">HEIC to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert iPhone HEIC photos to JPG.</p>
+        </a>
+        <a href="/tools/image-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
+          <p class="text-sm text-text-secondary">Compress images without quality loss.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

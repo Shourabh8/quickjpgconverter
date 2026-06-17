@@ -1,0 +1,192 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import ActiveConverter from "@components/tool/ActiveConverter.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Tools", url: "/tools" },
+  { name: "Free HEIC to JPG", url: "/free-heic-to-jpg" },
+];
+
+const faqItems = [
+  {
+    question: "What is HEIC format?",
+    answer: "HEIC (High Efficiency Image Container) is the default photo format for iPhones and iPads since iOS 11. It uses advanced compression to create high-quality images at smaller file sizes than JPG.",
+  },
+  {
+    question: "Why can't I open HEIC files on Windows?",
+    answer: "Windows doesn't natively support HEIC format. You need to convert HEIC to JPG for universal compatibility. Our converter works in your browser without any software installation.",
+  },
+  {
+    question: "How do I convert HEIC to JPG on iPhone?",
+    answer: "Simply open our converter in Safari, drag and drop your HEIC photos, and download the JPG files. No app installation needed — it works directly in your browser.",
+  },
+  {
+    question: "Will converting HEIC to JPG reduce quality?",
+    answer: "HEIC is already a compressed format. Converting to JPG will maintain the visual quality you see, though some HEIC-specific data may be lost. For most users, the quality difference is imperceptible.",
+  },
+  {
+    question: "Is this really free?",
+    answer: "Yes, completely free. No sign-up required, no watermarks, no hidden fees, no usage limits. Convert as many HEIC photos as you need, every day, forever.",
+  },
+];
+---
+
+<BaseLayout
+  title="Free HEIC to JPG Converter — No Signup, No Limits"
+  description="Free HEIC to JPG converter with no signup, no limits, and no watermarks. Convert unlimited iPhone photos to JPG. 100% private, runs in your browser."
+  canonical="https://quickjpgconverter.com/free-heic-to-jpg"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["free heic to jpg converter", "free heic to jpg", "heic to jpg converter free", "free iphone photo converter", "heic converter free", "free heic to jpg online"]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">100% Free · No Signup · Private</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Free HEIC to <span class="gradient-text">JPG</span> Converter
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Convert iPhone HEIC photos to universally compatible JPG format.
+          No uploads, 100% private — runs entirely in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Converter Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <ActiveConverter
+          targetFormat="jpg"
+          targetExt="jpg"
+          targetMime="image/jpeg"
+          accept=".heic,.heif"
+          inputFormat="HEIC / HEIF"
+          outputFormat="JPG"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">How It Works</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your HEIC</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select your iPhone photos.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Convert instantly</h3>
+          <p class="text-sm text-text-secondary">Your image is converted in-browser. No server uploads.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download JPG</h3>
+          <p class="text-sm text-text-secondary">Get your compatible JPG file instantly.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQs -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Convert HEIC to JPG?</h2>
+        <p>
+          HEIC (High Efficiency Image Container) is the default photo format for iPhones and iPads since iOS 11. While it offers excellent compression and quality, many platforms and applications still don't support it natively. This creates frustrating situations: you take photos on your iPhone and can't open them on Windows, can't upload them to social media, or can't share them with colleagues using non-Apple devices.
+        </p>
+        <p>
+          Converting HEIC to JPG solves this problem instantly. JPG is the most universally supported image format — it works on every device, every operating system, every design tool, and every website. Once converted, your iPhone photos work everywhere without any compatibility issues.
+        </p>
+
+        <h3>When You Need JPG</h3>
+        <ul>
+          <li>Uploading to social media platforms that don't support HEIC</li>
+          <li>Sharing photos with Windows or Android users</li>
+          <li>Using with older software or design tools</li>
+          <li>Printing photos at a photo lab</li>
+          <li>Attaching to emails that may not render HEIC</li>
+          <li>Uploading to government forms or portals</li>
+          <li>Using in web projects or presentations</li>
+        </ul>
+
+        <h3>HEIC vs JPG: Key Differences</h3>
+        <p>
+          HEIC uses more sophisticated compression technology than JPG, allowing it to store higher quality images at smaller file sizes. An iPhone photo saved as HEIC might be 3MB, while the same image in JPG would be 5-8MB. However, this efficiency comes at the cost of compatibility.
+        </p>
+        <p>
+          JPG trades some file size efficiency for near-universal compatibility. It has been the standard photographic image format for over 30 years, and virtually every piece of software, every platform, and every device in existence can open JPG files. For sharing and distribution, JPG remains unmatched.
+        </p>
+
+        <h3>Benefits of Our Converter</h3>
+        <ul>
+          <li><strong>100% private</strong> — your photos never leave your device</li>
+          <li><strong>No software needed</strong> — works in your browser</li>
+          <li><strong>Batch conversion</strong> — convert multiple photos at once</li>
+          <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest size</li>
+          <li><strong>Free forever</strong> — no sign-up, no payment, no watermarks</li>
+        </ul>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/heic-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">HEIC to JPG</h3>
+          <p class="text-sm text-text-secondary">Full-featured HEIC to JPG converter.</p>
+        </a>
+        <a href="/png-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PNG to JPG</h3>
+          <p class="text-sm text-text-secondary">Reduce PNG file sizes by 5-10x.</p>
+        </a>
+        <a href="/webp-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">WebP to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert WebP for universal compatibility.</p>
+        </a>
+        <a href="/jpg-converter" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG Converter</h3>
+          <p class="text-sm text-text-secondary">Convert any image to JPG format.</p>
+        </a>
+        <a href="/avif-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">AVIF to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert next-gen AVIF to universal JPG.</p>
+        </a>
+        <a href="/tools/image-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
+          <p class="text-sm text-text-secondary">Compress images without quality loss.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initConverter } from "@scripts/converter.js";
+    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "jpeg", targetExt: "jpg", targetMime: "image/jpeg" }));
+  </script>
+</BaseLayout>

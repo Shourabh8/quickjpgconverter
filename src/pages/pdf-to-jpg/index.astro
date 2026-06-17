@@ -6,6 +6,8 @@ import FAQ from "@components/ui/FAQ.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Tools", url: "/tools" },
   { name: "PDF to JPG", url: "/pdf-to-jpg" },
 ];
 
@@ -26,16 +28,32 @@ const faqItems = [
     question: "Is there a page limit?",
     answer: "No limit. Our converter handles PDFs of any size, though very large files may take a moment to process.",
   },
+  {
+    question: "What is the best free PDF to JPG converter?",
+    answer: "Quick JPG Converter is one of the best free PDF to JPG converters. It runs entirely in your browser, requires no sign-up, supports high-resolution output, and works on any device.",
+  },
+  {
+    question: "Can I convert a scanned PDF to JPG?",
+    answer: "Yes. Our converter renders each PDF page as a high-resolution JPG image, including scanned documents. Each page becomes a separate JPG file you can download and use.",
+  },
+  {
+    question: "How do I convert PDF to JPG on Mac?",
+    answer: "Open our PDF to JPG tool in Safari, drag and drop your PDF, and click Convert. The conversion happens in your browser — no software installation needed. Works on Mac, Windows, and mobile.",
+  },
+  {
+    question: "Is PDF to JPG conversion free?",
+    answer: "Yes, completely free. No sign-up required, no watermarks, no hidden fees. Convert as many PDFs as you need, every day, forever.",
+  },
 ];
 ---
 
 <BaseLayout
-  title="Free PDF to JPG Converter — Online PDF to JPG Tool"
-  description="Convert PDF pages to high-quality JPG images instantly with our free online converter. No uploads, 100% private — runs in your browser."
-  canonical="https://quickjpgconverter.com/tools/pdf-to-jpg"
+  title="Free PDF to JPG Converter — Convert PDF to JPG Online"
+  description="Convert PDF pages to high-quality JPG images instantly with our free PDF to JPG converter. No uploads, 100% private — runs in your browser."
+  canonical="https://quickjpgconverter.com/pdf-to-jpg"
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
-  keywords={["pdf to jpg", "convert pdf to jpg", "pdf to image", "pdf to jpeg", "pdf to jpg online free", "pdf converter"]}
+  keywords={["pdf to jpg converter", "pdf to jpg", "convert pdf to jpg", "pdf to image", "pdf to jpeg", "pdf to jpg online free", "pdf converter", "free pdf to jpg converter", "pdf to jpg free"]}
 >
   <Container class="py-5 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
@@ -195,9 +213,21 @@ const faqItems = [
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Try Our Other Converters</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <a href="/free-pdf-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Free PDF to JPG</h3>
+          <p class="text-sm text-text-secondary">Free PDF to JPG converter, no limits.</p>
+        </a>
         <a href="/tools/pdf-to-png" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF to PNG</h3>
           <p class="text-sm text-text-secondary">Convert PDF pages to PNG with transparency.</p>
+        </a>
+        <a href="/jpg-converter" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG Converter</h3>
+          <p class="text-sm text-text-secondary">Convert any image to JPG format.</p>
+        </a>
+        <a href="/tools/jpg-to-pdf" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PDF</h3>
+          <p class="text-sm text-text-secondary">Convert JPG images to PDF documents.</p>
         </a>
         <a href="/tools/png-to-pdf" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PNG to PDF</h3>
@@ -206,18 +236,6 @@ const faqItems = [
         <a href="/tools/pdf-compressor" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF Compressor</h3>
           <p class="text-sm text-text-secondary">Reduce PDF file size without quality loss.</p>
-        </a>
-        <a href="/tools/jpg-to-pdf" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PDF</h3>
-          <p class="text-sm text-text-secondary">Convert JPG images to PDF documents.</p>
-        </a>
-        <a href="/tools/compress-to-100kb" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 100KB</h3>
-          <p class="text-sm text-text-secondary">Reduce any image to under 100KB.</p>
-        </a>
-        <a href="/tools/compress-to-200kb" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 200KB</h3>
-          <p class="text-sm text-text-secondary">Reduce any image to under 200KB.</p>
         </a>
       </div>
     </Container>
