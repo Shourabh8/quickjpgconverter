@@ -30,20 +30,55 @@ function replaceExtension(filename, newExt) {
   return base + "." + newExt;
 }
 
-function loadImage(file) {
+let heic2anyPromise = null;
+function loadHeic2Any() {
+  if (typeof window === "undefined") return Promise.reject(new Error("Window not available"));
+  if (window.heic2any) return Promise.resolve(window.heic2any);
+  if (heic2anyPromise) return heic2anyPromise;
+
+  heic2anyPromise = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js";
+    script.onload = () => resolve(window.heic2any);
+    script.onerror = () => reject(new Error("Failed to load HEIC decoder module"));
+    document.head.appendChild(script);
+  });
+  return heic2anyPromise;
+}
+
+function loadImage(fileOrBlob) {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    const url = URL.createObjectURL(file);
+    const url = URL.createObjectURL(fileOrBlob);
     img.onload = () => {
       URL.revokeObjectURL(url);
       resolve(img);
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error("Failed to load: " + file.name));
+      reject(new Error("Failed to decode image data"));
     };
     img.src = url;
   });
+}
+
+async function loadFileAsImage(file) {
+  const isHeic = /\.(heic|heif)$/i.test(file.name) || file.type === "image/heic" || file.type === "image/heif";
+  if (isHeic) {
+    try {
+      return await loadImage(file);
+    } catch {
+      const heic2any = await loadHeic2Any();
+      const res = await heic2any({
+        blob: file,
+        toType: "image/jpeg",
+        quality: 0.95,
+      });
+      const jpegBlob = Array.isArray(res) ? res[0] : res;
+      return await loadImage(jpegBlob);
+    }
+  }
+  return await loadImage(file);
 }
 
 function imageToBlob(img, mime, quality) {
@@ -227,7 +262,11 @@ export function initBatchConverter() {
       progressText.textContent = `Converting ${i + 1} of ${files.length}...`;
 
       try {
-        const img = await loadImage(files[i]);
+        const isHeic = /\.(heic|heif)$/i.test(files[i].name) || files[i].type === "image/heic" || files[i].type === "image/heif";
+        if (isHeic) {
+          progressText.textContent = `Decoding HEIC ${i + 1} of ${files.length}...`;
+        }
+        const img = await loadFileAsImage(files[i]);
         const blob = await imageToBlob(img, target.mime, quality);
         convertedResults.push({
           blob,

@@ -65,10 +65,9 @@ const jsonLdData = jsonLd
 
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preconnect -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+<!-- Preload local primary font -->
+<link rel="preload" href="/fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/inter-semibold.woff2" as="font" type="font/woff2" crossorigin />
 
 <title>{meta.title}</title>
 

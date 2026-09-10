@@ -1,0 +1,332 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Aadhaar Photo Resize", url: "/aadhar-photo-resize" },
+];
+
+const requirements = [
+  { label: "Photo Size", value: "2cm × 2cm or 3.5cm × 4.5cm", detail: "Varies by enrollment type" },
+  { label: "File Size", value: "Under 30 KB", detail: "Some portals accept up to 50 KB" },
+  { label: "Format", value: "JPG / JPEG", detail: "Standard photo format" },
+  { label: "Background", value: "Plain white", detail: "No shadows or patterns" },
+  { label: "Recent Photo", value: "Within 6 months", detail: "Clear face, front-facing" },
+];
+
+const faqItems = [
+  {
+    question: "What is the photo size for Aadhaar card?",
+    answer: "UIDAI accepts passport-size photos (3.5cm × 4.5cm) for Aadhaar enrollment and update. Some enrollment centers also accept smaller photos (2cm × 2cm). The file size should be under 30 KB, though some portals accept up to 50 KB. Format must be JPG/JPEG.",
+  },
+  {
+    question: "How do I resize my photo for Aadhaar update?",
+    answer: "Upload your photo to our tool above. Select the Aadhaar preset dimensions, set target size to 30KB or less, and click Compress. The tool will resize and compress your photo to meet Aadhaar requirements automatically.",
+  },
+  {
+    question: "Can I use a selfie for Aadhaar photo?",
+    answer: "UIDAI recommends professional passport photos. If using a selfie, ensure it's taken against a white wall with even lighting, and crop it to passport dimensions. Avoid distorted angles.",
+  },
+  {
+    question: "What background is required for Aadhaar photo?",
+    answer: "Plain white or very light colored background. No shadows, patterns, or colored backgrounds. The photo should have even lighting across the face.",
+  },
+  {
+    question: "How old can my Aadhaar photo be?",
+    answer: "UIDAI recommends photos taken within the last 6 months. If your appearance has changed significantly, update your photo at the nearest Aadhaar enrollment center.",
+  },
+  {
+    question: "Is there a specific format for Aadhaar photo upload?",
+    answer: "For online Aadhaar update (SSS UIDAI portal), upload JPG images under 30 KB. For enrollment centers, bring printed passport-size photos. Our tool handles both use cases.",
+  },
+];
+---
+
+<BaseLayout
+  title="Aadhaar Photo Resize — Free Online Tool"
+  description="Resize and compress photos for Aadhaar card enrollment and update. Passport-size, under 30KB. Free online tool. 100% private."
+  canonical="https://quickjpgconverter.com/aadhar-photo-resize"
+  keywords={["aadhaar photo size", "aadhar photo resize", "aadhaar card photo", "resize photo for aadhaar", "aadhaar photo compressor", "aadhaar enrollment photo", "aadhaar update photo size", "uidai photo requirements"]}
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  toolSchema={{
+    name: "Aadhaar Photo Resize",
+    description: "Resize and compress photos for Aadhaar card enrollment and update. Under 30KB, passport-size.",
+    url: "https://quickjpgconverter.com/aadhar-photo-resize",
+    featureList: ["Aadhaar-compliant dimensions", "Target size under 30KB", "Passport-size format", "Batch processing", "Instant browser compression", "100% private", "Free to use"],
+  }}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Aadhaar / UIDAI · Free · Private
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          <span class="gradient-text">Aadhaar Photo</span> Resize — Resize for Aadhaar Card
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Resize and compress your photo for Aadhaar enrollment or update — passport-size, under 30KB, JPG format.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Requirements card -->
+  <section class="pb-8">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <div class="rounded-2xl border border-brand-200 dark:border-brand-800 bg-brand-50/30 dark:bg-brand-950/20 overflow-hidden">
+          <div class="px-5 sm:px-6 py-4 border-b border-brand-200/50 dark:border-brand-800/50 bg-brand-100/30 dark:bg-brand-900/20">
+            <h2 class="text-sm font-bold text-brand-800 dark:text-brand-300 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>
+              Aadhaar / UIDAI Photo Requirements
+            </h2>
+          </div>
+          <div class="divide-y divide-brand-200/50 dark:divide-brand-800/50">
+            {requirements.map((req) => (
+              <div class="flex items-center justify-between px-5 sm:px-6 py-3">
+                <div>
+                  <span class="text-sm font-medium text-text-primary">{req.label}</span>
+                  <span class="text-xs text-text-tertiary ml-2">{req.detail}</span>
+                </div>
+                <span class="text-sm font-bold text-brand-700 dark:text-brand-400">{req.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Tool -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Resize & Compress:</span>
+            <div class="flex items-center gap-2">
+              <select id="dimension-preset" class="px-3 py-1.5 rounded-lg text-xs font-medium border border-border-default bg-surface text-text-primary focus:outline-none focus:border-brand-500">
+                <option value="142x142">2cm × 2cm (142 × 142 px)</option>
+                <option value="138x177" selected>3.5cm × 4.5cm (138 × 177 px)</option>
+              </select>
+              <span class="text-xs text-text-tertiary">·</span>
+              <span id="target-size-display" class="px-3 py-1.5 rounded-lg text-sm font-bold bg-brand-600 text-white shadow-sm">30 KB</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-5 lg:min-h-[480px]">
+            <!-- Upload -->
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full sm:min-h-[300px] min-h-[200px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your photo here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">Passport-size photo for Aadhaar enrollment</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose Photo
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp" />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Max 50MB</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">1 file ready</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 overflow-y-auto max-h-[350px]"></div>
+                  <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
+                    <span class="text-text-tertiary">Target: ≤ 30KB</span>
+                    <span class="text-text-tertiary">→</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">Output: JPG</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Options + Compress -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <h3 class="text-sm font-semibold text-text-primary mb-3">Aadhaar Photo Settings</h3>
+
+              <div class="space-y-3 mb-6">
+                <div class="p-3 rounded-lg border border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-950/50">
+                  <div class="text-xs font-medium text-brand-700 dark:text-brand-400 mb-1">Dimensions</div>
+                  <div id="dimension-display" class="text-sm font-semibold text-text-primary">3.5cm × 4.5cm (138 × 177 px)</div>
+                </div>
+                <div class="p-3 rounded-lg border border-border-default bg-surface-muted">
+                  <div class="text-xs font-medium text-text-tertiary mb-1">Target Size</div>
+                  <div class="flex items-center gap-2">
+                    <input id="target-kb" type="number" min="5" max="50" value="30" class="w-16 px-2 py-1 rounded text-xs font-medium border border-border-default bg-surface text-text-primary focus:outline-none focus:border-brand-500" />
+                    <span class="text-xs text-text-tertiary">KB (5–50)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <h4 class="text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-2">Tips for Aadhaar Photos</h4>
+                <ul class="text-xs text-text-secondary space-y-1.5">
+                  <li>• Plain white background required</li>
+                  <li>• Face should be clearly visible</li>
+                  <li>• No sunglasses or head coverings</li>
+                  <li>• Even lighting, no shadows</li>
+                  <li>• Recent photo (within 6 months)</li>
+                </ul>
+              </div>
+
+              <div class="flex-1"></div>
+
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Processing...</p>
+              </div>
+
+              <div id="compress-btn-area">
+                <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  Resize & Compress for Aadhaar
+                </button>
+                <p class="text-xs text-text-tertiary text-center mt-2">Upload a photo to start</p>
+              </div>
+              <div id="download-area" class="hidden"></div>
+
+              <div class="mt-6 pt-4 border-t border-border-default">
+                <FeatureRequest toolName="Aadhaar Photo Resize" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Guide section -->
+  <section class="section bg-surface-muted">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Complete Guide</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Aadhaar Photo Requirements — Full Guide</h2>
+      </div>
+      <div class="prose">
+        <h3>UIDAI Photo Specifications for Aadhaar</h3>
+        <p>The Unique Identification Authority of India (UIDAI) requires specific photo formats for Aadhaar enrollment, updates, and corrections. Whether you're applying for a new Aadhaar card or updating your existing one, your photo must meet these requirements.</p>
+
+        <h4>Photo Size Requirements</h4>
+        <ul>
+          <li><strong>Standard size:</strong> 3.5cm × 4.5cm (passport size) — 138 × 177 pixels at 100 DPI</li>
+          <li><strong>Alternative size:</strong> 2cm × 2cm — 79 × 79 pixels at 100 DPI (some centers)</li>
+          <li><strong>File format:</strong> JPG/JPEG only</li>
+          <li><strong>File size:</strong> Under 30 KB (some portals accept up to 50 KB)</li>
+        </ul>
+
+        <h4>Photo Quality Requirements</h4>
+        <ul>
+          <li><strong>Background:</strong> White or very light colored, plain, no patterns</li>
+          <li><strong>Lighting:</strong> Even lighting, no harsh shadows on face</li>
+          <li><strong>Expression:</strong> Neutral or slight smile, mouth closed</li>
+          <li><strong>Eyes:</strong> Open, looking directly at camera</li>
+          <li><strong>Head position:</strong> Full face, front view, ears visible</li>
+          <li><strong>Recency:</strong> Photo should be taken within the last 6 months</li>
+        </ul>
+
+        <h4>How to Use This Tool</h4>
+        <ol>
+          <li>Upload your passport-size photo</li>
+          <li>Select dimensions: 2cm × 2cm or 3.5cm × 4.5cm</li>
+          <li>Set target size to 30 KB or less</li>
+          <li>Click "Resize & Compress for Aadhaar"</li>
+          <li>Download the compressed JPG — ready for Aadhaar enrollment</li>
+        </ol>
+
+        <h4>Aadhaar Enrollment Tips</h4>
+        <ul>
+          <li>Visit nearest Aadhaar enrollment center with your documents</li>
+          <li>Carry original documents: proof of identity, address, and date of birth</li>
+          <li>Biometrics (fingerprints and iris scan) will be taken at the center</li>
+          <li>For online updates, upload the compressed photo on the UIDAI portal</li>
+          <li>Keep a digital copy for future updates</li>
+        </ul>
+
+        <p>Also see: <a href="/compress-to-100kb">Compress to 100KB</a> · <a href="/compress-to-size">Compress to Any Size</a> · <a href="/resize-jpg">Resize JPG</a> · <a href="/upsc-photo-compressor">UPSC Photo Compressor</a></p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <script>
+    import { initTargetedCompressor } from "@scripts/targeted-compress.js";
+    document.addEventListener("DOMContentLoaded", () => {
+      const targetInput = document.getElementById("target-kb") as HTMLInputElement;
+      const dimensionPreset = document.getElementById("dimension-preset") as HTMLSelectElement;
+      const dimensionDisplay = document.getElementById("dimension-display");
+
+      const dimensionMap: Record<string, string> = {
+        "142x142": "2cm × 2cm (142 × 142 px)",
+        "138x177": "3.5cm × 4.5cm (138 × 177 px)",
+      };
+
+      function getTargetBytes() {
+        const val = parseInt(targetInput?.value || "30", 10);
+        return Math.max(5, Math.min(50, isNaN(val) ? 30 : val)) * 1024;
+      }
+
+      initTargetedCompressor({ targetSize: getTargetBytes() });
+
+      targetInput?.addEventListener("change", () => {
+        const w = window as Record<string, unknown>;
+        const val = parseInt(targetInput.value || "30", 10);
+        const kb = Math.max(5, Math.min(50, isNaN(val) ? 30 : val));
+        if (typeof w.__setTargetSize === "function") w.__setTargetSize(kb);
+      });
+
+      dimensionPreset?.addEventListener("change", () => {
+        if (dimensionDisplay) {
+          dimensionDisplay.textContent = dimensionMap[dimensionPreset.value] || dimensionPreset.value;
+        }
+      });
+    });
+  </script>
+</BaseLayout>

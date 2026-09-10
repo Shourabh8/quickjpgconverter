@@ -18,7 +18,30 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      filter: (page) => !page.includes("/admin") && !page.includes("/tools/"),
+      filter: (page) => {
+        // Always include main tools directory
+        if (page === "https://quickjpgconverter.com/tools" || page === "https://quickjpgconverter.com/tools/") return true;
+
+        // Exclude English /tools/* redirect pages
+        if (page.startsWith("https://quickjpgconverter.com/tools/")) return false;
+
+        const excluded = [
+          "/admin",
+          "/free-heic-to-jpg",
+          "/free-pdf-to-jpg",
+          "/free-online-pdf-to-jpg",
+          "/online-pdf-to-jpg",
+          "/jpg-converter",
+          "/image-to-jpg-converter",
+          "/jpg-compressor",
+          "/png-compressor",
+          "/compress-image",
+          "/compress-pdf",
+          "/why",
+          "/blog/webp-to-jpg-converter",
+        ];
+        return !excluded.some((path) => page.endsWith(path) || page.endsWith(path + "/") || page.includes(path + "/"));
+      },
     }),
   ],
 });

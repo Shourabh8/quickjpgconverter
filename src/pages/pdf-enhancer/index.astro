@@ -3,229 +3,189 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
+import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
-const breadcrumbs = [{ name: "PDF Enhancer", url: "/pdf-enhancer" }];
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "PDF Enhancer", url: "/pdf-enhancer" },
+];
 
 const faqItems = [
   {
-    question: "What adjustments can I make to a PDF?",
-    answer: "You can control brightness, contrast, saturation, and sharpness for every page in the PDF. Each slider gives you fine-grained control over the visual quality of your document.",
+    question: "What enhancements can I apply to PDFs?",
+    answer: "You can adjust brightness, contrast, saturation, sharpness, and apply grayscale or sepia effects to all pages in your PDF.",
   },
   {
-    question: "Will enhancing a PDF reduce its quality?",
-    answer: "No. Enhancement adjusts visual parameters without destructive compression. The output PDF retains the same resolution and text clarity as the original — you're only tuning how the pages look.",
+    question: "Will my PDF be uploaded?",
+    answer: "No. All processing happens in your browser using PDF.js and Canvas API. Your PDF never leaves your device.",
   },
   {
-    question: "Can I enhance scanned PDF documents?",
-    answer: "Yes. Scanned documents often benefit from increased contrast and sharpness to improve readability. Boosting contrast makes text stand out, while sharpness clarifies fine details in scanned images.",
+    question: "Does it work with multi-page PDFs?",
+    answer: "Yes. All pages are enhanced with the same settings and compiled into a new PDF document.",
   },
   {
-    question: "Is there a file size limit for PDF enhancement?",
-    answer: "Each PDF can be up to 50MB. There's no limit on the number of files you can enhance in one session.",
-  },
-  {
-    question: "Are my PDF files uploaded to a server?",
-    answer: "No. All enhancement happens locally in your browser using the Canvas API and pdf-lib. Your files never leave your device — not even temporarily.",
-  },
-  {
-    question: "Can I enhance multiple PDFs at once?",
-    answer: "Yes. You can upload and enhance multiple PDF files in one session and download them all as a ZIP archive.",
+    question: "What if my PDF is encrypted?",
+    answer: "Password-protected PDFs cannot be processed. Please remove the password first and try again.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Free PDF Enhancer — Improve PDF Page Quality Online"
-  description="Enhance PDF pages with brightness, contrast, saturation, and sharpness controls. 100% private, runs in your browser, no uploads required."
+  title="Free PDF Enhancer — Adjust Brightness, Contrast, Sharpness Online"
+  description="Enhance your PDF pages with professional adjustments — brightness, contrast, saturation, sharpness. No uploads, 100% private — runs in your browser."
   canonical="https://quickjpgconverter.com/pdf-enhancer"
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
-  keywords={["pdf enhancer", "enhance pdf", "improve pdf quality", "sharpen pdf", "adjust pdf brightness", "edit pdf online", "free pdf editor", "pdf editor online"]}
+  keywords={["pdf enhancer", "enhance pdf", "adjust pdf brightness", "improve pdf quality", "sharpen pdf", "online pdf editor", "free pdf enhancer"]}
+  toolSchema={{
+    name: "PDF Enhancer",
+    description: "Enhance PDF pages with brightness, contrast, saturation, and sharpness controls.",
+    url: "https://quickjpgconverter.com/pdf-enhancer",
+    featureList: ["Brightness adjustment", "Contrast enhancement", "Saturation control", "Sharpness tuning", "Page-by-page control", "Instant results", "Free tool"],
+  }}
 >
   <Container class="py-5 sm:py-6">
     <Breadcrumb items={breadcrumbs} />
   </Container>
 
-  <!-- Title Section -->
-  <section class="pb-6 sm:pb-8 bg-glow">
+  <section class="pb-6 sm:pb-8">
     <Container>
       <div class="text-center max-w-2xl mx-auto">
-        <Badge class="mb-4">✨ PDF Page Enhancement</Badge>
+        <Badge class="mb-4">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+          </svg>
+          Free · No Signup · Private
+        </Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          <span class="gradient-text">PDF</span> Enhancer
+          Free Online PDF <span class="gradient-text">Enhancer</span> — Improve PDF Quality
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          Fine-tune brightness, contrast, saturation, and sharpness on every PDF page.
-          100% private — processed entirely in your browser.
+          Professional PDF enhancement with brightness, contrast, saturation, and sharpness controls.
+          No uploads, 100% private — runs in your browser.
         </p>
       </div>
     </Container>
   </section>
 
-  <!-- Enhancer Widget -->
   <section class="pb-12 sm:pb-16">
     <Container>
       <div class="max-w-5xl mx-auto">
         <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
-          <!-- Top bar -->
           <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
-            <span class="text-sm font-medium text-text-secondary">Enhance PDF pages</span>
-            <div class="flex items-center gap-1.5 text-xs text-text-tertiary">
-              <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
-              Local Processing
+            <span class="text-sm font-medium text-text-secondary">Professional PDF Enhancement</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <span class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">Enhance</span>
             </div>
           </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-5 min-h-[440px]">
-            <!-- LEFT: Upload / Preview -->
+          <div class="grid grid-cols-1 lg:grid-cols-5 lg:min-h-[480px]">
+            <!-- LEFT: Upload / Info -->
             <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
               <div id="upload-zone" class="h-full">
-                <div
-                  id="drop-area"
-                  class="relative h-full sm:min-h-[300px] min-h-[200px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
-                >
+                <div id="drop-area" class="relative h-full sm:min-h-[300px] min-h-[200px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
                   <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                     </svg>
                   </div>
-                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your PDF files here</h3>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your PDF here</h3>
                   <p class="text-sm text-text-secondary mb-5 max-w-xs">tap to browse or drag and drop</p>
                   <label class="btn-primary btn-md cursor-pointer">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
-                    Choose PDF Files
-                    <input type="file" class="sr-only" accept=".pdf" multiple />
+                    Choose PDF
+                    <input type="file" class="sr-only" accept=".pdf" />
                   </label>
-                  <p class="text-xs text-text-tertiary mt-4">PDF · Multiple files supported · Max 50MB each</p>
+                  <p class="text-xs text-text-tertiary mt-4">PDF · Max 50MB · Single file</p>
                   <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
                     <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
-                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to enhance</p>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
                   </div>
                 </div>
               </div>
 
-              <div id="preview-zone" class="hidden h-full">
-                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
-                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
-                    <div class="flex items-center gap-2">
-                      <div class="w-2 h-2 rounded-full bg-success"></div>
-                      <span id="file-count" class="text-sm font-medium text-text-primary">0 files ready</span>
-                    </div>
-                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
-                  </div>
-                  <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- RIGHT: Options + Actions -->
-            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col justify-between">
-              <div>
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Enhancement Controls</h3>
-
-                <div class="space-y-5 mb-6">
-                  <div>
-                    <div class="flex items-center justify-between mb-2">
-                      <label class="text-sm font-semibold text-text-primary" for="brightness-slider">Brightness</label>
-                      <span id="brightness-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">0</span>
-                    </div>
-                    <input
-                      id="brightness-slider"
-                      type="range"
-                      min="-100"
-                      max="100"
-                      value="0"
-                      class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
-                    />
-                    <div class="flex justify-between text-xs text-text-tertiary mt-1">
-                      <span>Darker</span>
-                      <span>Brighter</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div class="flex items-center justify-between mb-2">
-                      <label class="text-sm font-semibold text-text-primary" for="contrast-slider">Contrast</label>
-                      <span id="contrast-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">0</span>
-                    </div>
-                    <input
-                      id="contrast-slider"
-                      type="range"
-                      min="-100"
-                      max="100"
-                      value="0"
-                      class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
-                    />
-                    <div class="flex justify-between text-xs text-text-tertiary mt-1">
-                      <span>Lower</span>
-                      <span>Higher</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div class="flex items-center justify-between mb-2">
-                      <label class="text-sm font-semibold text-text-primary" for="saturation-slider">Saturation</label>
-                      <span id="saturation-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">0</span>
-                    </div>
-                    <input
-                      id="saturation-slider"
-                      type="range"
-                      min="-100"
-                      max="100"
-                      value="0"
-                      class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
-                    />
-                    <div class="flex justify-between text-xs text-text-tertiary mt-1">
-                      <span>Desaturated</span>
-                      <span>Vivid</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div class="flex items-center justify-between mb-2">
-                      <label class="text-sm font-semibold text-text-primary" for="sharpness-slider">Sharpness</label>
-                      <span id="sharpness-value" class="text-sm font-medium text-brand-600 dark:text-brand-400">0</span>
-                    </div>
-                    <input
-                      id="sharpness-slider"
-                      type="range"
-                      min="0"
-                      max="100"
-                      value="0"
-                      class="w-full h-2 bg-surface-muted rounded-full appearance-none cursor-pointer accent-brand-600"
-                    />
-                    <div class="flex justify-between text-xs text-text-tertiary mt-1">
-                      <span>Soft</span>
-                      <span>Sharp</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div id="progress-area" class="hidden mb-4">
+              <div id="result-zone" class="hidden">
+                <div id="file-info" class="mb-4"></div>
+                <div id="progress-area" class="hidden">
                   <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
                     <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
                   </div>
                   <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Enhancing...</p>
                 </div>
-
-                <div id="enhance-btn-area">
-                  <button id="enhance-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                    </svg>
+                <div class="flex gap-2 mt-4">
+                  <button id="enhance-btn" class="flex-1 btn-primary btn-md justify-center hidden">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
                     Enhance PDF
                   </button>
-                  <p class="text-xs text-text-tertiary text-center mt-2">Processed locally in your browser</p>
+                  <button id="download-btn" class="flex-1 btn-primary btn-md justify-center hidden">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                    Download
+                  </button>
+                  <button id="enhance-more-btn" class="flex-1 btn-secondary btn-md justify-center hidden">New PDF</button>
                 </div>
+              </div>
+            </div>
 
-                <div id="download-area" class="hidden"></div>
+            <!-- RIGHT: Controls -->
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col overflow-y-auto max-h-[600px]">
+              <div class="mb-5">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Adjustments</h3>
+                <div class="space-y-4">
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label class="text-xs font-medium text-text-secondary">Brightness</label>
+                      <span id="brightness-value" class="text-xs font-semibold text-brand-600 dark:text-brand-400">100%</span>
+                    </div>
+                    <input type="range" id="brightness" min="0" max="200" value="100" class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-surface-muted accent-brand-600" />
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label class="text-xs font-medium text-text-secondary">Contrast</label>
+                      <span id="contrast-value" class="text-xs font-semibold text-brand-600 dark:text-brand-400">100%</span>
+                    </div>
+                    <input type="range" id="contrast" min="0" max="200" value="100" class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-surface-muted accent-brand-600" />
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label class="text-xs font-medium text-text-secondary">Saturation</label>
+                      <span id="saturation-value" class="text-xs font-semibold text-brand-600 dark:text-brand-400">100%</span>
+                    </div>
+                    <input type="range" id="saturation" min="0" max="200" value="100" class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-surface-muted accent-brand-600" />
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label class="text-xs font-medium text-text-secondary">Sharpness</label>
+                      <span id="sharpness-value" class="text-xs font-semibold text-brand-600 dark:text-brand-400">0%</span>
+                    </div>
+                    <input type="range" id="sharpness" min="0" max="100" value="0" class="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-surface-muted accent-brand-600" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="h-px bg-border-default mb-5"></div>
+
+              <div class="mb-5">
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Effects</h3>
+                <div class="space-y-2">
+                  <label class="flex items-center gap-3 p-2.5 rounded-lg border border-border-default hover:bg-surface-subtle/50 cursor-pointer transition-all">
+                    <input type="checkbox" id="grayscale" class="w-4 h-4 text-brand-600 rounded border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <span class="text-sm text-text-primary">Grayscale</span>
+                  </label>
+                  <label class="flex items-center gap-3 p-2.5 rounded-lg border border-border-default hover:bg-surface-subtle/50 cursor-pointer transition-all">
+                    <input type="checkbox" id="sepia" class="w-4 h-4 text-brand-600 rounded border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                    <span class="text-sm text-text-primary">Sepia</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex-1"></div>
+
+              <div class="p-3 rounded-lg bg-surface-muted border border-border-default">
+                <p class="text-xs text-text-tertiary text-center">All pages will be enhanced with the same settings</p>
               </div>
             </div>
           </div>
@@ -234,85 +194,99 @@ const faqItems = [
     </Container>
   </section>
 
-  <!-- How It Works -->
+  <FeatureRequest toolName="PDF Enhancer" />
+
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
-        <Badge class="mb-4">Simple Process</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps to Better PDFs</h2>
+        <Badge class="mb-4">How It Works</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Professional Enhancement</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
-          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload PDFs</h3>
-          <p class="text-sm text-text-secondary">Drag and drop or click to select. Supports batch upload.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Upload PDF</h3>
+          <p class="text-sm text-text-secondary">Drop or click to select your PDF file.</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
-          <h3 class="text-base font-semibold text-text-primary mb-1.5">Adjust Controls</h3>
-          <p class="text-sm text-text-secondary">Tweak brightness, contrast, saturation, and sharpness.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Adjust Settings</h3>
+          <p class="text-sm text-text-secondary">Fine-tune brightness, contrast, saturation, and sharpness.</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
-          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download Results</h3>
-          <p class="text-sm text-text-secondary">Get enhanced files individually or as a ZIP.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download</h3>
+          <p class="text-sm text-text-secondary">Get your enhanced PDF instantly.</p>
         </div>
       </div>
     </Container>
   </section>
 
-  <!-- SEO Prose & FAQ -->
   <section class="section">
     <Container variant="narrow">
       <div class="prose">
-        <h2>Why Enhance PDF Pages?</h2>
-        <p>
-          PDFs come from many sources — scanners, cameras, email attachments, and web downloads — and the visual quality varies widely. A scanned document may be too dark, a photo-heavy PDF might have washed-out colors, and low-resolution pages can look blurry. Enhancing these pages before sharing or printing ensures they look their best without needing expensive desktop software.
-        </p>
-        <p>
-          Our browser-based enhancer gives you precise control over four key visual properties: brightness to lighten or darken pages, contrast to make text and images pop, saturation to boost or mute colors, and sharpness to bring out fine detail. All adjustments happen instantly in your browser — no file uploads, no waiting, no risk of your data being intercepted.
-        </p>
-
-        <h3>Common Use Cases</h3>
+        <h2>Professional PDF Enhancement</h2>
+        <p>Enhance your PDF documents with professional-grade adjustments. All processing happens in your browser — your PDFs never leave your device.</p>
+        <h3>Available Adjustments</h3>
         <ul>
-          <li><strong>Scanned documents</strong> — boost contrast and sharpness to improve text readability</li>
-          <li><strong>Low-light photos in PDFs</strong> — increase brightness and contrast to reveal hidden detail</li>
-          <li><strong>Faded prints</strong> — restore color vibrancy with saturation adjustments</li>
-          <li><strong>Presentations exported as PDF</strong> — sharpen slides for crisper on-screen viewing</li>
-          <li><strong>Archived documents</strong> — enhance aged or yellowed pages for better legibility</li>
+          <li><strong>Brightness</strong> — Make dark PDFs brighter or dim bright pages</li>
+          <li><strong>Contrast</strong> — Increase the difference between text and background</li>
+          <li><strong>Saturation</strong> — Control the intensity of colors</li>
+          <li><strong>Sharpness</strong> — Enhance text and image clarity</li>
+          <li><strong>Grayscale</strong> — Convert to black and white</li>
+          <li><strong>Sepia</strong> — Apply a warm vintage tone</li>
         </ul>
-
-        <h3>Tips for Best Results</h3>
+        <h3>Use Cases</h3>
         <ul>
-          <li>Start with small adjustments — a little goes a long way with brightness and contrast</li>
-          <li>For scanned text documents, increase contrast first, then sharpen slightly</li>
-          <li>For photo-heavy PDFs, boost saturation moderately to restore natural color</li>
-          <li>If a page looks grainy after sharpening, dial it back a few points</li>
-          <li>Use the reset defaults to compare your changes against the original</li>
+          <li>Improve scanned documents with low contrast</li>
+          <li>Brighten dark PDF pages for better readability</li>
+          <li>Enhance old or faded PDF documents</li>
+          <li>Make text more crisp and readable</li>
         </ul>
       </div>
+    </Container>
+  </section>
 
-      <div class="mt-12">
-        <div class="text-center mb-10">
-          <Badge class="mb-4">FAQ</Badge>
-          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
-        </div>
-        <FAQ items={faqItems} />
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
       </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
 
-      <!-- Related tools -->
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Related Tools</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Try Our Other Tools</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
         <a href="/pdf-compressor" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF Compressor</h3>
           <p class="text-sm text-text-secondary">Reduce PDF file size without quality loss.</p>
         </a>
+        <a href="/image-enhancer" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Enhancer</h3>
+          <p class="text-sm text-text-secondary">Enhance images with professional adjustments.</p>
+        </a>
         <a href="/pdf-to-jpg" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF to JPG</h3>
-          <p class="text-sm text-text-secondary">Convert PDF pages to JPG images.</p>
+          <p class="text-sm text-text-secondary">Extract PDF pages as JPG images.</p>
         </a>
-        <a href="/compress-pdf" class="card-hover p-5 group">
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress PDF</h3>
-          <p class="text-sm text-text-secondary">Shrink PDF files for easier sharing.</p>
+        <a href="/image-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
+          <p class="text-sm text-text-secondary">Reduce image file size with quality control.</p>
+        </a>
+        <a href="/resize-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Resize JPG</h3>
+          <p class="text-sm text-text-secondary">Resize images to any dimension.</p>
+        </a>
+        <a href="/jpg-to-pdf" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PDF</h3>
+          <p class="text-sm text-text-secondary">Convert JPG images to PDF documents.</p>
         </a>
       </div>
     </Container>
@@ -320,8 +294,6 @@ const faqItems = [
 
   <script>
     import { initPdfEnhancer } from "@scripts/pdf-enhancer.js";
-    document.addEventListener("DOMContentLoaded", () => {
-      initPdfEnhancer();
-    });
+    initPdfEnhancer();
   </script>
 </BaseLayout>
