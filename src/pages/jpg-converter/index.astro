@@ -1,4 +1,220 @@
 ---
-// 301 Permanent Redirect to consolidate search equity
-return Astro.redirect('/image-to-jpg', 301);
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import ActiveConverter from "@components/tool/ActiveConverter.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Tools", url: "/tools" },
+  { name: "JPG Converter", url: "/jpg-converter" },
+];
+
+const faqItems = [
+  {
+    question: "What is a JPG converter?",
+    answer: "A JPG converter is an online tool that converts images from other formats (PNG, WebP, HEIC, BMP, TIFF) into JPG format. JPG is the most universally supported image format, making it ideal for sharing, uploading, and printing.",
+  },
+  {
+    question: "Why should I convert images to JPG?",
+    answer: "JPG offers the best balance of file size and quality for photographs and complex images. It's supported by every device, browser, social media platform, and design tool. Converting to JPG ensures your images work everywhere.",
+  },
+  {
+    question: "What formats can I convert to JPG?",
+    answer: "You can convert PNG, WebP, HEIC, HEIF, BMP, TIFF, and SVG images to JPG. Our converter handles all major image formats and outputs high-quality JPG files.",
+  },
+  {
+    question: "Is this JPG converter free?",
+    answer: "Yes, completely free. No sign-up required, no watermarks, no hidden fees, no usage limits. Convert as many images as you need, every day, forever.",
+  },
+  {
+    question: "Are my images uploaded to a server?",
+    answer: "No. All conversion happens directly in your browser using WebAssembly and Canvas API. Your images never leave your device — not even temporarily.",
+  },
+  {
+    question: "Can I batch convert images to JPG?",
+    answer: "Yes. You can select multiple images and convert them all to JPG simultaneously. Download them individually or as a ZIP file.",
+  },
+  {
+    question: "What is the best free JPG converter online?",
+    answer: "Quick JPG Converter is one of the best free JPG converters online. It supports all major image formats, runs entirely in your browser for privacy, and requires no sign-up.",
+  },
+  {
+    question: "How do I convert PNG to JPG?",
+    answer: "Simply drag and drop your PNG images into our converter, and click Convert. Your JPG files will be ready to download instantly. Works on any device with a modern browser.",
+  },
+];
 ---
+
+<BaseLayout
+  title="Free JPG Converter — Convert Any Image to JPG Online"
+  description="Convert PNG, WebP, HEIC, and other image formats to JPG instantly with our free online JPG converter. No uploads, 100% private — runs in your browser."
+  canonical="https://quickjpgconverter.com/jpg-converter"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["jpg converter", "convert to jpg", "image to jpg", "jpg converter online", "free jpg converter", "jpg converter free", "online jpg converter", "convert image to jpg", "jpg converter no signup"]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Title Section -->
+  <section class="pb-6 sm:pb-8 bg-glow">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">📸 Universal Image Converter</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Free <span class="gradient-text">JPG</span> Converter
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Convert any image to JPG format instantly. Supports PNG, WebP, HEIC, BMP, and more.
+          No uploads, 100% private — runs entirely in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Converter Widget -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <ActiveConverter
+          targetFormat="jpg"
+          targetExt="jpg"
+          targetMime="image/jpeg"
+          accept=".png,.webp,.heic,.heif,.bmp,.tiff,.tif,.svg"
+          inputFormat="Any Image"
+          outputFormat="JPG"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">How It Works</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Simple Steps</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your images</h3>
+          <p class="text-sm text-text-secondary">Drag and drop PNG, WebP, HEIC, or any image format.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Convert instantly</h3>
+          <p class="text-sm text-text-secondary">Your image is converted in-browser. No server uploads.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download JPG</h3>
+          <p class="text-sm text-text-secondary">Get your compatible JPG file instantly.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SEO Prose & FAQs -->
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Use a JPG Converter?</h2>
+        <p>
+          JPG (Joint Photographic Experts Group) is the most widely used image format in the world. Nearly every device, browser, social media platform, and design tool supports JPG files natively. When you convert your images to JPG, you ensure they work everywhere — without compatibility issues.
+        </p>
+        <p>
+          Our free JPG converter transforms any image format into high-quality JPG files directly in your browser. Unlike other converters that upload your files to remote servers, our tool processes everything locally. Your images never leave your device, guaranteeing complete privacy.
+        </p>
+
+        <h3>Supported Input Formats</h3>
+        <ul>
+          <li><strong>PNG to JPG</strong> — Reduce file sizes by 5-10x while maintaining visual quality</li>
+          <li><strong>WebP to JPG</strong> — Ensure compatibility with tools that don't support WebP</li>
+          <li><strong>HEIC to JPG</strong> — Open iPhone photos on any device</li>
+          <li><strong>BMP to JPG</strong> — Convert legacy bitmap images to modern format</li>
+          <li><strong>TIFF to JPG</strong> — Compress high-resolution images for web use</li>
+          <li><strong>SVG to JPG</strong> — Rasterize vector graphics for universal compatibility</li>
+        </ul>
+
+        <h3>When You Need JPG</h3>
+        <ul>
+          <li>Uploading to social media platforms</li>
+          <li>Sharing photos via email or messaging apps</li>
+          <li>Printing at a photo lab or at home</li>
+          <li>Using in presentations, documents, or websites</li>
+          <li>Submitting to government forms or job portals</li>
+          <li>Archiving photos for long-term storage</li>
+        </ul>
+
+        <h3>Benefits of Our JPG Converter</h3>
+        <ul>
+          <li><strong>100% private</strong> — your images never leave your device</li>
+          <li><strong>No software needed</strong> — works in your browser on any device</li>
+          <li><strong>Batch conversion</strong> — convert multiple images at once</li>
+          <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest size</li>
+          <li><strong>Free forever</strong> — no sign-up, no payment, no watermarks</li>
+        </ul>
+
+        <h2>JPG vs Other Image Formats</h2>
+        <p>
+          Understanding when to use JPG versus other formats helps you make better decisions about image management. JPG uses lossy compression, which means it achieves smaller file sizes by discarding some image data. This trade-off is ideal for photographs and complex images where the discarded data is imperceptible to the human eye.
+        </p>
+        <p>
+          PNG is better for images requiring transparency or crisp text (like logos and screenshots). WebP offers superior compression but has limited support in older tools and platforms. BMP and TIFF produce very large files that are impractical for web use. For most everyday use cases — sharing, uploading, printing — JPG remains the best choice.
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <div class="text-center mb-10">
+          <Badge class="mb-4">FAQ</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+        </div>
+        <FAQ items={faqItems} />
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/png-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PNG to JPG</h3>
+          <p class="text-sm text-text-secondary">Reduce PNG file sizes by 5-10x.</p>
+        </a>
+        <a href="/webp-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">WebP to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert WebP for universal compatibility.</p>
+        </a>
+        <a href="/heic-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">HEIC to JPG</h3>
+          <p class="text-sm text-text-secondary">Open iPhone photos on any device.</p>
+        </a>
+        <a href="/avif-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">AVIF to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert next-gen AVIF to universal JPG.</p>
+        </a>
+        <a href="/jfif-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JFIF to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert JFIF files to standard JPG.</p>
+        </a>
+        <a href="/cr2-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">CR2 to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert Canon RAW photos to JPG.</p>
+        </a>
+        <a href="/raw-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">RAW to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert camera RAW files to JPG.</p>
+        </a>
+        <a href="/image-to-jpg-converter" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert any image format to JPG.</p>
+        </a>
+        <a href="/tools/image-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Image Compressor</h3>
+          <p class="text-sm text-text-secondary">Compress images without quality loss.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

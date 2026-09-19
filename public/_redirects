@@ -1,0 +1,125 @@
+# Cloudflare Pages Redirect Rules
+# HTTP 301 Permanent Redirects for Search Engines and Crawlers
+
+# ===================================================================
+# 1. Consolidated & Legacy Single-Path Redirects
+# ===================================================================
+/compress-image          /image-compressor/       301
+/compress-image/         /image-compressor/       301
+/compress-pdf            /pdf-compressor/         301
+/compress-pdf/           /pdf-compressor/         301
+/why                     /why-browser-based/      301
+/why/                    /why-browser-based/      301
+/blog/webp-to-jpg-converter   /blog/webp-to-jpg-converter-guide/   301
+/blog/webp-to-jpg-converter/  /blog/webp-to-jpg-converter-guide/   301
+
+# ===================================================================
+# 2. Legacy /tools/* URLs Migrated to Root Tools
+# ===================================================================
+/tools/aadhar-photo-resize     /aadhar-photo-resize/     301
+/tools/aadhar-photo-resize/    /aadhar-photo-resize/     301
+/tools/avif-to-jpg             /avif-to-jpg/             301
+/tools/avif-to-jpg/            /avif-to-jpg/             301
+/tools/avif-to-png             /avif-to-png/             301
+/tools/avif-to-png/            /avif-to-png/             301
+/tools/batch-converter         /batch-converter/         301
+/tools/batch-converter/        /batch-converter/         301
+/tools/compress-for-govt-form  /compress-for-govt-form/  301
+/tools/compress-for-govt-form/ /compress-for-govt-form/  301
+/tools/compress-to-100kb       /compress-to-100kb/       301
+/tools/compress-to-100kb/      /compress-to-100kb/       301
+/tools/compress-to-200kb       /compress-to-200kb/       301
+/tools/compress-to-200kb/      /compress-to-200kb/       301
+/tools/compress-to-size        /compress-to-size/        301
+/tools/compress-to-size/       /compress-to-size/        301
+/tools/cr2-to-jpg              /cr2-to-jpg/              301
+/tools/cr2-to-jpg/             /cr2-to-jpg/              301
+/tools/crop-image              /crop-image/              301
+/tools/crop-image/             /crop-image/              301
+/tools/exif-viewer             /exif-viewer/             301
+/tools/exif-viewer/            /exif-viewer/             301
+/tools/free-heic-to-jpg        /free-heic-to-jpg/        301
+/tools/free-heic-to-jpg/       /free-heic-to-jpg/        301
+/tools/free-online-pdf-to-jpg  /free-online-pdf-to-jpg/  301
+/tools/free-online-pdf-to-jpg/ /free-online-pdf-to-jpg/  301
+/tools/free-pdf-to-jpg         /free-pdf-to-jpg/         301
+/tools/free-pdf-to-jpg/        /free-pdf-to-jpg/         301
+/tools/heic-to-jpg             /heic-to-jpg/             301
+/tools/heic-to-jpg/            /heic-to-jpg/             301
+/tools/heic-to-png             /heic-to-png/             301
+/tools/heic-to-png/            /heic-to-png/             301
+/tools/image-compressor        /image-compressor/        301
+/tools/image-compressor/       /image-compressor/        301
+/tools/image-enhancer          /image-enhancer/          301
+/tools/image-enhancer/         /image-enhancer/          301
+/tools/image-resizer           /image-resizer/           301
+/tools/image-resizer/          /image-resizer/           301
+/tools/image-to-jpg            /image-to-jpg/            301
+/tools/image-to-jpg/           /image-to-jpg/            301
+/tools/image-to-jpg-converter  /image-to-jpg-converter/  301
+/tools/image-to-jpg-converter/ /image-to-jpg-converter/  301
+/tools/jfif-to-jpg             /jfif-to-jpg/             301
+/tools/jfif-to-jpg/            /jfif-to-jpg/             301
+/tools/jpg-compressor          /jpg-compressor/          301
+/tools/jpg-compressor/         /jpg-compressor/          301
+/tools/jpg-converter           /jpg-converter/           301
+/tools/jpg-converter/          /jpg-converter/           301
+/tools/jpg-to-avif             /jpg-to-avif/             301
+/tools/jpg-to-avif/            /jpg-to-avif/             301
+/tools/jpg-to-pdf              /jpg-to-pdf/              301
+/tools/jpg-to-pdf/             /jpg-to-pdf/              301
+/tools/jpg-to-png              /jpg-to-png/              301
+/tools/jpg-to-png/             /jpg-to-png/              301
+/tools/jpg-to-webp             /jpg-to-webp/             301
+/tools/jpg-to-webp/            /jpg-to-webp/             301
+/tools/online-pdf-to-jpg       /online-pdf-to-jpg/       301
+/tools/online-pdf-to-jpg/      /online-pdf-to-jpg/       301
+/tools/passport-photo-size     /passport-photo-size/     301
+/tools/passport-photo-size/    /passport-photo-size/     301
+/tools/passport-photo-size-india /passport-photo-size-india/ 301
+/tools/passport-photo-size-india/ /passport-photo-size-india/ 301
+/tools/pdf-compressor          /pdf-compressor/          301
+/tools/pdf-compressor/         /pdf-compressor/          301
+/tools/pdf-enhancer            /pdf-enhancer/            301
+/tools/pdf-enhancer/           /pdf-enhancer/            301
+/tools/pdf-to-jpg              /pdf-to-jpg/              301
+/tools/pdf-to-jpg/             /pdf-to-jpg/              301
+/tools/pdf-to-png              /pdf-to-png/              301
+/tools/pdf-to-png/             /pdf-to-png/              301
+/tools/photo-to-base64         /photo-to-base64/         301
+/tools/photo-to-base64/        /photo-to-base64/         301
+/tools/png-compressor          /png-compressor/          301
+/tools/png-compressor/         /png-compressor/          301
+/tools/png-to-avif             /png-to-avif/             301
+/tools/png-to-avif/            /png-to-avif/             301
+/tools/png-to-jpg              /png-to-jpg/              301
+/tools/png-to-jpg/             /png-to-jpg/              301
+/tools/png-to-pdf              /png-to-pdf/              301
+/tools/png-to-pdf/             /png-to-pdf/              301
+/tools/png-to-webp             /png-to-webp/             301
+/tools/png-to-webp/            /png-to-webp/             301
+/tools/qr-code-generator       /qr-code-generator/       301
+/tools/qr-code-generator/      /qr-code-generator/       301
+/tools/raw-to-jpg              /raw-to-jpg/              301
+/tools/raw-to-jpg/             /raw-to-jpg/              301
+/tools/remove-background       /remove-background/       301
+/tools/remove-background/      /remove-background/       301
+/tools/resize-jpg              /resize-jpg/              301
+/tools/resize-jpg/             /resize-jpg/              301
+/tools/svg-to-jpg              /svg-to-jpg/              301
+/tools/svg-to-jpg/             /svg-to-jpg/              301
+/tools/svg-to-png              /svg-to-png/              301
+/tools/svg-to-png/             /svg-to-png/              301
+/tools/upsc-photo-compressor   /upsc-photo-compressor/   301
+/tools/upsc-photo-compressor/  /upsc-photo-compressor/   301
+/tools/webp-to-jpg             /webp-to-jpg/             301
+/tools/webp-to-jpg/            /webp-to-jpg/             301
+/tools/webp-to-png             /webp-to-png/             301
+/tools/webp-to-png/            /webp-to-png/             301
+/tools/word-to-jpg             /word-to-jpg/             301
+/tools/word-to-jpg/            /word-to-jpg/             301
+
+# ===================================================================
+# 3. Wildcard Catch-all for Any Other /tools/ Subpaths
+# ===================================================================
+/tools/:slug                   /:slug/                   301

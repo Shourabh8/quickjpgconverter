@@ -1,4 +1,235 @@
 ---
-// 301 Permanent Redirect to consolidate search equity
-return Astro.redirect('/pdf-to-jpg', 301);
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Tools", url: "/tools" },
+  { name: "Free PDF to JPG", url: "/free-pdf-to-jpg" },
+];
+
+const faqItems = [
+  {
+    question: "How do I convert a PDF to JPG?",
+    answer: "Upload your PDF file, select JPG as the output format, and click Convert. Each page will be converted to a separate JPG image.",
+  },
+  {
+    question: "Does each page become a separate JPG?",
+    answer: "Yes. Each page in your PDF is converted to its own JPG file. You can download them all at once as a zip.",
+  },
+  {
+    question: "Will the quality be good?",
+    answer: "Yes. We render at high resolution (2x) to ensure crisp, clear JPG images from your PDF pages.",
+  },
+  {
+    question: "Is there a page limit?",
+    answer: "No limit. Our converter handles PDFs of any size, though very large files may take a moment to process.",
+  },
+  {
+    question: "Is this really free?",
+    answer: "Yes, completely free. No sign-up required, no watermarks, no hidden fees, no usage limits. Convert as many PDFs as you need, every day, forever.",
+  },
+  {
+    question: "Can I convert a scanned PDF to JPG?",
+    answer: "Yes. Our converter renders each PDF page as a high-resolution JPG image, including scanned documents. Each page becomes a separate JPG file you can download and use.",
+  },
+];
 ---
+
+<BaseLayout
+  title="Free PDF to JPG Converter — No Signup, No Limits"
+  description="Free PDF to JPG converter with no signup, no limits, and no watermarks. Convert unlimited PDF pages to JPG. 100% private, runs in your browser."
+  canonical="https://quickjpgconverter.com/free-pdf-to-jpg"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  keywords={["free pdf to jpg converter", "free pdf to jpg", "pdf to jpg converter free", "free pdf converter", "pdf to image free", "free online pdf to jpg"]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">100% Free · No Signup · Private</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Free PDF to <span class="gradient-text">JPG</span> Converter
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Extract pages from your PDF as high-quality JPG images.
+          No uploads, 100% private — runs in your browser.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
+            <span class="text-sm font-medium text-text-secondary">Convert to:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">JPG</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-5 lg:min-h-[480px]">
+            <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
+              <div id="upload-zone" class="h-full">
+                <div id="drop-area" class="relative h-full sm:min-h-[300px] min-h-[200px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                  <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your PDF here</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">tap to browse or drag and drop</p>
+                  <label class="btn-primary btn-md cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Choose PDF
+                    <input type="file" class="sr-only" accept=".pdf" />
+                  </label>
+                  <p class="text-xs text-text-tertiary mt-4">PDF · Max 50MB · Single file</p>
+                  <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
+                    <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Drop to upload</p>
+                  </div>
+                </div>
+              </div>
+              <div id="preview-zone" class="hidden h-full">
+                <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
+                    <div class="flex items-center gap-2">
+                      <div class="w-2 h-2 rounded-full bg-success"></div>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 pages</span>
+                    </div>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Clear all</button>
+                  </div>
+                  <div id="preview-grid" class="flex-1 p-4 overflow-y-auto max-h-[350px] space-y-2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
+              <div id="progress-area" class="hidden mb-4">
+                <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Converting...</p>
+              </div>
+              <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                Convert to JPG
+              </button>
+              <div id="download-area" class="hidden mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">How It Works</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Three Steps</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">01</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Drop your PDF</h3>
+          <p class="text-sm text-text-secondary">Drag and drop or click to select your PDF file.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">02</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Convert instantly</h3>
+          <p class="text-sm text-text-secondary">Each page is rendered as a high-quality JPG.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center mx-auto mb-4 shadow-md shadow-brand-600/20">03</div>
+          <h3 class="text-base font-semibold text-text-primary mb-1.5">Download JPGs</h3>
+          <p class="text-sm text-text-secondary">Get your JPG images instantly.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="prose">
+        <h2>Why Convert PDF to JPG?</h2>
+        <p>PDFs contain multiple pages as vector content. Converting to JPG gives you standalone image files that can be used anywhere.</p>
+        <h3>When You Need JPG</h3>
+        <ul>
+          <li>Extracting pages from a PDF for editing as images</li>
+          <li>Sharing PDF content on social media</li>
+          <li>Using PDF pages in presentations or designs</li>
+          <li>Printing individual pages</li>
+        </ul>
+        <h3>Benefits of Our Converter</h3>
+        <ul>
+          <li><strong>100% private</strong> — your files never leave your device</li>
+          <li><strong>No software needed</strong> — works in your browser</li>
+          <li><strong>High resolution</strong> — 2x render scale for crisp images</li>
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Container variant="narrow">
+      <div class="text-center mb-10">
+        <Badge class="mb-4">FAQ</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Frequently Asked Questions</h2>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+
+  <section class="section bg-surface-muted">
+    <Container>
+      <div class="text-center mb-10">
+        <Badge class="mb-4">Related Tools</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Try Our Other Converters</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <a href="/pdf-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF to JPG</h3>
+          <p class="text-sm text-text-secondary">Full-featured PDF to JPG converter.</p>
+        </a>
+        <a href="/free-online-pdf-to-jpg" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Free Online PDF to JPG</h3>
+          <p class="text-sm text-text-secondary">Convert PDF pages online for free.</p>
+        </a>
+        <a href="/jpg-converter" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG Converter</h3>
+          <p class="text-sm text-text-secondary">Convert any image to JPG format.</p>
+        </a>
+        <a href="/tools/pdf-to-png" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF to PNG</h3>
+          <p class="text-sm text-text-secondary">Convert PDF pages to PNG with transparency.</p>
+        </a>
+        <a href="/tools/jpg-to-pdf" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">JPG to PDF</h3>
+          <p class="text-sm text-text-secondary">Convert JPG images to PDF documents.</p>
+        </a>
+        <a href="/tools/pdf-compressor" class="card-hover p-5 group">
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">PDF Compressor</h3>
+          <p class="text-sm text-text-secondary">Reduce PDF file size without quality loss.</p>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    import { initPdfConverter } from "@scripts/pdf-to-jpg.js";
+    initPdfConverter({ targetFormat: "jpg", targetExt: "jpg", targetMime: "image/jpeg" });
+  </script>
+</BaseLayout>

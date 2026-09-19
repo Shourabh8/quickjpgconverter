@@ -6,6 +6,7 @@ import path from "path";
 
 export default defineConfig({
   site: "https://quickjpgconverter.com",
+  trailingSlash: "always",
 
   vite: {
     plugins: [tailwindcss()],
@@ -22,22 +23,13 @@ export default defineConfig({
         // Always include main tools directory
         if (page === "https://quickjpgconverter.com/tools" || page === "https://quickjpgconverter.com/tools/") return true;
 
-        // Exclude English /tools/* redirect pages
+        // Exclude English /tools/* subpages
         if (page.startsWith("https://quickjpgconverter.com/tools/")) return false;
 
         const excluded = [
           "/admin",
-          "/free-heic-to-jpg",
-          "/free-pdf-to-jpg",
-          "/free-online-pdf-to-jpg",
-          "/online-pdf-to-jpg",
-          "/jpg-converter",
-          "/image-to-jpg-converter",
-          "/jpg-compressor",
-          "/png-compressor",
-          "/compress-image",
-          "/compress-pdf",
-          "/why",
+          "/404",
+          "/500",
           "/blog/webp-to-jpg-converter",
         ];
         return !excluded.some((path) => page.endsWith(path) || page.endsWith(path + "/") || page.includes(path + "/"));

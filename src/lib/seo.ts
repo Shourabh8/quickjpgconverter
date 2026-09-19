@@ -9,7 +9,25 @@ interface MetaOptions {
 }
 
 export function generateMeta(opts: MetaOptions) {
-  const canonical = opts.canonical ?? site.url;
+  let canonical = opts.canonical ?? site.url;
+  // Normalize canonical URL to always include a trailing slash (matches Cloudflare Pages routing and sitemap)
+  // unless pointing to a file with an extension (.xml, .html, .png, etc.)
+  try {
+    const parsed = new URL(canonical);
+    if (!parsed.pathname.endsWith("/")) {
+      const lastSegment = parsed.pathname.split("/").pop() || "";
+      if (!lastSegment.includes(".")) {
+        parsed.pathname += "/";
+      }
+    }
+    canonical = parsed.href;
+  } catch {
+    // fallback if not a valid URL
+    if (!canonical.endsWith("/")) {
+      canonical += "/";
+    }
+  }
+
   // Skip brand suffix on blog posts — titles are already descriptive and would exceed 60 chars
   const isBlog = canonical.includes("/blog/");
   const title = opts.title === site.title || opts.title.includes(site.name) || isBlog
@@ -19,6 +37,7 @@ export function generateMeta(opts: MetaOptions) {
 
   return {
     title,
+    canonical,
     meta: [
       { name: "description", content: opts.description },
       { name: "theme-color", content: site.themeColor },

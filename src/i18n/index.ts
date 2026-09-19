@@ -38,10 +38,26 @@ export function getLocalizedPath(targetLocale: Locale, currentPath: string): str
   return getLocalePrefix(targetLocale) + stripped;
 }
 
+// Routes that exist across all supported locales
+const multilingualRoutes = new Set([
+  "",
+  "/",
+  "/about",
+  "/passport-photo-size",
+]);
+
 export function getAlternateLinks(locale: Locale, path: string): { lang: string; href: string }[] {
+  const normalized = path.replace(/\/$/, "");
+  if (!multilingualRoutes.has(normalized)) {
+    // English-only page: return empty array to prevent emitting broken hreflang tags to 404 pages
+    return [];
+  }
+
+  const slashPath = normalized === "" ? "/" : `${normalized}/`;
+
   return locales.map((l) => ({
     lang: l,
-    href: `https://quickjpgconverter.com${getLocalePrefix(l)}${path}`,
+    href: `https://quickjpgconverter.com${getLocalePrefix(l)}${slashPath}`,
   }));
 }
 

@@ -47,13 +47,14 @@ const {
 
 const meta = generateMeta({ title, description, canonical, ogImage, noindex });
 
-const alternateLinks = getAlternateLinks(locale as any, Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2"));
+const cleanPath = Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2");
+const alternateLinks = getAlternateLinks(locale as any, cleanPath);
 
 const jsonLdData = jsonLd
   ? generateJsonLd({
       name: title,
       description,
-      url: canonical,
+      url: meta.canonical,
       breadcrumbs,
       faqItems,
       howToSteps,
@@ -83,10 +84,14 @@ const jsonLdData = jsonLd
   <link {...l} />
 ))}
 
-{alternateLinks.map((link) => (
-  <link rel="alternate" hreflang={link.lang} href={link.href} />
-))}
-<link rel="alternate" hreflang="x-default" href={`https://quickjpgconverter.com${Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2")}`} />
+{alternateLinks.length > 0 && (
+  <>
+    {alternateLinks.map((link) => (
+      <link rel="alternate" hreflang={link.lang} href={link.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`https://quickjpgconverter.com${cleanPath.replace(/\/$/, "")}/`} />
+  </>
+)}
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
