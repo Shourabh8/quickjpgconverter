@@ -19,15 +19,15 @@ const { post, author: authorKey, breadcrumbs: customBreadcrumbs, faqItems, howTo
 const authorProfile = authors[authorKey ?? defaultAuthor] ?? authors[defaultAuthor];
 
 const breadcrumbs = customBreadcrumbs ?? [
-  { name: "Blog", url: "/blog" },
-  { name: post.title, url: `/blog/${post.slug}` },
+  { name: "Blog", url: "/blog/" },
+  { name: post.title, url: `/blog/${post.slug}/` },
 ];
 ---
 
 <BaseLayout
   title={post.title}
   description={post.description}
-  canonical={`https://quickjpgconverter.com/blog/${post.slug}`}
+  canonical={`https://quickjpgconverter.com/blog/${post.slug}/`}
   breadcrumbs={breadcrumbs}
   keywords={post.keywords}
   articleSchema={{

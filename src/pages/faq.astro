@@ -6,7 +6,7 @@ import FAQ from "@components/ui/FAQ.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
-  { name: "FAQ", url: "/faq" },
+  { name: "FAQ", url: "/faq/" },
 ];
 
 const generalFaq = [
@@ -147,7 +147,7 @@ const faqJsonLd = {
 <BaseLayout
   title="FAQ — Quick JPG Converter"
   description="Frequently asked questions about Quick JPG Converter. Learn about our free image conversion tools, privacy, supported formats, and more."
-  canonical="https://quickjpgconverter.com/faq"
+  canonical="https://quickjpgconverter.com/faq/"
   breadcrumbs={breadcrumbs}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />

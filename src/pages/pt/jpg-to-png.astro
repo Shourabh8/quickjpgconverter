@@ -11,60 +11,67 @@ const locale = "pt" as const;
 const prefix = getLocalePrefix(locale);
 
 const breadcrumbs = [
-  { name: "Ferramentas", url: `${prefix}/tools` },
-  { name: "Comprimir para 100KB", url: `${prefix}/tools/compress-to-100kb` },
+  { name: "Ferramentas", url: `/tools/` },
+  { name: "JPG para PNG", url: `${prefix}/jpg-to-png/` },
+];
+
+const conversionOptions = [
+  { id: "quality-high", label: "Alta Qualidade", desc: "Melhor fidelidade visual, arquivo maior", checked: true },
+  { id: "quality-balanced", label: "Equilibrado", desc: "Bom equilíbrio entre tamanho e qualidade", checked: false },
+  { id: "quality-small", label: "Tamanho Mínimo", desc: "Arquivo menor, leve perda de qualidade", checked: false },
 ];
 
 const faqItems = [
   {
-    question: "Por que eu precisaria comprimir uma imagem para exatamente 100KB?",
-    answer: "Muitos portais online, formulários governamentais e candidaturas de emprego exigem que fotos de passaporte ou documentos digitalizados estejam abaixo de 100KB. Esta ferramenta ajuda você a cumprir esses requisitos estritos de tamanho de arquivo mantendo a melhor qualidade possível.",
+    question: "Qual é a diferença entre JPG e PNG?",
+    answer: "JPG usa compressão com perda, o que significa que dados da imagem são descartados para obter arquivos menores. PNG usa compressão sem perda, preservando cada pixel. PNG também suporta fundos transparentes, algo que JPG não faz.",
   },
   {
-    question: "Minha imagem ficará embaçada após a compressão?",
-    answer: "Nosso compressor usa redução inteligente de qualidade para atingir o tamanho alvo enquanto preserva tanto a qualidade visual quanto possível. O resultado é geralmente excelente para fotos e documentos a 100KB.",
+    question: "Converter JPG para PNG melhorará a qualidade?",
+    answer: "Converter JPG para PNG não recuperará os dados perdidos durante a compressão original do JPG. No entanto, previne uma maior perda de qualidade durante a edição e uso compartilhado. PNG é ideal quando você precisa preservar a qualidade atual.",
   },
   {
-    question: "Quais formatos de imagem são suportados?",
-    answer: "Aceitamos formatos de entrada JPG, PNG e WebP. A saída sempre é JPG para garantir o menor tamanho de arquivo possível no alvo.",
+    question: "Por que o arquivo PNG é maior que o JPG?",
+    answer: "PNG usa compressão sem perda, que retém todos os dados da imagem. Isso resulta em arquivos maiores, mas com qualidade perfeita. JPG alcança tamanhos menores descartando alguns dados visuais que o olho humano pode não notar.",
   },
   {
-    question: "Posso comprimir múltiplas imagens de uma vez?",
-    answer: "Sim. Você pode enviar múltiplas imagens e comprimi-las todas para 100KB ou menos. Cada imagem é processada individualmente para atingir o tamanho alvo.",
+    question: "Posso converter múltiplos arquivos JPG de uma vez?",
+    answer: "Sim. Você pode arrastar e soltar ou selecionar múltiplos arquivos JPG. Todos serão convertidos para PNG simultaneamente e você pode baixá-los individualmente ou em lote.",
   },
   {
-    question: "Existe um limite de tamanho de arquivo para envios?",
-    answer: "Você pode enviar imagens de até 50MB. O compressor funciona inteiramente no seu navegador, portanto o tempo de processamento depende do seu dispositivo e do número de imagens.",
-  },
-  {
-    question: "Funciona em dispositivos móveis?",
-    answer: "Sim. Nosso compressor funciona em qualquer dispositivo — iPhone, Android, tablet ou desktop. Sem necessidade de instalar aplicativos. Basta abrir a ferramenta no seu navegador e comprimir.",
+    question: "Qual é o melhor conversor JPG para PNG gratuito?",
+    answer: "O Quick JPG Converter é um dos melhores conversores JPG para PNG gratuitos. Ele funciona inteiramente no seu navegador, preserva a qualidade sem perda, suporta conversão em lote e não exige cadastro nem uploads.",
   },
 ];
 
 const steps = [
-  { title: "Envie suas imagens", desc: "Arraste e solte ou clique para selecionar suas fotos." },
-  { title: "Auto-comprimir", desc: "Nosso algoritmo reduz a qualidade para atingir exatamente 100KB." },
-  { title: "Baixe o JPG", desc: "Obtenha sua imagem de 100KB instantaneamente, pronta para enviar." },
+  { title: "Envie seus JPGs", desc: "Arraste e solte ou clique para selecionar seus arquivos de imagem." },
+  { title: "Converta instantaneamente", desc: "Sua imagem é convertida no navegador. Sem uploads para o servidor." },
+  { title: "Baixe o PNG", desc: "Obtenha seu arquivo PNG de alta qualidade instantaneamente." },
 ];
 
 const relatedTools = [
-  { slug: "compress-to-200kb", title: "Comprimir para 200KB", desc: "Comprima imagens para menos de 200KB." },
-  { slug: "image-enhancer", title: "Aprimorador de Imagem", desc: "Melhore brilho, contraste e nitidez." },
-  { slug: "image-compressor", title: "Compressor de Imagem", desc: "Compressão personalizada com controle deslizante de qualidade." },
-  { slug: "resize-jpg", title: "Redimensionar JPG", desc: "Redimensione imagens para qualquer dimensão." },
-  { slug: "jpg-to-png", title: "JPG para PNG", desc: "Converta JPG para PNG com qualidade sem perda." },
+  { slug: "png-to-jpg", title: "PNG para JPG", desc: "Converta imagens PNG para formato JPG." },
   { slug: "jpg-to-webp", title: "JPG para WebP", desc: "Converta JPG para o moderno formato WebP." },
+  { slug: "webp-to-jpg", title: "WebP para JPG", desc: "Converta imagens WebP para JPG." },
+  { slug: "heic-to-jpg", title: "HEIC para JPG", desc: "Converta fotos HEIC do iPhone para JPG." },
+  { slug: "image-compressor", title: "Compressor de Imagem", desc: "Comprima imagens sem perda de qualidade." },
+  { slug: "resize-jpg", title: "Redimensionar JPG", desc: "Redimensione imagens para qualquer dimensão." },
 ];
 ---
 
 <BaseLayout
-  title="Comprimir Imagem para 100KB — Redutor de Fotos Gratuito Online"
-  description="Comprima qualquer imagem para menos de 100KB para fotos de passaporte, envios de formulários e upload em portais. Ferramenta gratuita online que funciona no seu navegador — sem uploads, sem cadastro."
-  canonical={`https://quickjpgconverter.com${prefix}/tools/compress-to-100kb`}
-  keywords={["comprimir imagem para 100kb", "reduzir imagem para 100kb", "compressor de imagem 100kb", "imagem para 100kb"]}
+  title="Conversor JPG para PNG Gratuito — Ferramenta de Conversão Online"
+  description="Converta JPG para PNG instantaneamente com nosso conversor JPG gratuito online. Qualidade sem perda, suporte a transparência e 100% privado. Sem necessidade de upload — experimente agora."
+  canonical={`https://quickjpgconverter.com${prefix}/jpg-to-png/`}
+  keywords={["jpg para png", "converter jpg para png", "jpeg para png"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
+  howToSteps={[
+    { name: "Envie arquivos JPG", text: "Arraste e solte suas imagens JPG ou clique para selecionar." },
+    { name: "Selecione a qualidade", text: "Escolha entre Alta Qualidade, Equilibrado ou Tamanho Mínimo." },
+    { name: "Converta e baixe", text: "Clique em Converter para PNG e baixe seus arquivos." },
+  ]}
   locale={locale}
 >
   <Container class="py-5 sm:py-6">
@@ -81,10 +88,11 @@ const relatedTools = [
           Gratuito · Sem Cadastro · Privado
         </Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          Comprimir Imagem para <span class="gradient-text">100KB</span>
+          Conversor JPG para <span class="gradient-text">PNG</span>
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          Perfeito para fotos de passaporte, envios de formulários e upload em portais. Comprima qualquer imagem para menos de 100KB mantendo a qualidade.
+          Converta suas imagens JPG para PNG com qualidade sem perda e suporte a transparência.
+          Tudo é executado no seu navegador.
         </p>
       </div>
     </Container>
@@ -95,31 +103,34 @@ const relatedTools = [
       <div class="max-w-5xl mx-auto">
         <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
           <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
-            <span class="text-sm font-medium text-text-secondary">Tamanho alvo:</span>
-            <div class="flex items-center gap-2">
-              <span id="target-size-display" class="px-3 py-1.5 rounded-lg text-sm font-bold bg-brand-600 text-white shadow-sm">100 KB</span>
+            <span class="text-sm font-medium text-text-secondary">Converter para:</span>
+            <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
+              <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">PNG</button>
             </div>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-5 lg:min-h-[480px]">
             <div class="lg:col-span-3 p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-border-default">
               <div id="upload-zone" class="h-full">
-                <div id="drop-area" class="relative h-full sm:min-h-[300px] min-h-[200px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group">
+                <div
+                  id="drop-area"
+                  class="relative h-full sm:min-h-[300px] min-h-[200px] rounded-xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-6 transition-all duration-200 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/30 dark:hover:bg-brand-950/20 cursor-pointer group"
+                >
                   <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-5 group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
                   </div>
-                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Arraste suas imagens aqui</h3>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Arraste seus arquivos JPG aqui</h3>
                   <p class="text-sm text-text-secondary mb-5 max-w-xs">ou clique para selecionar do seu computador</p>
                   <label class="btn-primary btn-md cursor-pointer">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                     Selecionar Arquivos
-                    <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp" multiple />
+                    <input type="file" class="sr-only" accept=".jpg,.jpeg" multiple />
                   </label>
-                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Máx 50MB por arquivo · Múltiplos arquivos suportados</p>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, JPEG · Máx 50MB por arquivo · Múltiplos arquivos suportados</p>
                   <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
                     <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
@@ -128,6 +139,7 @@ const relatedTools = [
                   </div>
                 </div>
               </div>
+
               <div id="preview-zone" class="hidden h-full">
                 <div class="rounded-xl border border-border-default bg-surface overflow-hidden h-full flex flex-col">
                   <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
@@ -139,9 +151,9 @@ const relatedTools = [
                   </div>
                   <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
                   <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
-                    <span class="text-text-tertiary">Alvo: ≤ 100KB</span>
+                    <span class="text-text-tertiary">Entrada: JPG</span>
                     <span class="text-text-tertiary">→</span>
-                    <span class="text-brand-600 dark:text-brand-400 font-medium">Saída: JPG</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">Saída: PNG</span>
                   </div>
                 </div>
               </div>
@@ -149,14 +161,27 @@ const relatedTools = [
 
             <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
               <div class="mb-6">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Tamanho de Arquivo Alvo</h3>
-                <div class="p-4 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30">
-                  <div class="text-center">
-                    <div class="text-3xl font-bold text-brand-600 dark:text-brand-400 mb-1">100KB</div>
-                    <p class="text-xs text-text-secondary">Ideal para fotos de passaporte e envios de formulários</p>
-                  </div>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Opções de Conversão</h3>
+                <div class="space-y-2">
+                  {conversionOptions.map((opt) => (
+                    <label class:list={[
+                      "flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all duration-200",
+                      opt.checked
+                        ? "border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30"
+                        : "border-border-default hover:border-border-strong hover:bg-surface-subtle/50"
+                    ]}>
+                      <input type="radio" name="quality" value={opt.id} checked={opt.checked} class="mt-0.5 w-4 h-4 text-brand-600 border-border-strong focus:ring-brand-500 focus:ring-offset-0" />
+                      <div class="flex-1 min-w-0">
+                        <div class="text-sm font-medium text-text-primary">{opt.label}</div>
+                        <div class="text-xs text-text-tertiary mt-0.5">{opt.desc}</div>
+                      </div>
+                    </label>
+                  ))}
                 </div>
               </div>
+
+              <div class="h-px bg-border-default mb-6"></div>
+
               <div class="mb-6">
                 <h3 class="text-sm font-semibold text-text-primary mb-3">Formato de Saída</h3>
                 <div class="p-3 rounded-xl border border-border-default bg-surface-muted">
@@ -167,28 +192,32 @@ const relatedTools = [
                       </svg>
                     </div>
                     <div>
-                      <div class="text-sm font-semibold text-text-primary">JPG</div>
-                      <div class="text-xs text-text-tertiary">Com perda · Universal · Arquivos menores</div>
+                      <div class="text-sm font-semibold text-text-primary">PNG</div>
+                      <div class="text-xs text-text-tertiary">Sem perda · Transparência · ~3-5× maior</div>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div class="flex-1"></div>
+
               <div id="progress-area" class="hidden mb-4">
                 <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
                   <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
                 </div>
-                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Comprimindo...</p>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Convertendo...</p>
               </div>
-              <div id="compress-btn-area">
-                <button id="compress-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
+
+              <div id="convert-btn-area">
+                <button id="convert-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Comprimir para 100KB
+                  Converter para PNG
                 </button>
-                <p class="text-xs text-text-tertiary text-center mt-2">Envie imagens para iniciar a compressão</p>
+                <p class="text-xs text-text-tertiary text-center mt-2">Envie um arquivo para iniciar a conversão</p>
               </div>
+
               <div id="download-area" class="hidden"></div>
             </div>
           </div>
@@ -196,7 +225,7 @@ const relatedTools = [
 
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
           <span class="font-medium text-text-secondary">Suportados:</span>
-          {["JPG", "PNG", "WebP"].map((fmt) => (
+          {["JPG", "JPEG"].map((fmt) => (
             <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
           ))}
           <span class="text-text-tertiary">·</span>
@@ -208,7 +237,7 @@ const relatedTools = [
     </Container>
   </section>
 
-  <FeatureRequest toolName="Comprimir para 100KB" />
+  <FeatureRequest toolName="JPG para PNG" />
 
   <section class="section bg-surface-muted">
     <Container>
@@ -231,15 +260,15 @@ const relatedTools = [
   <section class="section">
     <Container variant="narrow">
       <div class="prose">
-        <h2>Por Que Comprimir para 100KB?</h2>
-        <p>Muitos portais online, sites governamentais e candidaturas de emprego têm limites estritos de tamanho de arquivo. Fotos de passaporte, documentos de identidade e documentos digitalizados geralmente precisam estar abaixo de 100KB. Nosso compressor reduz inteligentemente a qualidade para atender a este requisito exato enquanto preserva a maior clareza visual possível.</p>
-        <h3>Casos de Uso Comuns</h3>
+        <h2>Por Que Converter JPG para PNG?</h2>
+        <p>PNG (Portable Network Graphics) é o formato ideal quando você precisa de compressão sem perda ou fundos transparentes. Diferente do JPG, PNG preserva cada pixel da sua imagem sem artefatos de compressão.</p>
+        <h3>Quando Usar PNG em Vez de JPG</h3>
         <ul>
-          <li>Envio de fotos de passaporte e visto</li>
-          <li>Envios de formulários em portais governamentais</li>
-          <li>Requisitos de foto para candidaturas de emprego</li>
-          <li>Formulários de admissão universitária</li>
-          <li>Fotos de perfil em redes sociais com limites de tamanho</li>
+          <li><strong>Logotipos e ícones</strong> — precisam de bordas nítidas e fundos transparentes</li>
+          <li><strong>Capturas de tela</strong> — texto e elementos de interface ficam nítidos em qualquer tamanho</li>
+          <li><strong>Gráficos com cores sólidas</strong> — sem artefatos de compressão em áreas planas</li>
+          <li><strong>Imagens que você editará várias vezes</strong> — sem perda de qualidade generacional</li>
+          <li><strong>Materiais prontos para impressão</strong> — qualidade sem perda para saída profissional</li>
         </ul>
       </div>
     </Container>
@@ -263,7 +292,7 @@ const relatedTools = [
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
         {relatedTools.map((tool) => (
-          <a href={`${prefix}/tools/${tool.slug}`} class="card-hover p-5 group">
+          <a href={`${prefix}/${tool.slug}/`} class="card-hover p-5 group">
             <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
             <p class="text-sm text-text-secondary">{tool.desc}</p>
           </a>
@@ -273,7 +302,7 @@ const relatedTools = [
   </section>
 
   <script>
-    import { initTargetedCompressor } from "@scripts/targeted-compress.js";
-    document.addEventListener("DOMContentLoaded", () => initTargetedCompressor({ targetSize: 100 * 1024 }));
+    import { initConverter } from "@scripts/converter.js";
+    document.addEventListener("DOMContentLoaded", () => initConverter({ targetFormat: "png", targetExt: "png", targetMime: "image/png" }));
   </script>
 </BaseLayout>

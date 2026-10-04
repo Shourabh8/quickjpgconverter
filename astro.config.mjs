@@ -19,18 +19,35 @@ export default defineConfig({
 
   integrations: [
     sitemap({
+      i18n: {
+        defaultLocale: "en",
+        locales: {
+          en: "en",
+          es: "es",
+          pt: "pt",
+          hi: "hi",
+          fr: "fr",
+          de: "de",
+        },
+      },
       filter: (page) => {
         // Always include main tools directory
         if (page === "https://quickjpgconverter.com/tools" || page === "https://quickjpgconverter.com/tools/") return true;
 
-        // Exclude English /tools/* subpages
-        if (page.startsWith("https://quickjpgconverter.com/tools/")) return false;
+        // Exclude all /tools/* subpages across all languages
+        if (page.includes("/tools/")) return false;
 
         const excluded = [
           "/admin",
           "/404",
           "/500",
           "/blog/webp-to-jpg-converter",
+          "/free-pdf-to-jpg",
+          "/online-pdf-to-jpg",
+          "/free-online-pdf-to-jpg",
+          "/free-heic-to-jpg",
+          "/image-to-jpg-converter",
+          "/jpg-converter",
         ];
         return !excluded.some((path) => page.endsWith(path) || page.endsWith(path + "/") || page.includes(path + "/"));
       },

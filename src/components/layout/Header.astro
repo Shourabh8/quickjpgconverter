@@ -5,12 +5,12 @@ import { categories } from "@data/tools";
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
-  { label: "Why", href: "/why-browser-based" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Contact", href: "/contact" },
+  { label: "Why", href: "/why-browser-based/" },
+  { label: "Blog", href: "/blog/" },
+  { label: "About", href: "/about/" },
+  { label: "FAQ", href: "/faq/" },
+  { label: "Privacy", href: "/privacy/" },
+  { label: "Contact", href: "/contact/" },
 ];
 
 const toolCategories = [
@@ -43,7 +43,7 @@ const toolCategories = [
       <!-- Tools Dropdown -->
       <div class="relative" id="tools-dropdown">
         <a
-          href="/tools"
+          href="/tools/"
           aria-current={currentPath.startsWith("/tools") ? "page" : undefined}
           class:list={[
             "px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-200 inline-flex items-center gap-1",
@@ -64,7 +64,7 @@ const toolCategories = [
           <div class="bg-surface rounded-xl border border-border-default shadow-xl p-1.5">
             {toolCategories.map(({ key, icon }) => (
               <a
-                href={`/tools#${key}`}
+                href={`/tools/#${key}`}
                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors"
               >
                 <span class="text-base">{icon}</span>
@@ -76,7 +76,7 @@ const toolCategories = [
             ))}
             <div class="border-t border-border-default mt-1.5 pt-1.5">
               <a
-                href="/tools"
+                href="/tools/"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-brand-600 dark:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-950/50 transition-colors"
               >
                 <span class="text-base">📋</span>
@@ -156,7 +156,7 @@ const toolCategories = [
         <div class="grid grid-cols-2 gap-1">
           {toolCategories.map(({ key, icon }) => (
             <a
-              href={`/tools#${key}`}
+              href={`/tools/#${key}`}
               class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors"
             >
               <span>{icon}</span>
@@ -164,7 +164,7 @@ const toolCategories = [
             </a>
           ))}
         </div>
-        <a href="/tools" class="mt-2 text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline">View All Tools →</a>
+        <a href="/tools/" class="mt-2 text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline">View All Tools →</a>
       </div>
 
       <div class="border-t border-border-default my-1"></div>
@@ -182,7 +182,7 @@ const toolCategories = [
           {link.label}
         </a>
       ))}
-      <a href="/terms" class="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors">
+      <a href="/terms/" class="px-3 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors">
         Terms of Service
       </a>
 

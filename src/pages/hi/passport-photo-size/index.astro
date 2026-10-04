@@ -10,7 +10,7 @@ const locale = "hi" as const;
 const prefix = getLocalePrefix(locale);
 
 const breadcrumbs = [
-  { name: "उपकरण", url: `${prefix}/tools` },
+  { name: "उपकरण", url: `/tools/` },
   { name: "पासपोर्ट फ़ोटो", url: `${prefix}/passport-photo-size` },
 ];
 
@@ -288,7 +288,7 @@ const steps = [
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">हमारे अन्य उपकरण आज़माएं</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-        <a href={`${prefix}/tools/compress-to-100kb`} class="card-hover p-5 group">
+        <a href={`${prefix}/compress-to-100kb/`} class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">100KB तक कंप्रेस करें</h3>
           <p class="text-sm text-text-secondary">इमेज को 100KB से कम कम करें।</p>
         </a>

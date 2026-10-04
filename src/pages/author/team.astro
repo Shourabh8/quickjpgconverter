@@ -5,8 +5,8 @@ import Badge from "@components/ui/Badge.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
-  { name: "About", url: "/about" },
-  { name: "Our Team", url: "/author/team" },
+  { name: "About", url: "/about/" },
+  { name: "Our Team", url: "/author/team/" },
 ];
 
 const team = [
@@ -37,7 +37,7 @@ const team = [
 <BaseLayout
   title="Our Team — Quick JPG Converter"
   description="Meet the team behind Quick JPG Converter — the privacy-first image tools platform built to keep your files on your device."
-  canonical="https://quickjpgconverter.com/author/team"
+  canonical="https://quickjpgconverter.com/author/team/"
   breadcrumbs={breadcrumbs}
 >
   <section class="section">
@@ -103,7 +103,7 @@ const team = [
 
         <h2>Get In Touch</h2>
         <p>
-          We love hearing from users. Whether you have a feature request, found a bug, or just want to say hi — reach out via our <a href="/contact">contact page</a> or email us at <a href="mailto:supportquickjpgconverter@gmail.com">supportquickjpgconverter@gmail.com</a>.
+          We love hearing from users. Whether you have a feature request, found a bug, or just want to say hi — reach out via our <a href="/contact/">contact page</a> or email us at <a href="mailto:supportquickjpgconverter@gmail.com">supportquickjpgconverter@gmail.com</a>.
         </p>
       </div>
     </Container>

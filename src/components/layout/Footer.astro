@@ -64,14 +64,14 @@ const footerTools = featuredSlugs.map((slug) => tools.find((t) => t.slug === slu
         <div class="grid grid-cols-2 gap-x-6 gap-y-2">
           {footerTools.map((tool) => (
             <a
-              href={`/${tool!.slug}`}
+              href={`/${tool!.slug}/`}
               class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
             >
               {tool!.title}
             </a>
           ))}
         </div>
-        <a href="/tools" class="inline-block mt-3 text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium transition-colors duration-200">
+        <a href="/tools/" class="inline-block mt-3 text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-medium transition-colors duration-200">
           View all tools →
         </a>
       </div>
@@ -81,32 +81,32 @@ const footerTools = featuredSlugs.map((slug) => tools.find((t) => t.slug === slu
         <h4 class="text-xs font-semibold text-text-tertiary uppercase tracking-wider mb-4">Company</h4>
         <ul class="space-y-2.5">
           <li>
-            <a href="/about" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
+            <a href="/about/" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
               About
             </a>
           </li>
           <li>
-            <a href="/contact" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
+            <a href="/contact/" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
               Contact
             </a>
           </li>
           <li>
-            <a href="/faq" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
+            <a href="/faq/" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
               FAQ
             </a>
           </li>
           <li>
-            <a href="/privacy" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
+            <a href="/privacy/" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
               Privacy Policy
             </a>
           </li>
           <li>
-            <a href="/terms" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
+            <a href="/terms/" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
               Terms of Service
             </a>
           </li>
           <li>
-            <a href="/disclaimer" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
+            <a href="/disclaimer/" class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200">
               Disclaimer
             </a>
           </li>

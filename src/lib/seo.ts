@@ -61,7 +61,9 @@ export function generateMeta(opts: MetaOptions) {
       { name: "twitter:image", content: new URL(ogImage, site.url).href },
 
       // Robots
-      ...(opts.noindex ? [{ name: "robots", content: "noindex, nofollow" }] : [{ name: "robots", content: "index, follow" }]),
+      ...(opts.noindex
+        ? [{ name: "robots", content: "noindex, nofollow" }]
+        : [{ name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" }]),
     ],
     link: [
       { rel: "canonical", href: canonical },
@@ -96,61 +98,49 @@ interface JsonLdOptions {
 
 export function generateJsonLd(opts: JsonLdOptions) {
   const baseUrl = site.url;
+  const pageUrl = opts.url ?? baseUrl;
+  const isHomepage = !opts.url || opts.url === baseUrl || opts.url === `${baseUrl}/`;
 
   const graphs: Record<string, unknown>[] = [];
 
-  // WebApplication / SoftwareApplication schema
-  if (opts.toolSchema) {
-    // Tool-specific schema
+  // Organization schema (consistent across all pages with persistent @id)
+  graphs.push({
+    "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
+    name: site.name,
+    url: baseUrl,
+    logo: new URL("/favicon.svg", baseUrl).href,
+  });
+
+  // WebSite schema with SearchAction ONLY on the root homepage per Google guidelines
+  if (isHomepage) {
     graphs.push({
-      "@type": "WebApplication",
-      name: opts.toolSchema.name,
-      description: opts.toolSchema.description,
-      url: opts.toolSchema.url,
-      applicationCategory: "MultimediaApplication",
-      operatingSystem: "Web Browser",
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "USD",
-      },
-      featureList: opts.toolSchema.featureList,
-    });
-  } else if (opts.articleSchema) {
-    // Blog/Article schema
-    graphs.push({
-      "@type": "BlogPosting",
-      headline: opts.articleSchema.headline,
-      description: opts.description,
-      url: opts.url ?? baseUrl,
-      datePublished: opts.articleSchema.datePublished,
-      dateModified: opts.articleSchema.dateModified ?? opts.articleSchema.datePublished,
-      author: opts.articleSchema.authorName
-        ? { "@type": "Person", name: opts.articleSchema.authorName }
-        : { "@type": "Organization", name: opts.articleSchema.author ?? site.name },
+      "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
+      name: site.name,
+      url: baseUrl,
       publisher: {
-        "@type": "Organization",
-        name: site.name,
-        logo: {
-          "@type": "ImageObject",
-          url: new URL("/favicon.svg", baseUrl).href,
-        },
+        "@id": `${baseUrl}/#organization`,
       },
-      ...(opts.articleSchema.image ? { image: opts.articleSchema.image } : {}),
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": opts.url ?? baseUrl,
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${baseUrl}/tools/?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
       },
     });
-  } else {
-    // Site-wide schema (homepage only)
+
+    // Site-wide SoftwareApplication schema for homepage
     graphs.push({
       "@type": "SoftwareApplication",
       name: site.name,
       description: opts.description,
-      url: opts.url ?? baseUrl,
+      url: baseUrl,
       applicationCategory: opts.applicationCategory ?? "MultimediaApplication",
       operatingSystem: "Web Browser",
+      browserRequirements: "Requires HTML5 Canvas and WebAssembly support",
       offers: {
         "@type": "Offer",
         price: "0",
@@ -187,41 +177,104 @@ export function generateJsonLd(opts: JsonLdOptions) {
         "100% private — files never leave your device",
       ],
     });
+  } else if (opts.toolSchema) {
+    // Explicit tool schema
+    graphs.push({
+      "@type": "WebApplication",
+      name: opts.toolSchema.name,
+      description: opts.toolSchema.description,
+      url: opts.toolSchema.url,
+      applicationCategory: "MultimediaApplication",
+      operatingSystem: "Web Browser",
+      browserRequirements: "Requires HTML5 Canvas and WebAssembly support",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      featureList: opts.toolSchema.featureList,
+    });
+  } else if (opts.articleSchema) {
+    // Blog/Article schema
+    graphs.push({
+      "@type": "BlogPosting",
+      headline: opts.articleSchema.headline,
+      description: opts.description,
+      url: pageUrl,
+      datePublished: opts.articleSchema.datePublished,
+      dateModified: opts.articleSchema.dateModified ?? opts.articleSchema.datePublished,
+      author: opts.articleSchema.authorName
+        ? { "@type": "Person", name: opts.articleSchema.authorName }
+        : { "@type": "Organization", name: opts.articleSchema.author ?? site.name },
+      publisher: {
+        "@id": `${baseUrl}/#organization`,
+      },
+      ...(opts.articleSchema.image ? { image: opts.articleSchema.image } : {}),
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": pageUrl,
+      },
+    });
+  } else {
+    // Determine whether this subpage is an individual tool page or standard content page
+    const isUtilityOrDocPage = [
+      "/about",
+      "/contact",
+      "/faq",
+      "/privacy",
+      "/terms",
+      "/disclaimer",
+      "/why-browser-based",
+      "/blog",
+    ].some((path) => pageUrl.includes(path));
+
+    if (!isUtilityOrDocPage && !pageUrl.endsWith("/tools/")) {
+      // It is an active tool page without explicit toolSchema; emit tailored WebApplication schema
+      graphs.push({
+        "@type": "WebApplication",
+        name: opts.name.split("—")[0].trim(),
+        description: opts.description,
+        url: pageUrl,
+        applicationCategory: "MultimediaApplication",
+        operatingSystem: "Web Browser",
+        browserRequirements: "Requires HTML5 Canvas and WebAssembly support",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+      });
+    } else {
+      // Standard informational WebPage
+      graphs.push({
+        "@type": "WebPage",
+        name: opts.name,
+        description: opts.description,
+        url: pageUrl,
+        isPartOf: {
+          "@id": `${baseUrl}/#website`,
+        },
+      });
+    }
   }
 
-  // Organization schema
-  graphs.push({
-    "@type": "Organization",
-    name: site.name,
-    url: baseUrl,
-    logo: new URL("/favicon.svg", baseUrl).href,
-  });
-
-  // WebSite schema with SearchAction for sitelinks searchbox
-  graphs.push({
-    "@type": "WebSite",
-    name: site.name,
-    url: baseUrl,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${baseUrl}/tools?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
-  });
-
-  // BreadcrumbList schema
+  // BreadcrumbList schema with normalized trailing slash URLs
   if (opts.breadcrumbs && opts.breadcrumbs.length > 0) {
     graphs.push({
       "@type": "BreadcrumbList",
-      itemListElement: opts.breadcrumbs.map((crumb, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        name: crumb.name,
-        item: new URL(crumb.url, baseUrl).href,
-      })),
+      itemListElement: opts.breadcrumbs.map((crumb, i) => {
+        let itemUrl = crumb.url;
+        if (!itemUrl.startsWith("http")) {
+          const clean = itemUrl.endsWith("/") || itemUrl.includes("?") || itemUrl.includes("#") ? itemUrl : `${itemUrl}/`;
+          itemUrl = new URL(clean, baseUrl).href;
+        }
+        return {
+          "@type": "ListItem",
+          position: i + 1,
+          name: crumb.name,
+          item: itemUrl,
+        };
+      }),
     });
   }
 

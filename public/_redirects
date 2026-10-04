@@ -119,7 +119,35 @@
 /tools/word-to-jpg             /word-to-jpg/             301
 /tools/word-to-jpg/            /word-to-jpg/             301
 
-# ===================================================================
-# 3. Wildcard Catch-all for Any Other /tools/ Subpaths
-# ===================================================================
 /tools/:slug                   /:slug/                   301
+
+# ===================================================================
+# 4. Multilingual /tools/* Migrations to Root Locale Paths
+# ===================================================================
+/es/tools/:slug               /es/:slug/                301
+/pt/tools/:slug               /pt/:slug/                301
+/hi/tools/:slug               /hi/:slug/                301
+/fr/tools/:slug               /fr/:slug/                301
+/de/tools/:slug               /de/:slug/                301
+
+# ===================================================================
+# 5. Doorway Consolidation (Eliminate Keyword Cannibalization)
+# ===================================================================
+# Consolidate PDF to JPG doorway variants into master /pdf-to-jpg/
+/free-pdf-to-jpg              /pdf-to-jpg/              301
+/free-pdf-to-jpg/             /pdf-to-jpg/              301
+/online-pdf-to-jpg            /pdf-to-jpg/              301
+/online-pdf-to-jpg/           /pdf-to-jpg/              301
+/free-online-pdf-to-jpg       /pdf-to-jpg/              301
+/free-online-pdf-to-jpg/      /pdf-to-jpg/              301
+
+# Consolidate HEIC to JPG doorway variants into master /heic-to-jpg/
+/free-heic-to-jpg             /heic-to-jpg/             301
+/free-heic-to-jpg/            /heic-to-jpg/             301
+
+# Consolidate Image to JPG doorway variants into master /image-to-jpg/
+/image-to-jpg-converter       /image-to-jpg/            301
+/image-to-jpg-converter/      /image-to-jpg/            301
+/jpg-converter                /image-to-jpg/            301
+/jpg-converter/               /image-to-jpg/            301
+

@@ -4,7 +4,7 @@ import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
-const breadcrumbs = [{ name: "About", url: "/about" }];
+const breadcrumbs = [{ name: "About", url: "/about/" }];
 
 const stats = [
   { value: "2M+", label: "Conversions monthly" },
@@ -48,11 +48,11 @@ const authorSchema = {
   "@type": "AboutPage",
   name: "About Quick JPG Converter",
   description: "Learn about Quick JPG Converter's privacy-first image tools platform and how it serves millions of users worldwide.",
-  url: "https://quickjpgconverter.com/about",
+  url: "https://quickjpgconverter.com/about/",
   mainEntity: {
     "@type": "Organization",
     name: "Quick JPG Converter",
-    url: "https://quickjpgconverter.com",
+    url: "https://quickjpgconverter.com/",
     description: "Privacy-first browser-based image conversion tools",
     foundingDate: "2024",
     numberOfEmployees: "2-10",
@@ -64,7 +64,7 @@ const authorSchema = {
 <BaseLayout
   title="About Quick JPG Converter — Privacy-First Image Tools Platform"
   description="Learn how Quick JPG Converter works, our privacy-first mission, and why 2M+ users choose us every month for browser-based image conversion."
-  canonical="https://quickjpgconverter.com/about"
+  canonical="https://quickjpgconverter.com/about/"
   breadcrumbs={breadcrumbs}
 >
   <script type="application/ld+json" set:html={JSON.stringify(authorSchema)} />

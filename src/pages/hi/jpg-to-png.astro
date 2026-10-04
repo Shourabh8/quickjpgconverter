@@ -11,8 +11,8 @@ const locale = "hi" as const;
 const prefix = getLocalePrefix(locale);
 
 const breadcrumbs = [
-  { name: "उपकरण", url: `${prefix}/tools` },
-  { name: "JPG से PNG", url: `${prefix}/tools/jpg-to-png` },
+  { name: "उपकरण", url: `/tools/` },
+  { name: "JPG से PNG", url: `${prefix}/jpg-to-png/` },
 ];
 
 const conversionOptions = [
@@ -63,7 +63,7 @@ const relatedTools = [
 <BaseLayout
   title="मुफ्त JPG से PNG कनवर्टर — ऑनलाइन कनवर्ज़न टूल"
   description="हमारे मुफ्त ऑनलाइन JPG कनवर्टर से JPG को तुरंत PNG में बदलें। हानि-रहित गुणवत्ता, पारदर्शिता सपोर्ट और 100% निजी। कोई अपलोड नहीं — अभी आज़माएं।"
-  canonical={`https://quickjpgconverter.com${prefix}/tools/jpg-to-png`}
+  canonical={`https://quickjpgconverter.com${prefix}/jpg-to-png/`}
   keywords={["जेपीजी से पीएनजी", "जेपीजी को पीएनजी में बदलें", "जेपेग से पीएनजी"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
@@ -292,7 +292,7 @@ const relatedTools = [
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
         {relatedTools.map((tool) => (
-          <a href={`${prefix}/tools/${tool.slug}`} class="card-hover p-5 group">
+          <a href={`${prefix}/${tool.slug}/`} class="card-hover p-5 group">
             <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
             <p class="text-sm text-text-secondary">{tool.desc}</p>
           </a>

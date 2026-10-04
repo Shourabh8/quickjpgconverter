@@ -10,7 +10,7 @@ const locale = "de" as const;
 const prefix = getLocalePrefix(locale);
 
 const breadcrumbs = [
-  { name: "Werkzeuge", url: `${prefix}/tools` },
+  { name: "Werkzeuge", url: `/tools/` },
   { name: "Reisepassfoto", url: `${prefix}/passport-photo-size` },
 ];
 
@@ -288,7 +288,7 @@ const steps = [
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Testen Sie unsere anderen Werkzeuge</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-        <a href={`${prefix}/tools/compress-to-100kb`} class="card-hover p-5 group">
+        <a href={`${prefix}/compress-to-100kb/`} class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Auf 100KB komprimieren</h3>
           <p class="text-sm text-text-secondary">Reduzieren Sie Bilder auf unter 100KB.</p>
         </a>

@@ -7,70 +7,70 @@ import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 import { getLocalePrefix } from "@i18n/index";
 
-const locale = "fr" as const;
+const locale = "es" as const;
 const prefix = getLocalePrefix(locale);
 
 const breadcrumbs = [
-  { name: "Outils", url: `${prefix}/tools` },
-  { name: "JPG en PNG", url: `${prefix}/tools/jpg-to-png` },
+  { name: "Herramientas", url: `/tools/` },
+  { name: "JPG a PNG", url: `${prefix}/jpg-to-png/` },
 ];
 
 const conversionOptions = [
-  { id: "quality-high", label: "Haute Qualité", desc: "Meilleure fidélité visuelle, fichier plus grand", checked: true },
-  { id: "quality-balanced", label: "Équilibré", desc: "Bon équilibre entre taille et qualité", checked: false },
-  { id: "quality-small", label: "Taille Minimale", desc: "Fichier plus petit, légère perte de qualité", checked: false },
+  { id: "quality-high", label: "Alta Calidad", desc: "La mejor fidelidad visual, archivo más grande", checked: true },
+  { id: "quality-balanced", label: "Equilibrado", desc: "Buen equilibrio entre tamaño y calidad", checked: false },
+  { id: "quality-small", label: "Tamaño Mínimo", desc: "Archivo más pequeño, ligera pérdida de calidad", checked: false },
 ];
 
 const faqItems = [
   {
-    question: "Quelle est la différence entre JPG et PNG ?",
-    answer: "JPG utilise une compression avec perte, ce qui signifie que des données de l'image sont supprimées pour obtenir des fichiers plus petits. PNG utilise une compression sans perte, préservant chaque pixel. PNG supporte également les arrière-plans transparents, ce que JPG ne fait pas.",
+    question: "¿Cuál es la diferencia entre JPG y PNG?",
+    answer: "JPG usa compresión con pérdida, lo que significa que se descartan datos de la imagen para lograr archivos más pequeños. PNG usa compresión sin pérdida, preservando cada píxel. PNG también soporta fondos transparentes, algo que JPG no hace.",
   },
   {
-    question: "Convertir JPG en PNG améliorera-t-il la qualité ?",
-    answer: "Convertir JPG en PNG ne récupérera pas les données perdues lors de la compression originale du JPG. Cependant, cela empêche une perte de qualité supplémentaire lors de l'édition et du partage. Le PNG est idéal quand vous devez préserver la qualité actuelle.",
+    question: "¿Convertir JPG a PNG mejorará la calidad?",
+    answer: "Convertir JPG a PNG no recuperará los datos perdidos durante la compresión original de JPG. Sin embargo, previene una mayor pérdida de calidad durante la edición y el uso compartido. PNG es ideal cuando necesitas preservar la calidad actual.",
   },
   {
-    question: "Pourquoi le fichier PNG est-il plus grand que le JPG ?",
-    answer: "PNG utilise une compression sans perte qui conserve toutes les données de l'image. Cela résulte en des fichiers plus grands mais avec une qualité parfaite. JPG obtient des tailles plus petites en supprimant certaines données visuelles que l'œil humain peut ne pas remarquer.",
+    question: "¿Por qué el archivo PNG es más grande que el JPG?",
+    answer: "PNG usa compresión sin pérdida, que retiene todos los datos de imagen. Esto resulta en archivos más grandes pero con calidad perfecta. JPG logra tamaños más pequeños descartando algunos datos visuales que el ojo humano puede no notar.",
   },
   {
-    question: "Puis-je convertir plusieurs fichiers JPG à la fois ?",
-    answer: "Oui. Vous pouvez glisser-déposer ou sélectionner plusieurs fichiers JPG. Tous seront convertis en PNG simultanément, et vous pouvez les télécharger individuellement ou en lot.",
+    question: "¿Puedo convertir múltiples archivos JPG a la vez?",
+    answer: "Sí. Puedes arrastrar y soltar o seleccionar múltiples archivos JPG. Todos se convertirán a PNG simultáneamente, y puedes descargarlos individualmente o en lote.",
   },
   {
-    question: "Quel est le meilleur convertisseur JPG en PNG gratuit ?",
-    answer: "Quick JPG Converter est l'un des meilleurs convertisseurs JPG en PNG gratuits. Il s'exécute entièrement dans votre navigateur, préserve la qualité sans perte, supporte la conversion par lots et ne nécessite ni inscription ni envoi de fichiers.",
+    question: "¿Cuál es el mejor convertidor JPG a PNG gratis?",
+    answer: "Quick JPG Converter es uno de los mejores convertidores JPG a PNG gratis. Se ejecuta completamente en tu navegador, preserva la calidad sin pérdida, soporta conversión por lotes y no requiere registro ni subidas.",
   },
 ];
 
 const steps = [
-  { title: "Téléversez vos JPG", desc: "Glissez-déposez ou cliquez pour sélectionner vos fichiers image." },
-  { title: "Conversion instantanée", desc: "Votre image est convertie dans le navigateur. Pas d'envoi sur serveur." },
-  { title: "Téléchargez le PNG", desc: "Obtenez votre fichier PNG haute qualité instantanément." },
+  { title: "Sube tus JPG", desc: "Arrastra y suelta o haz clic para seleccionar tus archivos de imagen." },
+  { title: "Convierte al instante", desc: "Tu imagen se convierte en el navegador. Sin subidas al servidor." },
+  { title: "Descarga PNG", desc: "Obtén tu archivo PNG de alta calidad al instante." },
 ];
 
 const relatedTools = [
-  { slug: "png-to-jpg", title: "PNG en JPG", desc: "Convertissez les images PNG en format JPG." },
-  { slug: "jpg-to-webp", title: "JPG en WebP", desc: "Convertissez JPG au format moderne WebP." },
-  { slug: "webp-to-jpg", title: "WebP en JPG", desc: "Convertissez les images WebP en JPG." },
-  { slug: "heic-to-jpg", title: "HEIC en JPG", desc: "Convertissez les photos HEIC d'iPhone en JPG." },
-  { slug: "image-compressor", title: "Compresseur d'image", desc: "Compressez les images sans perte de qualité." },
-  { slug: "resize-jpg", title: "Redimensionner JPG", desc: "Redimensionnez les images à n'importe quelle dimension." },
+  { slug: "png-to-jpg", title: "PNG a JPG", desc: "Convierte imágenes PNG a formato JPG." },
+  { slug: "jpg-to-webp", title: "JPG a WebP", desc: "Convierte JPG al moderno formato WebP." },
+  { slug: "webp-to-jpg", title: "WebP a JPG", desc: "Convierte imágenes WebP a JPG." },
+  { slug: "heic-to-jpg", title: "HEIC a JPG", desc: "Convierte fotos HEIC de iPhone a JPG." },
+  { slug: "image-compressor", title: "Compresor de Imágenes", desc: "Comprime imágenes sin pérdida de calidad." },
+  { slug: "resize-jpg", title: "Redimensionar JPG", desc: "Redimensiona imágenes a cualquier dimensión." },
 ];
 ---
 
 <BaseLayout
-  title="Convertisseur JPG en PNG Gratuit — Outil de Conversion en Ligne"
-  description="Convertissez JPG en PNG instantanément avec notre convertisseur JPG gratuit en ligne. Qualité sans perte, support de la transparence et 100% privé. Pas d'envoi nécessaire — essayez maintenant."
-  canonical={`https://quickjpgconverter.com${prefix}/tools/jpg-to-png`}
-  keywords={["jpg en png", "convertir jpg en png", "jpeg en png"]}
+  title="Convertidor JPG a PNG Gratis — Herramienta de Conversión en Línea"
+  description="Convierte JPG a PNG al instante con nuestro convertidor JPG gratis en línea. Calidad sin pérdida, soporte de transparencia y 100% privado. Sin subidas necesarias — pruébalo ahora."
+  canonical={`https://quickjpgconverter.com${prefix}/jpg-to-png/`}
+  keywords={["jpg a png", "convertir jpg a png", "jpeg a png"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
   howToSteps={[
-    { name: "Téléversez les fichiers JPG", text: "Glissez-déposez vos images JPG ou cliquez pour sélectionner." },
-    { name: "Choisissez la qualité", text: "Sélectionnez Haute Qualité, Équilibré ou Taille Minimale." },
-    { name: "Convertissez et téléchargez", text: "Cliquez sur Convertir en PNG et téléchargez vos fichiers." },
+    { name: "Sube archivos JPG", text: "Arrastra y suelta tus imágenes JPG o haz clic para seleccionar." },
+    { name: "Selecciona calidad", text: "Elige entre Alta Calidad, Equilibrado o Tamaño Mínimo." },
+    { name: "Convierte y descarga", text: "Haz clic en Convertir a PNG y descarga tus archivos." },
   ]}
   locale={locale}
 >
@@ -85,14 +85,14 @@ const relatedTools = [
           <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
-          Gratuit · Sans inscription · Privé
+          Gratis · Sin Registro · Privado
         </Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          Convertisseur JPG en <span class="gradient-text">PNG</span>
+          Convertidor JPG a <span class="gradient-text">PNG</span>
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          Convertissez vos images JPG en PNG avec une qualité sans perte et un support de la transparence.
-          Tout s'exécute dans votre navigateur.
+          Convierte tus imágenes JPG a PNG con calidad sin pérdida y soporte de transparencia.
+          Todo se ejecuta en tu navegador.
         </p>
       </div>
     </Container>
@@ -103,7 +103,7 @@ const relatedTools = [
       <div class="max-w-5xl mx-auto">
         <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
           <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
-            <span class="text-sm font-medium text-text-secondary">Convertir en :</span>
+            <span class="text-sm font-medium text-text-secondary">Convertir a:</span>
             <div class="flex items-center gap-1.5 p-1 rounded-xl bg-surface border border-border-default">
               <button class="px-3 py-1.5 rounded-lg text-sm font-medium bg-brand-600 text-white shadow-sm">PNG</button>
             </div>
@@ -121,21 +121,21 @@ const relatedTools = [
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
                   </div>
-                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Glissez vos fichiers JPG ici</h3>
-                  <p class="text-sm text-text-secondary mb-5 max-w-xs">ou cliquez pour sélectionner depuis votre ordinateur</p>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Arrastra tus archivos JPG aquí</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">o haz clic para seleccionar desde tu computadora</p>
                   <label class="btn-primary btn-md cursor-pointer">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
-                    Sélectionner des fichiers
+                    Seleccionar Archivos
                     <input type="file" class="sr-only" accept=".jpg,.jpeg" multiple />
                   </label>
-                  <p class="text-xs text-text-tertiary mt-4">JPG, JPEG · Max 50 Mo par fichier · Plusieurs fichiers supportés</p>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, JPEG · Máx 50MB por archivo · Múltiples archivos soportados</p>
                   <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
                     <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
-                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Déposez pour téléverser</p>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Suelta para subir</p>
                   </div>
                 </div>
               </div>
@@ -145,15 +145,15 @@ const relatedTools = [
                   <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
                     <div class="flex items-center gap-2">
                       <div class="w-2 h-2 rounded-full bg-success"></div>
-                      <span id="file-count" class="text-sm font-medium text-text-primary">0 fichiers prêts</span>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 archivos listos</span>
                     </div>
-                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Tout effacer</button>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Limpiar todo</button>
                   </div>
                   <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
                   <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
-                    <span class="text-text-tertiary">Entrée : JPG</span>
+                    <span class="text-text-tertiary">Entrada: JPG</span>
                     <span class="text-text-tertiary">→</span>
-                    <span class="text-brand-600 dark:text-brand-400 font-medium">Sortie : PNG</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">Salida: PNG</span>
                   </div>
                 </div>
               </div>
@@ -161,7 +161,7 @@ const relatedTools = [
 
             <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
               <div class="mb-6">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Options de Conversion</h3>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Opciones de Conversión</h3>
                 <div class="space-y-2">
                   {conversionOptions.map((opt) => (
                     <label class:list={[
@@ -183,7 +183,7 @@ const relatedTools = [
               <div class="h-px bg-border-default mb-6"></div>
 
               <div class="mb-6">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Format de Sortie</h3>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Formato de Salida</h3>
                 <div class="p-3 rounded-xl border border-border-default bg-surface-muted">
                   <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center">
@@ -193,7 +193,7 @@ const relatedTools = [
                     </div>
                     <div>
                       <div class="text-sm font-semibold text-text-primary">PNG</div>
-                      <div class="text-xs text-text-tertiary">Sans perte · Transparence · ~3-5× plus grand</div>
+                      <div class="text-xs text-text-tertiary">Sin pérdida · Transparencia · ~3-5× más grande</div>
                     </div>
                   </div>
                 </div>
@@ -205,7 +205,7 @@ const relatedTools = [
                 <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
                   <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
                 </div>
-                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Conversion en cours...</p>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Convirtiendo...</p>
               </div>
 
               <div id="convert-btn-area">
@@ -213,9 +213,9 @@ const relatedTools = [
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Convertir en PNG
+                  Convertir a PNG
                 </button>
-                <p class="text-xs text-text-tertiary text-center mt-2">Téléversez un fichier pour lancer la conversion</p>
+                <p class="text-xs text-text-tertiary text-center mt-2">Sube un archivo para iniciar la conversión</p>
               </div>
 
               <div id="download-area" class="hidden"></div>
@@ -224,26 +224,26 @@ const relatedTools = [
         </div>
 
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
-          <span class="font-medium text-text-secondary">Supportés :</span>
+          <span class="font-medium text-text-secondary">Soportados:</span>
           {["JPG", "JPEG"].map((fmt) => (
             <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
           ))}
           <span class="text-text-tertiary">·</span>
-          <span>Max 50 Mo</span>
+          <span>Máx 50MB</span>
           <span class="text-text-tertiary">·</span>
-          <span>Plusieurs fichiers</span>
+          <span>Múltiples archivos</span>
         </div>
       </div>
     </Container>
   </section>
 
-  <FeatureRequest toolName="JPG en PNG" />
+  <FeatureRequest toolName="JPG a PNG" />
 
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
-        <Badge class="mb-4">Comment ça marche</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Trois Étapes</h2>
+        <Badge class="mb-4">Cómo Funciona</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Tres Pasos</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {steps.map((step, i) => (
@@ -260,15 +260,15 @@ const relatedTools = [
   <section class="section">
     <Container variant="narrow">
       <div class="prose">
-        <h2>Pourquoi convertir JPG en PNG ?</h2>
-        <p>PNG (Portable Network Graphics) est le format idéal quand vous avez besoin d'une compression sans perte ou d'arrière-plans transparents. Contrairement au JPG, PNG préserve chaque pixel de votre image sans artefacts de compression.</p>
-        <h3>Quand utiliser PNG plutôt que JPG</h3>
+        <h2>¿Por Qué Convertir JPG a PNG?</h2>
+        <p>PNG (Portable Network Graphics) es el formato ideal cuando necesitas compresión sin pérdida o fondos transparentes. A diferencia de JPG, PNG preserva cada píxel de tu imagen sin artefactos de compresión.</p>
+        <h3>Cuándo Usar PNG Sobre JPG</h3>
         <ul>
-          <li><strong>Logos et icônes</strong> — ont besoin de bords nets et d'arrière-plans transparents</li>
-          <li><strong>Captures d'écran</strong> — le texte et les éléments d'interface restent nets quelle que soit la taille</li>
-          <li><strong>Graphiques avec couleurs unies</strong> — pas d'artefacts de compression dans les zones plates</li>
-          <li><strong>Images que vous éditerez plusieurs fois</strong> — pas de perte de qualité générations après générations</li>
-          <li><strong>Ressources prêtes pour l'impression</strong> — qualité sans perte pour une sortie professionnelle</li>
+          <li><strong>Logotipos e iconos</strong> — necesitan bordes nítidos y fondos transparentes</li>
+          <li><strong>Capturas de pantalla</strong> — texto y elementos de interfaz se mantienen nítidos en cualquier tamaño</li>
+          <li><strong>Gráficos con colores sólidos</strong> — sin artefactos de compresión en áreas planas</li>
+          <li><strong>Imágenes que editarás múltiples veces</strong> — sin pérdida de calidad generacional</li>
+          <li><strong>Recursos listos para imprimir</strong> — calidad sin pérdida para salida profesional</li>
         </ul>
       </div>
     </Container>
@@ -278,7 +278,7 @@ const relatedTools = [
     <Container variant="narrow">
       <div class="text-center mb-10">
         <Badge class="mb-4">FAQ</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Questions Fréquentes</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Preguntas Frecuentes</h2>
       </div>
       <FAQ items={faqItems} />
     </Container>
@@ -287,12 +287,12 @@ const relatedTools = [
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
-        <Badge class="mb-4">Outils Connexes</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Essayez nos autres convertisseurs</h2>
+        <Badge class="mb-4">Herramientas Relacionadas</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Prueba Nuestros Otros Convertidores</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
         {relatedTools.map((tool) => (
-          <a href={`${prefix}/tools/${tool.slug}`} class="card-hover p-5 group">
+          <a href={`${prefix}/${tool.slug}/`} class="card-hover p-5 group">
             <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
             <p class="text-sm text-text-secondary">{tool.desc}</p>
           </a>

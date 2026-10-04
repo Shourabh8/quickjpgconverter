@@ -7,62 +7,62 @@ import FeatureRequest from "@components/ui/FeatureRequest.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 import { getLocalePrefix } from "@i18n/index";
 
-const locale = "es" as const;
+const locale = "fr" as const;
 const prefix = getLocalePrefix(locale);
 
 const breadcrumbs = [
-  { name: "Herramientas", url: `${prefix}/tools` },
-  { name: "Comprimir a 100KB", url: `${prefix}/tools/compress-to-100kb` },
+  { name: "Outils", url: `/tools/` },
+  { name: "Compresser à 100 Ko", url: `${prefix}/compress-to-100kb/` },
 ];
 
 const faqItems = [
   {
-    question: "¿Por qué necesitaría comprimir una imagen a exactamente 100KB?",
-    answer: "Muchos portales en línea, formularios gubernamentales y solicitudes de empleo requieren que las fotos de pasaporte o escaneos de documentos estén por debajo de 100KB. Esta herramienta te ayuda a cumplir con esos requisitos estrictos de tamaño de archivo manteniendo la mejor calidad posible.",
+    question: "Pourquoi ai-je besoin de comprimer une image à exactement 100 Ko ?",
+    answer: "De nombreux portails en ligne, formulaires gouvernementaux et candidatures d'emploi exigent que les photos de passeport ou les scans de documents soient inférieurs à 100 Ko. Cet outil vous aide à respecter ces exigences strictes de taille de fichier tout en préservant la meilleure qualité possible.",
   },
   {
-    question: "¿Mi imagen se verá borrosa después de la compresión?",
-    answer: "Nuestro compresor usa reducción inteligente de calidad para lograr el tamaño objetivo mientras preserva tanto la calidad visual como sea posible. El resultado es generalmente excelente para fotos y documentos a 100KB.",
+    question: "Mon image sera-t-elle floue après la compression ?",
+    answer: "Notre compresseur utilise une réduction intelligente de la qualité pour atteindre la taille cible tout en préservant autant la qualité visuelle que possible. Le résultat est généralement excellent pour les photos et documents à 100 Ko.",
   },
   {
-    question: "¿Qué formatos de imagen se admiten?",
-    answer: "Admitimos formatos de entrada JPG, PNG y WebP. La salida siempre es JPG para asegurar el tamaño de archivo más pequeño posible en el objetivo.",
+    question: "Quels formats d'image sont pris en charge ?",
+    answer: "Nous acceptons les formats d'entrée JPG, PNG et WebP. La sortie est toujours en JPG pour garantir la taille de fichier la plus petite possible à la cible.",
   },
   {
-    question: "¿Puedo comprimir múltiples imágenes a la vez?",
-    answer: "Sí. Puedes subir múltiples imágenes y comprimirlas todas a 100KB o menos. Cada imagen se procesa individualmente para cumplir con el tamaño objetivo.",
+    question: "Puis-je comprimer plusieurs images à la fois ?",
+    answer: "Oui. Vous pouvez téléverser plusieurs images et les comprimer toutes à 100 Ko ou moins. Chaque image est traitée individuellement pour respecter la taille cible.",
   },
   {
-    question: "¿Hay un límite de tamaño de archivo para subidas?",
-    answer: "Puedes subir imágenes de hasta 50MB. El compresor se ejecuta completamente en tu navegador, por lo que el tiempo de procesamiento depende de tu dispositivo y el número de imágenes.",
+    question: "Y a-t-il une limite de taille de fichier pour les téléversements ?",
+    answer: "Vous pouvez téléverser des images jusqu'à 50 Mo. Le compresseur s'exécute entièrement dans votre navigateur, donc le temps de traitement dépend de votre appareil et du nombre d'images.",
   },
   {
-    question: "¿Funciona en móvil?",
-    answer: "Sí. Nuestro compresor funciona en cualquier dispositivo — iPhone, Android, tableta o escritorio. Sin necesidad de instalar aplicaciones. Solo abre la herramienta en tu navegador y comprime.",
+    question: "Fonctionne-t-il sur mobile ?",
+    answer: "Oui. Notre compresseur fonctionne sur tout appareil — iPhone, Android, tablette ou ordinateur. Pas besoin d'installer des applications. Ouvrez simplement l'outil dans votre navigateur et comprimez.",
   },
 ];
 
 const steps = [
-  { title: "Sube tus imágenes", desc: "Arrastra y suelta o haz clic para seleccionar tus fotos." },
-  { title: "Auto-comprimir", desc: "Nuestro algoritmo reduce la calidad para alcanzar exactamente 100KB." },
-  { title: "Descarga JPG", desc: "Obtén tu imagen de 100KB al instante, lista para subir." },
+  { title: "Téléversez vos images", desc: "Glissez-déposez ou cliquez pour sélectionner vos photos." },
+  { title: "Auto-compression", desc: "Notre algorithme réduit la qualité pour atteindre exactement 100 Ko." },
+  { title: "Téléchargez le JPG", desc: "Obtenez votre image de 100 Ko instantanément, prête à être envoyée." },
 ];
 
 const relatedTools = [
-  { slug: "compress-to-200kb", title: "Comprimir a 200KB", desc: "Comprime imágenes a menos de 200KB." },
-  { slug: "image-enhancer", title: "Mejorador de Imágenes", desc: "Mejora brillo, contraste y nitidez." },
-  { slug: "image-compressor", title: "Compresor de Imágenes", desc: "Compresión personalizada con control deslizante de calidad." },
-  { slug: "resize-jpg", title: "Redimensionar JPG", desc: "Redimensiona imágenes a cualquier dimensión." },
-  { slug: "jpg-to-png", title: "JPG a PNG", desc: "Convierte JPG a PNG con calidad sin pérdida." },
-  { slug: "jpg-to-webp", title: "JPG a WebP", desc: "Convierte JPG al moderno formato WebP." },
+  { slug: "compress-to-200kb", title: "Compresser à 200 Ko", desc: "Compressez les images à moins de 200 Ko." },
+  { slug: "image-enhancer", title: "Amélioreur d'image", desc: "Améliorez la luminosité, le contraste et la netteté." },
+  { slug: "image-compressor", title: "Compresseur d'image", desc: "Compression personnalisée avec contrôle de la qualité." },
+  { slug: "resize-jpg", title: "Redimensionner JPG", desc: "Redimensionnez les images à n'importe quelle dimension." },
+  { slug: "jpg-to-png", title: "JPG en PNG", desc: "Convertissez JPG en PNG avec une qualité sans perte." },
+  { slug: "jpg-to-webp", title: "JPG en WebP", desc: "Convertissez JPG au format moderne WebP." },
 ];
 ---
 
 <BaseLayout
-  title="Comprimir Imagen a 100KB — Reductor de Fotos Gratis en Línea"
-  description="Comprime cualquier imagen a menos de 100KB para fotos de pasaporte, envíos de formularios y subidas a portales. Herramienta gratuita en línea que se ejecuta en tu navegador — sin subidas, sin registro."
-  canonical={`https://quickjpgconverter.com${prefix}/tools/compress-to-100kb`}
-  keywords={["comprimir imagen a 100kb", "reducir imagen a 100kb", "compresor de imagen 100kb", "imagen a 100kb"]}
+  title="Compresser une image à 100 Ko — Réducteur de photos gratuit en ligne"
+  description="Compressez n'importe quelle image à moins de 100 Ko pour les photos de passeport, les formulaires et les téléversements de portails. Outil gratuit en ligne qui s'exécute dans votre navigateur — pas d'envoi, pas d'inscription."
+  canonical={`https://quickjpgconverter.com${prefix}/compress-to-100kb/`}
+  keywords={["compresser image à 100ko", "réduire image à 100ko", "compresseur d'image 100ko", "image à 100ko"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
   locale={locale}
@@ -78,13 +78,13 @@ const relatedTools = [
           <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
-          Gratis · Sin Registro · Privado
+          Gratuit · Sans inscription · Privé
         </Badge>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
-          Comprimir Imagen a <span class="gradient-text">100KB</span>
+          Compresser une image à <span class="gradient-text">100 Ko</span>
         </h1>
         <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
-          Perfecto para fotos de pasaporte, envíos de formularios y subidas a portales. Comprime cualquier imagen a menos de 100KB manteniendo la calidad.
+          Parfait pour les photos de passeport, les formulaires et les téléversements de portails. Comprimez n'importe quelle image à moins de 100 Ko en préservant la qualité.
         </p>
       </div>
     </Container>
@@ -95,9 +95,9 @@ const relatedTools = [
       <div class="max-w-5xl mx-auto">
         <div class="rounded-2xl border border-border-default bg-surface shadow-lg overflow-hidden">
           <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-border-default bg-surface-muted">
-            <span class="text-sm font-medium text-text-secondary">Tamaño objetivo:</span>
+            <span class="text-sm font-medium text-text-secondary">Taille cible :</span>
             <div class="flex items-center gap-2">
-              <span id="target-size-display" class="px-3 py-1.5 rounded-lg text-sm font-bold bg-brand-600 text-white shadow-sm">100 KB</span>
+              <span id="target-size-display" class="px-3 py-1.5 rounded-lg text-sm font-bold bg-brand-600 text-white shadow-sm">100 Ko</span>
             </div>
           </div>
 
@@ -110,21 +110,21 @@ const relatedTools = [
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
                   </div>
-                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Arrastra tus imágenes aquí</h3>
-                  <p class="text-sm text-text-secondary mb-5 max-w-xs">o haz clic para seleccionar desde tu computadora</p>
+                  <h3 class="text-base font-semibold text-text-primary mb-1.5">Glissez vos images ici</h3>
+                  <p class="text-sm text-text-secondary mb-5 max-w-xs">ou cliquez pour sélectionner depuis votre ordinateur</p>
                   <label class="btn-primary btn-md cursor-pointer">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
-                    Seleccionar Archivos
+                    Sélectionner des fichiers
                     <input type="file" class="sr-only" accept=".jpg,.jpeg,.png,.webp" multiple />
                   </label>
-                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Máx 50MB por archivo · Múltiples archivos soportados</p>
+                  <p class="text-xs text-text-tertiary mt-4">JPG, PNG, WebP · Max 50 Mo par fichier · Plusieurs fichiers supportés</p>
                   <div id="drop-overlay" class="absolute inset-0 rounded-xl bg-brand-50/80 dark:bg-brand-950/30 border-2 border-brand-400 dark:border-brand-600 flex flex-col items-center justify-center hidden">
                     <svg class="w-12 h-12 text-brand-500 mb-3 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
-                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Suelta para subir</p>
+                    <p class="text-base font-semibold text-brand-700 dark:text-brand-300">Déposez pour téléverser</p>
                   </div>
                 </div>
               </div>
@@ -133,15 +133,15 @@ const relatedTools = [
                   <div class="flex items-center justify-between px-4 py-3 border-b border-border-default bg-surface-muted">
                     <div class="flex items-center gap-2">
                       <div class="w-2 h-2 rounded-full bg-success"></div>
-                      <span id="file-count" class="text-sm font-medium text-text-primary">0 archivos listos</span>
+                      <span id="file-count" class="text-sm font-medium text-text-primary">0 fichiers prêts</span>
                     </div>
-                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Limpiar todo</button>
+                    <button id="clear-btn" class="text-xs text-text-tertiary hover:text-danger transition-colors font-medium">Tout effacer</button>
                   </div>
                   <div id="preview-grid" class="flex-1 p-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto max-h-[350px] content-start"></div>
                   <div class="px-4 py-3 border-t border-border-default flex items-center justify-between text-xs">
-                    <span class="text-text-tertiary">Objetivo: ≤ 100KB</span>
+                    <span class="text-text-tertiary">Cible : ≤ 100 Ko</span>
                     <span class="text-text-tertiary">→</span>
-                    <span class="text-brand-600 dark:text-brand-400 font-medium">Salida: JPG</span>
+                    <span class="text-brand-600 dark:text-brand-400 font-medium">Sortie : JPG</span>
                   </div>
                 </div>
               </div>
@@ -149,16 +149,16 @@ const relatedTools = [
 
             <div class="lg:col-span-2 p-5 sm:p-6 flex flex-col">
               <div class="mb-6">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Tamaño de Archivo Objetivo</h3>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Taille de fichier cible</h3>
                 <div class="p-4 rounded-xl border border-brand-300 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-950/30">
                   <div class="text-center">
-                    <div class="text-3xl font-bold text-brand-600 dark:text-brand-400 mb-1">100KB</div>
-                    <p class="text-xs text-text-secondary">Ideal para fotos de pasaporte y envíos de formularios</p>
+                    <div class="text-3xl font-bold text-brand-600 dark:text-brand-400 mb-1">100 Ko</div>
+                    <p class="text-xs text-text-secondary">Idéal pour les photos de passeport et les formulaires</p>
                   </div>
                 </div>
               </div>
               <div class="mb-6">
-                <h3 class="text-sm font-semibold text-text-primary mb-3">Formato de Salida</h3>
+                <h3 class="text-sm font-semibold text-text-primary mb-3">Format de sortie</h3>
                 <div class="p-3 rounded-xl border border-border-default bg-surface-muted">
                   <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center">
@@ -168,7 +168,7 @@ const relatedTools = [
                     </div>
                     <div>
                       <div class="text-sm font-semibold text-text-primary">JPG</div>
-                      <div class="text-xs text-text-tertiary">Con pérdida · Universal · Archivos más pequeños</div>
+                      <div class="text-xs text-text-tertiary">Avec perte · Universel · Fichiers plus petits</div>
                     </div>
                   </div>
                 </div>
@@ -178,16 +178,16 @@ const relatedTools = [
                 <div class="w-full h-2 bg-surface-muted rounded-full overflow-hidden">
                   <div id="progress-bar" class="h-full bg-brand-500 rounded-full transition-all duration-300" style="width: 0%"></div>
                 </div>
-                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Comprimiendo...</p>
+                <p id="progress-text" class="text-xs text-text-tertiary text-center mt-2">Compression en cours...</p>
               </div>
               <div id="compress-btn-area">
                 <button id="compress-btn" class="w-full btn-primary btn-lg justify-center opacity-50 cursor-not-allowed" disabled>
                   <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Comprimir a 100KB
+                  Compresser à 100 Ko
                 </button>
-                <p class="text-xs text-text-tertiary text-center mt-2">Sube imágenes para iniciar la compresión</p>
+                <p class="text-xs text-text-tertiary text-center mt-2">Téléversez des images pour lancer la compression</p>
               </div>
               <div id="download-area" class="hidden"></div>
             </div>
@@ -195,26 +195,26 @@ const relatedTools = [
         </div>
 
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-text-tertiary">
-          <span class="font-medium text-text-secondary">Soportados:</span>
+          <span class="font-medium text-text-secondary">Supportés :</span>
           {["JPG", "PNG", "WebP"].map((fmt) => (
             <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-subtle border border-border-muted font-medium text-text-secondary">{fmt}</span>
           ))}
           <span class="text-text-tertiary">·</span>
-          <span>Máx 50MB</span>
+          <span>Max 50 Mo</span>
           <span class="text-text-tertiary">·</span>
-          <span>Múltiples archivos</span>
+          <span>Plusieurs fichiers</span>
         </div>
       </div>
     </Container>
   </section>
 
-  <FeatureRequest toolName="Comprimir a 100KB" />
+  <FeatureRequest toolName="Compresser à 100 Ko" />
 
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
-        <Badge class="mb-4">Cómo Funciona</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Tres Pasos</h2>
+        <Badge class="mb-4">Comment ça marche</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Trois Étapes</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {steps.map((step, i) => (
@@ -231,15 +231,15 @@ const relatedTools = [
   <section class="section">
     <Container variant="narrow">
       <div class="prose">
-        <h2>¿Por Qué Comprimir a 100KB?</h2>
-        <p>Muchos portales en línea, sitios web gubernamentales y solicitudes de empleo tienen límites estrictos de tamaño de archivo. Las fotos de pasaporte, documentos de identidad y escaneos de documentos a menudo necesitan estar por debajo de 100KB. Nuestro compresor reduce inteligentemente la calidad para cumplir con este requisito exacto mientras preserva la mayor claridad visual posible.</p>
-        <h3>Casos de Uso Comunes</h3>
+        <h2>Pourquoi compresser à 100 Ko ?</h2>
+        <p>De nombreux portails en ligne, sites web gouvernementaux et candidatures d'emploi ont des limites strictes de taille de fichier. Les photos de passeport, pièces d'identité et scans de documents doivent souvent être inférieurs à 100 Ko. Notre compresseur réduit intelligemment la qualité pour respecter cette exigence tout en préservant la netteté visuelle maximale.</p>
+        <h3>Cas d'utilisation courants</h3>
         <ul>
-          <li>Subidas de fotos de pasaporte y visa</li>
-          <li>Envíos de formularios en portales gubernamentales</li>
-          <li>Requisitos de foto para solicitudes de empleo</li>
-          <li>Formularios de admisión universitaria</li>
-          <li>Fotos de perfil en redes sociales con límites de tamaño</li>
+          <li>Téléversement de photos de passeport et de visa</li>
+          <li>Envoi de formulaires sur des portails gouvernementaux</li>
+          <li>Exigences de photo pour les candidatures d'emploi</li>
+          <li>Formulaires d'admission universitaire</li>
+          <li>Photos de profil sur les réseaux sociaux avec limites de taille</li>
         </ul>
       </div>
     </Container>
@@ -249,7 +249,7 @@ const relatedTools = [
     <Container variant="narrow">
       <div class="text-center mb-10">
         <Badge class="mb-4">FAQ</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Preguntas Frecuentes</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Questions Fréquentes</h2>
       </div>
       <FAQ items={faqItems} />
     </Container>
@@ -258,12 +258,12 @@ const relatedTools = [
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
-        <Badge class="mb-4">Herramientas Relacionadas</Badge>
-        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Prueba Nuestros Otros Convertidores</h2>
+        <Badge class="mb-4">Outils Connexes</Badge>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Essayez nos autres convertisseurs</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
         {relatedTools.map((tool) => (
-          <a href={`${prefix}/tools/${tool.slug}`} class="card-hover p-5 group">
+          <a href={`${prefix}/${tool.slug}/`} class="card-hover p-5 group">
             <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
             <p class="text-sm text-text-secondary">{tool.desc}</p>
           </a>

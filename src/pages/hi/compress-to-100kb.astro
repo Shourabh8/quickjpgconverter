@@ -11,8 +11,8 @@ const locale = "hi" as const;
 const prefix = getLocalePrefix(locale);
 
 const breadcrumbs = [
-  { name: "उपकरण", url: `${prefix}/tools` },
-  { name: "100KB तक कंप्रेस करें", url: `${prefix}/tools/compress-to-100kb` },
+  { name: "उपकरण", url: `/tools/` },
+  { name: "100KB तक कंप्रेस करें", url: `${prefix}/compress-to-100kb/` },
 ];
 
 const faqItems = [
@@ -61,7 +61,7 @@ const relatedTools = [
 <BaseLayout
   title="इमेज को 100KB तक कंप्रेस करें — मुफ्त ऑनलाइन फ़ोटो रीड्यूसर"
   description="पासपोर्ट फ़ोटो, फ़ॉर्म सबमिशन और पोर्टल अपलोड के लिए किसी भी इमेज को 100KB से कम कंप्रेस करें। मुफ्त ऑनलाइन टूल जो आपके ब्राउज़र में चलता है — कोई अपलोड नहीं, कोई पंजीकरण नहीं।"
-  canonical={`https://quickjpgconverter.com${prefix}/tools/compress-to-100kb`}
+  canonical={`https://quickjpgconverter.com${prefix}/compress-to-100kb/`}
   keywords={["इमेज को 100kb तक कंप्रेस करें", "फ़ोटो 100kb तक रीड्यूस करें", "100kb इमेज कंप्रेसर", "इमेज 100kb"]}
   breadcrumbs={breadcrumbs}
   faqItems={faqItems}
@@ -263,7 +263,7 @@ const relatedTools = [
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
         {relatedTools.map((tool) => (
-          <a href={`${prefix}/tools/${tool.slug}`} class="card-hover p-5 group">
+          <a href={`${prefix}/${tool.slug}/`} class="card-hover p-5 group">
             <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
             <p class="text-sm text-text-secondary">{tool.desc}</p>
           </a>

@@ -10,7 +10,7 @@ const locale = "pt" as const;
 const prefix = getLocalePrefix(locale);
 
 const breadcrumbs = [
-  { name: "Ferramentas", url: `${prefix}/tools` },
+  { name: "Ferramentas", url: `/tools/` },
   { name: "Foto Passaporte", url: `${prefix}/passport-photo-size` },
 ];
 
@@ -288,7 +288,7 @@ const steps = [
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Experimente Nossas Outras Ferramentas</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-        <a href={`${prefix}/tools/compress-to-100kb`} class="card-hover p-5 group">
+        <a href={`${prefix}/compress-to-100kb/`} class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Comprimir para 100KB</h3>
           <p class="text-sm text-text-secondary">Reduza imagens para menos de 100KB.</p>
         </a>

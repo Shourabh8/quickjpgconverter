@@ -44,6 +44,8 @@ const multilingualRoutes = new Set([
   "/",
   "/about",
   "/passport-photo-size",
+  "/jpg-to-png",
+  "/compress-to-100kb",
 ]);
 
 export function getAlternateLinks(locale: Locale, path: string): { lang: string; href: string }[] {

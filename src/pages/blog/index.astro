@@ -6,13 +6,13 @@ import Breadcrumb from "@components/seo/Breadcrumb.astro";
 import { blogPosts } from "@data/blog";
 import { authors, defaultAuthor } from "@data/authors";
 
-const breadcrumbs = [{ name: "Blog", url: "/blog" }];
+const breadcrumbs = [{ name: "Blog", url: "/blog/" }];
 ---
 
 <BaseLayout
   title="Blog — Quick JPG Converter"
   description="Tips, guides, and news about image conversion, JPG converter tools, and web optimization."
-  canonical="https://quickjpgconverter.com/blog"
+  canonical="https://quickjpgconverter.com/blog/"
   breadcrumbs={breadcrumbs}
   keywords={["image conversion tips", "jpg converter guide", "image compression tutorial", "online image tools"]}
 >
@@ -34,7 +34,7 @@ const breadcrumbs = [{ name: "Blog", url: "/blog" }];
         {blogPosts.map((post) => {
           const authorProfile = authors[post.author ?? defaultAuthor] ?? authors[defaultAuthor];
           return (
-            <a href={`/blog/${post.slug}`} class="card-hover p-6 group">
+            <a href={`/blog/${post.slug}/`} class="card-hover p-6 group">
               <div class="flex items-center gap-2 mb-3">
                 <Badge>{post.category}</Badge>
                 <span class="text-xs text-text-tertiary">{post.readTime}</span>
