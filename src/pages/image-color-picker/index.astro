@@ -1,0 +1,346 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Image Color Picker", url: "/image-color-picker" },
+];
+
+const howToSteps = [
+  {
+    name: "Upload Image",
+    text: "Drop any JPG, PNG, WebP, or SVG file into the color picker canvas.",
+  },
+  {
+    name: "Hover & Inspect Pixels",
+    text: "Move your cursor across the photo to view real-time 5x magnified pixels inside the eyedropper loupe.",
+  },
+  {
+    name: "Click to Copy Color Codes",
+    text: "Click any pixel to lock the exact color. One-click copy HEX, RGB, HSL, or CMYK codes, or export the auto-extracted 8-color palette.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "What is an image color picker?",
+    answer: "An image color picker is a digital eyedropper tool that allows you to sample any pixel from a photograph and get its exact color values in HEX, RGB, HSL, and CMYK formats. Quick JPG Converter runs this entirely inside your browser.",
+  },
+  {
+    question: "How does the magnified loupe work?",
+    answer: "When you hover over the uploaded image, a circular 5x magnification window tracks your cursor, showing individual pixels and a crosshair so you can pinpoint tiny borders, fine lines, or subtle gradients.",
+  },
+  {
+    question: "How does the automatic palette extraction work?",
+    answer: "Our client-side quantization algorithm analyzes the frequency and spatial distribution of colors in your photo to calculate the top 8 distinct dominant colors. You can click any palette chip to inspect its code or export all colors as CSS custom properties.",
+  },
+  {
+    question: "What is the difference between HEX and RGB color models?",
+    answer: "RGB (Red, Green, Blue) represents colors as three values from 0 to 255. HEX expresses the same values in a 6-digit hexadecimal format (e.g., #3B82F6) widely used in web development and CSS styling.",
+  },
+  {
+    question: "Are my uploaded photos sent to a server?",
+    answer: "No. Quick JPG Converter performs all pixel inspection and color processing in your browser memory. Your images never leave your local device, keeping proprietary design assets and private photos completely secure.",
+  },
+];
+
+const toolSchema = {
+  name: "Image Color Picker & Palette Extractor",
+  description: "Free in-browser image color picker with magnified eyedropper loupe, HEX/RGB/HSL/CMYK conversion, and automated dominant color palette extraction.",
+  url: "https://quickjpgconverter.com/image-color-picker/",
+  featureList: [
+    "Interactive 5x pixel magnifier loupe with crosshair",
+    "One-click copy for HEX, RGB, HSL, and CMYK color codes",
+    "Automated 8-color dominant palette generator",
+    "WCAG contrast text recommendation badge",
+    "Copy all palette colors as CSS variables or JSON",
+    "100% private in-browser canvas execution",
+  ],
+};
+---
+
+<BaseLayout
+  title="Image Color Picker — Hex & RGB Eyedropper from Photo"
+  description="Pick colors from any image online with a real-time magnified loupe. Extract dominant color palettes, copy HEX, RGB, HSL, and CMYK codes. 100% free and private."
+  canonical="https://quickjpgconverter.com/image-color-picker/"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  howToSteps={howToSteps}
+  toolSchema={toolSchema}
+  keywords={[
+    "image color picker",
+    "color picker from image",
+    "hex color from photo",
+    "extract color palette from image",
+    "rgb color picker online",
+    "image eyedropper tool",
+    "photo color finder",
+    "palette generator from picture",
+    "get color code from image",
+    "html color picker from image",
+  ]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Hero Section -->
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l9.75 9.75" />
+          </svg>
+          Eyedropper Loupe · Auto Palette
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Image <span class="gradient-text">Color Picker</span> & Palette Generator
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Hover and inspect photos with a 5x magnified loupe. Sample exact HEX, RGB, HSL, and CMYK values, and extract dominant color palettes instantly.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Interactive Workbench -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-xl overflow-hidden">
+          
+          <!-- Upload Zone -->
+          <div id="cp-upload-zone" class="p-6 sm:p-10">
+            <div
+              id="cp-drop-area"
+              class="relative min-h-[260px] sm:min-h-[300px] rounded-2xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-8 transition-all duration-200 hover:border-brand-400 hover:bg-brand-50/20 cursor-pointer group"
+            >
+              <input id="cp-file-input" type="file" accept="image/jpeg,image/png,image/webp,image/svg+xml,image/bmp" class="hidden" />
+              <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800 flex items-center justify-center text-brand-600 dark:text-brand-400 mb-4 group-hover:scale-105 transition-transform duration-200 shadow-sm">
+                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-text-primary mb-1">Select or drop an image to pick colors</h3>
+              <p class="text-sm text-text-secondary mb-4">Supports JPG, PNG, WebP, SVG, and BMP</p>
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm transition-colors shadow-sm">
+                Choose Image File
+              </div>
+              <p class="text-xs text-text-tertiary mt-4">🔒 100% Private · Pixel inspection processed in local browser memory</p>
+            </div>
+          </div>
+
+          <!-- Active Workspace -->
+          <div id="cp-workspace" class="hidden">
+            <!-- Top bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 px-5 py-3 border-b border-border-default bg-surface-muted">
+              <span id="cp-image-info" class="text-xs sm:text-sm font-medium text-text-secondary truncate max-w-sm sm:max-w-md"></span>
+              <button id="cp-reset-btn" class="px-3 py-1.5 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-surface border border-border-default transition-colors">
+                Change Image
+              </button>
+            </div>
+
+            <!-- Workspace Body: Image Viewport + Eyedropper Readout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-border-default">
+              
+              <!-- Left Canvas Viewer (7 cols) -->
+              <div class="lg:col-span-7 p-4 sm:p-6 bg-surface-subtle/50 flex flex-col items-center justify-center min-h-[440px] relative overflow-hidden">
+                <div class="relative max-w-full max-h-[500px] flex items-center justify-center rounded-xl overflow-hidden shadow-inner border border-border-default bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] bg-[size:16px_16px]">
+                  <canvas id="cp-canvas" class="max-w-full max-h-[480px] object-contain block mx-auto cursor-crosshair"></canvas>
+                  
+                  <!-- Magnified Loupe Eyedropper (tracks cursor) -->
+                  <div
+                    id="cp-loupe"
+                    class="hidden absolute pointer-events-none z-30 w-24 h-24 rounded-full border-2 border-white shadow-2xl overflow-hidden bg-black/80 flex items-center justify-center"
+                  >
+                    <canvas id="cp-loupe-canvas" width="96" height="96" class="w-full h-full block"></canvas>
+                  </div>
+                </div>
+                <p class="text-[11px] text-text-tertiary mt-2">Hover to zoom 5x · Click anywhere to select and copy pixel color</p>
+              </div>
+
+              <!-- Right Color Details & Palette (5 cols) -->
+              <div class="lg:col-span-5 p-5 sm:p-6 space-y-6">
+                
+                <!-- Selected Color Swatch & Contrast -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary">Selected Color</span>
+                    <span id="cp-contrast-badge"></span>
+                  </div>
+                  <div class="flex items-center gap-3 p-3 rounded-xl border border-border-default bg-surface shadow-xs">
+                    <div id="cp-color-swatch" class="w-14 h-14 rounded-lg border border-neutral-300 shadow-inner flex-shrink-0 bg-brand-500 transition-colors duration-150"></div>
+                    <div class="min-w-0 flex-1">
+                      <div class="text-[11px] text-text-tertiary uppercase tracking-wide">Hex Code</div>
+                      <div id="cp-hex-value" class="text-xl font-bold font-mono text-text-primary">#3B82F6</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Code Copy Rows (HEX, RGB, HSL, CMYK) -->
+                <div class="space-y-2">
+                  <!-- HEX -->
+                  <div class="flex items-center justify-between p-2.5 rounded-lg border border-border-default bg-surface hover:bg-surface-subtle transition-colors">
+                    <div class="min-w-0">
+                      <span class="text-[10px] uppercase font-bold text-text-tertiary block">Hex</span>
+                      <span class="text-xs font-mono font-medium text-text-primary">Click copy button</span>
+                    </div>
+                    <button id="cp-copy-hex-btn" type="button" class="px-2.5 py-1 text-xs font-medium rounded-md bg-brand-50 text-brand-600 dark:bg-brand-950/60 dark:text-brand-400 border border-brand-200 dark:border-brand-800 hover:bg-brand-100 transition-colors">
+                      Copy HEX
+                    </button>
+                  </div>
+
+                  <!-- RGB -->
+                  <div class="flex items-center justify-between p-2.5 rounded-lg border border-border-default bg-surface hover:bg-surface-subtle transition-colors">
+                    <div class="min-w-0">
+                      <span class="text-[10px] uppercase font-bold text-text-tertiary block">RGB</span>
+                      <span id="cp-rgb-value" class="text-xs font-mono font-medium text-text-primary">rgb(59, 130, 246)</span>
+                    </div>
+                    <button id="cp-copy-rgb-btn" type="button" class="px-2.5 py-1 text-xs font-medium rounded-md bg-surface text-text-secondary border border-border-default hover:border-brand-400 transition-colors">
+                      Copy RGB
+                    </button>
+                  </div>
+
+                  <!-- HSL -->
+                  <div class="flex items-center justify-between p-2.5 rounded-lg border border-border-default bg-surface hover:bg-surface-subtle transition-colors">
+                    <div class="min-w-0">
+                      <span class="text-[10px] uppercase font-bold text-text-tertiary block">HSL</span>
+                      <span id="cp-hsl-value" class="text-xs font-mono font-medium text-text-primary">hsl(217, 91%, 60%)</span>
+                    </div>
+                    <button id="cp-copy-hsl-btn" type="button" class="px-2.5 py-1 text-xs font-medium rounded-md bg-surface text-text-secondary border border-border-default hover:border-brand-400 transition-colors">
+                      Copy HSL
+                    </button>
+                  </div>
+
+                  <!-- CMYK -->
+                  <div class="flex items-center justify-between p-2.5 rounded-lg border border-border-default bg-surface hover:bg-surface-subtle transition-colors">
+                    <div class="min-w-0">
+                      <span class="text-[10px] uppercase font-bold text-text-tertiary block">CMYK</span>
+                      <span id="cp-cmyk-value" class="text-xs font-mono font-medium text-text-primary">cmyk(76%, 47%, 0%, 4%)</span>
+                    </div>
+                    <button id="cp-copy-cmyk-btn" type="button" class="px-2.5 py-1 text-xs font-medium rounded-md bg-surface text-text-secondary border border-border-default hover:border-brand-400 transition-colors">
+                      Copy CMYK
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Dominant Color Palette Section -->
+                <div class="border-t border-border-default pt-4">
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary">Extracted Palette</span>
+                    <div class="flex items-center gap-1.5">
+                      <button id="cp-copy-css-btn" type="button" class="text-[11px] font-medium text-brand-600 dark:text-brand-400 hover:underline">
+                        CSS Vars
+                      </button>
+                      <span class="text-text-tertiary text-xs">·</span>
+                      <button id="cp-copy-json-btn" type="button" class="text-[11px] font-medium text-brand-600 dark:text-brand-400 hover:underline">
+                        JSON
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- 8 Palette Color Grid -->
+                  <div id="cp-palette-container" class="grid grid-cols-2 gap-2"></div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section border-t border-border-default/60 bg-surface-muted/30">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          How to Pick Colors from Any Image
+        </h2>
+        <p class="text-sm sm:text-base text-text-secondary">
+          Sample exact color codes and generate harmonic palettes in seconds.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {howToSteps.map((step, idx) => (
+          <div class="p-6 rounded-2xl border border-border-default bg-surface hover:shadow-md transition-shadow relative">
+            <div class="w-9 h-9 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 font-bold flex items-center justify-center text-sm mb-4">
+              {idx + 1}
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2">{step.name}</h3>
+            <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">{step.text}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Deep SEO Prose Section -->
+  <section class="section border-t border-border-default/60">
+    <Container variant="narrow">
+      <div class="prose max-w-none text-text-secondary leading-relaxed space-y-6">
+        <h2 class="text-2xl font-bold text-text-primary">Extracting Color Schemes from Real-World Photography</h2>
+        <p>
+          Nature, interior design, branding, and street photography are the ultimate sources of aesthetic color inspiration. Whether you are building a modern web application, creating a brand moodboard, or styling an illustration, sampling exact shades from photographs helps you discover natural harmonies that would be difficult to formulate from scratch.
+        </p>
+        <p>
+          Quick JPG Converter’s image color picker makes this effortless. With a 5x magnified eyedropper loupe, you can hover over individual pixels to sample highlights, midtones, and deep shadows with micro-precision.
+        </p>
+
+        <h3 class="text-xl font-bold text-text-primary mt-6">Understanding Web and Print Color Formats</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose mt-4">
+          <div class="p-4 rounded-xl border border-border-default bg-surface">
+            <div class="font-bold text-text-primary text-sm">HEX (#RRGGBB)</div>
+            <div class="text-xs text-text-secondary mt-1">The primary notation for CSS, HTML, Figma, and digital UI design. Compact, alphanumeric, and universally supported across web frameworks.</div>
+          </div>
+          <div class="p-4 rounded-xl border border-border-default bg-surface">
+            <div class="font-bold text-text-primary text-sm">RGB & RGBA</div>
+            <div class="text-xs text-text-secondary mt-1">Additive color model used by screens and monitors. Measures red, green, and blue light intensity from 0 to 255.</div>
+          </div>
+          <div class="p-4 rounded-xl border border-border-default bg-surface">
+            <div class="font-bold text-text-primary text-sm">HSL (Hue, Saturation, Lightness)</div>
+            <div class="text-xs text-text-secondary mt-1">Intuitive human-readable color coordinates. Excellent for creating accessible color variations and dark mode token scales.</div>
+          </div>
+          <div class="p-4 rounded-xl border border-border-default bg-surface">
+            <div class="font-bold text-text-primary text-sm">CMYK (Cyan, Magenta, Yellow, Key)</div>
+            <div class="text-xs text-text-secondary mt-1">Subtractive four-color printing model used for commercial offset printing, brochures, packaging, and merchandise.</div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-text-primary mt-6">100% In-Browser Privacy</h3>
+        <p>
+          Unlike external color extraction APIs that transmit your images across remote servers, Quick JPG Converter processes all canvas pixel buffers locally in your web browser. Confidential product mockups, client branding assets, and private photographs remain strictly on your device.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section border-t border-border-default/60 bg-surface-muted/30">
+    <Container variant="narrow">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-2">Frequently Asked Questions</h2>
+        <p class="text-sm text-text-secondary">Learn how to inspect colors and export digital palettes.</p>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initColorPicker } from "@scripts/color-picker.js";
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initColorPicker);
+  } else {
+    initColorPicker();
+  }
+</script>

@@ -1,0 +1,342 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Image to Black and White", url: "/image-to-black-and-white" },
+];
+
+const presets = [
+  { id: "classic", label: "Classic Grayscale", icon: "📷", desc: "Balanced ITU-R BT.601 tonal range" },
+  { id: "dramatic", label: "Dramatic Noir", icon: "🎬", desc: "High contrast with deep shadows" },
+  { id: "document", label: "Document Scan", icon: "📄", desc: "Threshold binarization for clean paper text" },
+  { id: "sepia", label: "Vintage Sepia", icon: "⏳", desc: "Warm antique photographic tone" },
+  { id: "silver", label: "Cool Silver", icon: "✨", desc: "Subtle silver gelatin print aesthetic" },
+];
+
+const howToSteps = [
+  {
+    name: "Upload Image",
+    text: "Select or drag any JPG, PNG, or WebP photo into the monochrome workspace.",
+  },
+  {
+    name: "Choose Monochrome Preset",
+    text: "Click one of the 5 presets (Classic, Dramatic, Document Scan, Sepia, or Silver) and fine-tune contrast or intensity.",
+  },
+  {
+    name: "Download High-Res Output",
+    text: "Select JPG, PNG, or WebP and download your black and white image with zero compression degradation.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "How does the image to black and white conversion work?",
+    answer: "Our tool calculates the perceptual luminance of each pixel using the ITU-R BT.601 standard (0.299 Red + 0.587 Green + 0.114 Blue). This ensures human-eye brightness perception is preserved accurately, avoiding flat or muddy gray tones.",
+  },
+  {
+    question: "What is Document Scan mode?",
+    answer: "Document Scan mode uses adaptive thresholding to convert paper notes, books, contracts, and receipts into high-contrast black-and-white images. It turns gray paper shadows into pure white and text into deep black, making it perfect for printing and archiving.",
+  },
+  {
+    question: "Can I adjust the black and white intensity?",
+    answer: "Yes. Use the Grayscale Intensity slider to adjust the effect from 0% (full original color) to 100% (pure monochrome). Intermediate values (e.g. 70%) create stylish desaturated magazine-style visuals.",
+  },
+  {
+    question: "Does converting to black and white reduce file size?",
+    answer: "Black and white images contain only tonal luminance data rather than full RGB color channels, allowing compression algorithms to achieve significantly smaller file sizes without any perceived loss of sharpness.",
+  },
+  {
+    question: "Is this black and white converter private?",
+    answer: "Yes, 100% private. All pixel transformations occur directly inside your web browser using HTML5 Canvas. Your photos never leave your device.",
+  },
+];
+
+const toolSchema = {
+  name: "Image to Black and White Converter",
+  description: "Free in-browser image to black and white converter with 5 monochrome presets, document scanning threshold, contrast controls, and high-res export.",
+  url: "https://quickjpgconverter.com/image-to-black-and-white/",
+  featureList: [
+    "5 professional monochrome presets (Classic, Noir, Document, Sepia, Silver)",
+    "Document scanner thresholding to whiten paper and enhance text",
+    "Grayscale intensity, contrast, and brightness sliders",
+    "Real-time canvas preview with high-res export",
+    "Zero server uploads — 100% private in-browser execution",
+  ],
+};
+---
+
+<BaseLayout
+  title="Convert Image to Black and White Online — Free Grayscale Tool"
+  description="Convert color photos to black and white or grayscale online for free. 5 monochrome styles, document scan mode, sepia, contrast controls. 100% private in-browser."
+  canonical="https://quickjpgconverter.com/image-to-black-and-white/"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  howToSteps={howToSteps}
+  toolSchema={toolSchema}
+  keywords={[
+    "image to black and white",
+    "convert image to black and white",
+    "photo to black and white",
+    "black and white image converter",
+    "grayscale image online",
+    "convert picture to b&w",
+    "black and white filter online",
+    "monochrome photo converter",
+    "make photo black and white",
+    "turn photo into black and white",
+  ]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Hero Section -->
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          5 Monochrome Styles · Document Scan Mode
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Convert Image to <span class="gradient-text">Black and White</span>
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Transform color photos into timeless monochrome artwork or clean document scans. Fine-tune contrast, brightness, and grayscale intensity with instant live preview.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Interactive Workbench -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-xl overflow-hidden">
+          
+          <!-- Upload Area -->
+          <div id="bw-upload-zone" class="p-6 sm:p-10">
+            <div
+              id="bw-drop-area"
+              class="relative min-h-[260px] sm:min-h-[300px] rounded-2xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-8 transition-all duration-200 hover:border-brand-400 hover:bg-brand-50/20 cursor-pointer group"
+            >
+              <input id="bw-file-input" type="file" accept="image/jpeg,image/png,image/webp,image/bmp" class="hidden" />
+              <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800 flex items-center justify-center text-brand-600 dark:text-brand-400 mb-4 group-hover:scale-105 transition-transform duration-200 shadow-sm">
+                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-text-primary mb-1">Select or drop a photo to convert</h3>
+              <p class="text-sm text-text-secondary mb-4">Supports JPG, PNG, WebP, and BMP up to 50MB</p>
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm transition-colors shadow-sm">
+                Choose Image File
+              </div>
+              <p class="text-xs text-text-tertiary mt-4">🔒 100% Private · Image never leaves your web browser</p>
+            </div>
+          </div>
+
+          <!-- Active Workspace -->
+          <div id="bw-workspace" class="hidden">
+            <!-- Top bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 px-5 py-3 border-b border-border-default bg-surface-muted">
+              <span id="bw-image-info" class="text-xs sm:text-sm font-medium text-text-secondary truncate max-w-sm sm:max-w-md"></span>
+              <button id="bw-reset-btn" class="px-3 py-1.5 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-surface border border-border-default transition-colors">
+                Change Image
+              </button>
+            </div>
+
+            <!-- Workspace Body: Controls + Canvas Preview -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-border-default">
+              
+              <!-- Left Controls (5 cols) -->
+              <div class="lg:col-span-5 p-5 sm:p-6 space-y-6">
+                
+                <!-- Presets List -->
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-2">Monochrome Presets</label>
+                  <div class="space-y-1.5">
+                    {presets.map((preset, i) => (
+                      <button
+                        type="button"
+                        data-preset={preset.id}
+                        class:list={[
+                          "bw-preset-btn w-full flex items-center justify-between p-2.5 rounded-xl border text-xs font-medium transition-all text-left",
+                          i === 0
+                            ? "bg-brand-600 text-white border-brand-600 shadow-sm"
+                            : "bg-surface text-text-secondary border-border-default hover:border-brand-400",
+                        ]}
+                      >
+                        <div class="flex items-center gap-2">
+                          <span class="text-sm">{preset.icon}</span>
+                          <div>
+                            <div class="font-semibold">{preset.label}</div>
+                            <div class="text-[10px] opacity-80">{preset.desc}</div>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <!-- Sliders -->
+                <div class="border-t border-border-default pt-4 space-y-4">
+                  <!-- Grayscale Intensity -->
+                  <div>
+                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                      <span>Grayscale Intensity</span>
+                      <span id="bw-intensity-val" class="font-mono font-medium">100%</span>
+                    </div>
+                    <input id="bw-intensity" type="range" min="0" max="100" value="100" class="w-full accent-brand-600 cursor-pointer" />
+                  </div>
+
+                  <!-- Contrast -->
+                  <div>
+                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                      <span>Contrast</span>
+                      <span id="bw-contrast-val" class="font-mono font-medium">100%</span>
+                    </div>
+                    <input id="bw-contrast" type="range" min="50" max="220" value="100" class="w-full accent-brand-600 cursor-pointer" />
+                  </div>
+
+                  <!-- Brightness -->
+                  <div>
+                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                      <span>Brightness</span>
+                      <span id="bw-brightness-val" class="font-mono font-medium">0</span>
+                    </div>
+                    <input id="bw-brightness" type="range" min="-50" max="50" value="0" class="w-full accent-brand-600 cursor-pointer" />
+                  </div>
+                </div>
+
+                <!-- Export Options -->
+                <div class="border-t border-border-default pt-4 space-y-3">
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label for="bw-format" class="block text-xs font-medium text-text-secondary mb-1">Format</label>
+                      <select id="bw-format" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-default bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        <option value="image/jpeg">JPG (Standard)</option>
+                        <option value="image/png">PNG (Lossless)</option>
+                        <option value="image/webp">WebP (Smallest)</option>
+                      </select>
+                    </div>
+                    <div id="bw-quality-row">
+                      <div class="flex justify-between text-xs text-text-secondary mb-1">
+                        <span>Quality</span>
+                        <span id="bw-quality-val" class="font-mono">92%</span>
+                      </div>
+                      <input id="bw-quality" type="range" min="60" max="100" value="92" class="w-full accent-brand-600 cursor-pointer" />
+                    </div>
+                  </div>
+
+                  <button
+                    id="bw-download-btn"
+                    type="button"
+                    class="w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    Download Black & White Image
+                  </button>
+                </div>
+
+              </div>
+
+              <!-- Right Canvas Viewer (7 cols) -->
+              <div class="lg:col-span-7 p-4 sm:p-6 bg-surface-subtle/50 flex flex-col items-center justify-center min-h-[440px] overflow-hidden">
+                <div class="relative max-w-full max-h-[520px] flex items-center justify-center rounded-xl overflow-hidden shadow-inner border border-border-default bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] bg-[size:16px_16px]">
+                  <canvas id="bw-canvas" class="max-w-full max-h-[500px] object-contain block mx-auto"></canvas>
+                </div>
+                <p class="text-[11px] text-text-tertiary mt-2">Live canvas preview · Full resolution preserved on export</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section border-t border-border-default/60 bg-surface-muted/30">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          How to Convert Photos to Black and White
+        </h2>
+        <p class="text-sm sm:text-base text-text-secondary">
+          Transform your digital photography in three simple steps.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {howToSteps.map((step, idx) => (
+          <div class="p-6 rounded-2xl border border-border-default bg-surface hover:shadow-md transition-shadow relative">
+            <div class="w-9 h-9 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 font-bold flex items-center justify-center text-sm mb-4">
+              {idx + 1}
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2">{step.name}</h3>
+            <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">{step.text}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Deep SEO Prose Section -->
+  <section class="section border-t border-border-default/60">
+    <Container variant="narrow">
+      <div class="prose max-w-none text-text-secondary leading-relaxed space-y-6">
+        <h2 class="text-2xl font-bold text-text-primary">The Art & Science of Black and White Conversion</h2>
+        <p>
+          Black and white photography is far more than simply removing color. When color is stripped away, visual storytelling relies entirely on light, contrast, texture, composition, and emotional resonance.
+        </p>
+        <p>
+          Standard desaturation filters often leave images looking flat and muddy because simple mathematical averages (R+G+B)/3 fail to respect human perception. The human eye has vastly higher sensitivity to green wavelengths than red or blue. Quick JPG Converter uses the industry-standard ITU-R BT.601 luminance transform (0.299 Red + 0.587 Green + 0.114 Blue), delivering crisp midtone contrast and luminous depth.
+        </p>
+
+        <h3 class="text-xl font-bold text-text-primary mt-6">5 Specialized Monochrome Profiles</h3>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Classic Grayscale:</strong> Faithful tonal representation suitable for portraiture, street photography, and everyday sharing.</li>
+          <li><strong>Dramatic Noir:</strong> Steeper contrast curves with deep, rich blacks. Ideal for architectural photography and dramatic mood shots.</li>
+          <li><strong>Document Scan Mode:</strong> Uses intelligent threshold binarization to clean up scanned homework, receipts, whiteboard notes, and signatures into pristine black-and-white documents ready for laser printing.</li>
+          <li><strong>Vintage Sepia:</strong> Warm, nostalgic amber-brown toning reminiscent of 19th-century silver albumen photographic prints.</li>
+          <li><strong>Cool Silver Gelatin:</strong> A refined, slate-silver aesthetic modeled after fine-art gallery darkroom prints.</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-text-primary mt-6">Complete Browser-Based Privacy</h3>
+        <p>
+          Personal family albums, sensitive scanned records, and creative drafts should never be uploaded to unknown third-party servers. Quick JPG Converter processes all images locally inside your browser memory. No data is stored, tracked, or uploaded.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section border-t border-border-default/60 bg-surface-muted/30">
+    <Container variant="narrow">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-2">Frequently Asked Questions</h2>
+        <p class="text-sm text-text-secondary">Answers to common questions about black and white photo conversion.</p>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initBlackAndWhite } from "@scripts/black-and-white.js";
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBlackAndWhite);
+  } else {
+    initBlackAndWhite();
+  }
+</script>

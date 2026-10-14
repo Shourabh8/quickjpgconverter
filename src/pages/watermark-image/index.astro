@@ -1,0 +1,430 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import FAQ from "@components/ui/FAQ.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+
+const breadcrumbs = [
+  { name: "Tools", url: "/tools" },
+  { name: "Watermark Image", url: "/watermark-image" },
+];
+
+const howToSteps = [
+  {
+    name: "Upload Image",
+    text: "Drag and drop your JPG, PNG, or WebP photo into the private watermark workbench.",
+  },
+  {
+    name: "Customize Watermark",
+    text: "Choose between custom text or upload a logo. Adjust font, size, opacity, rotation, 9-point placement, or tile pattern.",
+  },
+  {
+    name: "Download High-Res Output",
+    text: "Select your preferred output format (JPG, PNG, WebP) and click Download Watermarked Image instantly.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Is adding a watermark to my images completely free?",
+    answer: "Yes, our watermark tool is 100% free with no hidden fees, subscriptions, limits, or account requirements. You can watermark as many photos as you need.",
+  },
+  {
+    question: "Are my photos uploaded to a remote server?",
+    answer: "No. Quick JPG Converter processes all images locally inside your browser using the HTML5 Canvas API. Your original photos and personal documents never leave your device.",
+  },
+  {
+    question: "Can I use both text and logo watermarks?",
+    answer: "Yes. You can create custom text watermarks with custom fonts, colors, and opacity, or upload a transparent PNG logo (or brand icon) to overlay onto your images.",
+  },
+  {
+    question: "What is tile/repeat watermark mode?",
+    answer: "Tile mode automatically repeats your watermark in a diagonal pattern across the entire surface of the image. This is ideal for photo proofs, photography portfolios, and stock imagery where you need complete protection against unauthorized cropping.",
+  },
+  {
+    question: "Does watermarking reduce the image resolution?",
+    answer: "No. The watermarking engine preserves the exact original pixel dimensions of your photo (e.g. 4000x3000px). You can export in lossless PNG or high-quality JPG.",
+  },
+  {
+    question: "Can watermarks protect my work from copyright theft?",
+    answer: "A visible watermark clearly establishes proof of authorship and discourages unauthorized copying, scraping, or reuse on social media, marketplaces, and blogs.",
+  },
+];
+
+const toolSchema = {
+  name: "Watermark Image Online",
+  description: "Free in-browser image watermarking tool to add text or logo watermarks to photos with custom opacity, rotation, and repeat tile patterns.",
+  url: "https://quickjpgconverter.com/watermark-image/",
+  featureList: [
+    "Text watermark with custom font, size, color, and opacity",
+    "Logo/image watermark overlay with PNG transparency support",
+    "9-point grid alignment and tile repeat pattern mode",
+    "Rotation and angle controls (-180° to +180°)",
+    "Preserves full original image resolution",
+    "100% private in-browser processing without server uploads",
+  ],
+};
+---
+
+<BaseLayout
+  title="Add Watermark to Image Online Free — Protect Your Photos"
+  description="Add text or logo watermarks to your images online for free. Customize font, opacity, rotation, and tile patterns. 100% private in-browser, no uploads."
+  canonical="https://quickjpgconverter.com/watermark-image/"
+  breadcrumbs={breadcrumbs}
+  faqItems={faqItems}
+  howToSteps={howToSteps}
+  toolSchema={toolSchema}
+  keywords={[
+    "watermark image",
+    "add watermark to photo",
+    "watermark photos online",
+    "free watermark maker",
+    "watermark image online",
+    "watermark logo on photo",
+    "text watermark tool",
+    "protect photos copyright",
+    "tile watermark",
+  ]}
+>
+  <Container class="py-5 sm:py-6">
+    <Breadcrumb items={breadcrumbs} />
+  </Container>
+
+  <!-- Hero Section -->
+  <section class="pb-6 sm:pb-8">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <Badge class="mb-4">
+          <svg class="w-3 h-3 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+          100% Private · Free · No Signup
+        </Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight mb-4">
+          Add <span class="gradient-text">Watermark</span> to Image
+        </h1>
+        <p class="text-base sm:text-lg text-text-secondary max-w-xl mx-auto">
+          Protect your photography, portfolio, and digital artwork. Add custom text or logo watermarks with full opacity, rotation, and tile controls.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Tool Interactive Section -->
+  <section class="pb-12 sm:pb-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-border-default bg-surface shadow-xl overflow-hidden">
+          
+          <!-- Upload Area (shown initially) -->
+          <div id="watermark-upload-zone" class="p-6 sm:p-10">
+            <div
+              id="watermark-drop-area"
+              class="relative min-h-[260px] sm:min-h-[320px] rounded-2xl border-2 border-dashed border-border-default bg-surface-muted/50 flex flex-col items-center justify-center text-center p-8 transition-all duration-200 hover:border-brand-400 hover:bg-brand-50/20 cursor-pointer group"
+            >
+              <input id="watermark-file-input" type="file" accept="image/jpeg,image/png,image/webp,image/bmp" class="hidden" />
+              <div class="w-16 h-16 rounded-2xl bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800 flex items-center justify-center text-brand-600 dark:text-brand-400 mb-4 group-hover:scale-105 transition-transform duration-200 shadow-sm">
+                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-text-primary mb-1">Select or drop your photo here</h3>
+              <p class="text-sm text-text-secondary mb-4">Supports JPG, PNG, WebP, and BMP up to 50MB</p>
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm transition-colors shadow-sm">
+                Choose Image
+              </div>
+              <p class="text-xs text-text-tertiary mt-4">🔒 Zero server uploads · Processed 100% locally on your machine</p>
+            </div>
+          </div>
+
+          <!-- Interactive Workspace (revealed on image select) -->
+          <div id="watermark-workspace" class="hidden">
+            <!-- Top Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 px-5 py-3 border-b border-border-default bg-surface-muted">
+              <div class="flex items-center gap-3">
+                <span id="watermark-image-info" class="text-xs sm:text-sm font-medium text-text-secondary truncate max-w-[280px] sm:max-w-md"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="watermark-reset-btn" class="px-3 py-1.5 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-surface border border-border-default transition-colors">
+                  Change Photo
+                </button>
+              </div>
+            </div>
+
+            <!-- Workspace Body: Left Controls, Right Live Preview -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-border-default">
+              
+              <!-- Control Panel (5 cols) -->
+              <div class="lg:col-span-5 p-5 sm:p-6 space-y-6 max-h-[640px] overflow-y-auto">
+                <!-- Mode Switch Tabs -->
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-2">Watermark Type</label>
+                  <div class="grid grid-cols-2 gap-2 p-1 rounded-xl bg-surface-subtle border border-border-default">
+                    <button
+                      id="tab-text-btn"
+                      type="button"
+                      class="px-3 py-2 rounded-lg text-xs font-medium bg-brand-600 text-white border border-brand-600 transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                      </svg>
+                      Text Watermark
+                    </button>
+                    <button
+                      id="tab-logo-btn"
+                      type="button"
+                      class="px-3 py-2 rounded-lg text-xs font-medium bg-surface text-text-secondary border border-transparent hover:text-text-primary transition-all flex items-center justify-center gap-1.5"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                      </svg>
+                      Logo / Image
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Text Watermark Controls -->
+                <div id="text-watermark-controls" class="space-y-4">
+                  <div>
+                    <label for="watermark-text" class="block text-xs font-medium text-text-secondary mb-1">Watermark Text</label>
+                    <input
+                      id="watermark-text"
+                      type="text"
+                      value="© QuickJPG Copyright"
+                      placeholder="e.g., © John Doe Photography"
+                      class="w-full px-3 py-2 text-sm rounded-lg border border-border-default bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+                    />
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label for="watermark-font" class="block text-xs font-medium text-text-secondary mb-1">Font Family</label>
+                      <select id="watermark-font" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-default bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        <option value="Inter, sans-serif">Modern Sans</option>
+                        <option value="Georgia, serif">Classic Serif</option>
+                        <option value="'Courier New', monospace">Monospace</option>
+                        <option value="Impact, sans-serif">Bold Impact</option>
+                        <option value="cursive">Script / Cursive</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="watermark-color" class="block text-xs font-medium text-text-secondary mb-1">Color</label>
+                      <div class="flex items-center gap-2">
+                        <input id="watermark-color" type="color" value="#ffffff" class="w-8 h-8 rounded border border-border-default cursor-pointer p-0.5 bg-surface" />
+                        <span class="text-xs text-text-tertiary">Select color</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Font Size -->
+                  <div>
+                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                      <span>Font Scale</span>
+                      <span id="watermark-font-size-val" class="font-mono font-medium">36px</span>
+                    </div>
+                    <input id="watermark-font-size" type="range" min="14" max="96" value="36" class="w-full accent-brand-600 cursor-pointer" />
+                  </div>
+
+                  <!-- Text Opacity -->
+                  <div>
+                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                      <span>Opacity</span>
+                      <span id="watermark-text-opacity-val" class="font-mono font-medium">70%</span>
+                    </div>
+                    <input id="watermark-text-opacity" type="range" min="10" max="100" value="70" class="w-full accent-brand-600 cursor-pointer" />
+                  </div>
+
+                  <!-- Text Rotation -->
+                  <div>
+                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                      <span>Rotation</span>
+                      <span id="watermark-text-rotation-val" class="font-mono font-medium">0°</span>
+                    </div>
+                    <input id="watermark-text-rotation" type="range" min="-90" max="90" value="0" class="w-full accent-brand-600 cursor-pointer" />
+                  </div>
+                </div>
+
+                <!-- Logo Watermark Controls (initially hidden) -->
+                <div id="logo-watermark-controls" class="space-y-4 hidden">
+                  <div>
+                    <label class="block text-xs font-medium text-text-secondary mb-1">Upload Watermark Logo (PNG/WebP)</label>
+                    <input id="watermark-logo-input" type="file" accept="image/png,image/webp,image/jpeg" class="hidden" />
+                    <div
+                      id="watermark-logo-drop"
+                      class="border border-dashed border-border-default hover:border-brand-400 p-4 rounded-xl text-center cursor-pointer bg-surface-subtle transition-colors flex items-center justify-center gap-3"
+                    >
+                      <div id="watermark-logo-preview"></div>
+                      <span class="text-xs text-text-secondary font-medium">Click to select logo file</span>
+                    </div>
+                  </div>
+
+                  <!-- Logo Scale -->
+                  <div>
+                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                      <span>Logo Scale</span>
+                      <span id="watermark-logo-scale-val" class="font-mono font-medium">30%</span>
+                    </div>
+                    <input id="watermark-logo-scale" type="range" min="10" max="100" value="30" class="w-full accent-brand-600 cursor-pointer" />
+                  </div>
+
+                  <!-- Logo Opacity -->
+                  <div>
+                    <div class="flex justify-between text-xs text-text-secondary mb-1">
+                      <span>Logo Opacity</span>
+                      <span id="watermark-logo-opacity-val" class="font-mono font-medium">80%</span>
+                    </div>
+                    <input id="watermark-logo-opacity" type="range" min="10" max="100" value="80" class="w-full accent-brand-600 cursor-pointer" />
+                  </div>
+                </div>
+
+                <!-- Positioning & Tile Mode (common to both) -->
+                <div class="border-t border-border-default pt-4 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-text-tertiary">Placement</label>
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer text-xs text-text-secondary">
+                      <input id="watermark-tile-toggle" type="checkbox" class="rounded accent-brand-600" />
+                      <span>Repeat / Tile Mode</span>
+                    </label>
+                  </div>
+
+                  <!-- 3x3 Position Grid -->
+                  <div class="grid grid-cols-3 gap-1.5 max-w-[180px]">
+                    <button type="button" data-pos="top-left" class="pos-btn p-2 rounded text-xs border border-border-default bg-surface text-text-secondary hover:border-brand-400 flex items-center justify-center" title="Top Left">↖</button>
+                    <button type="button" data-pos="top-center" class="pos-btn p-2 rounded text-xs border border-border-default bg-surface text-text-secondary hover:border-brand-400 flex items-center justify-center" title="Top Center">↑</button>
+                    <button type="button" data-pos="top-right" class="pos-btn p-2 rounded text-xs border border-border-default bg-surface text-text-secondary hover:border-brand-400 flex items-center justify-center" title="Top Right">↗</button>
+                    <button type="button" data-pos="center-left" class="pos-btn p-2 rounded text-xs border border-border-default bg-surface text-text-secondary hover:border-brand-400 flex items-center justify-center" title="Center Left">←</button>
+                    <button type="button" data-pos="center" class="pos-btn p-2 rounded text-xs border border-border-default bg-surface text-text-secondary hover:border-brand-400 flex items-center justify-center" title="Center">●</button>
+                    <button type="button" data-pos="center-right" class="pos-btn p-2 rounded text-xs border border-border-default bg-surface text-text-secondary hover:border-brand-400 flex items-center justify-center" title="Center Right">→</button>
+                    <button type="button" data-pos="bottom-left" class="pos-btn p-2 rounded text-xs border border-border-default bg-surface text-text-secondary hover:border-brand-400 flex items-center justify-center" title="Bottom Left">↙</button>
+                    <button type="button" data-pos="bottom-center" class="pos-btn p-2 rounded text-xs border border-border-default bg-surface text-text-secondary hover:border-brand-400 flex items-center justify-center" title="Bottom Center">↓</button>
+                    <button type="button" data-pos="bottom-right" class="pos-btn p-2 rounded text-xs border border-brand-600 bg-brand-600 text-white flex items-center justify-center font-bold" title="Bottom Right">↘</button>
+                  </div>
+                </div>
+
+                <!-- Export Settings -->
+                <div class="border-t border-border-default pt-4 space-y-3">
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label for="watermark-format" class="block text-xs font-medium text-text-secondary mb-1">Export Format</label>
+                      <select id="watermark-format" class="w-full px-2.5 py-1.5 text-xs rounded-lg border border-border-default bg-surface text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        <option value="image/jpeg">JPG (Standard)</option>
+                        <option value="image/png">PNG (Lossless)</option>
+                        <option value="image/webp">WebP (Optimized)</option>
+                      </select>
+                    </div>
+                    <div id="watermark-quality-row">
+                      <div class="flex justify-between text-xs text-text-secondary mb-1">
+                        <span>Quality</span>
+                        <span id="watermark-quality-val" class="font-mono">92%</span>
+                      </div>
+                      <input id="watermark-quality" type="range" min="60" max="100" value="92" class="w-full accent-brand-600 cursor-pointer" />
+                    </div>
+                  </div>
+
+                  <button
+                    id="watermark-download-btn"
+                    type="button"
+                    class="w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    Download Watermarked Image
+                  </button>
+                </div>
+
+              </div>
+
+              <!-- Live Preview Panel (7 cols) -->
+              <div class="lg:col-span-7 p-4 sm:p-6 bg-surface-subtle/50 flex flex-col items-center justify-center min-h-[420px] overflow-hidden">
+                <div class="relative max-w-full max-h-[540px] flex items-center justify-center rounded-xl overflow-hidden shadow-inner border border-border-default bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] bg-[size:16px_16px]">
+                  <canvas id="watermark-canvas" class="max-w-full max-h-[520px] object-contain block mx-auto"></canvas>
+                </div>
+                <p class="text-[11px] text-text-tertiary mt-2">Real-time canvas preview · Full original resolution maintained upon export</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section border-t border-border-default/60 bg-surface-muted/30">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
+          How to Watermark Images Online
+        </h2>
+        <p class="text-sm sm:text-base text-text-secondary">
+          Add visible copyright protection to your photos in three effortless steps.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {howToSteps.map((step, idx) => (
+          <div class="p-6 rounded-2xl border border-border-default bg-surface hover:shadow-md transition-shadow relative">
+            <div class="w-9 h-9 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 font-bold flex items-center justify-center text-sm mb-4">
+              {idx + 1}
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2">{step.name}</h3>
+            <p class="text-xs sm:text-sm text-text-secondary leading-relaxed">{step.text}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Deep SEO Prose Section -->
+  <section class="section border-t border-border-default/60">
+    <Container variant="narrow">
+      <div class="prose max-w-none text-text-secondary leading-relaxed space-y-6">
+        <h2 class="text-2xl font-bold text-text-primary">Why Add Watermarks to Your Images?</h2>
+        <p>
+          In an era where images are scraped, re-posted, and downloaded across the web in seconds, photographers, graphic designers, digital artists, and online sellers face continuous risk of copyright infringement. Adding a watermark is the single most effective visual deterrent against unauthorized commercial reuse and image theft.
+        </p>
+        <p>
+          Whether you want a discreet copyright signature in the corner of your wedding photography proofs or a repeated diagonal tile overlay on real estate listings and stock photos, Quick JPG Converter lets you design and apply watermarks entirely within your browser.
+        </p>
+
+        <h3 class="text-xl font-bold text-text-primary mt-6">Text Watermark vs. Logo Watermark</h3>
+        <p>
+          Depending on your audience and branding strategy, different watermarking techniques serve different purposes:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Text Watermarks:</strong> Quick to configure, highly legible, and ideal for adding legal copyright notices (e.g., <em>© 2026 Studio Name</em>), website URLs, or photographer names. Adjusting font scale, opacity, and rotation makes it blend naturally with the image aesthetic.</li>
+          <li><strong>Logo & PNG Watermarks:</strong> Upload your brand mark, company crest, or transparent signature. Ideal for corporate branding, YouTube thumbnails, social media cards, and online product catalog images.</li>
+          <li><strong>Tile / Repeat Watermarks:</strong> Spreads the watermark across the entire photo surface in a repeating pattern. This prevents third parties from easily cropping out corner watermarks or using automated content-aware fill tools to remove your signature.</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-text-primary mt-6">100% In-Browser Privacy Protection</h3>
+        <p>
+          Most online watermarking websites upload your high-resolution original photography to cloud servers, where they may be stored, indexed, or analyzed. Quick JPG Converter runs exclusively via client-side HTML5 Canvas and modern Web APIs. Your images are never sent over the network, ensuring complete confidentiality for client proofs, unreleased product shots, and personal photos.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section border-t border-border-default/60 bg-surface-muted/30">
+    <Container variant="narrow">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-2">Frequently Asked Questions</h2>
+        <p class="text-sm text-text-secondary">Everything you need to know about watermarking images privately.</p>
+      </div>
+      <FAQ items={faqItems} />
+    </Container>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initWatermarkTool } from "@scripts/watermark.js";
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initWatermarkTool);
+  } else {
+    initWatermarkTool();
+  }
+</script>

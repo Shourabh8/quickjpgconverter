@@ -5,11 +5,12 @@ import VisitorCounter from "../ui/VisitorCounter.astro";
 
 const currentYear = new Date().getFullYear();
 
-// Pick the most important tools for the footer (max 12)
+// Pick the most important tools for the footer
 const featuredSlugs = [
   "jpg-to-png", "png-to-jpg", "jpg-to-webp", "webp-to-jpg",
-  "image-compressor", "compress-to-100kb", "compress-to-size",
-  "resize-jpg", "jpg-to-pdf", "heic-to-jpg", "crop-image", "exif-viewer",
+  "image-compressor", "compress-to-100kb", "compress-to-size", "signature-resizer",
+  "watermark-image", "image-color-picker", "crop-image", "remove-background",
+  "image-to-black-and-white", "heic-to-jpg", "jpg-to-pdf", "exif-viewer",
 ];
 const footerTools = featuredSlugs.map((slug) => tools.find((t) => t.slug === slug)).filter(Boolean);
 ---
