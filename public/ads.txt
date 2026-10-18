@@ -1,0 +1,2 @@
+# Google AdSense ads.txt for quickjpgconverter.com
+google.com, pub-9952773938458145, DIRECT, f08c47fec0942fa0

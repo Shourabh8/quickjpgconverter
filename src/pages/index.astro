@@ -142,15 +142,23 @@ const testimonials = [
   <!-- ============================================
        SECTION 1: HERO
        ============================================ -->
-  <section class="relative overflow-hidden">
-    <!-- Background: single subtle glow -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-500/8 rounded-full blur-3xl"></div>
+  <section class="relative overflow-hidden pt-6 sm:pt-10">
+    <!-- Ambient multi-color mesh lighting -->
+    <div class="hero-ambient-lighting"></div>
 
-    <Container class="relative pt-20 sm:pt-28 lg:pt-36 pb-16 sm:pb-20 lg:pb-24">
+    <Container class="relative pt-12 sm:pt-16 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
       <div class="text-center max-w-3xl mx-auto">
-        <!-- Single badge — no redundancy -->
-        <div class="mb-6 animate-fade-in">
-          <Badge>Free · Private · No Signup</Badge>
+        <!-- Live Privacy Trust Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-semibold shadow-xs mb-6 backdrop-blur-md animate-fade-in">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>100% In-Browser Privacy</span>
+          <span class="text-emerald-400/60">·</span>
+          <span>Zero Server Uploads</span>
+          <span class="text-emerald-400/60">·</span>
+          <span>Free Forever</span>
         </div>
 
         <!-- Headline: single flowing sentence -->
@@ -167,26 +175,29 @@ const testimonials = [
 
         <!-- CTA buttons -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in-up delay-200">
-          <Button href="/jpg-to-png/" size="xl" class="cta-glow">
+          <Button href="/jpg-to-png/" size="xl" class="cta-glow shadow-lg shadow-brand-500/25">
             Start Converting Free
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </Button>
           <Button href="/tools/" variant="secondary" size="xl">
-            View All Tools
+            View All 50+ Tools
           </Button>
         </div>
       </div>
 
-      <!-- Converter preview: clean, no fake browser chrome -->
-      <div class="mt-14 sm:mt-16 lg:mt-20 max-w-3xl mx-auto animate-fade-in-up delay-300">
-        <div class="rounded-2xl border border-border-default bg-surface shadow-2xl shadow-brand-500/5 overflow-hidden">
+      <!-- Converter preview: clean, illuminated border -->
+      <div class="mt-12 sm:mt-16 lg:mt-20 max-w-3xl mx-auto animate-fade-in-up delay-300">
+        <div class="rounded-2xl border border-border-default/80 bg-surface/90 backdrop-blur-xl shadow-2xl shadow-brand-500/10 overflow-hidden relative">
+          <!-- Top subtle glow rim -->
+          <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/40 to-transparent"></div>
+
           <!-- Converter UI preview -->
           <div class="p-4 sm:p-6 lg:p-8">
             <!-- Format selector -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-              <div class="flex items-center gap-2 p-1.5 rounded-xl border border-border-default bg-surface-muted">
+              <div class="flex items-center gap-2 p-1.5 rounded-xl border border-border-default bg-surface-muted/80 backdrop-blur-sm">
                 <a href="/jpg-to-png/" class="px-4 py-2 rounded-lg bg-surface text-sm font-semibold text-text-primary shadow-xs transition-colors hover:bg-brand-50 dark:hover:bg-brand-950/30">JPG</a>
                 <a href="/png-to-jpg/" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PNG</a>
                 <a href="/jpg-to-webp/" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">WebP</a>
@@ -194,7 +205,7 @@ const testimonials = [
               </div>
               <div class="flex items-center gap-2 text-text-tertiary">
                 <span class="text-sm font-medium">to</span>
-                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center shadow-sm shadow-brand-500/30">
                   <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -203,15 +214,15 @@ const testimonials = [
               </div>
             </div>
 
-            <!-- Drop zone -->
-            <a href="/jpg-to-png/" class="block border-2 border-dashed border-border-default rounded-xl p-8 sm:p-10 text-center bg-surface-muted/50 hover:border-brand-300 dark:hover:border-brand-700 transition-colors cursor-pointer group">
-              <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 transition-transform duration-300">
-                <svg class="w-7 h-7 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <!-- Drop zone with subtle glow -->
+            <a href="/jpg-to-png/" class="block border-2 border-dashed border-border-default/80 rounded-xl p-8 sm:p-10 text-center bg-surface-muted/40 hover:border-brand-400 dark:hover:border-brand-600 hover:bg-brand-500/5 transition-all duration-300 cursor-pointer group">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-brand-500/10 dark:bg-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center border border-brand-500/20 group-hover:scale-110 group-hover:border-brand-500/40 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all duration-300">
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                 </svg>
               </div>
-              <p class="text-sm font-medium text-text-primary mb-1">Drop files here or click to browse</p>
-              <p class="text-xs text-text-tertiary">Supports JPG, PNG, WebP, HEIC, PDF · Up to 50MB</p>
+              <p class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Drop files here or click to browse</p>
+              <p class="text-xs text-text-tertiary">Supports JPG, PNG, WebP, HEIC, PDF · Up to 50MB · No upload to server</p>
             </a>
           </div>
         </div>
@@ -220,74 +231,93 @@ const testimonials = [
   </section>
 
   <!-- ============================================
-       SECTION 1b: POPULAR TOOLS (SEO)
+       SECTION 1b: POPULAR TOOLS (iLovePDF Inspired)
        ============================================ -->
-  <section class="section bg-surface-muted">
+  <section class="section bg-surface-muted/60 relative">
     <Container>
       <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-600 dark:text-brand-400 text-xs font-semibold mb-3">
+          ⚡ Quick Access
+        </div>
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">
           Popular Tools
         </h2>
         <p class="text-text-secondary max-w-xl mx-auto">
-          Most-used tools for photographers, developers, and everyday users.
+          Most-used tools for photographers, students, applicants, and creators.
         </p>
       </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-        <a href="/passport-photo-size/" class="card-hover p-5 group">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
-            <span class="text-lg">📸</span>
+        <!-- Passport Photo Size: Amber theme -->
+        <a href="/passport-photo-size/" class="card-hover p-5 group hover:border-amber-500/40 hover:shadow-[0_12px_28px_-6px_rgba(245,158,11,0.16)] transition-all duration-300">
+          <div class="w-11 h-11 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center text-xl border border-amber-500/20 mb-3 group-hover:scale-110 group-hover:border-amber-500/40 transition-all duration-300">
+            <span>📸</span>
           </div>
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Passport Photo Size</h3>
-          <p class="text-sm text-text-secondary">Resize photos for passport applications.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Passport Photo Size</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Resize photos for passport & visa applications.</p>
         </a>
-        <a href="/signature-resizer/" class="card-hover p-5 group">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
-            <span class="text-lg">✍️</span>
+
+        <!-- Signature Resizer: Emerald theme -->
+        <a href="/signature-resizer/" class="card-hover p-5 group hover:border-emerald-500/40 hover:shadow-[0_12px_28px_-6px_rgba(16,185,129,0.16)] transition-all duration-300">
+          <div class="w-11 h-11 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-xl border border-emerald-500/20 mb-3 group-hover:scale-110 group-hover:border-emerald-500/40 transition-all duration-300">
+            <span>✍️</span>
           </div>
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Signature Resizer</h3>
-          <p class="text-sm text-text-secondary">Compress signatures to 10–20KB for exams.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Signature Resizer</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Compress signatures to 10–20KB for exams.</p>
         </a>
-        <a href="/watermark-image/" class="card-hover p-5 group">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
-            <span class="text-lg">🛡️</span>
+
+        <!-- Watermark Image: Purple theme -->
+        <a href="/watermark-image/" class="card-hover p-5 group hover:border-purple-500/40 hover:shadow-[0_12px_28px_-6px_rgba(139,92,246,0.16)] transition-all duration-300">
+          <div class="w-11 h-11 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 flex items-center justify-center text-xl border border-purple-500/20 mb-3 group-hover:scale-110 group-hover:border-purple-500/40 transition-all duration-300">
+            <span>🛡️</span>
           </div>
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Watermark Image</h3>
-          <p class="text-sm text-text-secondary">Add text or logo watermarks to photos.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Watermark Image</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Add text or logo watermarks to photos.</p>
         </a>
-        <a href="/image-color-picker/" class="card-hover p-5 group">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
-            <span class="text-lg">🎨</span>
+
+        <!-- Color Picker: Cyan theme -->
+        <a href="/image-color-picker/" class="card-hover p-5 group hover:border-cyan-500/40 hover:shadow-[0_12px_28px_-6px_rgba(6,182,212,0.16)] transition-all duration-300">
+          <div class="w-11 h-11 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 flex items-center justify-center text-xl border border-cyan-500/20 mb-3 group-hover:scale-110 group-hover:border-cyan-500/40 transition-all duration-300">
+            <span>🎨</span>
           </div>
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Color Picker</h3>
-          <p class="text-sm text-text-secondary">Sample HEX & RGB with 5x loupe.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">Color Picker</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Sample HEX & RGB with 5x zoom loupe.</p>
         </a>
-        <a href="/image-to-black-and-white/" class="card-hover p-5 group">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
-            <span class="text-lg">🎭</span>
+
+        <!-- Black & White: Indigo theme -->
+        <a href="/image-to-black-and-white/" class="card-hover p-5 group hover:border-indigo-500/40 hover:shadow-[0_12px_28px_-6px_rgba(99,102,241,0.16)] transition-all duration-300">
+          <div class="w-11 h-11 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-xl border border-indigo-500/20 mb-3 group-hover:scale-110 group-hover:border-indigo-500/40 transition-all duration-300">
+            <span>🎭</span>
           </div>
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Black & White</h3>
-          <p class="text-sm text-text-secondary">5 monochrome styles & document scan.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Black & White</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">5 monochrome styles & document scan.</p>
         </a>
-        <a href="/compress-to-100kb/" class="card-hover p-5 group">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
-            <span class="text-lg">🗜️</span>
+
+        <!-- Compress to 100KB: Emerald theme -->
+        <a href="/compress-to-100kb/" class="card-hover p-5 group hover:border-emerald-500/40 hover:shadow-[0_12px_28px_-6px_rgba(16,185,129,0.16)] transition-all duration-300">
+          <div class="w-11 h-11 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-xl border border-emerald-500/20 mb-3 group-hover:scale-110 group-hover:border-emerald-500/40 transition-all duration-300">
+            <span>🗜️</span>
           </div>
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 100KB</h3>
-          <p class="text-sm text-text-secondary">Reduce any image to under 100KB.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Compress to 100KB</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Reduce any image to under 100KB.</p>
         </a>
-        <a href="/compress-for-govt-form/" class="card-hover p-5 group">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
-            <span class="text-lg">📋</span>
+
+        <!-- Compress for Govt Form: Amber theme -->
+        <a href="/compress-for-govt-form/" class="card-hover p-5 group hover:border-amber-500/40 hover:shadow-[0_12px_28px_-6px_rgba(245,158,11,0.16)] transition-all duration-300">
+          <div class="w-11 h-11 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center text-xl border border-amber-500/20 mb-3 group-hover:scale-110 group-hover:border-amber-500/40 transition-all duration-300">
+            <span>📋</span>
           </div>
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress for Govt Form</h3>
-          <p class="text-sm text-text-secondary">Reduce images for SSC, UPSC forms.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Compress for Govt Form</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Reduce images for SSC, UPSC forms.</p>
         </a>
-        <a href="/photo-to-base64/" class="card-hover p-5 group">
-          <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 group-hover:scale-110 transition-transform duration-300">
-            <span class="text-lg">🔧</span>
+
+        <!-- Photo to Base64: Sky Blue theme -->
+        <a href="/photo-to-base64/" class="card-hover p-5 group hover:border-blue-500/40 hover:shadow-[0_12px_28px_-6px_rgba(59,130,246,0.16)] transition-all duration-300">
+          <div class="w-11 h-11 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center text-xl border border-blue-500/20 mb-3 group-hover:scale-110 group-hover:border-blue-500/40 transition-all duration-300">
+            <span>⚡</span>
           </div>
-          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Photo to Base64</h3>
-          <p class="text-sm text-text-secondary">Convert images to Base64 strings.</p>
+          <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Photo to Base64</h3>
+          <p class="text-sm text-text-secondary leading-relaxed">Convert images to Base64 data strings.</p>
         </a>
       </div>
     </Container>

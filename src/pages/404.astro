@@ -38,7 +38,7 @@ const currentYear = new Date().getFullYear();
           <a href="/" class="btn-primary">
             Go to Homepage
           </a>
-          <a href="/tools" class="btn-secondary">
+          <a href="/tools/" class="btn-secondary">
             Browse All Tools
           </a>
         </div>
@@ -47,16 +47,16 @@ const currentYear = new Date().getFullYear();
         <div class="mt-12 pt-8 border-t border-border-default">
           <p class="text-sm text-text-tertiary mb-4">Popular tools:</p>
           <div class="flex flex-wrap items-center justify-center gap-2">
-            <a href="/jpg-to-png" class="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-text-primary bg-surface-muted hover:bg-surface-subtle transition-colors">
+            <a href="/jpg-to-png/" class="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-text-primary bg-surface-muted hover:bg-surface-subtle transition-colors">
               JPG → PNG
             </a>
-            <a href="/png-to-jpg" class="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-text-primary bg-surface-muted hover:bg-surface-subtle transition-colors">
+            <a href="/png-to-jpg/" class="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-text-primary bg-surface-muted hover:bg-surface-subtle transition-colors">
               PNG → JPG
             </a>
-            <a href="/jpg-to-webp" class="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-text-primary bg-surface-muted hover:bg-surface-subtle transition-colors">
+            <a href="/jpg-to-webp/" class="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-text-primary bg-surface-muted hover:bg-surface-subtle transition-colors">
               JPG → WebP
             </a>
-            <a href="/image-compressor" class="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-text-primary bg-surface-muted hover:bg-surface-subtle transition-colors">
+            <a href="/image-compressor/" class="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-text-primary bg-surface-muted hover:bg-surface-subtle transition-colors">
               Image Compressor
             </a>
           </div>
@@ -64,4 +64,14 @@ const currentYear = new Date().getFullYear();
       </div>
     </Container>
   </section>
+
+  <script is:inline>
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "page_not_found", {
+        broken_path: window.location.pathname,
+        broken_url: window.location.href,
+        referrer: document.referrer || "direct"
+      });
+    }
+  </script>
 </BaseLayout>

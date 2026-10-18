@@ -451,27 +451,50 @@ img {
 /* ── Radial glow ── */
 @utility bg-glow {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-brand-500) / 0.06, transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in srgb, var(--color-brand-500) 14%, transparent), transparent 70%);
 }
 
 .dark .bg-glow {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-brand-400) / 0.15, transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in srgb, var(--color-brand-400) 22%, transparent), transparent 70%);
 }
 
 /* ── Mesh gradient background ── */
 @utility bg-mesh {
   background:
-    radial-gradient(at 0% 0%, var(--color-brand-500) / 0.05 0%, transparent 50%),
-    radial-gradient(at 100% 0%, var(--color-accent-500) / 0.04 0%, transparent 50%),
-    radial-gradient(at 50% 100%, var(--color-brand-500) / 0.03 0%, transparent 50%);
+    radial-gradient(at 0% 0%, color-mix(in srgb, var(--color-brand-500) 12%, transparent) 0%, transparent 50%),
+    radial-gradient(at 100% 0%, color-mix(in srgb, var(--color-accent-500) 10%, transparent) 0%, transparent 50%),
+    radial-gradient(at 50% 100%, color-mix(in srgb, var(--color-brand-400) 8%, transparent) 0%, transparent 50%);
 }
 
 .dark .bg-mesh {
   background:
-    radial-gradient(at 0% 0%, var(--color-brand-500) / 0.08 0%, transparent 50%),
-    radial-gradient(at 100% 0%, var(--color-accent-500) / 0.06 0%, transparent 50%),
-    radial-gradient(at 50% 100%, var(--color-brand-500) / 0.04 0%, transparent 50%);
+    radial-gradient(at 0% 0%, color-mix(in srgb, var(--color-brand-500) 18%, transparent) 0%, transparent 50%),
+    radial-gradient(at 100% 0%, color-mix(in srgb, var(--color-accent-500) 15%, transparent) 0%, transparent 50%),
+    radial-gradient(at 50% 100%, color-mix(in srgb, var(--color-brand-400) 10%, transparent) 0%, transparent 50%);
+}
+
+/* ── Hero Ambient Lighting Mesh ── */
+.hero-ambient-lighting {
+  position: absolute;
+  inset: -100px -50px auto -50px;
+  height: 520px;
+  background:
+    radial-gradient(circle at 50% 15%, color-mix(in srgb, var(--color-brand-500) 18%, transparent) 0%, transparent 55%),
+    radial-gradient(circle at 20% 25%, color-mix(in srgb, #06b6d4 12%, transparent) 0%, transparent 45%),
+    radial-gradient(circle at 80% 30%, color-mix(in srgb, var(--color-accent-500) 14%, transparent) 0%, transparent 50%);
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+.dark .hero-ambient-lighting {
+  opacity: 1;
+  background:
+    radial-gradient(circle at 50% 15%, color-mix(in srgb, var(--color-brand-500) 25%, transparent) 0%, transparent 55%),
+    radial-gradient(circle at 20% 25%, color-mix(in srgb, #06b6d4 18%, transparent) 0%, transparent 45%),
+    radial-gradient(circle at 80% 30%, color-mix(in srgb, var(--color-accent-500) 22%, transparent) 0%, transparent 50%);
 }
 
 /* ── Subtle border gradient ── */
@@ -493,3 +516,4 @@ img {
   -webkit-mask-composite: xor;
   pointer-events: none;
 }
+

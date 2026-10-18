@@ -91,6 +91,7 @@ const categoryOrder: Array<keyof typeof categories> = [
                   from={tool.from}
                   to={tool.to}
                   icon={tool.icon}
+                  category={tool.category}
                   data-search={`${tool.title} ${tool.description} ${tool.from} ${tool.to} ${tool.slug}`.toLowerCase()}
                 />
               ))}

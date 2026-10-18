@@ -1,0 +1,72 @@
+---
+import ToolCard from "./ToolCard.astro";
+import Container from "../ui/Container.astro";
+import { tools, type ToolCategory } from "@data/tools";
+
+interface Props {
+  currentSlug: string;
+  category?: ToolCategory;
+  customSlugs?: string[];
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  currentSlug,
+  category,
+  customSlugs,
+  title = "Related Tools & Next Steps",
+  subtitle = "Complete your image workflow with these free in-browser utilities.",
+} = Astro.props;
+
+let relatedTools = [];
+
+if (customSlugs && customSlugs.length > 0) {
+  relatedTools = tools.filter((t) => customSlugs.includes(t.slug));
+} else {
+  // Find same-category tools first
+  const sameCategory = tools.filter((t) => t.category === category && t.slug !== currentSlug);
+  
+  // High-value complementary tools
+  const highValueComplements = ["compress-to-100kb", "signature-resizer", "watermark-image", "image-color-picker", "jpg-to-png", "png-to-jpg", "jpg-to-webp"]
+    .map((slug) => tools.find((t) => t.slug === slug))
+    .filter(Boolean)
+    .filter((t) => t.slug !== currentSlug);
+
+  const combined = [...sameCategory, ...highValueComplements];
+  const unique = Array.from(new Set(combined.map((t) => t.slug))).map((s) => combined.find((t) => t.slug === s));
+  relatedTools = unique.slice(0, 3);
+}
+---
+
+{relatedTools.length > 0 && (
+  <section class="section border-t border-border-default/60 bg-surface-muted/40">
+    <Container>
+      <div class="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-600 dark:text-brand-400 text-xs font-semibold mb-2">
+          🔄 Complete Your Workflow
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
+          {title}
+        </h2>
+        <p class="text-sm text-text-secondary mt-1.5 leading-relaxed">
+          {subtitle}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto">
+        {relatedTools.map((tool) => (
+          <ToolCard
+            slug={tool.slug}
+            title={tool.title}
+            description={tool.description}
+            from={tool.from}
+            to={tool.to}
+            icon={tool.icon}
+            category={tool.category}
+          />
+        ))}
+      </div>
+    </Container>
+  </section>
+)}

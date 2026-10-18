@@ -5,6 +5,8 @@ import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 import ActiveConverter from "@components/tool/ActiveConverter.astro";
+import MonetizationBanner from "@components/ui/MonetizationBanner.astro";
+import RelatedTools from "@components/tool/RelatedTools.astro";
 
 const breadcrumbs = [
   { name: "Home", url: "/" },
@@ -79,6 +81,9 @@ const faqItems = [
           inputFormat="JPG"
           outputFormat="PNG"
         />
+
+        <!-- Monetization & Partner Banner -->
+        <MonetizationBanner class="mt-8 mb-0" />
       </div>
     </Container>
   </section>
@@ -211,15 +216,9 @@ const faqItems = [
         <h2 class="text-2xl font-bold text-text-primary mb-6">Frequently Asked Questions</h2>
         <FAQ items={faqItems} />
       </div>
-
-      <div class="mt-8 text-xs text-text-tertiary">
-        <p>Related tools:
-          <a href="/png-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">PNG to JPG</a> ·
-          <a href="/jpg-to-webp" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to WebP</a> ·
-          <a href="/webp-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">WebP to JPG</a> ·
-          <a href="/jpg-to-pdf" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PDF</a>
-        </p>
-      </div>
     </Container>
   </section>
+
+  <!-- Related Tools Internal Linking Grid -->
+  <RelatedTools currentSlug="jpg-to-png" category="image-converters" />
 </BaseLayout>

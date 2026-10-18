@@ -225,43 +225,45 @@
     background: var(--color-surface);
     border: 1px solid var(--color-border-default);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
   }
 
   .card-hover:hover {
-    border-color: var(--color-border-strong);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--color-brand-500) 45%, var(--color-border-default));
+    box-shadow: 0 12px 28px -6px rgb(0 0 0 / 0.08), 0 0 22px color-mix(in srgb, var(--color-brand-500) 16%, transparent);
+    transform: translateY(-3px);
   }
 
   .card-hover:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
   }
 
-  /* Gradient border card */
+  /* Gradient border card with dynamic lighting */
   .card-gradient {
     position: relative;
     background: var(--color-surface);
+    border: 1px solid var(--color-border-default);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .card-gradient::before {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, var(--color-brand-400), var(--color-brand-600), var(--color-brand-400));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-brand-500) 60%, transparent), color-mix(in srgb, var(--color-accent-500) 60%, transparent));
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     -webkit-mask-composite: xor;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
     pointer-events: none;
+    z-index: 1;
   }
 
   .card-gradient:hover::before {
@@ -269,18 +271,33 @@
   }
 
   .card-gradient:hover {
-    box-shadow: var(--shadow-lg), var(--shadow-glow);
-    transform: translateY(-2px);
+    border-color: transparent;
+    box-shadow: 0 12px 28px -6px rgb(0 0 0 / 0.08), 0 0 24px color-mix(in srgb, var(--color-brand-500) 18%, transparent);
+    transform: translateY(-3px);
+  }
+
+  /* Category card theme variants (like iLovePDF / iLoveIMG) */
+  .card-cat-converters:hover {
+    box-shadow: 0 12px 28px -6px rgb(0 0 0 / 0.08), 0 0 24px color-mix(in srgb, #2563eb 20%, transparent);
+  }
+  .card-cat-compressors:hover {
+    box-shadow: 0 12px 28px -6px rgb(0 0 0 / 0.08), 0 0 24px color-mix(in srgb, #059669 22%, transparent);
+  }
+  .card-cat-tools:hover {
+    box-shadow: 0 12px 28px -6px rgb(0 0 0 / 0.08), 0 0 24px color-mix(in srgb, #7c3aed 22%, transparent);
+  }
+  .card-cat-pdf:hover {
+    box-shadow: 0 12px 28px -6px rgb(0 0 0 / 0.08), 0 0 24px color-mix(in srgb, #e11d48 20%, transparent);
   }
 
   /* Glass card */
   .card-glass {
     background: var(--color-surface-overlay);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
     border: 1px solid var(--color-border-default);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 8px 24px -4px rgb(0 0 0 / 0.06);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 

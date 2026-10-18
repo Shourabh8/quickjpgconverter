@@ -4,6 +4,8 @@ import Container from "@components/ui/Container.astro";
 import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import MonetizationBanner from "@components/ui/MonetizationBanner.astro";
+import RelatedTools from "@components/tool/RelatedTools.astro";
 
 const breadcrumbs = [
   { name: "Tools", url: "/tools" },
@@ -271,6 +273,9 @@ const toolSchema = {
           </div>
 
         </div>
+
+        <!-- Monetization & Partner Banner -->
+        <MonetizationBanner class="mt-6 mb-0" />
       </div>
     </Container>
   </section>
@@ -364,6 +369,14 @@ const toolSchema = {
       <FAQ items={faqItems} />
     </Container>
   </section>
+
+  <!-- Related Tools Internal Linking Grid -->
+  <RelatedTools
+    currentSlug="signature-resizer"
+    customSlugs={["passport-photo-size", "compress-image-to-20kb", "upsc-photo-compressor"]}
+    title="Official Portal Tools"
+    subtitle="Complementary utilities for passport, exam, and government portal applications."
+  />
 </BaseLayout>
 
 <script>
