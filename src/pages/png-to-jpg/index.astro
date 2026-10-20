@@ -8,8 +8,8 @@ import ActiveConverter from "@components/tool/ActiveConverter.astro";
 
 const breadcrumbs = [
   { name: "Home", url: "/" },
-  { name: "Tools", url: "/tools" },
-  { name: "PNG to JPG", url: "/png-to-jpg" },
+  { name: "Tools", url: "/tools/" },
+  { name: "PNG to JPG", url: "/png-to-jpg/" },
 ];
 
 const faqItems = [
@@ -176,7 +176,7 @@ const faqItems = [
         <p>
           JPG does not support transparent backgrounds. If your PNG has transparency, the transparent
           areas will be filled with white when converted to JPG. If you need to preserve transparency,
-          consider keeping the PNG or converting to <a href="/webp-to-jpg">WebP</a>, which supports
+          consider keeping the PNG or converting to <a href="/webp-to-jpg/">WebP</a>, which supports
           both lossy compression and alpha channels. For images without transparency — which is most
           photographs — this is a non-issue.
         </p>
@@ -197,7 +197,7 @@ const faqItems = [
 
         <h2>PNG to JPG vs Other Conversion Options</h2>
         <p>
-          If you're optimizing images for the web, you have several options beyond JPG. <a href="/jpg-to-webp">
+          If you're optimizing images for the web, you have several options beyond JPG. <a href="/jpg-to-webp/">
           WebP</a> offers even better compression than JPG — 25-35% smaller files with equivalent
           quality. However, JPG remains the most universally supported format, and for many use
           cases, the simplicity and compatibility of JPG outweigh the marginal size savings of
@@ -206,7 +206,7 @@ const faqItems = [
         <p>
           For a complete image optimization workflow, consider converting your PNGs to JPG for
           general use, and to WebP for performance-critical pages where every kilobyte matters.
-          Our <a href="/png-to-jpg">PNG to JPG</a> and <a href="/jpg-to-webp">JPG to WebP</a>
+          Our <a href="/png-to-jpg/">PNG to JPG</a> and <a href="/jpg-to-webp/">JPG to WebP</a>
           converters handle each step of that pipeline.
         </p>
       </div>
@@ -218,12 +218,12 @@ const faqItems = [
 
       <div class="mt-8 text-xs text-text-tertiary">
         <p>Related tools:
-          <a href="/image-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">JPG Converter</a> ·
-          <a href="/jpg-to-png" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PNG</a> ·
-          <a href="/webp-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">WebP to JPG</a> ·
-          <a href="/heic-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">HEIC to JPG</a> ·
-          <a href="/avif-to-jpg" class="text-brand-600 dark:text-brand-400 hover:underline">AVIF to JPG</a> ·
-          <a href="/image-compressor" class="text-brand-600 dark:text-brand-400 hover:underline">Image Compressor</a>
+          <a href="/image-to-jpg/" class="text-brand-600 dark:text-brand-400 hover:underline">JPG Converter</a> ·
+          <a href="/jpg-to-png/" class="text-brand-600 dark:text-brand-400 hover:underline">JPG to PNG</a> ·
+          <a href="/webp-to-jpg/" class="text-brand-600 dark:text-brand-400 hover:underline">WebP to JPG</a> ·
+          <a href="/heic-to-jpg/" class="text-brand-600 dark:text-brand-400 hover:underline">HEIC to JPG</a> ·
+          <a href="/avif-to-jpg/" class="text-brand-600 dark:text-brand-400 hover:underline">AVIF to JPG</a> ·
+          <a href="/image-compressor/" class="text-brand-600 dark:text-brand-400 hover:underline">Image Compressor</a>
         </p>
       </div>
     </Container>

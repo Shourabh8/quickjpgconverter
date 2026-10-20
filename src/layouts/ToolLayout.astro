@@ -24,7 +24,7 @@ interface Props {
 const { title, description, canonical, from, to, features } = Astro.props;
 
 const breadcrumbs = [
-  { name: "Tools", url: "/tools" },
+  { name: "Tools", url: "/tools/" },
   { name: title, url: canonical ?? "" },
 ];
 ---

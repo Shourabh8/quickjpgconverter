@@ -24,54 +24,16 @@ const faqItems = [
     answer: "Yes, QuickJPG is 100% free with no limits. You can convert unlimited WebP files to JPG without creating an account, and there are no watermarks or restrictions. All processing happens in your browser for complete privacy.",
   },
 ];
-
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "How to Convert WebP to JPG Free Online (2026)",
-  description: "Step-by-step guide to convert WebP images to JPG format. Free online tool, works on Windows, Mac, and iPhone. No software installation required.",
-  author: {
-    "@type": "Organization",
-    name: "QuickJPG",
-    url: "https://quickjpgconverter.com",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "QuickJPG",
-    url: "https://quickjpgconverter.com",
-  },
-  datePublished: "2026-06-15",
-  dateModified: "2026-06-15",
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": "https://quickjpgconverter.com/blog/how-to-convert-webp-to-jpg",
-  },
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
 ---
 
 <BlogPostLayout
   post={post}
   breadcrumbs={[
-    { name: "Blog", url: "/blog" },
-    { name: "How to Convert WebP to JPG", url: "/blog/how-to-convert-webp-to-jpg" },
+    { name: "Blog", url: "/blog/" },
+    { name: "How to Convert WebP to JPG", url: "/blog/how-to-convert-webp-to-jpg/" },
   ]}
   faqItems={faqItems}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <section class="pb-12 sm:pb-16">
     <Container variant="narrow">
@@ -114,7 +76,7 @@ const faqSchema = {
 
         <h3>Step 1 — Visit QuickJPG WebP Converter</h3>
         <p>
-          Open your browser and go to <a href="/webp-to-jpg">QuickJPG's WebP to JPG converter</a>.
+          Open your browser and go to <a href="/webp-to-jpg/">QuickJPG's WebP to JPG converter</a>.
           The tool loads instantly — no registration, no download, no waiting. It works on Chrome,
           Safari, Firefox, Edge, and any modern browser on desktop or mobile.
         </p>
@@ -147,7 +109,7 @@ const faqSchema = {
 
         <h3>Method 1: Use QuickJPG Online (Recommended)</h3>
         <p>
-          The fastest method is <a href="/webp-to-jpg">QuickJPG's online converter</a>. Open any browser,
+          The fastest method is <a href="/webp-to-jpg/">QuickJPG's online converter</a>. Open any browser,
           upload your WebP file, and download the JPG in seconds. No software installation needed. This
           method works on any Windows version — 7, 8, 10, or 11.
         </p>
@@ -185,7 +147,7 @@ const faqSchema = {
 
         <h3>Method 1: QuickJPG Online</h3>
         <p>
-          Open Safari or Chrome on your Mac, visit <a href="/webp-to-jpg">QuickJPG's WebP to JPG converter</a>,
+          Open Safari or Chrome on your Mac, visit <a href="/webp-to-jpg/">QuickJPG's WebP to JPG converter</a>,
           and follow the four steps above. The tool works perfectly on macOS and requires no installation.
         </p>
 
@@ -212,9 +174,9 @@ const faqSchema = {
           regularly works with WebP images from downloads or exports.
         </p>
         <p>
-          For a dedicated batch conversion workflow, try our <a href="/image-compressor">Image
+          For a dedicated batch conversion workflow, try our <a href="/image-compressor/">Image
           Compressor</a> which supports multiple file processing with quality control. You can also
-          use our <a href="/webp-to-png">WebP to PNG converter</a> if you need transparency in your output.
+          use our <a href="/webp-to-png/">WebP to PNG converter</a> if you need transparency in your output.
         </p>
 
         <h2>Frequently Asked Questions</h2>
@@ -237,7 +199,7 @@ const faqSchema = {
 
         <h3>Can I convert WebP to JPG on iPhone?</h3>
         <p>
-          Yes. Open Safari and go to <a href="/webp-to-jpg">QuickJPG's WebP to JPG converter</a>.
+          Yes. Open Safari and go to <a href="/webp-to-jpg/">QuickJPG's WebP to JPG converter</a>.
           Upload your WebP file, tap convert, and download the JPG. The entire process happens in your
           browser — no app installation needed. You can also use the Shortcuts app to create an
           automation for batch conversion.
@@ -254,7 +216,7 @@ const faqSchema = {
       <div class="mt-8 p-6 rounded-2xl bg-brand-50 dark:bg-brand-950/30 border border-brand-200 dark:border-brand-800 text-center">
         <h3 class="text-lg font-semibold text-text-primary mb-2">Convert Your WebP Files Now</h3>
         <p class="text-sm text-text-secondary mb-4">Free, instant, and private. No signup required.</p>
-        <a href="/webp-to-jpg" class="btn-primary">Convert WebP to JPG →</a>
+        <a href="/webp-to-jpg/" class="btn-primary">Convert WebP to JPG →</a>
       </div>
     </Container>
   </section>

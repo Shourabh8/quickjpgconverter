@@ -8,7 +8,7 @@ interface Props {
 const { slotId, format = "auto", class: className = "" } = Astro.props;
 ---
 
-<div class:list={["monetization-wrapper my-8 w-full max-w-4xl mx-auto", className]}>
+<div class:list={["monetization-wrapper my-8 w-full max-w-4xl mx-auto min-h-[140px]", className]} style="contain: layout; contain-intrinsic-size: 140px;">
   <div class="relative overflow-hidden rounded-2xl border border-border-default/80 bg-surface/80 backdrop-blur-md shadow-xs p-4 sm:p-5 transition-all duration-300 hover:border-brand-300 dark:hover:border-brand-700">
     <div class="flex items-center justify-between pb-2 mb-3 border-b border-border-default/50 text-[11px] uppercase tracking-wider text-text-tertiary font-semibold">
       <span>Sponsored & Recommended</span>

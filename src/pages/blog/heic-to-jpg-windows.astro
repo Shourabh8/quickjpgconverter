@@ -28,54 +28,16 @@ const faqItems = [
     answer: "QuickJPG uses high-quality encoding that preserves visual detail. The quality difference between HEIC and JPG is imperceptible for sharing, social media, and printing.",
   },
 ];
-
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "How to Convert HEIC to JPG on Windows 10 & 11 — 4 Free Methods (2026)",
-  description: "Step-by-step guide to convert HEIC iPhone photos to JPG on Windows 10 and 11. Four free methods: online converter, HEIC codec, Paint, and iPhone settings.",
-  author: {
-    "@type": "Organization",
-    name: "QuickJPG",
-    url: "https://quickjpgconverter.com",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "QuickJPG",
-    url: "https://quickjpgconverter.com",
-  },
-  datePublished: "2026-06-15",
-  dateModified: "2026-06-15",
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": "https://quickjpgconverter.com/blog/heic-to-jpg-windows",
-  },
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
 ---
 
 <BlogPostLayout
   post={post}
   breadcrumbs={[
-    { name: "Blog", url: "/blog" },
-    { name: "HEIC to JPG on Windows", url: "/blog/heic-to-jpg-windows" },
+    { name: "Blog", url: "/blog/" },
+    { name: "HEIC to JPG on Windows", url: "/blog/heic-to-jpg-windows/" },
   ]}
   faqItems={faqItems}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <section class="pb-12 sm:pb-16">
     <Container variant="narrow">
@@ -96,7 +58,7 @@ const faqSchema = {
 
         <h3>Step by Step</h3>
         <ol>
-          <li>Open your browser and go to <a href="/heic-to-jpg">QuickJPG's HEIC to JPG converter</a></li>
+          <li>Open your browser and go to <a href="/heic-to-jpg/">QuickJPG's HEIC to JPG converter</a></li>
           <li>Click "Choose Files" or drag and drop your HEIC photos into the upload area</li>
           <li>The conversion happens instantly in your browser — your photos never leave your device</li>
           <li>Download your converted JPG files individually or as a ZIP archive</li>
@@ -178,8 +140,8 @@ const faqSchema = {
         </p>
 
         <p>
-          Need to reduce file sizes after conversion? Try our <a href="/image-compressor">Image Compressor</a>
-          to shrink JPG files for email or web uploads. Or use <a href="/compress-to-100kb">Compress to 100KB</a>
+          Need to reduce file sizes after conversion? Try our <a href="/image-compressor/">Image Compressor</a>
+          to shrink JPG files for email or web uploads. Or use <a href="/compress-to-100kb/">Compress to 100KB</a>
           for government forms and passport applications.
         </p>
 
@@ -189,19 +151,19 @@ const faqSchema = {
         <p>
           Windows 10 and 11 don't include native HEIC support. Microsoft offers a free codec
           extension in the Microsoft Store, but it must be installed manually. Alternatively,
-          use <a href="/heic-to-jpg">QuickJPG's free online converter</a> — no installation required.
+          use <a href="/heic-to-jpg/">QuickJPG's free online converter</a> — no installation required.
         </p>
 
         <h3>Is there a free HEIC viewer for Windows?</h3>
         <p>
           Yes. Install the free "HEIF Image Extensions" from the Microsoft Store. This lets
           Windows Photos open HEIC files. For conversion to JPG, use
-          <a href="/heic-to-jpg">QuickJPG's free online tool</a>.
+          <a href="/heic-to-jpg/">QuickJPG's free online tool</a>.
         </p>
 
         <h3>Can I batch convert HEIC to JPG on Windows?</h3>
         <p>
-          Yes. <a href="/heic-to-jpg">QuickJPG</a> supports batch conversion — upload multiple
+          Yes. <a href="/heic-to-jpg/">QuickJPG</a> supports batch conversion — upload multiple
           HEIC files at once and download them all as JPG or ZIP. Windows Photos and Paint
           don't support batch conversion.
         </p>
@@ -223,7 +185,7 @@ const faqSchema = {
       <div class="mt-8 p-6 rounded-2xl bg-brand-50 dark:bg-brand-950/30 border border-brand-200 dark:border-brand-800 text-center">
         <h3 class="text-lg font-semibold text-text-primary mb-2">Convert Your HEIC Photos Now</h3>
         <p class="text-sm text-text-secondary mb-4">Free, instant, and private. No signup required.</p>
-        <a href="/heic-to-jpg" class="btn-primary">Convert HEIC to JPG →</a>
+        <a href="/heic-to-jpg/" class="btn-primary">Convert HEIC to JPG →</a>
       </div>
     </Container>
   </section>

@@ -112,7 +112,7 @@ function imageToBlob(img, mime, quality) {
 }
 
 export function initConverter(config) {
-  const { targetFormat, targetExt, targetMime } = config;
+  let { targetFormat, targetExt, targetMime } = config;
 
   let files = [];
   let convertedBlobs = [];
@@ -134,6 +134,29 @@ export function initConverter(config) {
   const progressText = document.getElementById("progress-text");
 
   if (!dropArea || !uploadZone) return;
+
+  // Format switcher tabs
+  const switchBtns = document.querySelectorAll("[data-target-switch]");
+  switchBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      switchBtns.forEach((b) => {
+        b.classList.remove("bg-brand-600", "text-white", "shadow-sm");
+        b.classList.add("text-text-secondary", "hover:text-text-primary");
+      });
+      btn.classList.add("bg-brand-600", "text-white", "shadow-sm");
+      btn.classList.remove("text-text-secondary", "hover:text-text-primary");
+
+      targetFormat = btn.getAttribute("data-target-format") || targetFormat;
+      targetExt = btn.getAttribute("data-target-ext") || targetExt;
+      targetMime = btn.getAttribute("data-target-mime") || targetMime;
+
+      const badge = document.getElementById("output-format-badge");
+      if (badge) badge.textContent = `Output: ${targetFormat.toUpperCase()}`;
+
+      const convertBtnText = document.getElementById("convert-btn-text");
+      if (convertBtnText) convertBtnText.textContent = `Convert to ${targetFormat.toUpperCase()}`;
+    });
+  });
 
   // --- Keyboard accessibility for drop zone ---
   dropArea.setAttribute("tabindex", "0");

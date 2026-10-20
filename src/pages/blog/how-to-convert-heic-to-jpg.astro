@@ -28,54 +28,16 @@ const faqItems = [
     answer: "Open Safari on your iPhone, go to QuickJPG's HEIC to JPG converter, tap to select your photo, and download the JPG. The converted file saves to your Photos app or Files app. You can also change your iPhone camera settings to shoot in JPG directly.",
   },
 ];
-
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "How to Convert HEIC to JPG Free — iPhone Photo Guide (2026)",
-  description: "Step-by-step guide to convert HEIC iPhone photos to JPG. Free online tool, works on Windows, Mac, and iPhone. No software installation required.",
-  author: {
-    "@type": "Organization",
-    name: "QuickJPG",
-    url: "https://quickjpgconverter.com",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "QuickJPG",
-    url: "https://quickjpgconverter.com",
-  },
-  datePublished: "2026-06-15",
-  dateModified: "2026-06-15",
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": "https://quickjpgconverter.com/blog/how-to-convert-heic-to-jpg",
-  },
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
 ---
 
 <BlogPostLayout
   post={post}
   breadcrumbs={[
-    { name: "Blog", url: "/blog" },
-    { name: "How to Convert HEIC to JPG", url: "/blog/how-to-convert-heic-to-jpg" },
+    { name: "Blog", url: "/blog/" },
+    { name: "How to Convert HEIC to JPG", url: "/blog/how-to-convert-heic-to-jpg/" },
   ]}
   faqItems={faqItems}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <section class="pb-12 sm:pb-16">
     <Container variant="narrow">
@@ -114,7 +76,7 @@ const faqSchema = {
 
         <h3>Step 1 — Visit QuickJPG HEIC Converter</h3>
         <p>
-          Open any browser and go to <a href="/heic-to-jpg">QuickJPG's HEIC to JPG converter</a>.
+          Open any browser and go to <a href="/heic-to-jpg/">QuickJPG's HEIC to JPG converter</a>.
           The tool loads instantly on any device — iPhone, iPad, Android, Windows, or Mac.
         </p>
 
@@ -145,7 +107,7 @@ const faqSchema = {
 
         <h3>Method 1: QuickJPG Online (Recommended)</h3>
         <p>
-          <a href="/heic-to-jpg">QuickJPG's free online converter</a> is the fastest solution.
+          <a href="/heic-to-jpg/">QuickJPG's free online converter</a> is the fastest solution.
           Open any browser, upload your HEIC files, and download JPGs in seconds. No codec
           installation, no software, no compatibility issues.
         </p>
@@ -183,7 +145,7 @@ const faqSchema = {
 
         <h3>Method 1: QuickJPG Online</h3>
         <p>
-          Open Safari or Chrome, visit <a href="/heic-to-jpg">QuickJPG's HEIC to JPG converter</a>,
+          Open Safari or Chrome, visit <a href="/heic-to-jpg/">QuickJPG's HEIC to JPG converter</a>,
           and follow the four steps above. Works perfectly on macOS with no installation required.
         </p>
 
@@ -237,8 +199,8 @@ const faqSchema = {
           converting.
         </p>
         <p>
-          For ongoing photo management, consider our <a href="/heic-to-png">HEIC to PNG converter</a>
-          if you need transparency, or our <a href="/image-compressor">Image Compressor</a> to reduce
+          For ongoing photo management, consider our <a href="/heic-to-png/">HEIC to PNG converter</a>
+          if you need transparency, or our <a href="/image-compressor/">Image Compressor</a> to reduce
           the file size of your converted JPGs.
         </p>
 
@@ -256,7 +218,7 @@ const faqSchema = {
         <p>
           Windows doesn't include native HEIC support by default. Microsoft offers a free HEIC codec
           extension in the Microsoft Store, but many users don't install it. Alternatively, convert
-          HEIC to JPG using <a href="/heic-to-jpg">QuickJPG's free online converter</a> — no
+          HEIC to JPG using <a href="/heic-to-jpg/">QuickJPG's free online converter</a> — no
           software installation needed.
         </p>
 
@@ -269,14 +231,14 @@ const faqSchema = {
 
         <h3>Can I convert HEIC to JPG without software?</h3>
         <p>
-          Yes. <a href="/heic-to-jpg">QuickJPG's online converter</a> runs entirely in your browser —
+          Yes. <a href="/heic-to-jpg/">QuickJPG's online converter</a> runs entirely in your browser —
           no software download or installation required. Just visit the website, upload your HEIC file,
           and download the converted JPG. Works on iPhone, Android, Windows, and Mac.
         </p>
 
         <h3>How do I convert HEIC to JPG on iPhone itself?</h3>
         <p>
-          Open Safari on your iPhone, go to <a href="/heic-to-jpg">QuickJPG's HEIC to JPG converter</a>,
+          Open Safari on your iPhone, go to <a href="/heic-to-jpg/">QuickJPG's HEIC to JPG converter</a>,
           tap to select your photo, and download the JPG. The converted file saves to your Photos app
           or Files app. You can also change your iPhone camera settings to shoot in JPG directly
           using Settings → Camera → Formats → Most Compatible.
@@ -286,7 +248,7 @@ const faqSchema = {
       <div class="mt-8 p-6 rounded-2xl bg-brand-50 dark:bg-brand-950/30 border border-brand-200 dark:border-brand-800 text-center">
         <h3 class="text-lg font-semibold text-text-primary mb-2">Convert Your HEIC Photos Now</h3>
         <p class="text-sm text-text-secondary mb-4">Free, instant, and private. No signup required.</p>
-        <a href="/heic-to-jpg" class="btn-primary">Convert HEIC to JPG →</a>
+        <a href="/heic-to-jpg/" class="btn-primary">Convert HEIC to JPG →</a>
       </div>
     </Container>
   </section>

@@ -6,8 +6,8 @@ import FAQ from "@components/ui/FAQ.astro";
 import Breadcrumb from "@components/seo/Breadcrumb.astro";
 
 const breadcrumbs = [
-  { name: "Tools", url: "/tools" },
-  { name: "Photo to Base64", url: "/photo-to-base64" },
+  { name: "Tools", url: "/tools/" },
+  { name: "Photo to Base64", url: "/photo-to-base64/" },
 ];
 
 const faqItems = [
@@ -250,8 +250,8 @@ const useCases = [
           <li><strong>JSON/API responses</strong> — Send image data as text in API payloads.</li>
           <li><strong>Database storage</strong> — Store small images directly as text in databases.</li>
         </ul>
-        <p><strong>Note:</strong> Base64 increases file size by ~33%. Use it for small images (icons, thumbnails), not large photos. For large images, consider our <a href="/compress-to-100kb" class="text-brand-600 hover:text-brand-700 underline">Compress to 100KB tool</a> instead.</p>
-        <p>Need to compress a photo for a government form? Try our <a href="/compress-for-govt-form" class="text-brand-600 hover:text-brand-700 underline">Compress for Govt Form tool</a>. Or check passport photo sizes with our <a href="/passport-photo-size" class="text-brand-600 hover:text-brand-700 underline">Passport Photo Size tool</a>.</p>
+        <p><strong>Note:</strong> Base64 increases file size by ~33%. Use it for small images (icons, thumbnails), not large photos. For large images, consider our <a href="/compress-to-100kb/" class="text-brand-600 hover:text-brand-700 underline">Compress to 100KB tool</a> instead.</p>
+        <p>Need to compress a photo for a government form? Try our <a href="/compress-for-govt-form/" class="text-brand-600 hover:text-brand-700 underline">Compress for Govt Form tool</a>. Or check passport photo sizes with our <a href="/passport-photo-size/" class="text-brand-600 hover:text-brand-700 underline">Passport Photo Size tool</a>.</p>
       </div>
     </Container>
   </section>
@@ -263,15 +263,15 @@ const useCases = [
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">Try Our Other Tools</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-        <a href="/passport-photo-size" class="card-hover p-5 group">
+        <a href="/passport-photo-size/" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Passport Photo Size</h3>
           <p class="text-sm text-text-secondary">Resize photos for passport applications.</p>
         </a>
-        <a href="/compress-for-govt-form" class="card-hover p-5 group">
+        <a href="/compress-for-govt-form/" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress for Govt Form</h3>
           <p class="text-sm text-text-secondary">Reduce images for SSC, UPSC forms.</p>
         </a>
-        <a href="/compress-to-100kb" class="card-hover p-5 group">
+        <a href="/compress-to-100kb/" class="card-hover p-5 group">
           <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Compress to 100KB</h3>
           <p class="text-sm text-text-secondary">Reduce images to under 100KB.</p>
         </a>
