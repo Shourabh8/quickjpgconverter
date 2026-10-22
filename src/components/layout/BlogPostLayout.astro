@@ -16,7 +16,9 @@ interface Props {
 
 const { post, author: authorKey, breadcrumbs: customBreadcrumbs, faqItems, howToSteps } = Astro.props;
 
-const authorProfile = authors[authorKey ?? defaultAuthor] ?? authors[defaultAuthor];
+const currentAuthorKey = authorKey ?? defaultAuthor;
+const authorProfile = authors[currentAuthorKey] ?? authors[defaultAuthor];
+const authorUrl = currentAuthorKey === "shourabh" ? "/author/shourabh/" : "/author/team/";
 
 const breadcrumbs = customBreadcrumbs ?? [
   { name: "Blog", url: "/blog/" },
@@ -33,7 +35,7 @@ const breadcrumbs = customBreadcrumbs ?? [
   articleSchema={{
     headline: post.title,
     datePublished: post.publishDate,
-    authorName: authorProfile.name,
+    author: authorProfile.name,
   }}
   faqItems={faqItems}
   howToSteps={howToSteps}
@@ -55,11 +57,13 @@ const breadcrumbs = customBreadcrumbs ?? [
       </div>
 
       <div class="flex items-center gap-4 py-4 border-y border-border-default">
-        <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
+        <a href={authorUrl} class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300 hover:opacity-80 transition-opacity">
           {authorProfile.initials}
-        </div>
+        </a>
         <div>
-          <p class="text-sm font-medium text-text-primary">{authorProfile.name}</p>
+          <a href={authorUrl} class="text-sm font-medium text-text-primary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            {authorProfile.name}
+          </a>
           <p class="text-xs text-text-tertiary">{post.readTime} · Published {post.publishDate}</p>
         </div>
       </div>
@@ -76,11 +80,13 @@ const breadcrumbs = customBreadcrumbs ?? [
     <Container>
       <div class="max-w-3xl mx-auto p-6 rounded-2xl border border-border-default bg-surface">
         <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300 flex-shrink-0">
+          <a href={authorUrl} class="w-12 h-12 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300 flex-shrink-0 hover:opacity-80 transition-opacity">
             {authorProfile.initials}
-          </div>
+          </a>
           <div>
-            <h3 class="text-base font-semibold text-text-primary mb-1">Written by {authorProfile.name}</h3>
+            <h3 class="text-base font-semibold text-text-primary mb-1">
+              Written by <a href={authorUrl} class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">{authorProfile.name}</a>
+            </h3>
             <p class="text-sm text-text-secondary leading-relaxed">{authorProfile.bio}</p>
             <div class="flex flex-wrap gap-2 mt-3">
               {authorProfile.expertise.map((skill) => (

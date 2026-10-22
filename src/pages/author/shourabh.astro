@@ -1,0 +1,104 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/ui/Container.astro";
+import Badge from "@components/ui/Badge.astro";
+import Breadcrumb from "@components/seo/Breadcrumb.astro";
+import { blogPosts } from "@data/blog";
+import { authors } from "@data/authors";
+
+const author = authors.shourabh;
+const authorPosts = blogPosts.filter((p) => (p.author ?? "shourabh") === "shourabh");
+
+const breadcrumbs = [
+  { name: "About", url: "/about/" },
+  { name: "Our Team", url: "/author/team/" },
+  { name: author.name, url: "/author/shourabh/" },
+];
+
+const authorPersonSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: author.name,
+  url: "https://quickjpgconverter.com/author/shourabh/",
+  jobTitle: "Founder & Lead Developer",
+  worksFor: {
+    "@type": "Organization",
+    name: "Quick JPG Converter",
+    url: "https://quickjpgconverter.com/",
+  },
+  description: author.bio,
+  knowsAbout: author.expertise,
+};
+---
+
+<BaseLayout
+  title={`${author.name} — Author & Lead Developer at Quick JPG Converter`}
+  description={`Read articles, guides, and technical tutorials by ${author.name}, creator of Quick JPG Converter specializing in browser-based image processing and web performance.`}
+  canonical="https://quickjpgconverter.com/author/shourabh/"
+  breadcrumbs={breadcrumbs}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(authorPersonSchema)} />
+
+  <section class="section">
+    <Container variant="narrow">
+      <Breadcrumb items={breadcrumbs} />
+
+      <!-- Author Bio Header -->
+      <div class="mt-8 mb-12 p-6 sm:p-8 rounded-3xl border border-border-default bg-surface shadow-xs">
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-500 to-accent-600 flex items-center justify-center text-white text-2xl font-bold shadow-md shrink-0">
+            {author.initials}
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-2">
+              <h1 class="text-2xl sm:text-3xl font-bold text-text-primary">{author.name}</h1>
+              <Badge class="text-xs">Founder & Lead Engineer</Badge>
+            </div>
+            <p class="text-sm sm:text-base text-text-secondary leading-relaxed mb-4">
+              {author.bio}
+            </p>
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              {author.expertise.map((skill) => (
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-surface-muted border border-border-default text-xs font-medium text-text-secondary">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Articles Authored -->
+      <div class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-text-primary">
+            Articles & Guides by {author.name}
+          </h2>
+          <span class="text-xs text-text-tertiary">{authorPosts.length} Guides</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {authorPosts.map((post) => (
+            <a href={`/blog/${post.slug}/`} class="card p-5 group hover:border-brand-300 dark:hover:border-brand-700 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <Badge class="text-[11px]">{post.category}</Badge>
+                  <span class="text-[11px] text-text-tertiary">{post.readTime}</span>
+                </div>
+                <h3 class="text-base font-semibold text-text-primary group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors line-clamp-2 mb-2">
+                  {post.title}
+                </h3>
+                <p class="text-xs text-text-secondary line-clamp-2 mb-3">
+                  {post.description}
+                </p>
+              </div>
+              <div class="text-xs font-medium text-brand-600 dark:text-brand-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Read Tutorial →
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

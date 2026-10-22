@@ -6,10 +6,14 @@ import Badge from "@components/ui/Badge.astro";
 import FAQ from "@components/ui/FAQ.astro";
 import { site } from "@data/site";
 import { tools, categories, getToolsByCategory } from "@data/tools";
+import { blogPosts } from "@data/blog";
+import { authors, defaultAuthor } from "@data/authors";
 
 import ActiveConverter from "@components/tool/ActiveConverter.astro";
 
 import "@styles/homepage.css";
+
+const featuredGuides = blogPosts.slice(0, 6);
 
 const faqItems = [
   {
@@ -566,6 +570,73 @@ const testimonials = [
             </div>
           </div>
         ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- ============================================
+       SECTION 5.5: GUIDES & TUTORIALS
+       ============================================ -->
+  <section class="section bg-surface-muted/60 border-y border-border-default/60" id="guides">
+    <Container>
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <Badge class="mb-3">Knowledge Base</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
+            Image Optimization & Format Guides
+          </h2>
+          <p class="text-text-secondary mt-1 max-w-xl text-sm sm:text-base">
+            Expert step-by-step guides on format conversions, file compression for passport portals, and in-browser image editing.
+          </p>
+        </div>
+        <div>
+          <a
+            href="/blog/"
+            class="btn-secondary btn-sm inline-flex items-center gap-1.5 text-xs font-semibold"
+          >
+            Explore All 24 Guides
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {featuredGuides.map((post) => {
+          const authorProfile = authors[post.author ?? defaultAuthor] ?? authors[defaultAuthor];
+          return (
+            <a
+              href={`/blog/${post.slug}/`}
+              class="card p-6 flex flex-col justify-between group hover:border-brand-400 dark:hover:border-brand-600 hover:shadow-md transition-all duration-300"
+            >
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <Badge class="text-[11px]">{post.category}</Badge>
+                  <span class="text-[11px] text-text-tertiary font-medium">{post.readTime}</span>
+                </div>
+                <h3 class="text-base font-semibold text-text-primary group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors line-clamp-2 mb-2 leading-snug">
+                  {post.title}
+                </h3>
+                <p class="text-xs text-text-secondary line-clamp-2 leading-relaxed">
+                  {post.description}
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between pt-4 mt-4 border-t border-border-default/60 text-xs">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-[10px] font-bold text-brand-700 dark:text-brand-300">
+                    {authorProfile.initials}
+                  </div>
+                  <span class="text-text-tertiary">{authorProfile.name}</span>
+                </div>
+                <span class="text-brand-600 dark:text-brand-400 font-medium inline-flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
+                  Read →
+                </span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </Container>
   </section>
