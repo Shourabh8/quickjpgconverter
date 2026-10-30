@@ -122,13 +122,86 @@
 /tools/:slug                   /:slug/                   301
 
 # ===================================================================
-# 4. Multilingual /tools/* Migrations to Root Locale Paths
+# 4. Multilingual /tools/* Migrations to Valid Canonical Paths
 # ===================================================================
-/es/tools/:slug               /es/:slug/                301
-/pt/tools/:slug               /pt/:slug/                301
-/hi/tools/:slug               /hi/:slug/                301
-/fr/tools/:slug               /fr/:slug/                301
-/de/tools/:slug               /de/:slug/                301
+# Existing localized tools in DE
+/de/tools/jpg-to-png         /de/jpg-to-png/           301
+/de/tools/jpg-to-png/        /de/jpg-to-png/           301
+/de/tools/compress-to-100kb  /de/compress-to-100kb/    301
+/de/tools/compress-to-100kb/ /de/compress-to-100kb/    301
+/de/tools/passport-photo-size /de/passport-photo-size/ 301
+/de/tools/passport-photo-size/ /de/passport-photo-size/ 301
+
+# Existing localized tools in ES
+/es/tools/jpg-to-png         /es/jpg-to-png/           301
+/es/tools/jpg-to-png/        /es/jpg-to-png/           301
+/es/tools/compress-to-100kb  /es/compress-to-100kb/    301
+/es/tools/compress-to-100kb/ /es/compress-to-100kb/    301
+/es/tools/passport-photo-size /es/passport-photo-size/ 301
+/es/tools/passport-photo-size/ /es/passport-photo-size/ 301
+
+# Existing localized tools in FR
+/fr/tools/jpg-to-png         /fr/jpg-to-png/           301
+/fr/tools/jpg-to-png/        /fr/jpg-to-png/           301
+/fr/tools/compress-to-100kb  /fr/compress-to-100kb/    301
+/fr/tools/compress-to-100kb/ /fr/compress-to-100kb/    301
+/fr/tools/passport-photo-size /fr/passport-photo-size/ 301
+/fr/tools/passport-photo-size/ /fr/passport-photo-size/ 301
+
+# Existing localized tools in HI
+/hi/tools/jpg-to-png         /hi/jpg-to-png/           301
+/hi/tools/jpg-to-png/        /hi/jpg-to-png/           301
+/hi/tools/compress-to-100kb  /hi/compress-to-100kb/    301
+/hi/tools/compress-to-100kb/ /hi/compress-to-100kb/    301
+/hi/tools/passport-photo-size /hi/passport-photo-size/ 301
+/hi/tools/passport-photo-size/ /hi/passport-photo-size/ 301
+
+# Existing localized tools in PT
+/pt/tools/jpg-to-png         /pt/jpg-to-png/           301
+/pt/tools/jpg-to-png/        /pt/jpg-to-png/           301
+/pt/tools/compress-to-100kb  /pt/compress-to-100kb/    301
+/pt/tools/compress-to-100kb/ /pt/compress-to-100kb/    301
+/pt/tools/passport-photo-size /pt/passport-photo-size/ 301
+/pt/tools/passport-photo-size/ /pt/passport-photo-size/ 301
+
+# Non-localized tools fallback cleanly to canonical English version
+/de/tools/:slug               /:slug/                   301
+/es/tools/:slug               /:slug/                   301
+/pt/tools/:slug               /:slug/                   301
+/hi/tools/:slug               /:slug/                   301
+/fr/tools/:slug               /:slug/                   301
+
+# Localized contact/privacy/terms fallbacks
+/de/contact                   /contact/                 301
+/de/contact/                  /contact/                 301
+/es/contact                   /contact/                 301
+/es/contact/                  /contact/                 301
+/pt/contact                   /contact/                 301
+/pt/contact/                  /contact/                 301
+/fr/contact                   /contact/                 301
+/fr/contact/                  /contact/                 301
+/hi/contact                   /contact/                 301
+/hi/contact/                  /contact/                 301
+/de/privacy                   /privacy/                 301
+/de/privacy/                  /privacy/                 301
+/es/privacy                   /privacy/                 301
+/es/privacy/                  /privacy/                 301
+/pt/privacy                   /privacy/                 301
+/pt/privacy/                  /privacy/                 301
+/fr/privacy                   /privacy/                 301
+/fr/privacy/                  /privacy/                 301
+/hi/privacy                   /privacy/                 301
+/hi/privacy/                  /privacy/                 301
+/de/terms                     /terms/                   301
+/de/terms/                    /terms/                   301
+/es/terms                     /terms/                   301
+/es/terms/                    /terms/                   301
+/pt/terms                     /terms/                   301
+/pt/terms/                    /terms/                   301
+/fr/terms                     /terms/                   301
+/fr/terms/                    /terms/                   301
+/hi/terms                     /terms/                   301
+/hi/terms/                    /terms/                   301
 
 # ===================================================================
 # 5. Doorway Consolidation (Eliminate Keyword Cannibalization)

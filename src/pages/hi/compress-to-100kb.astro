@@ -262,12 +262,16 @@ const relatedTools = [
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight mb-3">हमारे अन्य कनवर्टर आज़माएं</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-        {relatedTools.map((tool) => (
-          <a href={`${prefix}/${tool.slug}/`} class="card-hover p-5 group">
-            <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
-            <p class="text-sm text-text-secondary">{tool.desc}</p>
-          </a>
-        ))}
+        {relatedTools.map((tool) => {
+          const hasLocalized = ["jpg-to-png", "compress-to-100kb", "passport-photo-size"].includes(tool.slug);
+          const toolHref = hasLocalized ? `${prefix}/${tool.slug}/` : `/${tool.slug}/`;
+          return (
+            <a href={toolHref} class="card-hover p-5 group">
+              <h3 class="text-base font-semibold text-text-primary mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{tool.title}</h3>
+              <p class="text-sm text-text-secondary">{tool.desc}</p>
+            </a>
+          );
+        })}
       </div>
     </Container>
   </section>

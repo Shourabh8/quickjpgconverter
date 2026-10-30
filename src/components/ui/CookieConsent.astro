@@ -11,24 +11,25 @@
     <div class="bg-surface border border-border-default rounded-2xl shadow-2xl p-5 sm:p-6">
       <div class="flex flex-col sm:flex-row sm:items-start gap-4">
         <div class="flex-1">
-          <h2 class="text-sm font-semibold text-text-primary mb-1">We value your privacy</h2>
+          <h2 class="text-sm font-semibold text-text-primary mb-1">Privacy & Cookie Preferences</h2>
           <p class="text-xs text-text-secondary leading-relaxed">
-            We use cookies to enhance your browsing experience, serve personalized ads, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
-            <a href="/privacy/" class="underline hover:text-text-primary transition-colors">Privacy Policy</a>
+            We use cookies to analyze site traffic, remember your preferences, and serve advertisements via Google AdSense. Your files and photos never leave your device and are processed 100% client-side in your browser. Review our
+            <a href="/privacy/" class="underline hover:text-text-primary transition-colors">Privacy Policy</a> and learn
+            <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" class="underline hover:text-text-primary transition-colors">how Google uses data</a>.
           </p>
         </div>
         <div class="flex items-center gap-2 sm:flex-shrink-0">
           <button
             id="cookie-reject"
             type="button"
-            class="px-3 py-1.5 text-xs font-medium rounded-lg border border-border-default text-text-secondary hover:bg-surface-subtle transition-colors"
+            class="px-3 py-1.5 text-xs font-medium rounded-lg border border-border-default text-text-secondary hover:bg-surface-subtle transition-colors cursor-pointer"
           >
-            Reject
+            Reject Non-Essential
           </button>
           <button
             id="cookie-accept"
             type="button"
-            class="px-3 py-1.5 text-xs font-medium rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition-colors"
+            class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-brand-600 text-white hover:bg-brand-700 transition-colors shadow-xs cursor-pointer"
           >
             Accept All
           </button>
@@ -43,22 +44,46 @@
   var consent = document.getElementById('cookie-consent');
   if (!consent) return;
 
-  // Check if user already made a choice
-  if (localStorage.getItem('qjc_cookie_consent')) return;
+  function updateGoogleConsent(isGranted) {
+    if (typeof window.gtag === 'function') {
+      var state = isGranted ? 'granted' : 'denied';
+      window.gtag('consent', 'update', {
+        'ad_storage': state,
+        'ad_user_data': state,
+        'ad_personalization': state,
+        'analytics_storage': state
+      });
+    }
+  }
 
-  // Show banner after a short delay
-  setTimeout(function() {
-    consent.classList.remove('hidden');
-  }, 1000);
+  // Check if user already made a choice
+  var saved = localStorage.getItem('qjc_cookie_consent');
+  if (!saved) {
+    // Show banner after short delay
+    setTimeout(function() {
+      consent.classList.remove('hidden');
+    }, 800);
+  }
 
   document.getElementById('cookie-accept')?.addEventListener('click', function() {
     localStorage.setItem('qjc_cookie_consent', 'accepted');
+    updateGoogleConsent(true);
     consent.classList.add('hidden');
   });
 
   document.getElementById('cookie-reject')?.addEventListener('click', function() {
     localStorage.setItem('qjc_cookie_consent', 'rejected');
+    updateGoogleConsent(false);
     consent.classList.add('hidden');
+  });
+
+  // Global listener for reopening cookie settings from footer
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    if (target && (target.id === 'open-cookie-settings' || target.closest('#open-cookie-settings'))) {
+      e.preventDefault();
+      consent.classList.remove('hidden');
+    }
   });
 })();
 </script>

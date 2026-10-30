@@ -63,11 +63,29 @@ const {
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BMS6LMLSN"></script>
-    <script>
+    <!-- Google AdSense Account Verification -->
+    <meta name="google-adsense-account" content="ca-pub-9952773938458145" />
+
+    <!-- Google Consent Mode v2 (Strict AdSense & EU User Consent Policy Compliance) -->
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+
+      var storedConsent = localStorage.getItem('qjc_cookie_consent');
+      var consentState = storedConsent === 'accepted' ? 'granted' : 'denied';
+
+      gtag('consent', 'default', {
+        'ad_storage': consentState,
+        'ad_user_data': consentState,
+        'ad_personalization': consentState,
+        'analytics_storage': consentState,
+        'wait_for_update': 500
+      });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4BMS6LMLSN"></script>
+    <script is:inline>
       gtag('js', new Date());
       gtag('config', 'G-4BMS6LMLSN');
     </script>

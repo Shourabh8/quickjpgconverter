@@ -131,9 +131,9 @@ const testimonials = [
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
               <div class="flex items-center gap-2 p-1.5 rounded-xl border border-border-default bg-surface-muted">
                 <a href={`${prefix}/jpg-to-png/`} class="px-4 py-2 rounded-lg bg-surface text-sm font-semibold text-text-primary shadow-xs transition-colors hover:bg-brand-50 dark:hover:bg-brand-950/30">JPG</a>
-                <a href={`${prefix}/tools/png-to-jpg`} class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PNG</a>
-                <a href={`${prefix}/tools/jpg-to-webp`} class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">WebP</a>
-                <a href={`${prefix}/tools/jpg-to-pdf`} class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PDF</a>
+                <a href="/png-to-jpg/" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PNG</a>
+                <a href="/jpg-to-webp/" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">WebP</a>
+                <a href="/jpg-to-pdf/" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PDF</a>
               </div>
               <div class="flex items-center gap-2 text-text-tertiary">
                 <span class="text-sm font-medium">→</span>
@@ -172,18 +172,22 @@ const testimonials = [
         </p>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-w-6xl mx-auto">
-        {tools.map((tool) => (
-          <a
-            href={`${prefix}/${tool.slug}/`}
-            class="card-hover p-4 group flex flex-col items-start"
-          >
-            <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 text-lg group-hover:scale-110 transition-transform duration-300">
-              {tool.icon}
-            </div>
-            <h3 class="text-sm font-semibold text-text-primary mb-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{t.tools[tool.slug as keyof typeof t.tools]?.title || tool.title}</h3>
-            <p class="text-xs text-text-secondary leading-snug line-clamp-2">{t.tools[tool.slug as keyof typeof t.tools]?.description || tool.description}</p>
-          </a>
-        ))}
+        {tools.map((tool) => {
+          const hasLocalized = ["jpg-to-png", "compress-to-100kb", "passport-photo-size"].includes(tool.slug);
+          const toolHref = hasLocalized ? `${prefix}/${tool.slug}/` : `/${tool.slug}/`;
+          return (
+            <a
+              href={toolHref}
+              class="card-hover p-4 group flex flex-col items-start"
+            >
+              <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 mb-3 text-lg group-hover:scale-110 transition-transform duration-300">
+                {tool.icon}
+              </div>
+              <h3 class="text-sm font-semibold text-text-primary mb-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{t.tools[tool.slug as keyof typeof t.tools]?.title || tool.title}</h3>
+              <p class="text-xs text-text-secondary leading-snug line-clamp-2">{t.tools[tool.slug as keyof typeof t.tools]?.description || tool.description}</p>
+            </a>
+          );
+        })}
       </div>
       <div class="text-center mt-8">
         <a href={`/tools/`} class="btn-primary btn-lg">
