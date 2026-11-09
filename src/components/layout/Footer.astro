@@ -2,8 +2,35 @@
 import { site } from "@data/site";
 import { tools } from "@data/tools";
 import VisitorCounter from "../ui/VisitorCounter.astro";
+import {
+  type Locale,
+  locales,
+  defaultLocale,
+  useTranslations,
+  getLocalePrefix,
+  getLocalizedPath,
+  localeNames,
+  localeFlags,
+  isValidLocale,
+  multilingualRoutes,
+} from "@i18n/index";
 
+interface Props {
+  locale?: string;
+}
+
+const { locale = "en" } = Astro.props;
+const activeLocale = (isValidLocale(locale) ? locale : defaultLocale) as Locale;
+const prefix = getLocalePrefix(activeLocale);
+const currentPath = Astro.url.pathname;
 const currentYear = new Date().getFullYear();
+
+function getToolUrl(slug: string) {
+  if (multilingualRoutes.has(`/${slug}`)) {
+    return `${prefix}/${slug}/`;
+  }
+  return `/${slug}/`;
+}
 
 // Categorized tool clusters for PageRank distribution and topical authority
 const converterTools = [
@@ -49,11 +76,11 @@ const pdfAndEditingTools = [
 ---
 
 <footer class="border-t border-border-default bg-surface-muted/80">
-  <div class="container-main py-14 lg:py-18">
+  <div class="container-main py-12 sm:py-14 lg:py-18">
     <!-- Top Brand & Newsletter row -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 mb-12 border-b border-border-default/60">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-10 mb-10 border-b border-border-default/60">
       <div class="lg:col-span-5">
-        <a href="/" class="flex items-center gap-2.5 mb-3.5">
+        <a href={prefix || "/"} class="flex items-center gap-2.5 mb-3.5">
           <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center shadow-xs">
             <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="QuickJPG logo">
               <rect x="3" y="3" width="18" height="18" rx="3" />
@@ -86,15 +113,15 @@ const pdfAndEditingTools = [
         <div class="p-4 sm:p-5 rounded-2xl border border-border-default bg-surface/90 shadow-xs max-w-xl lg:ml-auto w-full">
           <h4 class="text-sm font-semibold text-text-primary mb-1">Stay updated with new image tools</h4>
           <p class="text-xs text-text-secondary mb-3">Get notified when new format converters, batch optimizations, and utilities are released.</p>
-          <form id="newsletter-form" class="flex gap-2">
+          <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2">
             <input
               type="email"
               id="newsletter-email"
               placeholder="Enter your email address"
               required
-              class="flex-1 min-w-0 px-3.5 py-2 text-xs rounded-xl border border-border-default bg-surface text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+              class="flex-1 min-w-0 px-3.5 py-2.5 text-xs rounded-xl border border-border-default bg-surface text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all min-h-[44px]"
             />
-            <button type="submit" class="px-4 py-2 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-colors whitespace-nowrap shadow-xs">
+            <button type="submit" class="px-4 py-2.5 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-colors whitespace-nowrap shadow-xs min-h-[44px]">
               Subscribe Free
             </button>
           </form>
@@ -104,16 +131,16 @@ const pdfAndEditingTools = [
     </div>
 
     <!-- 5-Column Topical Directory Grid for Maximum PageRank Distribution -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6 mb-14">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-6 mb-12">
       <!-- Col 1: Converters -->
       <div>
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
           <span>🔄</span> Image Converters
         </h4>
-        <ul class="space-y-2">
+        <ul class="space-y-2.5">
           {converterTools.map((t) => (
             <li>
-              <a href={`/${t.slug}/`} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+              <a href={getToolUrl(t.slug)} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
                 {t.title}
               </a>
             </li>
@@ -126,10 +153,10 @@ const pdfAndEditingTools = [
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
           <span>🗜️</span> Compression
         </h4>
-        <ul class="space-y-2">
+        <ul class="space-y-2.5">
           {compressorTools.map((t) => (
             <li>
-              <a href={`/${t.slug}/`} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+              <a href={getToolUrl(t.slug)} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
                 {t.title}
               </a>
             </li>
@@ -142,10 +169,10 @@ const pdfAndEditingTools = [
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
           <span>📋</span> Passport & Forms
         </h4>
-        <ul class="space-y-2">
+        <ul class="space-y-2.5">
           {govtAndPassportTools.map((t) => (
             <li>
-              <a href={`/${t.slug}/`} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+              <a href={getToolUrl(t.slug)} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
                 {t.title}
               </a>
             </li>
@@ -158,10 +185,10 @@ const pdfAndEditingTools = [
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
           <span>🛠️</span> PDF & Editing
         </h4>
-        <ul class="space-y-2">
+        <ul class="space-y-2.5">
           {pdfAndEditingTools.map((t) => (
             <li>
-              <a href={`/${t.slug}/`} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+              <a href={getToolUrl(t.slug)} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
                 {t.title}
               </a>
             </li>
@@ -174,44 +201,44 @@ const pdfAndEditingTools = [
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
           <span>ℹ️</span> About & Legal
         </h4>
-        <ul class="space-y-2">
+        <ul class="space-y-2.5">
           <li>
-            <a href="/about/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            <a href={`${prefix}/about/`} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
               About QuickJPG
             </a>
           </li>
           <li>
-            <a href="/why-browser-based/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            <a href="/why-browser-based/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
               Why Browser-Based
             </a>
           </li>
           <li>
-            <a href="/blog/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            <a href="/blog/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
               Guides & Blog
             </a>
           </li>
           <li>
-            <a href="/faq/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            <a href="/faq/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
               FAQ
             </a>
           </li>
           <li>
-            <a href="/contact/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            <a href="/contact/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
               Contact & Support
             </a>
           </li>
           <li>
-            <a href="/privacy/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            <a href="/privacy/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
               Privacy Policy
             </a>
           </li>
           <li>
-            <a href="/terms/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            <a href="/terms/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
               Terms of Service
             </a>
           </li>
           <li>
-            <a href="/disclaimer/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            <a href="/disclaimer/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
               Disclaimer
             </a>
           </li>
@@ -219,7 +246,7 @@ const pdfAndEditingTools = [
             <button
               id="open-cookie-settings"
               type="button"
-              class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors cursor-pointer text-left"
+              class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors cursor-pointer text-left inline-block py-0.5"
             >
               Cookie Preferences
             </button>
@@ -229,7 +256,7 @@ const pdfAndEditingTools = [
               href="https://policies.google.com/technologies/partner-sites"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+              class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5"
             >
               Google Ad Policies ↗
             </a>
@@ -238,9 +265,39 @@ const pdfAndEditingTools = [
       </div>
     </div>
 
+    <!-- Global Languages & SEO Hreflang Directory Grid -->
+    <div class="py-6 sm:py-8 my-8 border-y border-border-default/60">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-text-primary uppercase tracking-wider flex items-center gap-1.5">
+            <span>🌐</span> Global Versions & Languages
+          </span>
+          <p class="text-xs text-text-secondary mt-1 max-w-xl">
+            QuickJPG is available worldwide. Convert images & PDFs privately in your browser in your native language:
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+          {locales.map((l) => (
+            <a
+              href={getLocalizedPath(l, currentPath)}
+              hreflang={l}
+              class:list={[
+                "inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs transition-all min-h-[44px]",
+                l === activeLocale
+                  ? "bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/30 font-semibold shadow-2xs"
+                  : "bg-surface border border-border-default text-text-secondary hover:text-text-primary hover:border-border-strong hover:bg-surface-subtle",
+              ]}
+            >
+              <span class="text-base">{localeFlags[l]}</span>
+              <span class="font-medium">{localeNames[l]}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
     <!-- Bottom bar -->
-    <div class="divider mb-6"></div>
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
       <p class="text-xs text-text-tertiary">
         © {currentYear} {site.name}. All rights reserved.
       </p>
@@ -263,7 +320,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // POST to increment if new user, then display the count
-  // Server checks cookie - only increments for truly new unique users
   fetch('/api/visitor', { method: 'POST' })
     .then(function(response) { return response.json(); })
     .then(function(data) {
@@ -272,7 +328,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     })
     .catch(function() {
-      // Fallback if API fails
       fetch('/api/visitor')
         .then(function(r) { return r.json(); })
         .then(function(d) {
@@ -294,7 +349,6 @@ document.addEventListener('DOMContentLoaded', function() {
       var email = newsletterEmail.value.trim();
       if (!email) return;
       
-      // Store in localStorage for now (placeholder until email service is integrated)
       var subscribers = JSON.parse(localStorage.getItem('qjc_subscribers') || '[]');
       if (!subscribers.includes(email)) {
         subscribers.push(email);

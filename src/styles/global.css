@@ -356,6 +356,19 @@ img {
 
 /* ============================================
    iOS ZOOM PREVENTION — 16px minimum on focus
+   ============================================ */
+
+/* ── Mobile Touch Optimization (Eliminate 300ms click delay) ── */
+a,
+button,
+input,
+select,
+label {
+  touch-action: manipulation;
+}
+
+/* ============================================
+   iOS ZOOM PREVENTION — 16px minimum on focus
    iOS Safari zooms viewport when input font < 16px
    ============================================ */
 

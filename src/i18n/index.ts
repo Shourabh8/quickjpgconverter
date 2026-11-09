@@ -34,12 +34,28 @@ export function getLocalePrefix(locale: Locale): string {
 }
 
 export function getLocalizedPath(targetLocale: Locale, currentPath: string): string {
+  // Strip any leading locale prefix like /es/, /de/, etc.
   const stripped = currentPath.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2");
-  return getLocalePrefix(targetLocale) + stripped;
+  const normalized = stripped.replace(/\/$/, "");
+
+  // If switching to English, the full English route exists
+  if (targetLocale === defaultLocale) {
+    return stripped === "" ? "/" : (stripped.endsWith("/") ? stripped : `${stripped}/`);
+  }
+
+  // If the route exists across all localized sites, navigate directly to it
+  if (multilingualRoutes.has(normalized)) {
+    const slashPath = normalized === "" ? "/" : `${normalized}/`;
+    return `${getLocalePrefix(targetLocale)}${slashPath}`;
+  }
+
+  // For subpages without a 1:1 translation yet, safely route to the locale's homepage
+  // This guarantees zero 404s for both visitors and search engine bots
+  return `${getLocalePrefix(targetLocale)}/`;
 }
 
 // Routes that exist across all supported locales
-const multilingualRoutes = new Set([
+export const multilingualRoutes = new Set([
   "",
   "/",
   "/about",
