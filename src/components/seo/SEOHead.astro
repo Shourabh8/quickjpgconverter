@@ -47,8 +47,9 @@ const {
 
 const meta = generateMeta({ title, description, canonical, ogImage, noindex, locale });
 
-const cleanPath = Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2");
+const cleanPath = (Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(?=\/|$)/, "") || "/").replace(/\/+/g, "/");
 const alternateLinks = getAlternateLinks(locale as any, cleanPath);
+const xDefaultHref = cleanPath === "/" ? "https://quickjpgconverter.com/" : `https://quickjpgconverter.com${cleanPath.replace(/\/+$/, "")}/`;
 
 const jsonLdData = jsonLd
   ? generateJsonLd({
@@ -86,7 +87,7 @@ const jsonLdData = jsonLd
     {alternateLinks.map((link) => (
       <link rel="alternate" hreflang={link.lang} href={link.href} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={`https://quickjpgconverter.com${cleanPath.replace(/\/$/, "")}/`} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
   </>
 )}
 

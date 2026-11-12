@@ -35,12 +35,12 @@ export function getLocalePrefix(locale: Locale): string {
 
 export function getLocalizedPath(targetLocale: Locale, currentPath: string): string {
   // Strip any leading locale prefix like /es/, /de/, etc.
-  const stripped = currentPath.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2");
-  const normalized = stripped.replace(/\/$/, "");
+  const stripped = (currentPath.replace(/^\/(en|es|pt|hi|fr|de)(?=\/|$)/, "") || "/").replace(/\/+/g, "/");
+  const normalized = stripped.replace(/\/+$/, "");
 
   // If switching to English, the full English route exists
   if (targetLocale === defaultLocale) {
-    return stripped === "" ? "/" : (stripped.endsWith("/") ? stripped : `${stripped}/`);
+    return normalized === "" ? "/" : `${normalized}/`;
   }
 
   // If the route exists across all localized sites, navigate directly to it
@@ -65,7 +65,7 @@ export const multilingualRoutes = new Set([
 ]);
 
 export function getAlternateLinks(locale: Locale, path: string): { lang: string; href: string }[] {
-  const normalized = path.replace(/\/$/, "");
+  const normalized = path.replace(/\/+/g, "/").replace(/\/+$/, "");
   if (!multilingualRoutes.has(normalized)) {
     // English-only page: return empty array to prevent emitting broken hreflang tags to 404 pages
     return [];
