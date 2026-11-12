@@ -61,7 +61,7 @@ export default {
       unlimited: "Unbegrenzte Konvertierungen",
       browserBased: "100% browserbasiert",
     },
-    testimonialsTitle: "Beliebt bei Kreaturen",
+    testimonialsTitle: "Verifiziertes lokales Design",
     faqTitle: "Häufig gestellte Fragen",
     faqSubtitle: "Alles, was Sie über Quick JPG Converter wissen müssen.",
     recentTitle: "Letzte Konvertierungen",

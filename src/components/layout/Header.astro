@@ -23,6 +23,69 @@ const t = useTranslations(activeLocale);
 const prefix = getLocalePrefix(activeLocale);
 const currentPath = Astro.url.pathname;
 
+const faqLabels: Record<Locale, string> = {
+  en: "FAQ",
+  es: "Preguntas",
+  de: "FAQ",
+  fr: "FAQ",
+  hi: "सवाल-जवाब",
+  pt: "Dúvidas",
+};
+
+const selectLanguageLabel: Record<Locale, string> = {
+  en: "Select Language",
+  es: "Elegir idioma",
+  de: "Sprache wählen",
+  fr: "Choisir la langue",
+  hi: "भाषा चुनें",
+  pt: "Selecionar idioma",
+};
+
+const localizedCategories: Record<Locale, Record<"image-converters" | "image-compressors" | "image-tools" | "pdf-converters" | "pdf-tools", { title: string; description: string }>> = {
+  en: {
+    "image-converters": { title: categories["image-converters"].title, description: categories["image-converters"].description },
+    "image-compressors": { title: categories["image-compressors"].title, description: categories["image-compressors"].description },
+    "image-tools": { title: categories["image-tools"].title, description: categories["image-tools"].description },
+    "pdf-converters": { title: categories["pdf-converters"].title, description: categories["pdf-converters"].description },
+    "pdf-tools": { title: categories["pdf-tools"].title, description: categories["pdf-tools"].description },
+  },
+  es: {
+    "image-converters": { title: "Conversores", description: "JPG, PNG, WebP, HEIC y AVIF" },
+    "image-compressors": { title: "Compresores", description: "Reduce el tamaño a KB exactos" },
+    "image-tools": { title: "Herramientas", description: "Redimensionar, pasaporte y Base64" },
+    "pdf-converters": { title: "Conversores PDF", description: "Entre imágenes y documentos PDF" },
+    "pdf-tools": { title: "Herramientas PDF", description: "Comprimir y mejorar archivos PDF" },
+  },
+  pt: {
+    "image-converters": { title: "Conversores", description: "JPG, PNG, WebP, HEIC e AVIF" },
+    "image-compressors": { title: "Compressores", description: "Reduza para tamanhos em KB exatos" },
+    "image-tools": { title: "Ferramentas", description: "Redimensionar, passaporte e Base64" },
+    "pdf-converters": { title: "Conversores PDF", description: "Entre imagens e documentos PDF" },
+    "pdf-tools": { title: "Ferramentas PDF", description: "Comprimir e otimizar PDFs" },
+  },
+  hi: {
+    "image-converters": { title: "इमेज कनवर्टर", description: "JPG, PNG, WebP, HEIC और AVIF" },
+    "image-compressors": { title: "इमेज कंप्रेसर", description: "फ़ाइल साइज 20KB–200KB तक कम करें" },
+    "image-tools": { title: "इमेज टूल्स", description: "रीसाइज़, पासपोर्ट फोटो और Base64" },
+    "pdf-converters": { title: "PDF कनवर्टर", description: "इमेज और PDF के बीच बदलें" },
+    "pdf-tools": { title: "PDF टूल्स", description: "PDF कंप्रेस और बेहतर बनाएं" },
+  },
+  fr: {
+    "image-converters": { title: "Convertisseurs", description: "JPG, PNG, WebP, HEIC et AVIF" },
+    "image-compressors": { title: "Compresseurs", description: "Réduire à la taille en Ko exacte" },
+    "image-tools": { title: "Outils Image", description: "Redimensionner, passeport et Base64" },
+    "pdf-converters": { title: "Convertisseurs PDF", description: "Entre images et documents PDF" },
+    "pdf-tools": { title: "Outils PDF", description: "Compresser et améliorer des PDF" },
+  },
+  de: {
+    "image-converters": { title: "Bildkonverter", description: "JPG, PNG, WebP, HEIC und AVIF" },
+    "image-compressors": { title: "Komprimierer", description: "Bildgröße gezielt in KB reduzieren" },
+    "image-tools": { title: "Bildwerkzeuge", description: "Größe ändern, Passbild & Base64" },
+    "pdf-converters": { title: "PDF-Konverter", description: "Zwischen Bildern und PDFs wechseln" },
+    "pdf-tools": { title: "PDF-Werkzeuge", description: "PDFs komprimieren und optimieren" },
+  },
+};
+
 const navLinks = [
   {
     label:
@@ -55,7 +118,7 @@ const navLinks = [
     href: "/blog/",
   },
   { label: t.nav?.about || "About", href: `${prefix}/about/` },
-  { label: "FAQ", href: "/faq/" },
+  { label: faqLabels[activeLocale], href: "/faq/" },
   { label: t.nav?.privacy || "Privacy", href: "/privacy/" },
   { label: t.nav?.contact || "Contact", href: "/contact/" },
 ];
@@ -116,8 +179,8 @@ const toolCategories = [
               >
                 <span class="text-base">{icon}</span>
                 <div>
-                  <div class="font-medium text-[13px]">{categories[key].title}</div>
-                  <div class="text-[11px] text-text-tertiary">{categories[key].description}</div>
+                  <div class="font-medium text-[13px]">{localizedCategories[activeLocale][key].title}</div>
+                  <div class="text-[11px] text-text-tertiary">{localizedCategories[activeLocale][key].description}</div>
                 </div>
               </a>
             ))}
@@ -159,7 +222,7 @@ const toolCategories = [
           type="button"
           aria-expanded="false"
           aria-haspopup="true"
-          aria-label="Select language"
+          aria-label={selectLanguageLabel[activeLocale]}
           class="btn-ghost px-2.5 py-1.5 h-9 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 border border-border-default/80 hover:bg-surface-subtle transition-all cursor-pointer"
         >
           <span class="text-base leading-none">{localeFlags[activeLocale]}</span>
@@ -175,7 +238,7 @@ const toolCategories = [
         >
           <div class="bg-surface rounded-xl border border-border-default shadow-xl p-1.5">
             <div class="px-3 py-1.5 text-[10px] font-bold text-text-tertiary uppercase tracking-wider border-b border-border-default/60 mb-1">
-              Select Language
+              {selectLanguageLabel[activeLocale]}
             </div>
             {locales.map((l) => (
               <a
@@ -302,7 +365,7 @@ const toolCategories = [
               class="flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs text-text-secondary hover:text-text-primary hover:bg-surface-subtle transition-colors min-h-[44px]"
             >
               <span class="text-base">{icon}</span>
-              <span class="truncate">{categories[key].title}</span>
+              <span class="truncate">{localizedCategories[activeLocale][key].title}</span>
             </a>
           ))}
         </div>

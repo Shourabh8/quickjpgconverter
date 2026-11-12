@@ -170,11 +170,6 @@
 /pt/tools/:slug               /:slug/                   301
 /hi/tools/:slug               /:slug/                   301
 /fr/tools/:slug               /:slug/                   301
-/de/:slug                     /:slug/                   302
-/es/:slug                     /:slug/                   302
-/pt/:slug                     /:slug/                   302
-/hi/:slug                     /:slug/                   302
-/fr/:slug                     /:slug/                   302
 
 # Localized contact/privacy/terms fallbacks
 /de/contact                   /contact/                 301

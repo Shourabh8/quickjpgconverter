@@ -1,12 +1,10 @@
 ---
 import { site } from "@data/site";
-import { tools } from "@data/tools";
 import VisitorCounter from "../ui/VisitorCounter.astro";
 import {
   type Locale,
   locales,
   defaultLocale,
-  useTranslations,
   getLocalePrefix,
   getLocalizedPath,
   localeNames,
@@ -32,7 +30,213 @@ function getToolUrl(slug: string) {
   return `/${slug}/`;
 }
 
-// Categorized tool clusters for PageRank distribution and topical authority
+const footerStrings: Record<Locale, {
+  tagline: string;
+  badgePrivate: string;
+  badgeNoStorage: string;
+  badgeFree: string;
+  cardTitle: string;
+  cardDesc: string;
+  browseTools: string;
+  contactSupport: string;
+  colConverters: string;
+  colCompression: string;
+  colPassport: string;
+  colPdf: string;
+  colLegal: string;
+  about: string;
+  whyBrowser: string;
+  guides: string;
+  faq: string;
+  contact: string;
+  privacy: string;
+  terms: string;
+  disclaimer: string;
+  cookiePrefs: string;
+  adPolicies: string;
+  globalTitle: string;
+  globalDesc: string;
+  rights: string;
+  sandboxTag: string;
+}> = {
+  en: {
+    tagline: "Free, privacy-first image and PDF conversion utilities. Everything runs 100% client-side in your web browser — no server uploads, no logins, no limits.",
+    badgePrivate: "100% Client-Side Private",
+    badgeNoStorage: "Zero File Storage",
+    badgeFree: "Unlimited Free",
+    cardTitle: "Zero Server Uploads. Verified in Your Browser.",
+    cardDesc: "All format conversions run locally via HTML5 Canvas & WebAssembly. Explore our complete directory of tools or reach out with support questions.",
+    browseTools: "Browse All 38+ Tools",
+    contactSupport: "Contact Support",
+    colConverters: "Image Converters",
+    colCompression: "Compression",
+    colPassport: "Passport & Forms",
+    colPdf: "PDF & Editing",
+    colLegal: "About & Legal",
+    about: "About QuickJPG",
+    whyBrowser: "Why Browser-Based",
+    guides: "Guides & Blog",
+    faq: "FAQ",
+    contact: "Contact & Support",
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    disclaimer: "Disclaimer",
+    cookiePrefs: "Cookie Preferences",
+    adPolicies: "Google Ad Policies",
+    globalTitle: "Global Versions & Languages",
+    globalDesc: "QuickJPG is available worldwide. Convert images & PDFs privately in your browser in your native language:",
+    rights: "All rights reserved.",
+    sandboxTag: "100% Client-Side · Private Sandbox",
+  },
+  es: {
+    tagline: "Herramientas gratuitas de conversión de imágenes y PDF centradas en la privacidad. Todo se ejecuta 100% en tu navegador, sin subir archivos ni registros.",
+    badgePrivate: "100% Privado en el Navegador",
+    badgeNoStorage: "Cero Almacenamiento",
+    badgeFree: "Gratis e Ilimitado",
+    cardTitle: "Sin Subidas a Servidores. Verificable en tu Navegador.",
+    cardDesc: "Todas las conversiones se procesan localmente mediante HTML5 Canvas y WebAssembly. Explora el directorio completo o escríbenos si necesitas ayuda.",
+    browseTools: "Ver Todas las Herramientas",
+    contactSupport: "Contactar Soporte",
+    colConverters: "Conversores",
+    colCompression: "Compresión",
+    colPassport: "Pasaporte y Trámites",
+    colPdf: "PDF y Edición",
+    colLegal: "Información y Legal",
+    about: "Sobre QuickJPG",
+    whyBrowser: "Por qué en el Navegador",
+    guides: "Guías y Blog",
+    faq: "Preguntas Frecuentes",
+    contact: "Contacto y Soporte",
+    privacy: "Política de Privacidad",
+    terms: "Términos de Uso",
+    disclaimer: "Aviso Legal",
+    cookiePrefs: "Preferencias de Cookies",
+    adPolicies: "Políticas de Google Ads",
+    globalTitle: "Versiones e Idiomas Globales",
+    globalDesc: "QuickJPG está disponible en todo el mundo. Convierte imágenes y PDF de forma privada en tu idioma:",
+    rights: "Todos los derechos reservados.",
+    sandboxTag: "100% Local · Entorno Privado",
+  },
+  pt: {
+    tagline: "Utilitários gratuitos de conversão de imagens e PDF com foco em privacidade. Tudo roda 100% no navegador — sem envio para servidores, login ou limites.",
+    badgePrivate: "100% Privado no Navegador",
+    badgeNoStorage: "Zero Armazenamento",
+    badgeFree: "Gratuito e Ilimitado",
+    cardTitle: "Zero Envio para Servidores. Verificado no Navegador.",
+    cardDesc: "Todas as conversões rodam localmente com HTML5 Canvas e WebAssembly. Navegue pelo diretório de ferramentas ou fale com o suporte.",
+    browseTools: "Ver Todas as Ferramentas",
+    contactSupport: "Contato e Suporte",
+    colConverters: "Conversores",
+    colCompression: "Compressão",
+    colPassport: "Documentos e Fotos",
+    colPdf: "PDF e Edição",
+    colLegal: "Sobre e Legal",
+    about: "Sobre o QuickJPG",
+    whyBrowser: "Por que no Navegador",
+    guides: "Guias e Blog",
+    faq: "Perguntas Frequentes",
+    contact: "Contato e Suporte",
+    privacy: "Política de Privacidade",
+    terms: "Termos de Serviço",
+    disclaimer: "Isenção de Responsabilidade",
+    cookiePrefs: "Preferências de Cookies",
+    adPolicies: "Políticas do Google Ads",
+    globalTitle: "Versões e Idiomas Globais",
+    globalDesc: "QuickJPG está disponível no mundo todo. Converta imagens e PDFs com privacidade no seu idioma:",
+    rights: "Todos os direitos reservados.",
+    sandboxTag: "100% Local · Sandbox Privado",
+  },
+  hi: {
+    tagline: "निःशुल्क और गोपनीयता-प्रथम इमेज और PDF कनवर्टर। सब कुछ 100% आपके ब्राउज़र में चलता है — कोई सर्वर अपलोड नहीं, कोई लॉगिन नहीं।",
+    badgePrivate: "100% ब्राउज़र में सुरक्षित",
+    badgeNoStorage: "कोई फ़ाइल स्टोरेज नहीं",
+    badgeFree: "असीमित निःशुल्क",
+    cardTitle: "कोई सर्वर अपलोड नहीं। सीधे आपके ब्राउज़र में प्रोसेसिंग।",
+    cardDesc: "सभी इमेज और PDF रूपांतरण HTML5 Canvas और WebAssembly द्वारा स्थानीय रूप से होते हैं। सभी टूल देखें या सहायता के लिए संपर्क करें।",
+    browseTools: "सभी टूल देखें",
+    contactSupport: "सहायता संपर्क",
+    colConverters: "इमेज कनवर्टर",
+    colCompression: "फ़ाइल संपीड़न",
+    colPassport: "पासपोर्ट और फ़ॉर्म",
+    colPdf: "PDF और संपादन",
+    colLegal: "जानकारी और कानूनी",
+    about: "QuickJPG के बारे में",
+    whyBrowser: "ब्राउज़र-आधारित क्यों",
+    guides: "गाइड और ब्लॉग",
+    faq: "सामान्य प्रश्न",
+    contact: "संपर्क और सहायता",
+    privacy: "गोपनीयता नीति",
+    terms: "सेवा की शर्तें",
+    disclaimer: "अस्वीकरण",
+    cookiePrefs: "कुकी प्राथमिकताएं",
+    adPolicies: "Google विज्ञापन नीतियां",
+    globalTitle: "वैश्विक भाषाएं और संस्करण",
+    globalDesc: "QuickJPG दुनिया भर में उपलब्ध है। अपनी भाषा में सुरक्षित रूप से इमेज और PDF कनवर्ट करें:",
+    rights: "सर्वाधिकार सुरक्षित।",
+    sandboxTag: "100% क्लाइंट-साइड · निजी सैंडबॉक्स",
+  },
+  fr: {
+    tagline: "Outils gratuits de conversion d'images et PDF axés sur la confidentialité. Tout fonctionne à 100% dans votre navigateur — sans envoi serveur ni compte.",
+    badgePrivate: "100% Privé dans le Navigateur",
+    badgeNoStorage: "Zéro Stockage",
+    badgeFree: "Gratuit et Illimité",
+    cardTitle: "Aucun Envoi Serveur. Exécution Locale Vérifiable.",
+    cardDesc: "Chaque conversion s'exécute localement via HTML5 Canvas et WebAssembly. Parcourez nos outils ou contactez notre assistance.",
+    browseTools: "Voir Tous les Outils",
+    contactSupport: "Contacter le Support",
+    colConverters: "Convertisseurs",
+    colCompression: "Compression",
+    colPassport: "Passeport et Documents",
+    colPdf: "PDF et Édition",
+    colLegal: "À propos et Légal",
+    about: "À propos de QuickJPG",
+    whyBrowser: "Pourquoi sans serveur",
+    guides: "Guides et Blog",
+    faq: "FAQ",
+    contact: "Contact et Support",
+    privacy: "Confidentialité",
+    terms: "Conditions d'utilisation",
+    disclaimer: "Avertissement",
+    cookiePrefs: "Préférences de Cookies",
+    adPolicies: "Règles Google Ads",
+    globalTitle: "Versions et Langues Disponibles",
+    globalDesc: "QuickJPG est accessible partout dans le monde. Convertissez vos fichiers localement dans votre langue :",
+    rights: "Tous droits réservés.",
+    sandboxTag: "100% Local · Environnement Privé",
+  },
+  de: {
+    tagline: "Kostenlose, datenschutzfreundliche Bild- und PDF-Konverter. Alles läuft zu 100% direkt im Browser — ohne Server-Upload, Anmeldung oder Limits.",
+    badgePrivate: "100% Privat im Browser",
+    badgeNoStorage: "Keine Datenspeicherung",
+    badgeFree: "Unbegrenzt Kostenlos",
+    cardTitle: "Kein Server-Upload. Lokal in Ihrem Browser.",
+    cardDesc: "Alle Konvertierungen laufen lokal über HTML5 Canvas und WebAssembly. Entdecken Sie alle Werkzeuge oder kontaktieren Sie unseren Support.",
+    browseTools: "Alle Werkzeuge ansehen",
+    contactSupport: "Support kontaktieren",
+    colConverters: "Bildkonverter",
+    colCompression: "Komprimierung",
+    colPassport: "Passbild & Formulare",
+    colPdf: "PDF & Bearbeitung",
+    colLegal: "Über uns & Rechtliches",
+    about: "Über QuickJPG",
+    whyBrowser: "Warum lokal im Browser",
+    guides: "Ratgeber & Blog",
+    faq: "Häufige Fragen",
+    contact: "Kontakt & Support",
+    privacy: "Datenschutz",
+    terms: "Nutzungsbedingungen",
+    disclaimer: "Haftungsausschluss",
+    cookiePrefs: "Cookie-Einstellungen",
+    adPolicies: "Google-Anzeigenrichtlinien",
+    globalTitle: "Sprachen & Internationale Versionen",
+    globalDesc: "QuickJPG steht weltweit bereit. Konvertieren Sie Bilder und PDFs privat in Ihrer Sprache:",
+    rights: "Alle Rechte vorbehalten.",
+    sandboxTag: "100% Clientseitig · Privater Bereich",
+  },
+};
+
+const ft = footerStrings[activeLocale];
+
 const converterTools = [
   { slug: "jpg-to-png", title: "JPG to PNG" },
   { slug: "png-to-jpg", title: "PNG to JPG" },
@@ -77,10 +281,10 @@ const pdfAndEditingTools = [
 
 <footer class="border-t border-border-default bg-surface-muted/80">
   <div class="container-main py-12 sm:py-14 lg:py-18">
-    <!-- Top Brand & Newsletter row -->
+    <!-- Top Brand & Privacy Guarantee Card -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-10 mb-10 border-b border-border-default/60">
       <div class="lg:col-span-5">
-        <a href={prefix || "/"} class="flex items-center gap-2.5 mb-3.5">
+        <a href={prefix ? `${prefix}/` : "/"} class="flex items-center gap-2.5 mb-3.5">
           <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center shadow-xs">
             <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="QuickJPG logo">
               <rect x="3" y="3" width="18" height="18" rx="3" />
@@ -91,51 +295,46 @@ const pdfAndEditingTools = [
           <span class="font-bold text-[16px] text-text-primary tracking-tight">{site.name}</span>
         </a>
         <p class="text-sm text-text-secondary leading-relaxed max-w-md mb-4">
-          Free, privacy-first image and PDF conversion utilities. Everything runs 100% client-side in your web browser — no server uploads, no logins, no limits.
+          {ft.tagline}
         </p>
         <div class="flex flex-wrap items-center gap-2">
           <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
             <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            100% Client-Side Private
+            {ft.badgePrivate}
           </span>
           <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
-            Zero File Storage
+            {ft.badgeNoStorage}
           </span>
           <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-surface border border-border-default text-text-secondary">
-            Unlimited Free
+            {ft.badgeFree}
           </span>
         </div>
       </div>
 
       <div class="lg:col-span-7 flex flex-col justify-center">
         <div class="p-4 sm:p-5 rounded-2xl border border-border-default bg-surface/90 shadow-xs max-w-xl lg:ml-auto w-full">
-          <h4 class="text-sm font-semibold text-text-primary mb-1">Stay updated with new image tools</h4>
-          <p class="text-xs text-text-secondary mb-3">Get notified when new format converters, batch optimizations, and utilities are released.</p>
-          <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2">
-            <input
-              type="email"
-              id="newsletter-email"
-              placeholder="Enter your email address"
-              required
-              class="flex-1 min-w-0 px-3.5 py-2.5 text-xs rounded-xl border border-border-default bg-surface text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all min-h-[44px]"
-            />
-            <button type="submit" class="px-4 py-2.5 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-colors whitespace-nowrap shadow-xs min-h-[44px]">
-              Subscribe Free
-            </button>
-          </form>
-          <p id="newsletter-msg" class="text-xs text-success mt-2 hidden"></p>
+          <h4 class="text-sm font-semibold text-text-primary mb-1">{ft.cardTitle}</h4>
+          <p class="text-xs text-text-secondary mb-4 leading-relaxed">{ft.cardDesc}</p>
+          <div class="flex flex-wrap gap-2.5">
+            <a href="/tools/" class="px-4 py-2.5 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-colors whitespace-nowrap shadow-xs min-h-[44px] inline-flex items-center">
+              {ft.browseTools}
+            </a>
+            <a href="/contact/" class="px-4 py-2.5 text-xs font-semibold text-text-primary bg-surface-subtle hover:bg-surface-muted border border-border-default rounded-xl transition-colors whitespace-nowrap min-h-[44px] inline-flex items-center">
+              {ft.contactSupport}
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 5-Column Topical Directory Grid for Maximum PageRank Distribution -->
+    <!-- 5-Column Directory Grid -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-6 mb-12">
       <!-- Col 1: Converters -->
       <div>
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
-          <span>🔄</span> Image Converters
+          <span>🔄</span> {ft.colConverters}
         </h4>
         <ul class="space-y-2.5">
           {converterTools.map((t) => (
@@ -151,7 +350,7 @@ const pdfAndEditingTools = [
       <!-- Col 2: Compressors -->
       <div>
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
-          <span>🗜️</span> Compression
+          <span>🗜️</span> {ft.colCompression}
         </h4>
         <ul class="space-y-2.5">
           {compressorTools.map((t) => (
@@ -167,7 +366,7 @@ const pdfAndEditingTools = [
       <!-- Col 3: Govt & Exam -->
       <div>
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
-          <span>📋</span> Passport & Forms
+          <span>📋</span> {ft.colPassport}
         </h4>
         <ul class="space-y-2.5">
           {govtAndPassportTools.map((t) => (
@@ -183,7 +382,7 @@ const pdfAndEditingTools = [
       <!-- Col 4: PDF & Photo Edit -->
       <div>
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
-          <span>🛠️</span> PDF & Editing
+          <span>🛠️</span> {ft.colPdf}
         </h4>
         <ul class="space-y-2.5">
           {pdfAndEditingTools.map((t) => (
@@ -199,47 +398,47 @@ const pdfAndEditingTools = [
       <!-- Col 5: Company & Legal -->
       <div>
         <h4 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-3.5 flex items-center gap-1.5">
-          <span>ℹ️</span> About & Legal
+          <span>ℹ️</span> {ft.colLegal}
         </h4>
         <ul class="space-y-2.5">
           <li>
             <a href={`${prefix}/about/`} class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
-              About QuickJPG
+              {ft.about}
             </a>
           </li>
           <li>
             <a href="/why-browser-based/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
-              Why Browser-Based
+              {ft.whyBrowser}
             </a>
           </li>
           <li>
             <a href="/blog/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
-              Guides & Blog
+              {ft.guides}
             </a>
           </li>
           <li>
             <a href="/faq/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
-              FAQ
+              {ft.faq}
             </a>
           </li>
           <li>
             <a href="/contact/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
-              Contact & Support
+              {ft.contact}
             </a>
           </li>
           <li>
             <a href="/privacy/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
-              Privacy Policy
+              {ft.privacy}
             </a>
           </li>
           <li>
             <a href="/terms/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
-              Terms of Service
+              {ft.terms}
             </a>
           </li>
           <li>
             <a href="/disclaimer/" class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5">
-              Disclaimer
+              {ft.disclaimer}
             </a>
           </li>
           <li>
@@ -248,7 +447,7 @@ const pdfAndEditingTools = [
               type="button"
               class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors cursor-pointer text-left inline-block py-0.5"
             >
-              Cookie Preferences
+              {ft.cookiePrefs}
             </button>
           </li>
           <li>
@@ -258,7 +457,7 @@ const pdfAndEditingTools = [
               rel="noopener noreferrer"
               class="text-xs text-text-secondary hover:text-brand-600 dark:hover:text-brand-400 transition-colors inline-block py-0.5"
             >
-              Google Ad Policies ↗
+              {ft.adPolicies} ↗
             </a>
           </li>
         </ul>
@@ -270,10 +469,10 @@ const pdfAndEditingTools = [
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
           <span class="text-xs font-bold text-text-primary uppercase tracking-wider flex items-center gap-1.5">
-            <span>🌐</span> Global Versions & Languages
+            <span>🌐</span> {ft.globalTitle}
           </span>
           <p class="text-xs text-text-secondary mt-1 max-w-xl">
-            QuickJPG is available worldwide. Convert images & PDFs privately in your browser in your native language:
+            {ft.globalDesc}
           </p>
         </div>
         <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
@@ -299,12 +498,12 @@ const pdfAndEditingTools = [
     <!-- Bottom bar -->
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
       <p class="text-xs text-text-tertiary">
-        © {currentYear} {site.name}. All rights reserved.
+        © {currentYear} {site.name}. {ft.rights}
       </p>
       <div class="flex items-center gap-4">
         <VisitorCounter />
         <span class="text-xs text-text-tertiary">
-          100% Client-Side · Private Sandbox
+          {ft.sandboxTag}
         </span>
       </div>
     </div>
@@ -314,12 +513,11 @@ const pdfAndEditingTools = [
 <script is:inline>
 document.addEventListener('DOMContentLoaded', function() {
   var countEl = document.getElementById('visitor-count');
-  
+
   function formatNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
-  
-  // POST to increment if new user, then display the count
+
   fetch('/api/visitor', { method: 'POST' })
     .then(function(response) { return response.json(); })
     .then(function(data) {
@@ -337,32 +535,5 @@ document.addEventListener('DOMContentLoaded', function() {
           if (countEl) countEl.textContent = '95';
         });
     });
-
-  // Newsletter form
-  var newsletterForm = document.getElementById('newsletter-form');
-  var newsletterEmail = document.getElementById('newsletter-email');
-  var newsletterMsg = document.getElementById('newsletter-msg');
-  
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var email = newsletterEmail.value.trim();
-      if (!email) return;
-      
-      var subscribers = JSON.parse(localStorage.getItem('qjc_subscribers') || '[]');
-      if (!subscribers.includes(email)) {
-        subscribers.push(email);
-        localStorage.setItem('qjc_subscribers', JSON.stringify(subscribers));
-      }
-      
-      newsletterMsg.textContent = "You're subscribed! We'll notify you when we launch new tools.";
-      newsletterMsg.classList.remove('hidden');
-      newsletterEmail.value = '';
-      
-      setTimeout(function() {
-        newsletterMsg.classList.add('hidden');
-      }, 5000);
-    });
-  }
 });
 </script>

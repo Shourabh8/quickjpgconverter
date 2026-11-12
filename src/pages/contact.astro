@@ -99,9 +99,10 @@ const contactSchema = {
                 type="text"
                 id="contact-name"
                 name="name"
+                autocomplete="name"
                 required
                 placeholder="Jane Doe"
-                class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-border-default bg-surface text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+                class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-border-default bg-surface text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all min-h-[44px]"
               />
             </div>
             <div>
@@ -110,9 +111,13 @@ const contactSchema = {
                 type="email"
                 id="contact-email"
                 name="email"
+                autocomplete="email"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
                 required
                 placeholder="jane@example.com"
-                class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-border-default bg-surface text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+                class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-border-default bg-surface text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all min-h-[44px]"
               />
             </div>
           </div>
@@ -145,22 +150,22 @@ const contactSchema = {
             ></textarea>
           </div>
 
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-[11px] text-text-tertiary">All messages are kept strictly confidential.</span>
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+            <span class="text-[11px] text-text-tertiary">Opens your email client addressed to {email}.</span>
             <button
               type="submit"
               id="contact-submit-btn"
-              class="px-5 py-2.5 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-xs cursor-pointer inline-flex items-center gap-1.5"
+              class="px-5 py-2.5 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl transition-all shadow-xs cursor-pointer inline-flex items-center gap-1.5 min-h-[44px]"
             >
-              <span>Send Message</span>
+              <span>Compose Email</span>
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
               </svg>
             </button>
           </div>
 
-          <div id="contact-success" class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs hidden">
-            Thank you! Your message has been received. Our team will review your inquiry and get back to you within 24 to 48 hours.
+          <div id="contact-success" aria-live="polite" class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs hidden">
+            Your email draft is ready. If your mail app did not open automatically, <a id="contact-gmail-link" href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" class="underline font-semibold">open in Gmail</a> or email <a href={`mailto:${email}`} class="underline font-semibold">{email}</a> directly.
           </div>
         </form>
       </div>
@@ -191,48 +196,32 @@ const contactSchema = {
   </section>
 </BaseLayout>
 
-<script is:inline>
+<script is:inline define:vars={{ supportEmail: email }}>
 (function() {
   var form = document.getElementById('contact-form');
   var successMsg = document.getElementById('contact-success');
-  var submitBtn = document.getElementById('contact-submit-btn');
+  var gmailLink = document.getElementById('contact-gmail-link');
 
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      if (submitBtn) {
-        submitBtn.setAttribute('disabled', 'true');
-        submitBtn.innerHTML = 'Sending...';
+
+      var name = document.getElementById('contact-name')?.value.trim() || '';
+      var senderEmail = document.getElementById('contact-email')?.value.trim() || '';
+      var topic = document.getElementById('contact-topic')?.value || 'General Inquiry';
+      var message = document.getElementById('contact-message')?.value.trim() || '';
+
+      var subject = '[QuickJPG - ' + topic + '] Message from ' + name;
+      var body = 'Name: ' + name + '\nReply-To: ' + senderEmail + '\nTopic: ' + topic + '\n\n' + message;
+
+      if (gmailLink) {
+        gmailLink.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(supportEmail) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
+      if (successMsg) {
+        successMsg.classList.remove('hidden');
       }
 
-      var name = document.getElementById('contact-name')?.value || '';
-      var email = document.getElementById('contact-email')?.value || '';
-      var topic = document.getElementById('contact-topic')?.value || '';
-      var message = document.getElementById('contact-message')?.value || '';
-
-      // Save ticket locally as backup
-      var tickets = JSON.parse(localStorage.getItem('qjc_contact_tickets') || '[]');
-      tickets.push({
-        id: Date.now(),
-        name: name,
-        email: email,
-        topic: topic,
-        message: message,
-        date: new Date().toISOString()
-      });
-      localStorage.setItem('qjc_contact_tickets', JSON.stringify(tickets));
-
-      setTimeout(function() {
-        if (successMsg) successMsg.classList.remove('hidden');
-        form.reset();
-        if (submitBtn) {
-          submitBtn.removeAttribute('disabled');
-          submitBtn.innerHTML = '<span>Message Sent ✓</span>';
-          setTimeout(function() {
-            submitBtn.innerHTML = '<span>Send Message</span>';
-          }, 3000);
-        }
-      }, 600);
+      window.location.href = 'mailto:' + supportEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
   }
 })();

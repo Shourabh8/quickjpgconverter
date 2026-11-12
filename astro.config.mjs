@@ -48,6 +48,7 @@ export default defineConfig({
           "/free-heic-to-jpg",
           "/image-to-jpg-converter",
           "/jpg-converter",
+          "/testimonials",
         ];
         return !excluded.some((path) => page.endsWith(path) || page.endsWith(path + "/") || page.includes(path + "/"));
       },

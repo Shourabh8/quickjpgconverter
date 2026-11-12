@@ -45,7 +45,7 @@ const {
   articleSchema,
 } = Astro.props;
 
-const meta = generateMeta({ title, description, canonical, ogImage, noindex });
+const meta = generateMeta({ title, description, canonical, ogImage, noindex, locale });
 
 const cleanPath = Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(\/|$)/, "/$2");
 const alternateLinks = getAlternateLinks(locale as any, cleanPath);
@@ -55,6 +55,7 @@ const jsonLdData = jsonLd
       name: title,
       description,
       url: meta.canonical,
+      locale,
       breadcrumbs,
       faqItems,
       howToSteps,
@@ -75,10 +76,6 @@ const jsonLdData = jsonLd
 {meta.meta.map((m) => (
   <meta {...m} />
 ))}
-
-{keywords && keywords.length > 0 && (
-  <meta name="keywords" content={keywords.join(", ")} />
-)}
 
 {meta.link.map((l) => (
   <link {...l} />

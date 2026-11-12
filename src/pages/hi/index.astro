@@ -7,6 +7,7 @@ import FAQ from "@components/ui/FAQ.astro";
 import { site } from "@data/site";
 import { tools, categories, getToolsByCategory } from "@data/tools";
 import { useTranslations, getLocalePrefix } from "@i18n/index";
+import ActiveConverter from "@components/tool/ActiveConverter.astro";
 
 import "@styles/homepage.css";
 
@@ -70,21 +71,21 @@ const comparisonFeatures = [
   { label: t.home.comparisonFeatures.browserBased, quickjpg: true, iloveimg: false, freeconvert: false },
 ];
 
-const testimonials = [
+const architectureHighlights = [
   {
-    quote: "अंततः एक ऐसा कनवर्टर जो मुझे अपनी फ़ोटो किसी अजनबी सर्वर पर अपलोड नहीं करने देता। क्लाइंट के साथ काम करने के लिए पूरी तरह बदलाव।",
-    author: "सारा के.",
-    role: "फ़्रीलांस फ़ोटोग्राफ़र",
+    metric: "0 KB अपलोड",
+    title: "स्थानीय ब्राउज़र प्रोसेसिंग",
+    detail: "फ़ाइलें HTML5 Canvas और WebAssembly द्वारा सीधे आपके ब्राउज़र की मेमोरी में प्रोसेस होती हैं — कभी किसी सर्वर पर नहीं जातीं।",
   },
   {
-    quote: "हम रोज़ाना अपनी ई-कॉमर्स प्रोडक्ट इमेज के लिए इसका उपयोग करते हैं। तेज़, भरोसेमंद, और WebP में कनवर्ज़न हमें ऑप्टिमाइज़ेशन में घंटों बचाता है।",
-    author: "मार्कस टी.",
-    role: "ई-कॉमर्स मैनेजर",
+    metric: "6+ फ़ॉर्मेट",
+    title: "मल्टी-फ़ॉर्मेट कनवर्ज़न",
+    detail: "JPG, PNG, WebP, HEIC, AVIF और मल्टी-पेज PDF के बीच बिना किसी सॉफ़्टवेयर इंस्टॉलेशन के तुरंत बदलें।",
   },
   {
-    quote: "मैं यह अपने सभी छात्रों को सुझाता हूं। कोई अकाउंट नहीं, कोई ट्रैकिंग नहीं, बस काम करता है। वेब को ऐसा ही होना चाहिए।",
-    author: "डॉ. चेन",
-    role: "कंप्यूटर साइंस प्रोफ़ेसर",
+    metric: "सत्यापन योग्य",
+    title: "DevTools में जाँचें",
+    detail: "किसी भी रूपांतरण के समय अपने ब्राउज़र का Network टैब खोलकर पुष्टि करें कि कोई भी इमेज डेटा डिवाइस से बाहर नहीं जाता।",
   },
 ];
 ---
@@ -95,7 +96,6 @@ const testimonials = [
   canonical={`${site.url}${prefix}`}
   faqItems={faqItems}
   locale={locale}
-  keywords={["जेपीजी कनवर्टर", "मुफ्त जेपीजी कनवर्टर", "ऑनलाइन जेपीजी कनवर्टर", "पीएनजी से जेपीजी कनवर्टर", "वेबपी से जेपीजी कनवर्टर", "हेइक से जेपीजी कनवर्टर", "पीडीएफ से जेपीजी कनवर्टर", "जेपीजी से पीएनजी कनवर्टर", "जेपीजी से वेबपी कनवर्टर", "इमेज कंप्रेसर", "ऑनलाइन इमेज कंप्रेस", "पीडीएफ कंप्रेसर", "ऑनलाइन इमेज कनवर्टर", "मुफ्त इमेज कनवर्टर", "बिना पंजीकरण इमेज कनवर्टर"]}
 >
   <!-- HERO -->
   <section class="relative overflow-hidden">
@@ -124,38 +124,18 @@ const testimonials = [
           </Button>
         </div>
       </div>
-      <!-- Converter preview -->
-      <div class="mt-14 sm:mt-16 lg:mt-20 max-w-3xl mx-auto animate-fade-in-up delay-300">
-        <div class="rounded-2xl border border-border-default bg-surface shadow-2xl shadow-brand-500/5 overflow-hidden">
-          <div class="p-4 sm:p-6 lg:p-8">
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-              <div class="flex items-center gap-2 p-1.5 rounded-xl border border-border-default bg-surface-muted">
-                <a href={`${prefix}/jpg-to-png/`} class="px-4 py-2 rounded-lg bg-surface text-sm font-semibold text-text-primary shadow-xs transition-colors hover:bg-brand-50 dark:hover:bg-brand-950/30">JPG</a>
-                <a href="/png-to-jpg/" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PNG</a>
-                <a href="/jpg-to-webp/" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">WebP</a>
-                <a href="/jpg-to-pdf/" class="px-4 py-2 rounded-lg text-sm font-medium text-text-tertiary hover:text-text-secondary cursor-pointer transition-colors">PDF</a>
-              </div>
-              <div class="flex items-center gap-2 text-text-tertiary">
-                <span class="text-sm font-medium">→</span>
-                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
-                  <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </div>
-                <span class="px-4 py-2 rounded-lg bg-brand-50 dark:bg-brand-950/50 border border-brand-200 dark:border-brand-800 text-sm font-semibold text-brand-700 dark:text-brand-300">PNG</span>
-              </div>
-            </div>
-            <a href={`${prefix}/jpg-to-png/`} class="block border-2 border-dashed border-border-default rounded-xl p-8 sm:p-10 text-center bg-surface-muted/50 hover:border-brand-300 dark:hover:border-brand-700 transition-colors cursor-pointer group">
-              <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-brand-50 dark:bg-brand-950/50 flex items-center justify-center border border-brand-100 dark:border-brand-900/50 group-hover:scale-110 transition-transform duration-300">
-                <svg class="w-7 h-7 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                </svg>
-              </div>
-              <p class="text-sm font-medium text-text-primary mb-1">{t.home.dropzoneText}</p>
-              <p class="text-xs text-text-tertiary">{t.home.dropzoneHint}</p>
-            </a>
-          </div>
-        </div>
+      <!-- Interactive Converter -->
+      <div class="mt-14 sm:mt-16 lg:mt-20 max-w-4xl mx-auto animate-fade-in-up delay-300">
+        <ActiveConverter
+          targetFormat="png"
+          targetExt="png"
+          targetMime="image/png"
+          accept=".jpg,.jpeg,.png,.webp,.heic,.avif,image/*"
+          inputFormat="JPG / इमेज"
+          outputFormat="PNG"
+          allowFormatSwitch={true}
+          locale={locale}
+        />
       </div>
     </Container>
   </section>
@@ -363,29 +343,24 @@ const testimonials = [
     </Container>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- ARCHITECTURE & PRIVACY -->
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
-          {t.home.testimonialsTitle}
+          सत्यापित स्थानीय गोपनीयता
         </h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {testimonials.map((testimonial) => (
+        {architectureHighlights.map((item) => (
           <div class="card p-6 sm:p-7 flex flex-col">
-            <p class="text-sm text-text-secondary leading-relaxed flex-1 mb-5">
-              "{testimonial.quote}"
-            </p>
-            <div class="flex items-center gap-3 pt-4 border-t border-border-muted">
-              <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
-                {testimonial.author.charAt(0)}
-              </div>
-              <div>
-                <div class="text-sm font-semibold text-text-primary">{testimonial.author}</div>
-                <div class="text-xs text-text-tertiary">{testimonial.role}</div>
-              </div>
+            <div class="inline-flex items-center self-start px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 text-xs font-bold mb-3">
+              {item.metric}
             </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">{item.title}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              {item.detail}
+            </p>
           </div>
         ))}
       </div>

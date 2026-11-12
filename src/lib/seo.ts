@@ -1,11 +1,21 @@
 import { site } from "@data/site";
 
+const ogLocaleMap: Record<string, string> = {
+  en: "en_US",
+  es: "es_ES",
+  pt: "pt_BR",
+  hi: "hi_IN",
+  fr: "fr_FR",
+  de: "de_DE",
+};
+
 interface MetaOptions {
   title: string;
   description: string;
   canonical?: string;
   ogImage?: string;
   noindex?: boolean;
+  locale?: string;
 }
 
 export function generateMeta(opts: MetaOptions) {
@@ -56,7 +66,7 @@ export function generateMeta(opts: MetaOptions) {
       { property: "og:image", content: new URL(ogImage, site.url).href },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:locale", content: site.locale },
+      { property: "og:locale", content: ogLocaleMap[opts.locale ?? "en"] ?? site.locale },
 
       // Twitter
       { name: "twitter:card", content: "summary_large_image" },
@@ -81,6 +91,7 @@ interface JsonLdOptions {
   name: string;
   description: string;
   url?: string;
+  locale?: string;
   breadcrumbs?: { name: string; url: string }[];
   faqItems?: { question: string; answer: string }[];
   applicationCategory?: string;
@@ -104,7 +115,9 @@ interface JsonLdOptions {
 export function generateJsonLd(opts: JsonLdOptions) {
   const baseUrl = site.url;
   const pageUrl = opts.url ?? baseUrl;
-  const isHomepage = !opts.url || opts.url === baseUrl || opts.url === `${baseUrl}/`;
+  const lang = opts.locale ?? "en";
+  const isRootHomepage = !opts.url || opts.url === baseUrl || opts.url === `${baseUrl}/`;
+  const isLocalizedHomepage = /^https:\/\/quickjpgconverter\.com\/(es|pt|hi|fr|de)\/?$/.test(pageUrl);
 
   const graphs: Record<string, unknown>[] = [];
 
@@ -117,32 +130,36 @@ export function generateJsonLd(opts: JsonLdOptions) {
     logo: new URL("/favicon.svg", baseUrl).href,
   });
 
-  // WebSite schema with SearchAction ONLY on the root homepage per Google guidelines
-  if (isHomepage) {
-    graphs.push({
-      "@type": "WebSite",
-      "@id": `${baseUrl}/#website`,
-      name: site.name,
-      url: baseUrl,
-      publisher: {
-        "@id": `${baseUrl}/#organization`,
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: `${baseUrl}/tools/?q={search_term_string}`,
+  // WebSite schema with SearchAction on root homepage, plus SoftwareApplication on all homepages
+  if (isRootHomepage || isLocalizedHomepage) {
+    if (isRootHomepage) {
+      graphs.push({
+        "@type": "WebSite",
+        "@id": `${baseUrl}/#website`,
+        name: site.name,
+        url: baseUrl,
+        inLanguage: lang,
+        publisher: {
+          "@id": `${baseUrl}/#organization`,
         },
-        "query-input": "required name=search_term_string",
-      },
-    });
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${baseUrl}/tools/?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      });
+    }
 
-    // Site-wide SoftwareApplication schema for homepage with AggregateRating
+    // Site-wide SoftwareApplication schema for homepage
     graphs.push({
       "@type": "SoftwareApplication",
-      name: "QuickJPG Free Online Image Converter",
+      name: opts.name || "QuickJPG Free Online Image Converter",
       description: opts.description,
-      url: baseUrl,
+      url: pageUrl,
+      inLanguage: lang,
       applicationCategory: opts.applicationCategory ?? "MultimediaApplication",
       operatingSystem: "Web Browser (Chrome, Safari, Firefox, Edge, iOS, Android)",
       browserRequirements: "Requires HTML5 Canvas and WebAssembly support",
@@ -150,13 +167,6 @@ export function generateJsonLd(opts: JsonLdOptions) {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "2840",
-        bestRating: "5",
-        worstRating: "1",
       },
       featureList: [
         "JPG to PNG conversion",
@@ -190,12 +200,13 @@ export function generateJsonLd(opts: JsonLdOptions) {
       ],
     });
   } else if (opts.toolSchema) {
-    // Explicit tool schema with AggregateRating
+    // Explicit tool schema
     graphs.push({
       "@type": "WebApplication",
       name: opts.toolSchema.name,
       description: opts.toolSchema.description,
       url: opts.toolSchema.url,
+      inLanguage: lang,
       applicationCategory: "MultimediaApplication",
       operatingSystem: "Web Browser (Chrome, Safari, Firefox, Edge, iOS, Android)",
       browserRequirements: "Requires HTML5 Canvas and WebAssembly support",
@@ -203,13 +214,6 @@ export function generateJsonLd(opts: JsonLdOptions) {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "1420",
-        bestRating: "5",
-        worstRating: "1",
       },
       featureList: opts.toolSchema.featureList,
     });
@@ -220,6 +224,7 @@ export function generateJsonLd(opts: JsonLdOptions) {
       headline: opts.articleSchema.headline,
       description: opts.description,
       url: pageUrl,
+      inLanguage: lang,
       datePublished: opts.articleSchema.datePublished,
       dateModified: opts.articleSchema.dateModified ?? opts.articleSchema.datePublished,
       author: opts.articleSchema.authorName
@@ -248,12 +253,13 @@ export function generateJsonLd(opts: JsonLdOptions) {
     ].some((path) => pageUrl.includes(path));
 
     if (!isUtilityOrDocPage && !pageUrl.endsWith("/tools/")) {
-      // It is an active tool page without explicit toolSchema; emit tailored WebApplication schema with AggregateRating
+      // It is an active tool page without explicit toolSchema; emit tailored WebApplication schema
       graphs.push({
         "@type": "WebApplication",
         name: opts.name.split("—")[0].trim(),
         description: opts.description,
         url: pageUrl,
+        inLanguage: lang,
         applicationCategory: "MultimediaApplication",
         operatingSystem: "Web Browser (Chrome, Safari, Firefox, Edge, iOS, Android)",
         browserRequirements: "Requires HTML5 Canvas and WebAssembly support",
@@ -261,13 +267,6 @@ export function generateJsonLd(opts: JsonLdOptions) {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "980",
-          bestRating: "5",
-          worstRating: "1",
         },
       });
     } else {
@@ -277,6 +276,7 @@ export function generateJsonLd(opts: JsonLdOptions) {
         name: opts.name,
         description: opts.description,
         url: pageUrl,
+        inLanguage: lang,
         isPartOf: {
           "@id": `${baseUrl}/#website`,
         },

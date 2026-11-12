@@ -119,21 +119,21 @@ const comparisonFeatures = [
   { label: "100% browser-based", quickjpg: true, iloveimg: false, freeconvert: false },
 ];
 
-const testimonials = [
+const architectureHighlights = [
   {
-    quote: "Finally, a converter that doesn't make me upload my photos to some random server. Game changer for client work.",
-    author: "Sarah K.",
-    role: "Freelance Photographer",
+    metric: "0 KB Uploaded",
+    title: "Local Memory Execution",
+    detail: "Files are decoded and re-encoded inside browser memory via HTML5 Canvas, OffscreenCanvas, and WebAssembly—never transmitted over the network.",
   },
   {
-    quote: "We use this daily for our e-commerce product images. Fast, reliable, and the WebP conversion saves us hours of optimization.",
-    author: "Marcus T.",
-    role: "E-commerce Manager",
+    metric: "6+ Formats",
+    title: "Cross-Format Pipeline",
+    detail: "Convert cleanly between JPG, PNG, WebP, HEIC/HEIF, AVIF, and multi-page PDF without installing desktop software or browser extensions.",
   },
   {
-    quote: "I recommend this to all my students. No account needed, no tracking, just works. Exactly what the web should be.",
-    author: "Dr. Chen",
-    role: "Computer Science Professor",
+    metric: "Verifiable",
+    title: "Inspectable in DevTools",
+    detail: "Open your browser Network tab during any conversion to verify that zero image bytes leave your computer, phone, or tablet.",
   },
 ];
 ---
@@ -143,7 +143,6 @@ const testimonials = [
   description="Convert JPG, PNG, WebP, HEIC, and PDF images instantly for free. 100% private in-browser image converter — zero file uploads, no signup, instant batch download."
   canonical={site.url}
   faqItems={faqItems}
-  keywords={["image converter", "jpg converter", "free jpg converter", "online jpg converter", "convert image to jpg", "png to jpg converter", "webp to jpg converter", "heic to jpg converter", "pdf to jpg converter", "jpg to png converter", "jpg to webp converter", "free image converter online", "browser image converter", "batch image converter"]}
 >
   <!-- ============================================
        SECTION 1: HERO
@@ -543,31 +542,29 @@ const testimonials = [
   </section>
 
   <!-- ============================================
-       SECTION 5b: TESTIMONIALS
+       SECTION 5b: CLIENT-SIDE ARCHITECTURE & PRIVACY
        ============================================ -->
   <section class="section bg-surface-muted">
     <Container>
       <div class="text-center mb-10">
         <h2 class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">
-          Loved by Creators
+          Built for Speed &amp; Verifiable Privacy
         </h2>
+        <p class="text-text-secondary mt-2 max-w-2xl mx-auto text-sm sm:text-base">
+          Your photos and documents never touch a remote server.
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {testimonials.map((t) => (
+        {architectureHighlights.map((item) => (
           <div class="card p-6 sm:p-7 flex flex-col">
-            <p class="text-sm text-text-secondary leading-relaxed flex-1 mb-5">
-              "{t.quote}"
-            </p>
-            <div class="flex items-center gap-3 pt-4 border-t border-border-muted">
-              <div class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300">
-                {t.author.charAt(0)}
-              </div>
-              <div>
-                <div class="text-sm font-semibold text-text-primary">{t.author}</div>
-                <div class="text-xs text-text-tertiary">{t.role}</div>
-              </div>
+            <div class="inline-flex items-center self-start px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 text-xs font-bold mb-3">
+              {item.metric}
             </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">{item.title}</h3>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              {item.detail}
+            </p>
           </div>
         ))}
       </div>
@@ -659,124 +656,42 @@ const testimonials = [
   </section>
 
   <!-- ============================================
-       SECTION 7: SEO CONTENT (600+ words)
+       SECTION 7: FORMAT & TECHNICAL GUIDE
        ============================================ -->
   <section class="section bg-surface-muted">
     <Container variant="narrow">
       <div class="prose">
-        <h2>The Best Free Online JPG Converter</h2>
+        <h2>How Client-Side Image Conversion Works</h2>
         <p>
-          Looking for a free JPG converter that works entirely in your browser? Quick JPG Converter
-          is the fastest and most private way to convert JPG images to PNG, WebP, and PDF formats —
-          without uploading your files to any server. Whether you need to convert JPG to PNG for
-          lossless quality, JPG to WebP for faster websites, or JPG to PDF for easy sharing, our
-          online JPG converter handles every format conversion in milliseconds. We also support HEIC
-          to JPG conversion for iPhone photos, making it the most versatile free image converter available.
+          QuickJPG runs directly inside your web browser using the HTML5 Canvas API and WebAssembly decoders. When you select a photo, document, or graphic, your device reads the file into local memory, decodes its pixel buffer, and re-encodes it into your target format without transmitting bytes over the network.
         </p>
         <p>
-          Unlike traditional image converters that require you to upload photos to a remote server,
-          our free JPG converter uses WebAssembly and Canvas API technology to process images directly
-          on your device. This means your photos never leave your browser — guaranteed privacy every
-          time you convert. No sign-up, no watermarks, no file size limits, and no hidden fees. It's
-          the JPG converter that respects your privacy while delivering professional-quality results.
+          Because processing stays on your hardware, conversion speed scales with your CPU and finishes without server upload queues, bandwidth caps, or temporary cloud storage retention.
         </p>
 
-        <h3>Why Choose Our Online JPG Converter?</h3>
+        <h3>Choosing the Right Image Format</h3>
         <p>
-          There are dozens of JPG converters online, but most of them come with significant drawbacks.
-          Server-based converters require you to upload your images, which introduces privacy risks,
-          slow upload times, and file size restrictions. Our free JPG converter solves all of these
-          problems by processing everything locally in your browser. When you use our JPG converter,
-          your images stay on your device — they're never sent to any server.
+          Different file formats optimize for different priorities—file weight, lossless edges, transparency, or universal compatibility across operating systems and portals.
         </p>
         <ul>
-          <li><strong>100% private</strong> — your JPG images never leave your device. No server uploads, no data collection, no tracking.</li>
-          <li><strong>Instant conversion</strong> — convert JPG to PNG, WebP, or PDF in under a second. No upload wait times.</li>
-          <li><strong>Completely free</strong> — no sign-up required, no watermarks on output, no usage limits. Convert as many images as you need.</li>
-          <li><strong>Batch processing</strong> — convert multiple JPG files at once. Perfect for photographers and e-commerce sellers.</li>
-          <li><strong>Quality control</strong> — choose between high quality, balanced, or smallest file size for every conversion.</li>
-          <li><strong>Works everywhere</strong> — use our JPG converter on desktop, tablet, or phone. Any modern browser works.</li>
+          <li><strong><a href="/jpg-to-png/">JPG to PNG</a></strong> — Useful when you need lossless storage, sharp screenshots, crisp UI text, or transparent backgrounds via alpha editing.</li>
+          <li><strong><a href="/png-to-jpg/">PNG to JPG</a></strong> — Reduces photograph file size dramatically by discarding unneeded alpha channels and applying perceptual chroma subsampling.</li>
+          <li><strong><a href="/jpg-to-webp/">JPG to WebP</a></strong> — Typically delivers 25–35% smaller web assets at comparable visual fidelity, improving Core Web Vitals (LCP).</li>
+          <li><strong><a href="/webp-to-jpg/">WebP to JPG</a></strong> — Ensures compatibility with legacy photo editors, desktop viewers, and strict upload portals.</li>
+          <li><strong><a href="/jpg-to-pdf/">JPG to PDF</a></strong> — Bundles single or multiple scanned pages and receipts into a standardized document container.</li>
+          <li><strong><a href="/heic-to-jpg/">HEIC to JPG</a></strong> — Converts Apple High Efficiency Image Container files from iPhone and iPad cameras into broadly readable JPEGs.</li>
+          <li><strong><a href="/resize-jpg/">Resize JPG</a></strong> — Scales image dimensions accurately before publishing to social platforms or product catalogs.</li>
         </ul>
 
-        <h3>Supported JPG Conversions</h3>
+        <h3>Compression, Dimensions, and Upload Requirements</h3>
         <p>
-          Our online JPG converter supports all the format conversions you need. Each conversion
-          runs entirely in your browser, producing high-quality output that you can download instantly.
-          Whether you're looking for a PNG to JPG converter, WebP to JPG converter, or HEIC to JPG
-          converter, we've got you covered.
+          Most government application portals, visa systems, and job forms enforce strict byte ceilings (such as 20KB, 50KB, or 100KB) alongside exact pixel dimensions. Instead of guessing export sliders repeatedly, our specialized sizing utilities adjust encoding quality iteratively until the output meets your target budget while preserving legibility.
         </p>
         <ul>
-          <li><strong><a href="/jpg-to-png/">JPG to PNG</a></strong> — convert JPG to PNG for lossless quality and transparent backgrounds. Perfect for logos, screenshots, and graphics.</li>
-          <li><strong><a href="/png-to-jpg/">PNG to JPG</a></strong> — convert PNG to JPG for smaller file sizes and universal compatibility. Ideal for web publishing and email.</li>
-          <li><strong><a href="/jpg-to-webp/">JPG to WebP</a></strong> — convert JPG to WebP for 25-35% smaller files with equivalent quality. Great for faster websites.</li>
-          <li><strong><a href="/webp-to-jpg/">WebP to JPG</a></strong> — convert WebP to JPG for wider compatibility with older software and social media platforms.</li>
-          <li><strong><a href="/jpg-to-pdf/">JPG to PDF</a></strong> — convert JPG to PDF for creating shareable documents, presentations, and print-ready files.</li>
-          <li><strong><a href="/heic-to-jpg/">HEIC to JPG</a></strong> — convert iPhone HEIC photos to JPG for universal compatibility. Works with photos from any iPhone or iPad.</li>
-          <li><strong><a href="/resize-jpg/">Resize JPG</a></strong> — resize JPG images to any dimension while maintaining quality. Optimize for web, social media, or email.</li>
-        </ul>
-
-        <h3>How Our JPG Converter Works</h3>
-        <p>
-          Converting JPG images with our online tool is simple. First, select the conversion type —
-          JPG to PNG, JPG to WebP, JPG to PDF, or any other format combination. Then drag and drop
-          your JPG files into the converter zone, or click to browse your computer. Our JPG converter
-          processes each file instantly using WebAssembly, and your converted images are ready to
-          download in seconds.
-        </p>
-        <p>
-          Every conversion happens entirely in your web browser. The JPG converter uses your device's
-          CPU to re-encode images using industry-standard algorithms, ensuring professional-grade
-          quality output. Whether you're converting a single photo or batch-processing hundreds of
-          product images, the result is always fast and reliable. It's the free JPG converter that
-          professionals trust for their image conversion needs.
-        </p>
-
-        <h3>Why JPG to PNG Conversion Matters</h3>
-        <p>
-          Converting JPG to PNG is one of the most common image format conversions. PNG uses lossless
-          compression, which means every pixel is preserved without any quality degradation. This
-          makes PNG the ideal format for logos, icons, screenshots, and any image where quality is
-          paramount. While PNG files are larger than JPG, the trade-off is perfect visual fidelity.
-        </p>
-        <p>
-          Our free JPG to PNG converter makes this conversion instant. Simply upload your JPG image,
-          and our converter will produce a high-quality PNG file that you can download immediately.
-          The conversion preserves all the visual information from your original JPG, giving you a
-          lossless version that's ready for editing, printing, or web use.
-        </p>
-
-        <h3>Professional-Grade Quality</h3>
-        <p>
-          Our JPG converter doesn't just change file extensions — it re-encodes your images using
-          industry-standard algorithms that preserve quality while optimizing file size. Whether
-          you're converting a batch of product photos for your e-commerce store, preparing images
-          for a presentation, or creating transparent graphics from JPG photos, you can trust that
-          the output will look exactly as expected. Every pixel matters, and our converter ensures
-          your converted images maintain the highest possible quality.
-        </p>
-        <p>
-          The free JPG converter also gives you control over output quality. Choose between high
-          quality for maximum visual fidelity, balanced for a good mix of size and quality, or
-          smallest size when file size is the priority. This level of control is typically only
-          available in desktop software — but our online JPG converter brings it to your browser
-          for free.
-        </p>
-
-        <h3>Specialized Tools for Specific Needs</h3>
-        <p>
-          Beyond format conversion, we offer specialized tools for specific use cases. Need a
-          passport photo? Our <a href="/passport-photo-size/">passport photo tool</a> resizes
-          your photos to the exact dimensions required by any country. Applying for government
-          jobs? Our <a href="/compress-for-govt-form/">government form compressor</a> reduces
-          photos to the strict file size limits required by SSC, UPSC, and bank forms. Developers
-          can use our <a href="/photo-to-base64/">photo to Base64 converter</a> to embed images
-          directly in HTML, CSS, or JavaScript.
-        </p>
-        <ul>
-          <li><strong><a href="/passport-photo-size/">Passport Photo Size</a></strong> — resize photos to passport dimensions for India, USA, UK, and other countries.</li>
-          <li><strong><a href="/compress-for-govt-form/">Compress for Govt Form</a></strong> — reduce images to 20KB, 50KB, or 100KB for government forms.</li>
-          <li><strong><a href="/photo-to-base64/">Photo to Base64</a></strong> — convert images to Base64 strings for HTML embedding and data URIs.</li>
-          <li><strong><a href="/compress-to-100kb/">Compress to 100KB</a></strong> — reduce any image to under 100KB for portal uploads.</li>
+          <li><strong><a href="/passport-photo-size/">Passport Photo Size</a></strong> — Crop and dimension portraits cleanly for country-specific official photo specifications.</li>
+          <li><strong><a href="/compress-for-govt-form/">Compress for Govt Form</a></strong> — Target exact KB limits such as 20KB, 50KB, or 100KB for exam and civil portal uploads.</li>
+          <li><strong><a href="/photo-to-base64/">Photo to Base64</a></strong> — Generate inline data URIs and Base64 payloads for HTML, CSS, and frontend bundles.</li>
+          <li><strong><a href="/compress-to-100kb/">Compress to 100KB</a></strong> — Optimize high-resolution photos down below 100KB with selectable quality presets.</li>
         </ul>
       </div>
     </Container>
