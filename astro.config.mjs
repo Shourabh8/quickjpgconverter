@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import path from "path";
+import { isExcludedRoute } from "./src/data/seoExclusions.mjs";
 
 export default defineConfig({
   site: "https://quickjpgconverter.com",
@@ -31,26 +32,8 @@ export default defineConfig({
         },
       },
       filter: (page) => {
-        // Always include main tools directory
         if (page === "https://quickjpgconverter.com/tools" || page === "https://quickjpgconverter.com/tools/") return true;
-
-        // Exclude all /tools/* subpages across all languages
-        if (page.includes("/tools/")) return false;
-
-        const excluded = [
-          "/admin",
-          "/404",
-          "/500",
-          "/blog/webp-to-jpg-converter",
-          "/free-pdf-to-jpg",
-          "/online-pdf-to-jpg",
-          "/free-online-pdf-to-jpg",
-          "/free-heic-to-jpg",
-          "/image-to-jpg-converter",
-          "/jpg-converter",
-          "/testimonials",
-        ];
-        return !excluded.some((path) => page.endsWith(path) || page.endsWith(path + "/") || page.includes(path + "/"));
+        return !isExcludedRoute(page);
       },
     }),
   ],

@@ -7,10 +7,10 @@ import Breadcrumb from "@components/seo/Breadcrumb.astro";
 const breadcrumbs = [{ name: "About", url: "/about/" }];
 
 const stats = [
-  { value: "2M+", label: "Conversions monthly" },
-  { value: "180+", label: "Countries served" },
-  { value: "0", label: "Files ever stored" },
-  { value: "100%", label: "Browser-side processing" },
+  { value: "0 KB", label: "Uploaded to servers" },
+  { value: "100%", label: "Client-side processing" },
+  { value: "6", label: "Supported languages" },
+  { value: "35+", label: "Browser image tools" },
 ];
 
 const values = [
@@ -54,16 +54,19 @@ const authorSchema = {
     name: "Quick JPG Converter",
     url: "https://quickjpgconverter.com/",
     description: "Privacy-first browser-based image conversion tools",
-    foundingDate: "2024",
-    numberOfEmployees: "2-10",
-    sameAs: [],
+    foundingDate: "2026",
+    founder: {
+      "@type": "Person",
+      name: "Shourabh Sharma",
+      url: "https://quickjpgconverter.com/author/shourabh/",
+    },
   },
 };
 ---
 
 <BaseLayout
   title="About Quick JPG Converter — Privacy-First Image Tools Platform"
-  description="Learn how Quick JPG Converter works, our privacy-first mission, and why 2M+ users choose us every month for browser-based image conversion."
+  description="Learn how Quick JPG Converter runs 100% locally in your browser using HTML5 Canvas and WebAssembly so your photos never leave your device."
   canonical="https://quickjpgconverter.com/about/"
   breadcrumbs={breadcrumbs}
 >
@@ -103,7 +106,7 @@ const authorSchema = {
           By leveraging the modern browser's Canvas API, WebAssembly capabilities, and JavaScript workers, we built a complete image processing platform that runs entirely in your browser. Your files process locally, complete instantly, and download directly to your device — no cloud infrastructure touches your images at any point.
         </p>
         <p>
-          Today, Quick JPG Converter serves millions of conversions each month across 180+ countries, trusted by photographers, designers, developers, students, and businesses who need fast, private image tools they can rely on.
+          Today, Quick JPG Converter provides dozens of lightweight utilities—format converters, exact KB compressors, passport photo resizers, and PDF tools—built for photographers, designers, developers, students, and everyday web users.
         </p>
 
         <h2>How It Works</h2>
@@ -165,7 +168,7 @@ const authorSchema = {
           </div>
           <h2 class="text-xl font-bold text-text-primary">Our Team</h2>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="max-w-xl">
           <div class="p-5 rounded-2xl border border-border-default bg-surface hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
             <div class="flex items-center gap-3 mb-3">
               <a href="/author/shourabh/" class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300 hover:opacity-80 transition-opacity">SS</a>
@@ -173,37 +176,17 @@ const authorSchema = {
                 <h3 class="text-base font-semibold text-text-primary">
                   <a href="/author/shourabh/" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Shourabh Sharma</a>
                 </h3>
-                <p class="text-xs text-text-tertiary">Founder & Lead Engineer</p>
+                <p class="text-xs text-text-tertiary">Founder &amp; Lead Developer</p>
               </div>
             </div>
-            <p class="text-sm text-text-secondary leading-relaxed">Full-stack engineer specialized in privacy-first client-side architecture, Canvas API rendering, and WebAssembly image processing pipelines.</p>
+            <p class="text-sm text-text-secondary leading-relaxed">Full-stack developer focused on privacy-first client-side architecture, HTML5 Canvas rendering, and WebAssembly image processing pipelines.</p>
             <div class="flex flex-wrap gap-2 mt-3">
               <span class="text-xs px-2 py-1 rounded-full bg-surface-muted border border-border-default text-text-secondary">Canvas API</span>
               <span class="text-xs px-2 py-1 rounded-full bg-surface-muted border border-border-default text-text-secondary">WebAssembly</span>
               <span class="text-xs px-2 py-1 rounded-full bg-surface-muted border border-border-default text-text-secondary">Image Processing</span>
             </div>
             <a href="/author/shourabh/" class="inline-block mt-3 text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline">
-              View Profile & Articles →
-            </a>
-          </div>
-          <div class="p-5 rounded-2xl border border-border-default bg-surface hover:border-brand-300 dark:hover:border-brand-700 transition-colors">
-            <div class="flex items-center gap-3 mb-3">
-              <a href="/author/team/" class="w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center text-sm font-bold text-brand-700 dark:text-brand-300 hover:opacity-80 transition-opacity">QJ</a>
-              <div>
-                <h3 class="text-base font-semibold text-text-primary">
-                  <a href="/author/team/" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Quick JPG Converter Team</a>
-                </h3>
-                <p class="text-xs text-text-tertiary">Writers, UX & Support</p>
-              </div>
-            </div>
-            <p class="text-sm text-text-secondary leading-relaxed">We write detailed guides on image conversion, compression standards, and web performance — drawing from real experience building and using these tools daily.</p>
-            <div class="flex flex-wrap gap-2 mt-3">
-              <span class="text-xs px-2 py-1 rounded-full bg-surface-muted border border-border-default text-text-secondary">Technical Writing</span>
-              <span class="text-xs px-2 py-1 rounded-full bg-surface-muted border border-border-default text-text-secondary">SEO & Standards</span>
-              <span class="text-xs px-2 py-1 rounded-full bg-surface-muted border border-border-default text-text-secondary">User Support</span>
-            </div>
-            <a href="/author/team/" class="inline-block mt-3 text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline">
-              Meet the Entire Team →
+              View Profile &amp; Articles →
             </a>
           </div>
         </div>
@@ -240,9 +223,9 @@ const authorSchema = {
             </svg>
           </div>
           <div>
-            <h3 class="text-base font-semibold text-text-primary mb-1">Verified Privacy</h3>
+            <h3 class="text-base font-semibold text-text-primary mb-1">Inspectable Client-Side Privacy</h3>
             <p class="text-sm text-text-secondary">
-              We've been independently verified. Our source code is auditable, our privacy claims are technically verifiable, and our tools work offline. We don't just say we're private — we prove it.
+              Every conversion runs inside your local browser sandbox via Canvas API and WebAssembly. You can verify in your browser DevTools Network tab that zero image bytes are transmitted externally.
             </p>
           </div>
         </div>

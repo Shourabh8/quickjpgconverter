@@ -1,6 +1,7 @@
 ---
 import { generateMeta, generateJsonLd } from "@lib/seo";
 import { getAlternateLinks } from "@i18n/index";
+import { isExcludedRoute } from "@data/seoExclusions.mjs";
 
 interface Props {
   title: string;
@@ -45,10 +46,11 @@ const {
   articleSchema,
 } = Astro.props;
 
-const meta = generateMeta({ title, description, canonical, ogImage, noindex, locale });
+const effectiveNoindex = noindex || isExcludedRoute(Astro.url.pathname);
+const meta = generateMeta({ title, description, canonical, ogImage, noindex: effectiveNoindex, locale });
 
 const cleanPath = (Astro.url.pathname.replace(/^\/(en|es|pt|hi|fr|de)(?=\/|$)/, "") || "/").replace(/\/+/g, "/");
-const alternateLinks = getAlternateLinks(locale as any, cleanPath);
+const alternateLinks = effectiveNoindex ? [] : getAlternateLinks(locale as any, cleanPath);
 const xDefaultHref = cleanPath === "/" ? "https://quickjpgconverter.com/" : `https://quickjpgconverter.com${cleanPath.replace(/\/+$/, "")}/`;
 
 const jsonLdData = jsonLd
